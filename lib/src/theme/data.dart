@@ -3,6 +3,7 @@ import 'package:bacon/src/theme/components/decorator.dart';
 import 'package:bacon/src/theme/text_theme/data.dart';
 import 'package:bacon/src/theme/themes/base.dart';
 import 'package:bacon/src/theme/themes/component_default.dart';
+import 'package:bacon/src/utils/responsive.dart';
 import 'package:flutter/material.dart';
 
 @immutable
@@ -13,6 +14,7 @@ class BaconThemeData extends BaconBaseTheme {
     Iterable<ThemeExtension<dynamic>>? extensions,
     BorderRadius? radius,
     BaconTextThemeData? textTheme,
+    Responsive? responsive,
     BaconDecoration? decoration,
   }) {
     final effectiveRadius = radius ??
@@ -28,6 +30,7 @@ class BaconThemeData extends BaconBaseTheme {
       extensions: extensions,
       textTheme: effectiveTextTheme,
       radius: effectiveRadius,
+      responsive: responsive ?? Responsive(),
       decoration: BaconComponentDefaultTheme.decoration(
         colorScheme: colorScheme,
         textTheme: effectiveTextTheme,
@@ -45,6 +48,7 @@ class BaconThemeData extends BaconBaseTheme {
     required super.textTheme,
     required super.radius,
     required super.decoration,
+    required super.responsive,
   });
 
   static BaconThemeData lerp(
