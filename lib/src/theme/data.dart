@@ -1,4 +1,5 @@
 import 'package:bacon/src/theme/color_scheme/base.dart';
+import 'package:bacon/src/theme/components/button.dart';
 import 'package:bacon/src/theme/components/decorator.dart';
 import 'package:bacon/src/theme/text_theme/data.dart';
 import 'package:bacon/src/theme/themes/base.dart';
@@ -16,6 +17,7 @@ class BaconThemeData extends BaconBaseTheme {
     BaconTextThemeData? textTheme,
     Responsive? responsive,
     BaconDecoration? decoration,
+    BaconButtonTheme? primaryButtonTheme,
   }) {
     final effectiveRadius = radius ??
         const BorderRadius.all(
@@ -38,6 +40,9 @@ class BaconThemeData extends BaconBaseTheme {
       ).mergeWith(
         decoration,
       ),
+      primaryButtonTheme: primaryButtonTheme ??
+          BaconComponentDefaultTheme.primaryButtonTheme(
+              colorScheme: colorScheme),
     );
   }
 
@@ -49,6 +54,7 @@ class BaconThemeData extends BaconBaseTheme {
     required super.radius,
     required super.decoration,
     required super.responsive,
+    required super.primaryButtonTheme,
   });
 
   static BaconThemeData lerp(
@@ -65,6 +71,8 @@ class BaconThemeData extends BaconBaseTheme {
       radius: BorderRadius.lerp(a.radius, b.radius, t),
       textTheme: BaconTextThemeData.lerp(a.textTheme, b.textTheme, t),
       decoration: BaconDecoration.lerp(a.decoration, b.decoration, t),
+      primaryButtonTheme:
+          BaconButtonTheme.lerp(a.primaryButtonTheme, b.primaryButtonTheme, t),
     );
   }
 
@@ -75,6 +83,7 @@ class BaconThemeData extends BaconBaseTheme {
     BaconTextThemeData? textTheme,
     BorderRadius? radius,
     BaconDecoration? decoration,
+    BaconButtonTheme? primaryButtonTheme,
   }) {
     return BaconThemeData(
       colorScheme: colorScheme ?? this.colorScheme,
@@ -83,6 +92,7 @@ class BaconThemeData extends BaconBaseTheme {
       textTheme: textTheme ?? this.textTheme,
       radius: radius ?? this.radius,
       decoration: decoration ?? this.decoration,
+      primaryButtonTheme: primaryButtonTheme ?? this.primaryButtonTheme,
     );
   }
 
@@ -94,7 +104,8 @@ class BaconThemeData extends BaconBaseTheme {
         other.brightness == brightness &&
         other.textTheme == textTheme &&
         other.radius == radius &&
-        other.decoration == decoration;
+        other.decoration == decoration &&
+        other.primaryButtonTheme == primaryButtonTheme;
   }
 
   @override
@@ -103,6 +114,7 @@ class BaconThemeData extends BaconBaseTheme {
         colorScheme.hashCode ^
         brightness.hashCode ^
         textTheme.hashCode ^
-        radius.hashCode;
+        radius.hashCode ^
+        primaryButtonTheme.hashCode;
   }
 }
