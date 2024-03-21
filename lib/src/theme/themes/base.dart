@@ -1,4 +1,5 @@
 import 'package:bacon/src/theme/color_scheme/base.dart';
+import 'package:bacon/src/theme/components/button.dart';
 import 'package:bacon/src/theme/components/decorator.dart';
 import 'package:bacon/src/theme/text_theme/data.dart';
 import 'package:bacon/src/utils/responsive.dart';
@@ -13,6 +14,7 @@ abstract class BaconBaseTheme {
     required this.radius,
     required this.textTheme,
     required this.responsive,
+    required this.primaryButtonTheme,
   });
 
   final BaconColorScheme colorScheme;
@@ -22,4 +24,5 @@ abstract class BaconBaseTheme {
   final BaconDecoration decoration;
   final BaconTextThemeData textTheme;
   final Responsive responsive;
+  final BaconButtonTheme primaryButtonTheme;
 }
