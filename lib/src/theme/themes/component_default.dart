@@ -1,4 +1,5 @@
 import 'package:bacon/src/theme/color_scheme/base.dart';
+import 'package:bacon/src/theme/components/button.dart';
 import 'package:bacon/src/theme/components/decorator.dart';
 import 'package:bacon/src/theme/text_theme/data.dart';
 import 'package:bacon/src/theme/text_theme/default.dart';
@@ -29,6 +30,16 @@ abstract class BaconComponentDefaultTheme {
         borderRadius: radius.add(radius / 2),
         padding: const EdgeInsets.all(2),
       ),
+    );
+  }
+
+  static BaconButtonTheme primaryButtonTheme({
+    required BaconColorScheme colorScheme,
+  }) {
+    return BaconButtonTheme(
+      backgroundColor: colorScheme.backgroundBrand,
+      hoverBackgroundColor: colorScheme.backgroundBrandLight,
+      hoverForegroundColor: colorScheme.backgroundAccentGreen,
     );
   }
 
