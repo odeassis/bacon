@@ -1,0 +1,63 @@
+name: bacon
+description: "A new Flutter package project."
+version: 0.0.1
+
+environment:
+  sdk: ">=3.3.1 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_animate: ^4.5.0
+  flutter_localizations:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  fonts:
+    - family: Geist
+      fonts:
+        - asset: fonts/Geist-Thin.otf
+          weight: 100
+        - asset: fonts/Geist-UltraLight.otf
+          weight: 200
+        - asset: fonts/Geist-Light.otf
+          weight: 300
+        - asset: fonts/Geist-Regular.otf
+          weight: 400
+        - asset: fonts/Geist-Medium.otf
+          weight: 500
+        - asset: fonts/Geist-SemiBold.otf
+          weight: 600
+        - asset: fonts/Geist-Bold.otf
+          weight: 700
+        - asset: fonts/Geist-Black.otf
+          weight: 800
+        - asset: fonts/Geist-UltraBlack.otf
+          weight: 900
+    - family: BaconIcons
+      fonts:
+        - asset: fonts/BaconIcons.ttf
+# icon_font:
+#   input_svg_dir: "assets/icons/"
+#   output_font_file: "fonts/Bacon-Icons.ttf"
+
+#   output_class_file: "lib/src/bacon_icons.dart"
+#   symlink_map_file: "assets/symlinks.json"
+#   class_name: "BaconIcons"
+#   package: bacon
+#   format: false
+#   naming_strategy: "snake"
+
+#   font_name: "BaconIcons"
+#   normalize: false
+#   ignore_shapes: false
+
+#   recursive: true
+#   verbose: true
