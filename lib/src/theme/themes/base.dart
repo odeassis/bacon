@@ -1,4 +1,5 @@
 import 'package:bacon/src/theme/color_scheme/base.dart';
+import 'package:bacon/src/theme/shape/base.dart';
 import 'package:bacon/src/theme/text_theme/data.dart';
 import 'package:bacon/src/theme/theme_components/alert.dart';
 import 'package:bacon/src/theme/theme_components/button.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/material.dart';
 abstract class BaconBaseTheme {
   BaconBaseTheme({
     required this.colorScheme,
+    required this.shape,
     required this.brightness,
     required this.extensions,
     required this.decoration,
@@ -30,12 +32,17 @@ abstract class BaconBaseTheme {
   });
 
   final BaconColorScheme colorScheme;
+  final BaconShapeTheme shape;
   final Brightness brightness;
   final Iterable<ThemeExtension<dynamic>>? extensions;
   final BorderRadius radius;
   final BaconDecoration decoration;
   final BaconTextThemeData textTheme;
   final Responsive responsive;
+
+  // Components themes
+
+  // Button themes
   final BaconButtonTheme primaryButtonTheme;
   final BaconButtonSizesTheme buttonSizesTheme;
   final BaconToastTheme primaryToastTheme;

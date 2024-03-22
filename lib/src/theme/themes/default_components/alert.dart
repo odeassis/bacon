@@ -1,4 +1,5 @@
 import 'package:bacon/src/theme/color_scheme/base.dart';
+import 'package:bacon/src/theme/shape/base.dart';
 import 'package:bacon/src/theme/text_theme/data.dart';
 import 'package:bacon/src/theme/theme_components/alert.dart';
 import 'package:bacon/src/theme/theme_components/decorator.dart';
@@ -8,6 +9,7 @@ class BaconAlertDefaultComponents {
   // Alert variant: information, style: filled
   static BaconAlertTheme alertInformationFilled({
     required BaconColorScheme colorScheme,
+    required BaconShapeTheme shapeTheme,
     required BaconTextThemeData textTheme,
     required BorderRadius radius,
   }) {
@@ -27,6 +29,7 @@ class BaconAlertDefaultComponents {
   // Alert variant: information, style: light
   static BaconAlertTheme alertInformationLight({
     required BaconColorScheme colorScheme,
+    required BaconShapeTheme shapeTheme,
     required BaconTextThemeData textTheme,
     required BorderRadius radius,
   }) {
@@ -46,6 +49,7 @@ class BaconAlertDefaultComponents {
   // Alert variant: information, style: outline
   static BaconAlertTheme alertInformationOutline({
     required BaconColorScheme colorScheme,
+    required BaconShapeTheme shapeTheme,
     required BaconTextThemeData textTheme,
     required BorderRadius radius,
   }) {
@@ -69,6 +73,7 @@ class BaconAlertDefaultComponents {
 
   static BaconAlertTheme warningAlertTheme({
     required BaconColorScheme colorScheme,
+    required BaconShapeTheme shapeTheme,
     required BaconTextThemeData textTheme,
     required BorderRadius radius,
   }) {
@@ -93,6 +98,7 @@ class BaconAlertDefaultComponents {
 
   static BaconAlertTheme successAlertTheme({
     required BaconColorScheme colorScheme,
+    required BaconShapeTheme shapeTheme,
     required BaconTextThemeData textTheme,
     required BorderRadius radius,
   }) {
@@ -117,6 +123,7 @@ class BaconAlertDefaultComponents {
 
   static BaconAlertTheme errorAlertTheme({
     required BaconColorScheme colorScheme,
+    required BaconShapeTheme shapeTheme,
     required BaconTextThemeData textTheme,
     required BorderRadius radius,
   }) {
