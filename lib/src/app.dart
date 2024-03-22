@@ -2,6 +2,7 @@
 
 import 'package:bacon/src/theme/color_scheme/default.dart';
 import 'package:bacon/src/theme/data.dart';
+import 'package:bacon/src/theme/shape/default.dart';
 import 'package:bacon/src/theme/theme.dart';
 import 'package:bacon/src/widgets/bacon_toaster.dart';
 import 'package:flutter/cupertino.dart';
@@ -594,6 +595,7 @@ class _BaconAppState extends State<BaconApp> {
   BaconThemeData theme(BuildContext context) {
     final mode = widget.themeMode ?? ThemeMode.system;
     final platformBrightness = MediaQuery.platformBrightnessOf(context);
+
     final useDarkStyle = mode == ThemeMode.dark ||
         (mode == ThemeMode.system && platformBrightness == Brightness.dark);
 
@@ -603,13 +605,17 @@ class _BaconAppState extends State<BaconApp> {
         result = widget.darkTheme ??
             widget.theme ??
             BaconThemeData(
-              colorScheme: const BaconDefaultColorScheme.dark(),
+              colorScheme: BaconDefaultColorScheme.dark(),
+              shape: widget.theme?.shape ??
+                  const BaconDefaultShapeTheme.defaultShape(),
               brightness: Brightness.dark,
             );
       } else {
         result = widget.theme ??
             BaconThemeData(
-              colorScheme: const BaconDefaultColorScheme.light(),
+              colorScheme: BaconDefaultColorScheme.light(),
+              shape: widget.theme?.shape ??
+                  const BaconDefaultShapeTheme.defaultShape(),
               brightness: Brightness.light,
             );
       }

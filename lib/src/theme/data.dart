@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 class BaconThemeData extends BaconBaseTheme {
   factory BaconThemeData({
     required BaconColorScheme colorScheme,
+    required BaconShapeTheme shape,
     required Brightness brightness,
     Iterable<ThemeExtension<dynamic>>? extensions,
     BorderRadius? radius,
@@ -37,6 +38,7 @@ class BaconThemeData extends BaconBaseTheme {
 
     return BaconThemeData._internal(
       colorScheme: colorScheme,
+      shape: shape,
       brightness: brightness,
       extensions: extensions,
       textTheme: effectiveTextTheme,
@@ -68,18 +70,21 @@ class BaconThemeData extends BaconBaseTheme {
       informationAlertFilledTheme:
           BaconAlertDefaultComponents.alertInformationFilled(
         colorScheme: colorScheme,
+        shapeTheme: shape,
         textTheme: effectiveTextTheme,
         radius: effectiveRadius,
       ).mergeWith(informationAlertFilledTheme),
       informationAlertLightTheme:
           BaconAlertDefaultComponents.alertInformationLight(
         colorScheme: colorScheme,
+        shapeTheme: shape,
         textTheme: effectiveTextTheme,
         radius: effectiveRadius,
       ).mergeWith(informationAlertLightTheme),
       informationAlertOutlineTheme:
           BaconAlertDefaultComponents.alertInformationOutline(
         colorScheme: colorScheme,
+        shapeTheme: shape,
         textTheme: effectiveTextTheme,
         radius: effectiveRadius,
       ).mergeWith(informationAlertOutlineTheme),
@@ -108,6 +113,7 @@ class BaconThemeData extends BaconBaseTheme {
 
   BaconThemeData._internal({
     required super.colorScheme,
+    required super.shape,
     required super.brightness,
     required super.extensions,
     required super.textTheme,
@@ -137,6 +143,7 @@ class BaconThemeData extends BaconBaseTheme {
     }
     return BaconThemeData(
       colorScheme: BaconColorScheme.lerp(a.colorScheme, b.colorScheme, t),
+      shape: BaconShapeTheme.lerp(a.shape, b.shape, t),
       brightness: b.brightness,
       radius: BorderRadius.lerp(a.radius, b.radius, t),
       textTheme: BaconTextThemeData.lerp(a.textTheme, b.textTheme, t),
@@ -172,6 +179,7 @@ class BaconThemeData extends BaconBaseTheme {
 
   BaconThemeData copyWith({
     BaconColorScheme? colorScheme,
+    BaconShapeTheme? shape,
     Brightness? brightness,
     Iterable<ThemeExtension<dynamic>>? extensions,
     BaconTextThemeData? textTheme,
@@ -192,6 +200,7 @@ class BaconThemeData extends BaconBaseTheme {
   }) {
     return BaconThemeData(
       colorScheme: colorScheme ?? this.colorScheme,
+      shape: shape ?? this.shape,
       brightness: brightness ?? this.brightness,
       extensions: extensions ?? this.extensions,
       textTheme: textTheme ?? this.textTheme,
@@ -221,6 +230,7 @@ class BaconThemeData extends BaconBaseTheme {
     if (identical(this, other)) return true;
     return other is BaconThemeData &&
         other.colorScheme == colorScheme &&
+        other.shape == shape &&
         other.brightness == brightness &&
         other.textTheme == textTheme &&
         other.radius == radius &&
@@ -242,6 +252,7 @@ class BaconThemeData extends BaconBaseTheme {
   int get hashCode {
     return decoration.hashCode ^
         colorScheme.hashCode ^
+        shape.hashCode ^
         brightness.hashCode ^
         textTheme.hashCode ^
         radius.hashCode ^
