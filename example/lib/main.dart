@@ -10,6 +10,32 @@ void main() {
 final routes = <String, WidgetBuilder>{};
 final routeToNameRegex = RegExp('(?:^/|-)([a-z])');
 
+enum Alignm {
+  topRight,
+  topLeft,
+  bottomRight,
+  bottomLeft,
+  centerRight,
+  centerLeft,
+  center,
+  topCenter,
+  bottomCenter;
+
+  Alignment toAlignment() {
+    return switch (this) {
+      topRight => Alignment.topRight,
+      topLeft => Alignment.topLeft,
+      bottomRight => Alignment.bottomRight,
+      bottomLeft => Alignment.bottomLeft,
+      centerRight => Alignment.centerRight,
+      centerLeft => Alignment.centerLeft,
+      center => Alignment.center,
+      topCenter => Alignment.topCenter,
+      bottomCenter => Alignment.bottomCenter,
+    };
+  }
+}
+
 class App extends StatelessWidget {
   const App({super.key});
 
@@ -17,11 +43,11 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return Solid(
       providers: [
-        Provider<Signal<ThemeMode>>(create: () => Signal(ThemeMode.light)),
+        Provider<Signal<ThemeMode>>(create: () => Signal(ThemeMode.dark)),
       ],
       builder: (context) {
         final themeMode = context.observe<ThemeMode>();
-        return BaconApp(
+        return BaconApp.material(
           debugShowCheckedModeBanner: false,
           themeMode: themeMode,
           routes: routes,
@@ -45,16 +71,17 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final focusNode = FocusNode();
+    // var size = BaconButtonSize.regular;
+    // var enabled = true;
+    var alignment = Alignm.bottomRight;
     return const Scaffold(
       body: Material(
         child: Center(
-          child: Text(
-            'Hello, World!',
-            style: TextStyle(
-              fontSize: 24.0,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
+          child: BaconAlert(
+            title: Text('My alert and notification component'),
+            size: BaconAlertSize.large,
+            style: BaconAlertStyle.light,
           ),
         ),
       ),
