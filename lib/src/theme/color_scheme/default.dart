@@ -1,5 +1,5 @@
 import 'package:bacon/src/theme/color_scheme/base.dart';
-import 'package:bacon/variables/primitives/colors.dart';
+import 'package:bacon/src/theme/variables/primitives/colors.dart';
 
 class BaconDefaultColorScheme extends BaconColorScheme {
   const BaconDefaultColorScheme._({

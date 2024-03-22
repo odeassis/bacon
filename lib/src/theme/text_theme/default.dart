@@ -1,4 +1,4 @@
-import 'package:bacon/variables/primitives/font.dart';
+import 'package:bacon/src/theme/variables/primitives/font.dart';
 import 'package:flutter/material.dart';
 
 final PrimitiveFont primitiveFont = PrimitiveFont();

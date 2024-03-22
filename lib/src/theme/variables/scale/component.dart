@@ -1,4 +1,4 @@
-import 'package:bacon/variables/primitives/size.dart';
+import 'package:bacon/src/theme/variables/primitives/size.dart';
 import 'package:flutter/material.dart';
 
 class BaconScaleComponent {
