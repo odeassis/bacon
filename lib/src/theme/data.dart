@@ -1,10 +1,9 @@
-import 'package:bacon/src/theme/color_scheme/base.dart';
-import 'package:bacon/src/theme/components/button.dart';
-import 'package:bacon/src/theme/components/decorator.dart';
+import 'package:bacon/bacon.dart';
 import 'package:bacon/src/theme/text_theme/data.dart';
-import 'package:bacon/src/theme/themes/base.dart';
-import 'package:bacon/src/theme/themes/component_default.dart';
-import 'package:bacon/src/utils/responsive.dart';
+import 'package:bacon/src/theme/theme_components/alert.dart';
+import 'package:bacon/src/theme/theme_components/button.dart';
+import 'package:bacon/src/theme/theme_components/decorator.dart';
+import 'package:bacon/src/theme/themes/default_components/alert.dart';
 import 'package:flutter/material.dart';
 
 @immutable
@@ -17,7 +16,17 @@ class BaconThemeData extends BaconBaseTheme {
     BaconTextThemeData? textTheme,
     Responsive? responsive,
     BaconDecoration? decoration,
+    BaconButtonSizesTheme? buttonSizesTheme,
     BaconButtonTheme? primaryButtonTheme,
+    BaconToastTheme? primaryToastTheme,
+    BaconToastTheme? destructiveToastTheme,
+    BaconAlertTheme? informationAlertFilledTheme,
+    BaconAlertTheme? informationAlertLightTheme,
+    BaconAlertTheme? informationAlertOutlineTheme,
+    BaconAlertTheme? warningAlertTheme,
+    BaconAlertTheme? successAlertTheme,
+    BaconAlertTheme? errorAlertTheme,
+    BaconAlertTheme? updateAlertTheme,
   }) {
     final effectiveRadius = radius ??
         const BorderRadius.all(
@@ -40,9 +49,60 @@ class BaconThemeData extends BaconBaseTheme {
       ).mergeWith(
         decoration,
       ),
+      buttonSizesTheme: BaconComponentDefaultTheme.buttonSizesTheme().mergeWith(
+        buttonSizesTheme,
+      ),
       primaryButtonTheme: primaryButtonTheme ??
           BaconComponentDefaultTheme.primaryButtonTheme(
               colorScheme: colorScheme),
+      primaryToastTheme: BaconComponentDefaultTheme.primaryToastTheme(
+        colorScheme: colorScheme,
+        radius: effectiveRadius,
+        textTheme: effectiveTextTheme,
+      ).mergeWith(primaryToastTheme),
+      destructiveToastTheme: BaconComponentDefaultTheme.destructiveToastTheme(
+        colorScheme: colorScheme,
+        radius: effectiveRadius,
+        textTheme: effectiveTextTheme,
+      ).mergeWith(destructiveToastTheme),
+      informationAlertFilledTheme:
+          BaconAlertDefaultComponents.alertInformationFilled(
+        colorScheme: colorScheme,
+        textTheme: effectiveTextTheme,
+        radius: effectiveRadius,
+      ).mergeWith(informationAlertFilledTheme),
+      informationAlertLightTheme:
+          BaconAlertDefaultComponents.alertInformationLight(
+        colorScheme: colorScheme,
+        textTheme: effectiveTextTheme,
+        radius: effectiveRadius,
+      ).mergeWith(informationAlertLightTheme),
+      informationAlertOutlineTheme:
+          BaconAlertDefaultComponents.alertInformationOutline(
+        colorScheme: colorScheme,
+        textTheme: effectiveTextTheme,
+        radius: effectiveRadius,
+      ).mergeWith(informationAlertOutlineTheme),
+      warningAlertTheme: BaconComponentDefaultTheme.warningAlertTheme(
+        colorScheme: colorScheme,
+        textTheme: effectiveTextTheme,
+        radius: effectiveRadius,
+      ).mergeWith(warningAlertTheme),
+      successAlertTheme: BaconComponentDefaultTheme.successAlertTheme(
+        colorScheme: colorScheme,
+        textTheme: effectiveTextTheme,
+        radius: effectiveRadius,
+      ).mergeWith(successAlertTheme),
+      errorAlertTheme: BaconComponentDefaultTheme.errorAlertTheme(
+        colorScheme: colorScheme,
+        textTheme: effectiveTextTheme,
+        radius: effectiveRadius,
+      ).mergeWith(errorAlertTheme),
+      updateAlertTheme: BaconComponentDefaultTheme.updateAlertTheme(
+        colorScheme: colorScheme,
+        textTheme: effectiveTextTheme,
+        radius: effectiveRadius,
+      ).mergeWith(updateAlertTheme),
     );
   }
 
@@ -55,6 +115,16 @@ class BaconThemeData extends BaconBaseTheme {
     required super.decoration,
     required super.responsive,
     required super.primaryButtonTheme,
+    required super.buttonSizesTheme,
+    required super.primaryToastTheme,
+    required super.destructiveToastTheme,
+    required super.informationAlertFilledTheme,
+    required super.informationAlertLightTheme,
+    required super.informationAlertOutlineTheme,
+    required super.warningAlertTheme,
+    required super.successAlertTheme,
+    required super.errorAlertTheme,
+    required super.updateAlertTheme,
   });
 
   static BaconThemeData lerp(
@@ -71,8 +141,32 @@ class BaconThemeData extends BaconBaseTheme {
       radius: BorderRadius.lerp(a.radius, b.radius, t),
       textTheme: BaconTextThemeData.lerp(a.textTheme, b.textTheme, t),
       decoration: BaconDecoration.lerp(a.decoration, b.decoration, t),
+      responsive: Responsive.lerp(a.responsive, b.responsive, t),
+      buttonSizesTheme: BaconButtonSizesTheme.lerp(
+        a.buttonSizesTheme,
+        b.buttonSizesTheme,
+        t,
+      ),
       primaryButtonTheme:
           BaconButtonTheme.lerp(a.primaryButtonTheme, b.primaryButtonTheme, t),
+      primaryToastTheme:
+          BaconToastTheme.lerp(a.primaryToastTheme, b.primaryToastTheme, t),
+      destructiveToastTheme: BaconToastTheme.lerp(
+          a.destructiveToastTheme, b.destructiveToastTheme, t),
+      informationAlertFilledTheme: BaconAlertTheme.lerp(
+          a.informationAlertFilledTheme, b.informationAlertFilledTheme, t),
+      informationAlertLightTheme: BaconAlertTheme.lerp(
+          a.informationAlertLightTheme, b.informationAlertLightTheme, t),
+      informationAlertOutlineTheme: BaconAlertTheme.lerp(
+          a.informationAlertOutlineTheme, b.informationAlertOutlineTheme, t),
+      warningAlertTheme:
+          BaconAlertTheme.lerp(a.warningAlertTheme, b.warningAlertTheme, t),
+      successAlertTheme:
+          BaconAlertTheme.lerp(a.successAlertTheme, b.successAlertTheme, t),
+      errorAlertTheme:
+          BaconAlertTheme.lerp(a.errorAlertTheme, b.errorAlertTheme, t),
+      updateAlertTheme:
+          BaconAlertTheme.lerp(a.updateAlertTheme, b.updateAlertTheme, t),
     );
   }
 
@@ -83,7 +177,18 @@ class BaconThemeData extends BaconBaseTheme {
     BaconTextThemeData? textTheme,
     BorderRadius? radius,
     BaconDecoration? decoration,
+    Responsive? responsive,
+    BaconButtonSizesTheme? buttonSizesTheme,
     BaconButtonTheme? primaryButtonTheme,
+    BaconToastTheme? primaryToastTheme,
+    BaconToastTheme? destructiveToastTheme,
+    BaconAlertTheme? informationAlertFilledTheme,
+    BaconAlertTheme? informationAlertLightTheme,
+    BaconAlertTheme? informationAlertOutlineTheme,
+    BaconAlertTheme? warningAlertTheme,
+    BaconAlertTheme? successAlertTheme,
+    BaconAlertTheme? errorAlertTheme,
+    BaconAlertTheme? updateAlertTheme,
   }) {
     return BaconThemeData(
       colorScheme: colorScheme ?? this.colorScheme,
@@ -92,7 +197,22 @@ class BaconThemeData extends BaconBaseTheme {
       textTheme: textTheme ?? this.textTheme,
       radius: radius ?? this.radius,
       decoration: decoration ?? this.decoration,
+      responsive: responsive ?? this.responsive,
+      buttonSizesTheme: buttonSizesTheme ?? this.buttonSizesTheme,
       primaryButtonTheme: primaryButtonTheme ?? this.primaryButtonTheme,
+      primaryToastTheme: primaryToastTheme ?? this.primaryToastTheme,
+      destructiveToastTheme:
+          destructiveToastTheme ?? this.destructiveToastTheme,
+      informationAlertFilledTheme:
+          informationAlertFilledTheme ?? this.informationAlertFilledTheme,
+      informationAlertLightTheme:
+          informationAlertLightTheme ?? this.informationAlertLightTheme,
+      informationAlertOutlineTheme:
+          informationAlertOutlineTheme ?? this.informationAlertOutlineTheme,
+      warningAlertTheme: warningAlertTheme ?? this.warningAlertTheme,
+      successAlertTheme: successAlertTheme ?? this.successAlertTheme,
+      errorAlertTheme: errorAlertTheme ?? this.errorAlertTheme,
+      updateAlertTheme: updateAlertTheme ?? this.updateAlertTheme,
     );
   }
 
@@ -105,7 +225,17 @@ class BaconThemeData extends BaconBaseTheme {
         other.textTheme == textTheme &&
         other.radius == radius &&
         other.decoration == decoration &&
-        other.primaryButtonTheme == primaryButtonTheme;
+        other.primaryButtonTheme == primaryButtonTheme &&
+        other.buttonSizesTheme == buttonSizesTheme &&
+        other.primaryToastTheme == primaryToastTheme &&
+        other.destructiveToastTheme == destructiveToastTheme &&
+        other.informationAlertFilledTheme == informationAlertFilledTheme &&
+        other.informationAlertLightTheme == informationAlertLightTheme &&
+        other.informationAlertOutlineTheme == informationAlertOutlineTheme &&
+        other.warningAlertTheme == warningAlertTheme &&
+        other.successAlertTheme == successAlertTheme &&
+        other.errorAlertTheme == errorAlertTheme &&
+        other.updateAlertTheme == updateAlertTheme;
   }
 
   @override
@@ -115,6 +245,15 @@ class BaconThemeData extends BaconBaseTheme {
         brightness.hashCode ^
         textTheme.hashCode ^
         radius.hashCode ^
-        primaryButtonTheme.hashCode;
+        primaryButtonTheme.hashCode ^
+        primaryToastTheme.hashCode ^
+        destructiveToastTheme.hashCode ^
+        informationAlertFilledTheme.hashCode ^
+        informationAlertLightTheme.hashCode ^
+        informationAlertOutlineTheme.hashCode ^
+        warningAlertTheme.hashCode ^
+        successAlertTheme.hashCode ^
+        errorAlertTheme.hashCode ^
+        updateAlertTheme.hashCode;
   }
 }
