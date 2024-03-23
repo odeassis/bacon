@@ -43,21 +43,23 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return Solid(
       providers: [
-        Provider<Signal<ThemeMode>>(create: () => Signal(ThemeMode.dark)),
+        Provider<Signal<ThemeMode>>(create: () => Signal(ThemeMode.system)),
       ],
       builder: (context) {
         final themeMode = context.observe<ThemeMode>();
-        return BaconApp.material(
+        return BaconApp(
           debugShowCheckedModeBanner: false,
           themeMode: themeMode,
           routes: routes,
           theme: BaconThemeData(
             brightness: Brightness.light,
-            colorScheme: const BaconDefaultColorScheme.light(),
+            shape: const BaconDefaultShapeTheme.defaultShape(),
+            colorScheme: BaconDefaultColorScheme.light(),
           ),
           darkTheme: BaconThemeData(
             brightness: Brightness.dark,
-            colorScheme: const BaconDefaultColorScheme.dark(),
+            shape: const BaconDefaultShapeTheme.rounded(),
+            colorScheme: BaconDefaultColorScheme.dark(),
           ),
           home: const MainPage(),
         );
@@ -80,8 +82,10 @@ class MainPage extends StatelessWidget {
         child: Center(
           child: BaconAlert(
             title: Text('My alert and notification component'),
+            body: Text(
+                "This is the body of the alert located at the bottom right corner of the screen. It is a large alert with an outlined style."),
             size: BaconAlertSize.large,
-            style: BaconAlertStyle.light,
+            style: BaconAlertStyle.filled,
           ),
         ),
       ),

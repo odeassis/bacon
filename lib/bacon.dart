@@ -12,6 +12,8 @@ export 'src/bacon_icons.dart';
 export 'src/theme/color_scheme/base.dart';
 export 'src/theme/color_scheme/default.dart';
 export 'src/theme/data.dart';
+export 'src/theme/shape/base.dart';
+export 'src/theme/shape/default.dart';
 export 'src/theme/theme.dart';
 export 'src/theme/theme_components/toast.dart';
 export 'src/theme/themes/base.dart';

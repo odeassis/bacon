@@ -52,17 +52,39 @@ class BaconBorder {
   ///
   /// Returns a new BaconBorder that is the result of linear interpolation
   /// between [a] and [b].
-  static BaconBorder lerp(
+  static BaconBorder? lerp(
     BaconBorder? a,
     BaconBorder? b,
     double t,
   ) {
+    if (a == null && b == null) return null;
     return BaconBorder(
       width: lerpDouble(a?.width, b?.width, t),
       color: Color.lerp(a?.color, b?.color, t),
-      borderRadius:
-          BorderRadiusGeometry.lerp(a?.borderRadius, b?.borderRadius, t),
-      padding: EdgeInsets.lerp(a?.padding, b?.padding, t),
+      borderRadius: BorderRadiusGeometry.lerp(
+        a?.borderRadius,
+        b?.borderRadius,
+        t,
+      ),
+      padding: EdgeInsets.lerp(
+        a?.padding,
+        b?.padding,
+        t,
+      ),
+    );
+  }
+
+  BaconBorder copyWith({
+    double? width,
+    Color? color,
+    BorderRadiusGeometry? borderRadius,
+    EdgeInsets? padding,
+  }) {
+    return BaconBorder(
+      width: width ?? this.width,
+      color: color ?? this.color,
+      borderRadius: borderRadius ?? this.borderRadius,
+      padding: padding ?? this.padding,
     );
   }
 
@@ -151,7 +173,8 @@ class BaconDecoration {
   }
 
   BaconDecoration mergeWith(BaconDecoration? other) {
-    if (!merge || other == null) return this;
+    if (other == null) return this;
+    if (!other.merge) return other;
     return BaconDecoration(
       labelStyle: other.labelStyle ?? labelStyle,
       errorLabelStyle: other.errorLabelStyle ?? errorLabelStyle,
@@ -238,7 +261,10 @@ class BaconDecorator extends StatelessWidget {
     this.placeholder,
   });
 
+  // The child widget to decorate.
   final Widget child;
+
+  // The decoration to apply to the child.
   final BaconDecoration? decoration;
   final bool isEmpty;
   final bool isFocused;
@@ -265,7 +291,7 @@ class BaconDecorator extends StatelessWidget {
     if (!hasError) {
       effectiveLabelStyle = effectiveDecoration.labelStyle ??
           theme.textTheme.labelSmall.copyWith(
-            color: theme.colorScheme.contentSecondary,
+            color: theme.colorScheme.contentPrimary,
           );
     } else {
       effectiveLabelStyle = effectiveDecoration.errorLabelStyle ??
@@ -282,7 +308,7 @@ class BaconDecorator extends StatelessWidget {
         border: border?.width == null && border?.color == null
             ? null
             : Border.all(
-                color: border?.color ?? Colors.black,
+                color: border?.color ?? theme.colorScheme.borderPrimary,
                 width: border?.width ?? 1.0,
               ),
         borderRadius: border?.borderRadius,
