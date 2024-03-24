@@ -1,112 +1,52 @@
-import 'package:bacon/src/theme/data.dart';
+import 'package:bacon/src/theme/components/badge/badge_theme.dart';
+import 'package:bacon/src/theme/tokens/tokens.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class BaconTheme extends StatelessWidget {
-  const BaconTheme({
-    super.key,
-    required this.data,
-    required this.child,
-  });
+class BaconTheme extends ThemeExtension<BaconTheme>
+    with DiagnosticableTreeMixin {
+  final BaconTokes tokens;
+  final BaconBadgeTheme badgeTheme;
 
-  final BaconThemeData data;
-  final Widget child;
-
-  static BaconThemeData of(BuildContext context) {
-    final inheritedTheme =
-        context.dependOnInheritedWidgetOfExactType<BaconInheritedTheme>();
-    return inheritedTheme!.theme.data;
-  }
+  BaconTheme({
+    required this.tokens,
+    BaconBadgeTheme? badgeTheme,
+  }) : badgeTheme = badgeTheme ?? BaconBadgeTheme(tokens: tokens);
 
   @override
-  Widget build(BuildContext context) {
-    return BaconInheritedTheme(
-      theme: this,
-      child: child,
-    );
-  }
-}
-
-class BaconInheritedTheme extends InheritedTheme {
-  const BaconInheritedTheme({
-    super.key,
-    required this.theme,
-    required super.child,
-  });
-
-  final BaconTheme theme;
-
-  @override
-  bool updateShouldNotify(BaconInheritedTheme oldWidget) =>
-      theme.data != oldWidget.theme.data;
-
-  @override
-  Widget wrap(BuildContext context, Widget child) {
+  BaconTheme copyWith({
+    BaconTokes? tokens,
+    BaconBadgeTheme? badgeTheme,
+  }) {
     return BaconTheme(
-      data: theme.data,
-      child: child,
+      tokens: tokens ?? this.tokens,
+      badgeTheme: badgeTheme ?? this.badgeTheme,
     );
   }
-}
-
-/// An interpolation between two [BaconThemeData]s.
-///
-/// This class specializes the interpolation of [Tween<BaconThemeData>] to call
-/// the [BaconThemeData.lerp] method.
-///
-/// see [Tween] for a discussion on how to use interpolation objects.
-class BaconThemeDataTween extends Tween<BaconThemeData> {
-  /// Creates a [BaconThemeData] tween.
-  ///
-  /// The [begin] and [end] properties must be non-null before the tween is
-  /// first used, but the arguments can be null if the values are going to be
-  /// filled in later.
-  BaconThemeDataTween({
-    super.begin,
-    super.end,
-  });
 
   @override
-  BaconThemeData lerp(double t) {
-    return BaconThemeData.lerp(begin!, end!, t);
-  }
-}
+  BaconTheme lerp(
+    ThemeExtension<BaconTheme>? other,
+    double t,
+  ) {
+    if (other is! BaconTheme) return this;
 
-class BaconAnimatedTheme extends ImplicitlyAnimatedWidget {
-  const BaconAnimatedTheme({
-    super.key,
-    required this.data,
-    required this.child,
-    super.curve,
-    super.duration = const Duration(milliseconds: 200),
-    super.onEnd,
-  });
-
-  final BaconThemeData data;
-  final Widget child;
-
-  @override
-  AnimatedWidgetBaseState<BaconAnimatedTheme> createState() =>
-      _BaconAnimatedThemeState();
-}
-
-class _BaconAnimatedThemeState
-    extends AnimatedWidgetBaseState<BaconAnimatedTheme> {
-  BaconThemeDataTween? _tween;
-
-  @override
-  void forEachTween(TweenVisitor<dynamic> visitor) {
-    _tween = visitor(
-      _tween,
-      widget.data,
-      (dynamic value) => BaconThemeDataTween(begin: value as BaconThemeData),
-    )! as BaconThemeDataTween;
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return BaconTheme(
-      data: _tween!.evaluate(animation),
-      child: widget.child,
+      tokens: tokens.lerp(other.tokens, t),
+      badgeTheme: badgeTheme.lerp(other.badgeTheme, t),
     );
   }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty("type", "BaconTheme"));
+    properties.add(DiagnosticsProperty<BaconTokes>('tokens', tokens));
+    properties
+        .add(DiagnosticsProperty<BaconBadgeTheme>('badgeTheme', badgeTheme));
+  }
+}
+
+extension BaconThemeB on BuildContext {
+  BaconTheme? get baconTheme => Theme.of(this).extension<BaconTheme>();
 }
