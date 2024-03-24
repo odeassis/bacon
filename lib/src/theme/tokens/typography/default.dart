@@ -192,12 +192,11 @@ class BaconDefaultTextStyle {
       height: primitiveFont.baconLineHeightDefault,
     ),
     xs: _BaconTextStyle(
-      decoration: TextDecoration.none,
       fontStyle: FontStyle.normal,
       fontSize: primitiveFont.baconFontSizeLabelSmall,
       fontWeight: primitiveFont.baconFontWeightMedium,
-      letterSpacing: primitiveFont.baconLetterSpacingDefault,
-      height: primitiveFont.baconLineHeightDefault,
+      // letterSpacing: primitiveFont.baconLetterSpacingDefault,
+      // height: primitiveFont.baconLineHeightDefault,
     ),
     xxs: _BaconTextStyle(
       decoration: TextDecoration.none,
@@ -219,7 +218,7 @@ class _BaconTextStyle extends TextStyle {
     super.height,
     super.letterSpacing,
   }) : super(
-          fontFamily: 'Geist',
+          fontFamily: 'Inter',
           package: 'bacon',
         );
 }
