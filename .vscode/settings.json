@@ -3,9 +3,12 @@
     "ARGB",
     "autofocus",
     "Diagnosticable",
+    "focusable",
     "lerp",
+    "Squicle",
     "squircle",
     "Squircle",
+    "STEB",
     "xxxs"
   ]
 }
