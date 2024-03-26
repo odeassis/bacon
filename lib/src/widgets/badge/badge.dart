@@ -1,74 +1,95 @@
+import 'package:bacon/bacon.dart';
 import 'package:bacon/src/theme/components/badge/badge_size.dart';
 import 'package:bacon/src/theme/components/badge/badge_size_properties.dart';
-import 'package:bacon/src/theme/theme.dart';
-import 'package:bacon/src/theme/tokens/tokens.dart';
 import 'package:bacon/src/utils/extensions.dart';
 import 'package:bacon/src/utils/shape_decoration.dart';
 import 'package:bacon/src/utils/squircle/squircle_border.dart';
 import 'package:flutter/material.dart';
 
 enum BaconBadgeSize {
+  /// The minimum size of the badge.
   md,
+
+  /// The small size of the badge.
   sm,
 }
 
+enum BaconBadgeType {
+  /// The filled type of the badge.
+  filled,
+
+  /// The outlined type of the badge.
+  outlined,
+
+  /// The light type of the badge.
+  light,
+}
+
 class BaconBadge extends StatelessWidget {
-  /// Whether to use the upper case text style for the tag.
+  /// Whether to use the upper case text style for the badge.
   final bool isUpperCase;
 
-  /// The border radius of the tag.
+  /// The border radius of the badge.
   final BorderRadiusGeometry? borderRadius;
 
-  /// The background color of the tag.
+  /// The background color of the badge.
   final Color? backgroundColor;
 
-  /// The height of the tag.
+  /// The text color of the badge.
+  final Color? textColor;
+
+  // The icon color of the badge.
+  final Color? iconColor;
+
+  /// The height of the badge.
   final double? height;
 
-  /// The width of the tag.
+  /// The width of the badge.
   final double? width;
 
-  /// The gap between the [leading], [label] and [trailing] widgets of the tag.
+  /// The gap between the [leading], [label] and [trailing] widgets of the badge.
   final double? gap;
 
-  /// The padding of the tag.
+  /// The padding of the badge.
   final EdgeInsetsGeometry? padding;
 
-  /// The size of the tag.
-  final BaconBadgeSize? tagSize;
+  /// The size of the badge.
+  final BaconBadgeSize? badgeSize;
 
-  /// The custom decoration of the tag.
+  /// The custom decoration of the badge.
   final Decoration? decoration;
 
-  /// The semantic label for the tag.
+  /// The semantic label for the badge.
   final String? semanticLabel;
 
-  /// The callback that is called when the tag is tapped or pressed.
+  /// The callback that is called when the badge is tapped or pressed.
   final VoidCallback? onTap;
 
-  /// The callback that is called when the tag is long-pressed.
+  /// The callback that is called when the badge is long-pressed.
   final VoidCallback? onLongPress;
 
-  /// The widget to display before the [label] widget of the tag.
+  /// The widget to display before the [label] widget of the badge.
   final Widget? leading;
 
-  /// The primary content of the tag widget.
+  /// The primary content of the badge widget.
   final Widget? label;
 
-  /// The widget to display after the [label] widget of the tag.
+  /// The widget to display after the [label] widget of the badge.
   final Widget? trailing;
 
-  /// Creates a Moon Design tag.
+  /// Creates a Moon Design badge.
   const BaconBadge({
     super.key,
     this.isUpperCase = true,
     this.borderRadius,
     this.backgroundColor,
+    this.iconColor,
+    this.textColor,
     this.height,
     this.width,
     this.gap,
     this.padding,
-    this.tagSize,
+    this.badgeSize,
     this.decoration,
     this.semanticLabel,
     this.onTap,
@@ -93,24 +114,24 @@ class BaconBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final BaconBadgeSizeProperties effectiveBaconBadgeSize =
-        _getBaconBadgeSize(context, tagSize);
+        _getBaconBadgeSize(context, badgeSize);
 
     final BorderRadiusGeometry effectiveBorderRadius =
         borderRadius ?? effectiveBaconBadgeSize.borderRadius;
 
     final Color effectiveBackgroundColor = backgroundColor ??
         context.baconTheme?.badgeTheme.colors.backgroundColor ??
-        BaconTokes.light.backgroundColor.brandLight;
+        BaconTokes.light.backgroundColor.brand;
 
-    final Color effectiveTextColor =
+    final Color effectiveTextColor = textColor ??
         context.baconTheme?.badgeTheme.colors.textColor ??
-            BaconTokes.light.contentColor.primary;
+        BaconTokes.light.contentColor.primary;
 
-    final Color effectiveIconColor =
+    final Color effectiveIconColor = iconColor ??
         context.baconTheme?.badgeTheme.colors.iconColor ??
-            BaconTokes.light.contentColor.primary;
+        BaconTokes.light.contentColor.primary;
 
-    final double effectiveHeight = height ?? effectiveBaconBadgeSize.height;
+    final double? effectiveHeight = height ?? effectiveBaconBadgeSize.height;
 
     final double effectiveGap = gap ?? effectiveBaconBadgeSize.gap;
 
@@ -122,16 +143,56 @@ class BaconBadge extends StatelessWidget {
 
     final EdgeInsetsGeometry correctedPadding = padding == null
         ? EdgeInsetsDirectional.fromSTEB(
-            leading == null && label != null
-                ? resolvedDirectionalPadding.left
-                : 0,
+            (leading == null && label != null) ? 0 : 0,
             resolvedDirectionalPadding.top,
-            trailing == null && label != null
-                ? resolvedDirectionalPadding.right
-                : 0,
+            (trailing == null && label != null) ? 0 : 0,
             resolvedDirectionalPadding.bottom,
           )
         : resolvedDirectionalPadding;
+
+    Widget? effectiveLeadingWidget = leading;
+    Widget? effectiveLabelWidget = label;
+    Widget? effectiveTrailingWidget = trailing;
+
+    // If there is a leading widget, add padding to the leading widget.
+    if (leading != null) {
+      final leadingPadding = EdgeInsetsDirectional.only(
+        start: effectiveGap,
+      );
+
+      effectiveLeadingWidget = Padding(
+        padding: leadingPadding,
+        child: leading,
+      );
+    }
+    // If there is a trailing widget, add padding to the trailing widget.
+    if (label != null) {
+      final labelPadding = EdgeInsetsDirectional.only(
+        start: leading != null
+            ? effectiveGap
+            : context.baconTheme?.tokens.paddingScale.xs ?? 8.0,
+        end: trailing != null
+            ? effectiveGap
+            : context.baconTheme?.tokens.paddingScale.xs ?? 8.0,
+      );
+
+      effectiveLabelWidget = Padding(
+        padding: labelPadding,
+        child: label,
+      );
+    }
+
+    // If there is a trailing widget, add padding to the trailing widget.
+    if (trailing != null) {
+      final trailingPadding = EdgeInsetsDirectional.only(
+        end: effectiveGap,
+      );
+
+      effectiveTrailingWidget = Padding(
+        padding: trailingPadding,
+        child: trailing,
+      );
+    }
 
     return Semantics(
       label: semanticLabel,
@@ -148,7 +209,7 @@ class BaconBadge extends StatelessWidget {
           child: Container(
             height: effectiveHeight,
             padding: correctedPadding,
-            constraints: BoxConstraints(minWidth: effectiveHeight),
+            constraints: BoxConstraints(minWidth: effectiveHeight ?? 20),
             decoration: decoration ??
                 ShapeDecorationWithPremultipliedAlpha(
                   color: effectiveBackgroundColor,
@@ -172,17 +233,9 @@ class BaconBadge extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    if (leading != null)
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: effectiveGap),
-                        child: leading,
-                      ),
-                    if (label != null) label!,
-                    if (trailing != null)
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: effectiveGap),
-                        child: trailing,
-                      ),
+                    if (leading != null) effectiveLeadingWidget!,
+                    if (label != null) effectiveLabelWidget!,
+                    if (trailing != null) effectiveTrailingWidget!,
                   ],
                 ),
               ),
