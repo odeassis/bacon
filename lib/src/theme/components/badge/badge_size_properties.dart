@@ -13,7 +13,7 @@ class BaconBadgeSizeProperties extends ThemeExtension<BaconBadgeSizeProperties>
   final double gap;
 
   /// The height of the MoonTag.
-  final double height;
+  final double? height;
 
   /// The size value of the MoonTag icon.
   final double iconSizeValue;
@@ -30,7 +30,7 @@ class BaconBadgeSizeProperties extends ThemeExtension<BaconBadgeSizeProperties>
   const BaconBadgeSizeProperties({
     required this.borderRadius,
     required this.gap,
-    required this.height,
+    this.height,
     required this.iconSizeValue,
     required this.padding,
     required this.textStyle,
@@ -67,7 +67,7 @@ class BaconBadgeSizeProperties extends ThemeExtension<BaconBadgeSizeProperties>
       borderRadius:
           BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t)!,
       gap: lerpDouble(gap, other.gap, t)!,
-      height: lerpDouble(height, other.height, t)!,
+      height: lerpDouble(height, other.height, t),
       iconSizeValue: lerpDouble(iconSizeValue, other.iconSizeValue, t)!,
       padding: EdgeInsetsGeometry.lerp(padding, other.padding, t)!,
       textStyle: TextStyle.lerp(textStyle, other.textStyle, t)!,

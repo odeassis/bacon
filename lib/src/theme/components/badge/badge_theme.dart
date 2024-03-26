@@ -21,7 +21,7 @@ class BaconBadgeTheme extends ThemeExtension<BaconBadgeTheme>
             BaconBadgeColors(
               textColor: tokens.contentColor.inverse,
               iconColor: tokens.contentColor.inverse,
-              backgroundColor: tokens.contentColor.accentGreen,
+              backgroundColor: tokens.contentColor.brand,
             ),
         sizes = sizes ?? BaconBadgeSizes(tokens: tokens);
 

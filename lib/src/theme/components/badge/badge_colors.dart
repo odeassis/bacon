@@ -5,13 +5,9 @@ import 'package:flutter/material.dart';
 @immutable
 class BaconBadgeColors extends ThemeExtension<BaconBadgeColors>
     with DiagnosticableTreeMixin {
-  /// The text color of the MoonTag.
+  ///
   final Color textColor;
-
-  /// The icon color of the MoonTag.
   final Color iconColor;
-
-  /// The background color of the MoonTag.
   final Color backgroundColor;
 
   const BaconBadgeColors({
@@ -51,7 +47,7 @@ class BaconBadgeColors extends ThemeExtension<BaconBadgeColors>
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty("type", "BaconBadgeColors"))
+      ..add(DiagnosticsProperty("type", "bacon-badge-colors"))
       ..add(ColorProperty("textColor", textColor))
       ..add(ColorProperty("iconColor", iconColor))
       ..add(ColorProperty("backgroundColor", backgroundColor));
