@@ -1,19 +1,25 @@
 import 'dart:ui';
 
+/// A class representing a squircular radius with Bacon's smoothing algorithm.
 class BaconSquircleRadius extends Radius {
   static const zero = BaconSquircleRadius(
     cornerRadius: 0,
     cornerSmoothing: 0,
   );
 
+  /// The amount of corner smoothing applied to the squircle radius.
   final double cornerSmoothing;
 
+  /// Constructs a BaconSquircleRadius with the given corner radius and corner smoothing.
+  ///
+  /// The value of 1 or 1.0 leads to NaN error in mobile web/PWA for some reason.
+  /// So we use 0.9 instead as the default value for [cornerSmoothing].
   const BaconSquircleRadius({
     required double cornerRadius,
-    // The value of 1 or 1.0 leads to NaN error in mobile web/PWA for some reason. So we use 0.9 instead.
     this.cornerSmoothing = 0.9,
   }) : super.circular(cornerRadius);
 
+  /// Getter for the corner radius.
   double get cornerRadius => x;
 
   /// Unary negation operator.
