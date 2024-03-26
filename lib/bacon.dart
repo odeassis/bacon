@@ -1,5 +1,6 @@
 export 'src/theme/icons/bacon_icons.dart';
 export 'src/theme/theme.dart';
+// Tokens
 export 'src/theme/tokens/modes/background.dart';
 export 'src/theme/tokens/modes/base.dart';
 export 'src/theme/tokens/modes/border.dart';
@@ -18,4 +19,7 @@ export 'src/theme/tokens/tokens.dart';
 export 'src/theme/tokens/typography/base.dart';
 export 'src/theme/tokens/typography/default.dart';
 export 'src/theme/tokens/typography/text_styles.dart';
-export 'src/widgets/badge.dart';
+// Widgets
+export 'src/widgets/badge/badge.dart';
+export 'src/widgets/badge/light_badge.dart';
+export 'src/widgets/badge/outlined_badge.dart';

@@ -1,5 +1,5 @@
+import 'package:bacon/bacon.dart';
 import 'package:bacon/src/theme/components/badge/badge_theme.dart';
-import 'package:bacon/src/theme/tokens/tokens.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -49,4 +49,9 @@ class BaconTheme extends ThemeExtension<BaconTheme>
 
 extension BaconThemeB on BuildContext {
   BaconTheme? get baconTheme => Theme.of(this).extension<BaconTheme>();
+
+  BaconBaseTypography? get baconTypography => baconTheme?.tokens.typography;
+  BaconBaseColor? get baconBgColors => baconTheme?.tokens.backgroundColor;
+  BaconBaseColor? get baconBorderColors => baconTheme?.tokens.borderColor;
+  BaconBaseColor? get baconContentColors => baconTheme?.tokens.contentColor;
 }
