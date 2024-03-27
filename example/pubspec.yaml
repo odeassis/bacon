@@ -26,3 +26,5 @@ flutter:
     - family: BaconIcons
       fonts:
         - asset: fonts/BaconIcons.ttf
+  assets:
+    - assets/img/pig.jpg

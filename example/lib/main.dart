@@ -15,20 +15,13 @@ class MainPage extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: router,
       theme: ThemeData.light().copyWith(extensions: <ThemeExtension<dynamic>>[
-        BaconTheme(
-            tokens: BaconTokes.light.copyWith(
-          borderRadius: const BaconDefaultBorderRadius.sharp(),
-          componentScale: const BaconDefaultComponentScale.defaultScale(),
-        ))
+        BaconTheme(tokens: BaconTokens.light)
       ]),
-      darkTheme:
-          ThemeData.dark().copyWith(extensions: <ThemeExtension<dynamic>>[
-        BaconTheme(
-            tokens: BaconTokes.dark.copyWith(
-          borderRadius: const BaconDefaultBorderRadius.rounded(),
-        ))
-      ]),
-      themeMode: ThemeMode.light,
+      darkTheme: ThemeData.dark().copyWith(
+          extensions: <ThemeExtension<dynamic>>[
+            BaconTheme(tokens: BaconTokens.dark)
+          ]),
+      themeMode: ThemeMode.dark,
     );
   }
 }
@@ -41,11 +34,17 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Home Screen')),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () => context.go('/primitives/badge'),
-          child: const Text('Go to the Details screen'),
-        ),
+      body: Column(
+        children: [
+          ElevatedButton(
+            onPressed: () => context.go('/primitives/avatar'),
+            child: const Text('Go to the Avatar screen'),
+          ),
+          ElevatedButton(
+            onPressed: () => context.go('/primitives/badge'),
+            child: const Text('Go to the Details screen'),
+          ),
+        ],
       ),
     );
   }
