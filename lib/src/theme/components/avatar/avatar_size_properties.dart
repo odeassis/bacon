@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+@immutable
 class BaconAvatarSizeProperties
     extends ThemeExtension<BaconAvatarSizeProperties>
     with DiagnosticableTreeMixin {
