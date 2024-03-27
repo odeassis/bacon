@@ -1,26 +1,32 @@
 import 'package:bacon/bacon.dart';
+import 'package:bacon/src/theme/components/avatar/avatar_theme.dart';
 import 'package:bacon/src/theme/components/badge/badge_theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class BaconTheme extends ThemeExtension<BaconTheme>
     with DiagnosticableTreeMixin {
-  final BaconTokes tokens;
+  final BaconTokens tokens;
   final BaconBadgeTheme badgeTheme;
+  final BaconAvatarTheme avatarTheme;
 
   BaconTheme({
     required this.tokens,
     BaconBadgeTheme? badgeTheme,
-  }) : badgeTheme = badgeTheme ?? BaconBadgeTheme(tokens: tokens);
+    BaconAvatarTheme? avatarTheme,
+  })  : badgeTheme = badgeTheme ?? BaconBadgeTheme(tokens: tokens),
+        avatarTheme = avatarTheme ?? BaconAvatarTheme(tokens: tokens);
 
   @override
   BaconTheme copyWith({
-    BaconTokes? tokens,
+    BaconTokens? tokens,
     BaconBadgeTheme? badgeTheme,
+    BaconAvatarTheme? avatarTheme,
   }) {
     return BaconTheme(
       tokens: tokens ?? this.tokens,
       badgeTheme: badgeTheme ?? this.badgeTheme,
+      avatarTheme: avatarTheme ?? this.avatarTheme,
     );
   }
 
@@ -34,6 +40,7 @@ class BaconTheme extends ThemeExtension<BaconTheme>
     return BaconTheme(
       tokens: tokens.lerp(other.tokens, t),
       badgeTheme: badgeTheme.lerp(other.badgeTheme, t),
+      avatarTheme: avatarTheme.lerp(other.avatarTheme, t),
     );
   }
 
@@ -41,9 +48,11 @@ class BaconTheme extends ThemeExtension<BaconTheme>
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties.add(DiagnosticsProperty("type", "BaconTheme"));
-    properties.add(DiagnosticsProperty<BaconTokes>('tokens', tokens));
+    properties.add(DiagnosticsProperty<BaconTokens>('tokens', tokens));
     properties
         .add(DiagnosticsProperty<BaconBadgeTheme>('badgeTheme', badgeTheme));
+    properties
+        .add(DiagnosticsProperty<BaconAvatarTheme>('avatarTheme', avatarTheme));
   }
 }
 
