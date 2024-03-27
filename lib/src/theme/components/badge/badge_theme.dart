@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 @immutable
 class BaconBadgeTheme extends ThemeExtension<BaconBadgeTheme>
     with DiagnosticableTreeMixin {
-  final BaconTokes tokens;
+  final BaconTokens tokens;
 
   final BaconBadgeColors colors;
 
@@ -27,7 +27,7 @@ class BaconBadgeTheme extends ThemeExtension<BaconBadgeTheme>
 
   @override
   BaconBadgeTheme copyWith({
-    BaconTokes? tokens,
+    BaconTokens? tokens,
     BaconBadgeColors? colors,
     BaconBadgeSizes? sizes,
   }) {
@@ -54,7 +54,7 @@ class BaconBadgeTheme extends ThemeExtension<BaconBadgeTheme>
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty("type", "BaconBadgeTheme"))
-      ..add(DiagnosticsProperty<BaconTokes>("tokens", tokens))
+      ..add(DiagnosticsProperty<BaconTokens>("tokens", tokens))
       ..add(DiagnosticsProperty<BaconBadgeColors>("colors", colors))
       ..add(DiagnosticsProperty<BaconBadgeSizes>("sizes", sizes));
   }

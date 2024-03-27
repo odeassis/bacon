@@ -105,9 +105,9 @@ class BaconBadge extends StatelessWidget {
   ) {
     return switch (baconBadgeSize) {
       BaconBadgeSize.md => context.baconTheme?.badgeTheme.sizes.md ??
-          BaconBadgeSizes(tokens: BaconTokes.light).md,
+          BaconBadgeSizes(tokens: BaconTokens.light).md,
       _ => context.baconTheme?.badgeTheme.sizes.sm ??
-          BaconBadgeSizes(tokens: BaconTokes.light).sm,
+          BaconBadgeSizes(tokens: BaconTokens.light).sm,
     };
   }
 
@@ -121,15 +121,15 @@ class BaconBadge extends StatelessWidget {
 
     final Color effectiveBackgroundColor = backgroundColor ??
         context.baconTheme?.badgeTheme.colors.backgroundColor ??
-        BaconTokes.light.backgroundColor.brand;
+        BaconTokens.light.backgroundColor.brand;
 
     final Color effectiveTextColor = textColor ??
         context.baconTheme?.badgeTheme.colors.textColor ??
-        BaconTokes.light.contentColor.primary;
+        BaconTokens.light.contentColor.primary;
 
     final Color effectiveIconColor = iconColor ??
         context.baconTheme?.badgeTheme.colors.iconColor ??
-        BaconTokes.light.contentColor.primary;
+        BaconTokens.light.contentColor.primary;
 
     final double? effectiveHeight = height ?? effectiveBaconBadgeSize.height;
 

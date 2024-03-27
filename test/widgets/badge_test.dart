@@ -53,12 +53,12 @@ void main() {
       MaterialApp(
         theme: ThemeData.light().copyWith(
           extensions: <ThemeExtension<dynamic>>[
-            BaconTheme(tokens: BaconTokes.light)
+            BaconTheme(tokens: BaconTokens.light)
           ],
         ),
         darkTheme: ThemeData.dark().copyWith(
           extensions: <ThemeExtension<dynamic>>[
-            BaconTheme(tokens: BaconTokes.dark)
+            BaconTheme(tokens: BaconTokens.dark)
           ],
         ),
         themeMode: ThemeMode.light,
@@ -76,6 +76,6 @@ void main() {
     // Verify that the badge has the correct theme.
     final badge = tester.widget<BaconBadge>(find.byType(BaconBadge));
     expect(badge.backgroundColor,
-        equals(BaconTokes.light.contentColor.accentGreen));
+        equals(BaconTokens.light.contentColor.accentGreen));
   });
 }

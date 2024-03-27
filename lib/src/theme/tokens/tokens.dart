@@ -16,9 +16,9 @@ import 'package:bacon/src/theme/tokens/typography/default.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class BaconTokes extends ThemeExtension<BaconTokes>
+class BaconTokens extends ThemeExtension<BaconTokens>
     with DiagnosticableTreeMixin {
-  static BaconTokes light = BaconTokes(
+  static BaconTokens light = BaconTokens(
     borderColor: BaconDefaultBorderColors.light(),
     backgroundColor: BaconDefaultBackgroundColors.light(),
     contentColor: BaconDefaultContentColors.light(),
@@ -37,7 +37,7 @@ class BaconTokes extends ThemeExtension<BaconTokes>
     ),
   );
 
-  static BaconTokes dark = BaconTokes(
+  static BaconTokens dark = BaconTokens(
     borderColor: BaconDefaultBorderColors.dark(),
     backgroundColor: BaconDefaultBackgroundColors.dark(),
     contentColor: BaconDefaultContentColors.dark(),
@@ -68,7 +68,7 @@ class BaconTokes extends ThemeExtension<BaconTokes>
   final BaconBaseShape borderRadius;
   final BaconBaseTypography typography;
 
-  const BaconTokes({
+  const BaconTokens({
     required this.borderColor,
     required this.backgroundColor,
     required this.contentColor,
@@ -83,7 +83,7 @@ class BaconTokes extends ThemeExtension<BaconTokes>
   });
 
   @override
-  BaconTokes copyWith({
+  BaconTokens copyWith({
     BaconBaseColor? borderColor,
     BaconBaseColor? backgroundColor,
     BaconBaseColor? contentColor,
@@ -96,7 +96,7 @@ class BaconTokes extends ThemeExtension<BaconTokes>
     BaconBaseShape? borderRadius,
     BaconBaseTypography? typography,
   }) {
-    return BaconTokes(
+    return BaconTokens(
       borderColor: borderColor ?? this.borderColor,
       backgroundColor: backgroundColor ?? this.backgroundColor,
       contentColor: contentColor ?? this.contentColor,
@@ -112,12 +112,12 @@ class BaconTokes extends ThemeExtension<BaconTokes>
   }
 
   @override
-  BaconTokes lerp(
-    ThemeExtension<BaconTokes>? other,
+  BaconTokens lerp(
+    ThemeExtension<BaconTokens>? other,
     double t,
   ) {
-    if (other is! BaconTokes) return this;
-    return BaconTokes(
+    if (other is! BaconTokens) return this;
+    return BaconTokens(
       borderColor: borderColor.lerp(other.borderColor, t),
       backgroundColor: backgroundColor.lerp(other.backgroundColor, t),
       contentColor: contentColor.lerp(other.contentColor, t),
@@ -136,7 +136,7 @@ class BaconTokes extends ThemeExtension<BaconTokes>
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty("type", "baconTokes"))
+      ..add(DiagnosticsProperty("type", "BaconTokens"))
       ..add(borderColor.toDiagnosticsNode(name: 'borderColor'))
       ..add(backgroundColor.toDiagnosticsNode(name: 'backgroundColor'))
       ..add(contentColor.toDiagnosticsNode(name: 'contentColor'))
