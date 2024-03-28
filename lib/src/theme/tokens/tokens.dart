@@ -11,6 +11,7 @@ import 'package:bacon/src/theme/tokens/scale/icon.dart';
 import 'package:bacon/src/theme/tokens/scale/padding.dart';
 import 'package:bacon/src/theme/tokens/shape/base.dart';
 import 'package:bacon/src/theme/tokens/shape/border_radius.dart';
+import 'package:bacon/src/theme/tokens/transitions.dart';
 import 'package:bacon/src/theme/tokens/typography/base.dart';
 import 'package:bacon/src/theme/tokens/typography/default.dart';
 import 'package:flutter/foundation.dart';
@@ -35,6 +36,7 @@ class BaconTokens extends ThemeExtension<BaconTokens>
       paragraph: BaconDefaultTextStyle.paragraph,
       label: BaconDefaultTextStyle.label,
     ),
+    transitions: BaconTransitions.transitions,
   );
 
   static BaconTokens dark = BaconTokens(
@@ -54,6 +56,7 @@ class BaconTokens extends ThemeExtension<BaconTokens>
       paragraph: BaconDefaultTextStyle.paragraph,
       label: BaconDefaultTextStyle.label,
     ),
+    transitions: BaconTransitions.transitions,
   );
 
   final BaconBaseColor borderColor;
@@ -67,6 +70,7 @@ class BaconTokens extends ThemeExtension<BaconTokens>
   final BaconBaseScale paddingScale;
   final BaconBaseShape borderRadius;
   final BaconBaseTypography typography;
+  final BaconTransitions transitions;
 
   const BaconTokens({
     required this.borderColor,
@@ -80,6 +84,7 @@ class BaconTokens extends ThemeExtension<BaconTokens>
     required this.paddingScale,
     required this.borderRadius,
     required this.typography,
+    required this.transitions,
   });
 
   @override
@@ -95,6 +100,7 @@ class BaconTokens extends ThemeExtension<BaconTokens>
     BaconBaseScale? paddingScale,
     BaconBaseShape? borderRadius,
     BaconBaseTypography? typography,
+    BaconTransitions? transitions,
   }) {
     return BaconTokens(
       borderColor: borderColor ?? this.borderColor,
@@ -108,6 +114,7 @@ class BaconTokens extends ThemeExtension<BaconTokens>
       paddingScale: paddingScale ?? this.paddingScale,
       borderRadius: borderRadius ?? this.borderRadius,
       typography: typography ?? this.typography,
+      transitions: transitions ?? this.transitions,
     );
   }
 
@@ -129,6 +136,7 @@ class BaconTokens extends ThemeExtension<BaconTokens>
       paddingScale: paddingScale.lerp(other.paddingScale, t),
       borderRadius: borderRadius.lerp(other.borderRadius, t),
       typography: typography.lerp(other.typography, t),
+      transitions: transitions.lerp(other.transitions, t),
     );
   }
 
@@ -147,6 +155,7 @@ class BaconTokens extends ThemeExtension<BaconTokens>
       ..add(iconScale.toDiagnosticsNode(name: 'iconScale'))
       ..add(paddingScale.toDiagnosticsNode(name: 'paddingScale'))
       ..add(borderRadius.toDiagnosticsNode(name: 'borderRadius'))
-      ..add(typography.toDiagnosticsNode(name: 'typography'));
+      ..add(typography.toDiagnosticsNode(name: 'typography'))
+      ..add(transitions.toDiagnosticsNode(name: 'transitions'));
   }
 }
