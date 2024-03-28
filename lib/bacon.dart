@@ -19,9 +19,11 @@ export 'src/theme/tokens/tokens.dart';
 export 'src/theme/tokens/typography/base.dart';
 export 'src/theme/tokens/typography/default.dart';
 export 'src/theme/tokens/typography/text_styles.dart';
+// Widgets
+// Alert
+export 'src/widgets/alert/alert.dart';
 // Avatar
 export 'src/widgets/avatar/avatar.dart';
-// Widgets
 // Badge
 export 'src/widgets/badge/badge.dart';
 export 'src/widgets/badge/light_badge.dart';
