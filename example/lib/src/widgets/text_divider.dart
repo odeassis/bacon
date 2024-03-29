@@ -26,8 +26,8 @@ class TextDivider extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Text(
               text,
-              style: context.baconTypography?.label.md.copyWith(
-                color: context.baconContentColors?.primary,
+              style: context.typography?.label.md.copyWith(
+                color: context.contentColors?.primary,
               ),
             ),
           ),

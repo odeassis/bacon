@@ -16,9 +16,7 @@ class MainPage extends StatelessWidget {
       routerConfig: router,
       theme: ThemeData.light().copyWith(extensions: <ThemeExtension<dynamic>>[
         BaconTheme(
-          tokens: BaconTokens.light.copyWith(
-            borderRadius: const BaconDefaultBorderRadius.sharp(),
-          ),
+          tokens: BaconTokens.light,
         )
       ]),
       darkTheme: ThemeData.dark().copyWith(

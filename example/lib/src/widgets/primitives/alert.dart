@@ -18,9 +18,9 @@ class PrimitiveAlert extends StatelessWidget {
               text: "Alert Size [large]",
               paddingTop: 0,
             ),
-            BaconAlert.light(
+            BaconAlert(
               show: true,
-              status: BaconAlertStatus.error,
+              status: BaconAlertStatus.success,
               //leading: Icon(BaconIcons.cog),
               title: Text("Update available"),
               body: Text("A new software update is available. See what's new."),
