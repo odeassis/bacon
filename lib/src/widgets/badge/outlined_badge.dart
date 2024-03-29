@@ -87,9 +87,8 @@ class BaconBadgeOutlined extends StatelessWidget {
         context.background?.primary ??
         BaconTokens.light.modes.background.primary;
 
-    final effectiveBorderRadius = borderRadius ??
-        context.radii?.xl ??
-        BaconTokens.light.shape.borderRadius.xl;
+    final effectiveBorderRadius =
+        borderRadius ?? context.radii?.xl ?? BaconTokens.light.shape.radii.xl;
 
     final effectiveBorderColor = borderColor ??
         context.borderColors?.brand ??

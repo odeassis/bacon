@@ -2,8 +2,6 @@ import 'package:bacon/bacon.dart';
 import 'package:bacon/src/theme/components/alert/alert_theme.dart';
 import 'package:bacon/src/theme/components/avatar/avatar_theme.dart';
 import 'package:bacon/src/theme/components/badge/badge_theme.dart';
-import 'package:bacon/src/theme/tokens/semantic_tokens/modes/action/base.dart';
-import 'package:bacon/src/theme/tokens/semantic_tokens/modes/alert/base.dart';
 import 'package:bacon/src/theme/tokens/semantic_tokens/scale/component/base.dart';
 import 'package:bacon/src/theme/tokens/semantic_tokens/scale/gap/base.dart';
 import 'package:bacon/src/theme/tokens/semantic_tokens/scale/padding/base.dart';
@@ -98,7 +96,7 @@ extension BaconThemeB on BuildContext {
 
   /// Bacons default component border radius
   BaconBaseRadiiSemanticTokensShape? get radii =>
-      baconTheme?.tokens.shape.borderRadius;
+      baconTheme?.tokens.shape.radii;
 
   /// Bacons default component scale
   BaconBaseComponentsSemanticTokensScale? get componentScale =>

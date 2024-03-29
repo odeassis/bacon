@@ -33,7 +33,7 @@ class BaconAvatarSizes extends ThemeExtension<BaconAvatarSizes>
   })  : xl = xl ??
             BaconAvatarSizeProperties(
               avatarSize: tokens.scale.component.x3l,
-              borderRadius: tokens.shape.borderRadius.xl,
+              borderRadius: tokens.shape.radii.xl,
               badgeSize: tokens.scale.component.sm,
               badgeMargin: tokens.scale.component.x3s,
               textStyle: tokens.typography.label.lg,
@@ -41,7 +41,7 @@ class BaconAvatarSizes extends ThemeExtension<BaconAvatarSizes>
         lg = lg ??
             BaconAvatarSizeProperties(
               avatarSize: tokens.scale.component.x2l,
-              borderRadius: tokens.shape.borderRadius.xl,
+              borderRadius: tokens.shape.radii.xl,
               badgeSize: tokens.scale.component.sm,
               badgeMargin: tokens.scale.component.x3s,
               textStyle: tokens.typography.label.md,
@@ -49,7 +49,7 @@ class BaconAvatarSizes extends ThemeExtension<BaconAvatarSizes>
         md = md ??
             BaconAvatarSizeProperties(
               avatarSize: tokens.scale.component.xl,
-              borderRadius: tokens.shape.borderRadius.xl,
+              borderRadius: tokens.shape.radii.xl,
               badgeSize: tokens.scale.component.xs,
               badgeMargin: tokens.scale.component.x3s,
               textStyle: tokens.typography.label.xs,
@@ -57,7 +57,7 @@ class BaconAvatarSizes extends ThemeExtension<BaconAvatarSizes>
         sm = sm ??
             BaconAvatarSizeProperties(
               avatarSize: tokens.scale.component.lg,
-              borderRadius: tokens.shape.borderRadius.xl,
+              borderRadius: tokens.shape.radii.xl,
               badgeSize: tokens.scale.component.xs,
               badgeMargin: tokens.scale.component.x3s,
               textStyle: tokens.typography.label.xs,
@@ -65,10 +65,10 @@ class BaconAvatarSizes extends ThemeExtension<BaconAvatarSizes>
         xs = xs ??
             BaconAvatarSizeProperties(
               avatarSize: tokens.scale.component.md,
-              borderRadius: tokens.shape.borderRadius.xl,
+              borderRadius: tokens.shape.radii.xl,
               badgeSize: tokens.scale.component.x2s,
               badgeMargin: tokens.scale.component.x3s,
-              textStyle: tokens.typography.label.xxs,
+              textStyle: tokens.typography.label.xs,
             );
 
   @override

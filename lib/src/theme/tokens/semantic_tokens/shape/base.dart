@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 class BaconBaseSemanticTokensShape
     extends ThemeExtension<BaconBaseSemanticTokensShape>
     with DiagnosticableTreeMixin {
-  final BaconBaseRadiiSemanticTokensShape borderRadius;
+  final BaconBaseRadiiSemanticTokensShape radii;
 
   const BaconBaseSemanticTokensShape({
-    required this.borderRadius,
+    required this.radii,
   });
 
   @override
@@ -20,16 +20,16 @@ class BaconBaseSemanticTokensShape
     if (other is! BaconBaseSemanticTokensShape) return this;
 
     return BaconBaseSemanticTokensShape(
-      borderRadius: borderRadius.lerp(other.borderRadius, t),
+      radii: radii.lerp(other.radii, t),
     );
   }
 
   @override
   BaconBaseSemanticTokensShape copyWith({
-    BaconBaseRadiiSemanticTokensShape? borderRadius,
+    BaconBaseRadiiSemanticTokensShape? radii,
   }) {
     return BaconBaseSemanticTokensShape(
-      borderRadius: borderRadius ?? this.borderRadius,
+      radii: radii ?? this.radii,
     );
   }
 
@@ -39,6 +39,6 @@ class BaconBaseSemanticTokensShape
     properties
       ..add(DiagnosticsProperty("type", "BaconBaseSemanticTokensShape"))
       ..add(DiagnosticsProperty<BaconBaseRadiiSemanticTokensShape>(
-          "borderRadius", borderRadius));
+          "radii", radii));
   }
 }

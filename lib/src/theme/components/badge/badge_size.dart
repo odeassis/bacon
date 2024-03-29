@@ -20,29 +20,29 @@ class BaconBadgeSizes extends ThemeExtension<BaconBadgeSizes>
     BaconBadgeSizeProperties? sm,
   })  : md = md ??
             BaconBadgeSizeProperties(
-              borderRadius: tokens.shape.borderRadius.x3l,
+              borderRadius: tokens.shape.radii.x3l,
               gap: tokens.scale.gap.x3s,
               iconSizeValue: tokens.scale.component.x2s,
               padding: EdgeInsets.symmetric(
                 vertical: tokens.scale.padding.x3s,
                 horizontal: tokens.scale.padding.xs,
               ),
-              textStyle: tokens.typography.label.xs,
+              textStyle: tokens.typography.label.sm,
               upperCaseTextStyle:
-                  tokens.typography.label.xs.copyWith(height: 1.4),
+                  tokens.typography.label.sm.copyWith(height: 1.4),
             ),
         sm = sm ??
             BaconBadgeSizeProperties(
-              borderRadius: tokens.shape.borderRadius.xl,
+              borderRadius: tokens.shape.radii.x3l,
               gap: tokens.scale.gap.x2s,
-              iconSizeValue: tokens.scale.component.sm,
+              iconSizeValue: tokens.scale.component.x3s,
               padding: EdgeInsets.symmetric(
-                vertical: tokens.scale.padding.x2s,
-                horizontal: tokens.scale.padding.xs,
+                vertical: tokens.scale.padding.x3s,
+                horizontal: tokens.scale.padding.x2s,
               ),
-              textStyle: tokens.typography.label.xxs,
+              textStyle: tokens.typography.label.xs,
               upperCaseTextStyle:
-                  tokens.typography.label.xxs.copyWith(height: 1.4),
+                  tokens.typography.label.xs.copyWith(height: 1.4),
             );
 
   @override

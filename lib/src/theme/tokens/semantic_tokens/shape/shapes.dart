@@ -4,16 +4,16 @@ import 'package:bacon/src/theme/tokens/semantic_tokens/shape/radii/border_radius
 class BaconDefaultSemanticTokensShapes extends BaconBaseSemanticTokensShape {
   BaconDefaultSemanticTokensShapes.kDefault()
       : super(
-          borderRadius: BaconDefaultRadiiComponentShape.kDefault(),
+          radii: BaconDefaultRadiiComponentShape.kDefault(),
         );
 
   BaconDefaultSemanticTokensShapes.rounded()
       : super(
-          borderRadius: BaconDefaultRadiiComponentShape.rounded(),
+          radii: BaconDefaultRadiiComponentShape.rounded(),
         );
 
   BaconDefaultSemanticTokensShapes.sharp()
       : super(
-          borderRadius: BaconDefaultRadiiComponentShape.sharp(),
+          radii: BaconDefaultRadiiComponentShape.sharp(),
         );
 }

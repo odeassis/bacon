@@ -3,38 +3,42 @@ import 'package:flutter/material.dart';
 
 class BaconTextStyles extends ThemeExtension<BaconTextStyles>
     with DiagnosticableTreeMixin {
-  final TextStyle xxl;
+  final TextStyle x2l;
   final TextStyle xl;
   final TextStyle lg;
   final TextStyle md;
+  final TextStyle sm;
   final TextStyle xs;
-  final TextStyle xxs;
+  final TextStyle x2s;
 
   const BaconTextStyles({
-    required this.xxl,
+    required this.x2l,
     required this.xl,
     required this.lg,
     required this.md,
+    required this.sm,
     required this.xs,
-    required this.xxs,
+    required this.x2s,
   });
 
   @override
   BaconTextStyles copyWith({
-    TextStyle? xxl,
+    TextStyle? x2l,
     TextStyle? xl,
     TextStyle? lg,
     TextStyle? md,
+    TextStyle? sm,
     TextStyle? xs,
-    TextStyle? xxs,
+    TextStyle? x2s,
   }) {
     return BaconTextStyles(
-      xxl: xxl ?? this.xxl,
+      x2l: x2l ?? this.x2l,
       xl: xl ?? this.xl,
       lg: lg ?? this.lg,
       md: md ?? this.md,
+      sm: sm ?? this.sm,
       xs: xs ?? this.xs,
-      xxs: xxs ?? this.xxs,
+      x2s: x2s ?? this.x2s,
     );
   }
 
@@ -44,12 +48,13 @@ class BaconTextStyles extends ThemeExtension<BaconTextStyles>
     if (other is! BaconTextStyles) return this;
 
     return BaconTextStyles(
-      xxl: TextStyle.lerp(xxl, other.xxl, t)!,
+      x2l: TextStyle.lerp(x2l, other.x2l, t)!,
       xl: TextStyle.lerp(xl, other.xl, t)!,
       lg: TextStyle.lerp(lg, other.lg, t)!,
       md: TextStyle.lerp(md, other.md, t)!,
+      sm: TextStyle.lerp(sm, other.sm, t)!,
       xs: TextStyle.lerp(xs, other.xs, t)!,
-      xxs: TextStyle.lerp(xxs, other.xxs, t)!,
+      x2s: TextStyle.lerp(x2s, other.x2s, t)!,
     );
   }
 
@@ -57,12 +62,13 @@ class BaconTextStyles extends ThemeExtension<BaconTextStyles>
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties.add(DiagnosticsProperty("type", "BaconTextStyles"));
-    properties.add(DiagnosticsProperty("xxl", xxl));
+    properties.add(DiagnosticsProperty("x2l", x2l));
     properties.add(DiagnosticsProperty("xl", xl));
     properties.add(DiagnosticsProperty("lg", lg));
     properties.add(DiagnosticsProperty("md", md));
+    properties.add(DiagnosticsProperty("sm", sm));
     properties.add(DiagnosticsProperty("xs", xs));
-    properties.add(DiagnosticsProperty("xxs", xxs));
+    properties.add(DiagnosticsProperty("x2s", x2s));
   }
 
   BaconTextStyles apply({
@@ -123,12 +129,13 @@ class BaconTextStyles extends ThemeExtension<BaconTextStyles>
     }
 
     return BaconTextStyles(
-      xxl: applyProps(xxl),
+      x2l: applyProps(x2l),
       xl: applyProps(xl),
       lg: applyProps(lg),
       md: applyProps(md),
+      sm: applyProps(sm),
       xs: applyProps(xs),
-      xxs: applyProps(xxs),
+      x2s: applyProps(x2s),
     );
   }
 }

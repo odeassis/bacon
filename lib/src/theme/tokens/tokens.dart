@@ -6,7 +6,7 @@ import 'package:bacon/src/theme/tokens/semantic_tokens/shape/base.dart';
 import 'package:bacon/src/theme/tokens/semantic_tokens/shape/shapes.dart';
 import 'package:bacon/src/theme/tokens/transitions.dart';
 import 'package:bacon/src/theme/tokens/typography/base.dart';
-import 'package:bacon/src/theme/tokens/typography/default.dart';
+import 'package:bacon/src/theme/tokens/typography/typography.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -17,10 +17,10 @@ class BaconTokens extends ThemeExtension<BaconTokens>
     scale: BaconDefaultSemanticTokensScale.kDefault(),
     shape: BaconDefaultSemanticTokensShapes.kDefault(),
     typography: BaconBaseTypography(
-      display: BaconDefaultTextStyle.display,
-      headline: BaconDefaultTextStyle.headline,
-      paragraph: BaconDefaultTextStyle.paragraph,
-      label: BaconDefaultTextStyle.label,
+      display: BaconDefaultSemanticTokensTypography.display,
+      headline: BaconDefaultSemanticTokensTypography.headline,
+      paragraph: BaconDefaultSemanticTokensTypography.paragraph,
+      label: BaconDefaultSemanticTokensTypography.label,
     ),
     transitions: BaconTransitions.transitions,
   );
@@ -30,10 +30,10 @@ class BaconTokens extends ThemeExtension<BaconTokens>
     scale: BaconDefaultSemanticTokensScale.kDefault(),
     shape: BaconDefaultSemanticTokensShapes.kDefault(),
     typography: BaconBaseTypography(
-      display: BaconDefaultTextStyle.display,
-      headline: BaconDefaultTextStyle.headline,
-      paragraph: BaconDefaultTextStyle.paragraph,
-      label: BaconDefaultTextStyle.label,
+      display: BaconDefaultSemanticTokensTypography.display,
+      headline: BaconDefaultSemanticTokensTypography.headline,
+      paragraph: BaconDefaultSemanticTokensTypography.paragraph,
+      label: BaconDefaultSemanticTokensTypography.label,
     ),
     transitions: BaconTransitions.transitions,
   );

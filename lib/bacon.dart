@@ -24,8 +24,8 @@ export 'src/theme/tokens/semantic_tokens/shape/shapes.dart';
 export 'src/theme/tokens/shadows.dart';
 export 'src/theme/tokens/tokens.dart';
 export 'src/theme/tokens/typography/base.dart';
-export 'src/theme/tokens/typography/default.dart';
 export 'src/theme/tokens/typography/text_styles.dart';
+export 'src/theme/tokens/typography/typography.dart';
 // Widgets
 // Alert
 export 'src/widgets/alert/alert.dart';
