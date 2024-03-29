@@ -17,10 +17,10 @@ class BaconAlertTheme extends ThemeExtension<BaconAlertTheme>
     BaconAlertSizes? sizes,
   })  : colors = colors ??
             BaconAlertColors(
-              background: tokens.backgroundColor.alertInformation,
-              textColor: tokens.contentColor.inverse,
-              borderColor: tokens.borderColor.primary,
-              iconColor: tokens.contentColor.inverse,
+              background: tokens.modes.alert.info,
+              textColor: tokens.modes.content.inverse,
+              borderColor: tokens.modes.border.primary,
+              iconColor: tokens.modes.content.inverse,
             ),
         sizes = sizes ??
             BaconAlertSizes(
@@ -42,237 +42,140 @@ class BaconAlertTheme extends ThemeExtension<BaconAlertTheme>
       case BaconAlertStatus.info:
         switch (style) {
           case BaconAlertStyle.outlined:
-            background = context.baconTheme?.tokens.backgroundColor.primary ??
-                tokens.backgroundColor.primary;
-            textColor = context.baconTheme?.tokens.contentColor.primary ??
-                tokens.contentColor.primary;
-            borderColor = context.baconTheme?.tokens.borderColor.primary ??
-                tokens.borderColor.primary;
-            iconColor = context.baconTheme?.tokens.contentColor.primary ??
-                tokens.contentColor.primary;
+            background = tokens.modes.background.primary;
+            textColor = tokens.modes.content.primary;
+            borderColor = tokens.modes.border.primary;
+            iconColor = tokens.modes.content.primary;
             break;
           case BaconAlertStyle.filled:
-            background =
-                context.baconTheme?.tokens.backgroundColor.alertInformation ??
-                    tokens.backgroundColor.alertInformation;
-            textColor = context.baconTheme?.tokens.contentColor.inverse ??
-                tokens.contentColor.inverse;
-            borderColor =
-                context.baconTheme?.tokens.borderColor.alertInformation ??
-                    tokens.borderColor.alertInformation;
-            iconColor = context.baconTheme?.tokens.contentColor.inverse ??
-                tokens.contentColor.inverse;
+            background = tokens.modes.alert.info;
+            textColor = tokens.modes.content.inverse;
+            borderColor = tokens.modes.border.secondary;
+            iconColor = tokens.modes.content.inverse;
             break;
           case BaconAlertStyle.light:
-            background = context
-                    .baconTheme?.tokens.backgroundColor.alertInformationLight ??
-                tokens.backgroundColor.alertInformationLight;
-            textColor = context.baconTheme?.tokens.contentColor.primary ??
-                tokens.contentColor.primary;
-            borderColor =
-                context.baconTheme?.tokens.borderColor.alertInformationLight ??
-                    tokens.borderColor.alertInformationLight;
-            iconColor = context.baconTheme?.tokens.contentColor.primary ??
-                tokens.contentColor.primary;
+            background = tokens.modes.alert.infoLight;
+            textColor = tokens.modes.content.primary;
+            borderColor = tokens.modes.border.secondary;
+            iconColor = tokens.modes.content.primary;
             break;
           default:
-            background =
-                context.baconTheme?.tokens.backgroundColor.alertInformation ??
-                    tokens.backgroundColor.alertInformation;
-            textColor = context.baconTheme?.tokens.contentColor.inverse ??
-                tokens.contentColor.inverse;
-            borderColor =
-                context.baconTheme?.tokens.borderColor.alertInformation ??
-                    tokens.borderColor.alertInformation;
-            iconColor = context.baconTheme?.tokens.contentColor.inverse ??
-                tokens.contentColor.inverse;
+            background = tokens.modes.alert.info;
+            textColor = tokens.modes.content.inverse;
+            borderColor = tokens.modes.border.secondary;
+            iconColor = tokens.modes.content.inverse;
+            break;
         }
         break;
       case BaconAlertStatus.success:
         switch (style) {
           case BaconAlertStyle.outlined:
-            background = context.baconTheme?.tokens.backgroundColor.primary ??
-                tokens.backgroundColor.primary;
-            textColor = context.baconTheme?.tokens.contentColor.primary ??
-                tokens.contentColor.primary;
-            borderColor = context.baconTheme?.tokens.borderColor.primary ??
-                tokens.borderColor.primary;
-            iconColor = context.baconTheme?.tokens.contentColor.primary ??
-                tokens.contentColor.primary;
+            background = tokens.modes.background.primary;
+            textColor = tokens.modes.content.primary;
+            borderColor = tokens.modes.border.primary;
+            iconColor = tokens.modes.content.primary;
             break;
           case BaconAlertStyle.filled:
-            background =
-                context.baconTheme?.tokens.backgroundColor.alertSuccess ??
-                    tokens.backgroundColor.alertSuccess;
-            textColor = context.baconTheme?.tokens.contentColor.inverse ??
-                tokens.contentColor.inverse;
-            borderColor = context.baconTheme?.tokens.borderColor.alertSuccess ??
-                tokens.borderColor.alertSuccess;
-            iconColor = context.baconTheme?.tokens.contentColor.inverse ??
-                tokens.contentColor.inverse;
+            background = tokens.modes.alert.success;
+            textColor = tokens.modes.content.inverse;
+            borderColor = tokens.modes.border.secondary;
+            iconColor = tokens.modes.content.inverse;
             break;
           case BaconAlertStyle.light:
-            background =
-                context.baconTheme?.tokens.backgroundColor.alertSuccessLight ??
-                    tokens.backgroundColor.alertSuccessLight;
-            textColor = context.baconTheme?.tokens.contentColor.primary ??
-                tokens.contentColor.primary;
-            borderColor =
-                context.baconTheme?.tokens.borderColor.alertSuccessLight ??
-                    tokens.borderColor.alertSuccessLight;
-            iconColor = context.baconTheme?.tokens.contentColor.primary ??
-                tokens.contentColor.primary;
+            background = tokens.modes.alert.successLight;
+            textColor = tokens.modes.content.primary;
+            borderColor = tokens.modes.border.secondary;
+            iconColor = tokens.modes.content.primary;
             break;
           default:
-            background =
-                context.baconTheme?.tokens.backgroundColor.alertSuccess ??
-                    tokens.backgroundColor.alertSuccess;
-            textColor = context.baconTheme?.tokens.contentColor.inverse ??
-                tokens.contentColor.inverse;
-            borderColor = context.baconTheme?.tokens.borderColor.alertSuccess ??
-                tokens.borderColor.alertSuccess;
-            iconColor = context.baconTheme?.tokens.contentColor.inverse ??
-                tokens.contentColor.inverse;
+            background = tokens.modes.alert.success;
+            textColor = tokens.modes.content.inverse;
+            borderColor = tokens.modes.border.secondary;
+            iconColor = tokens.modes.content.inverse;
             break;
         }
         break;
       case BaconAlertStatus.warning:
         switch (style) {
           case BaconAlertStyle.outlined:
-            background = context.baconTheme?.tokens.backgroundColor.primary ??
-                tokens.backgroundColor.primary;
-            textColor = context.baconTheme?.tokens.contentColor.primary ??
-                tokens.contentColor.alwaysDark;
-            borderColor = context.baconTheme?.tokens.borderColor.alwaysDark ??
-                tokens.borderColor.alwaysDark;
-            iconColor = context.baconTheme?.tokens.contentColor.alwaysDark ??
-                tokens.contentColor.alwaysDark;
+            background = tokens.modes.background.primary;
+            textColor = tokens.modes.content.primary;
+            borderColor = tokens.modes.border.primary;
+            iconColor = tokens.modes.content.primary;
             break;
           case BaconAlertStyle.filled:
-            background =
-                context.baconTheme?.tokens.backgroundColor.alertWarning ??
-                    tokens.backgroundColor.alertWarning;
-            textColor = context.baconTheme?.tokens.contentColor.alwaysDark ??
-                tokens.contentColor.alwaysDark;
-            borderColor = context.baconTheme?.tokens.borderColor.alertWarning ??
-                tokens.borderColor.alertWarning;
-            iconColor = context.baconTheme?.tokens.contentColor.alwaysDark ??
-                tokens.contentColor.alwaysDark;
+            background = tokens.modes.alert.warning;
+            textColor = tokens.modes.content.alwaysDark;
+            borderColor = tokens.modes.border.secondary;
+            iconColor = tokens.modes.content.alwaysDark;
             break;
           case BaconAlertStyle.light:
-            background =
-                context.baconTheme?.tokens.backgroundColor.alertWarningLight ??
-                    tokens.backgroundColor.alertWarningLight;
-            textColor = context.baconTheme?.tokens.contentColor.alwaysDark ??
-                tokens.contentColor.alwaysDark;
-            borderColor =
-                context.baconTheme?.tokens.borderColor.alertWarningLight ??
-                    tokens.borderColor.alertWarningLight;
-            iconColor = context.baconTheme?.tokens.contentColor.alwaysDark ??
-                tokens.contentColor.alwaysDark;
+            background = tokens.modes.alert.warningLight;
+            textColor = tokens.modes.content.primary;
+            borderColor = tokens.modes.border.secondary;
+            iconColor = tokens.modes.content.primary;
             break;
           default:
-            background =
-                context.baconTheme?.tokens.backgroundColor.alertWarning ??
-                    tokens.backgroundColor.alertWarning;
-            textColor = context.baconTheme?.tokens.contentColor.alwaysDark ??
-                tokens.contentColor.alwaysDark;
-            borderColor = context.baconTheme?.tokens.borderColor.alertWarning ??
-                tokens.borderColor.alertWarning;
-            iconColor = context.baconTheme?.tokens.contentColor.alwaysDark ??
-                tokens.contentColor.alwaysDark;
+            background = tokens.modes.alert.warning;
+            textColor = tokens.modes.content.alwaysDark;
+            borderColor = tokens.modes.border.secondary;
+            iconColor = tokens.modes.content.alwaysDark;
             break;
         }
         break;
       case BaconAlertStatus.error:
         switch (style) {
           case BaconAlertStyle.outlined:
-            background = context.baconTheme?.tokens.backgroundColor.primary ??
-                tokens.backgroundColor.primary;
-            textColor = context.baconTheme?.tokens.contentColor.primary ??
-                tokens.contentColor.primary;
-            borderColor = context.baconTheme?.tokens.borderColor.primary ??
-                tokens.borderColor.primary;
-            iconColor = context.baconTheme?.tokens.contentColor.primary ??
-                tokens.contentColor.primary;
+            background = tokens.modes.background.primary;
+            textColor = tokens.modes.content.primary;
+            borderColor = tokens.modes.border.primary;
+            iconColor = tokens.modes.content.primary;
             break;
           case BaconAlertStyle.filled:
-            background =
-                context.baconTheme?.tokens.backgroundColor.alertDanger ??
-                    tokens.backgroundColor.alertDanger;
-            textColor = context.baconTheme?.tokens.contentColor.inverse ??
-                tokens.contentColor.inverse;
-            borderColor = context.baconTheme?.tokens.borderColor.alertDanger ??
-                tokens.borderColor.alertDanger;
-            iconColor = context.baconTheme?.tokens.contentColor.inverse ??
-                tokens.contentColor.inverse;
+            background = tokens.modes.alert.danger;
+            textColor = tokens.modes.content.inverse;
+            borderColor = tokens.modes.border.secondary;
+            iconColor = tokens.modes.content.inverse;
             break;
           case BaconAlertStyle.light:
-            background =
-                context.baconTheme?.tokens.backgroundColor.alertDangerLight ??
-                    tokens.backgroundColor.alertDangerLight;
-            textColor = context.baconTheme?.tokens.contentColor.primary ??
-                tokens.contentColor.primary;
-            borderColor =
-                context.baconTheme?.tokens.borderColor.alertDangerLight ??
-                    tokens.borderColor.alertDangerLight;
-            iconColor = context.baconTheme?.tokens.contentColor.primary ??
-                tokens.contentColor.primary;
+            background = tokens.modes.alert.dangerLight;
+            textColor = tokens.modes.content.primary;
+            borderColor = tokens.modes.border.secondary;
+            iconColor = tokens.modes.content.primary;
             break;
           default:
-            background =
-                context.baconTheme?.tokens.backgroundColor.alertDanger ??
-                    tokens.backgroundColor.alertDanger;
-            textColor = context.baconTheme?.tokens.contentColor.inverse ??
-                tokens.contentColor.inverse;
-            borderColor = context.baconTheme?.tokens.borderColor.alertDanger ??
-                tokens.borderColor.alertDanger;
-            iconColor = context.baconTheme?.tokens.contentColor.inverse ??
-                tokens.contentColor.inverse;
+            background = tokens.modes.alert.danger;
+            textColor = tokens.modes.content.inverse;
+            borderColor = tokens.modes.border.secondary;
+            iconColor = tokens.modes.content.inverse;
             break;
         }
         break;
       case BaconAlertStatus.update:
         switch (style) {
           case BaconAlertStyle.outlined:
-            background = context.baconTheme?.tokens.backgroundColor.primary ??
-                tokens.backgroundColor.primary;
-            textColor = context.baconTheme?.tokens.contentColor.primary ??
-                tokens.contentColor.primary;
-            borderColor = context.baconTheme?.tokens.borderColor.primary ??
-                tokens.borderColor.primary;
-            iconColor = context.baconTheme?.tokens.contentColor.primary ??
-                tokens.contentColor.primary;
+            background = tokens.modes.background.primary;
+            textColor = tokens.modes.content.primary;
+            borderColor = tokens.modes.border.primary;
+            iconColor = tokens.modes.content.primary;
             break;
           case BaconAlertStyle.filled:
-            background = context.baconTheme?.tokens.backgroundColor.inverse ??
-                tokens.backgroundColor.inverse;
-            textColor = context.baconTheme?.tokens.contentColor.inverse ??
-                tokens.contentColor.inverse;
-            borderColor = context.baconTheme?.tokens.borderColor.inverse ??
-                tokens.borderColor.inverse;
-            iconColor = context.baconTheme?.tokens.contentColor.inverse ??
-                tokens.contentColor.inverse;
+            background = tokens.modes.background.inverse;
+            textColor = tokens.modes.content.inverse;
+            borderColor = tokens.modes.border.secondary;
+            iconColor = tokens.modes.content.inverse;
             break;
           case BaconAlertStyle.light:
-            background = context.baconTheme?.tokens.backgroundColor.tertiary ??
-                tokens.backgroundColor.tertiary;
-            textColor = context.baconTheme?.tokens.contentColor.primary ??
-                tokens.contentColor.primary;
-            borderColor = context.baconTheme?.tokens.borderColor.tertiary ??
-                tokens.borderColor.tertiary;
-            iconColor = context.baconTheme?.tokens.contentColor.primary ??
-                tokens.contentColor.primary;
+            background = tokens.modes.background.tertiary;
+            textColor = tokens.modes.content.primary;
+            borderColor = tokens.modes.border.secondary;
+            iconColor = tokens.modes.content.primary;
             break;
           default:
-            background = context.baconTheme?.tokens.backgroundColor.inverse ??
-                tokens.backgroundColor.inverse;
-            textColor = context.baconTheme?.tokens.contentColor.inverse ??
-                tokens.contentColor.inverse;
-            borderColor = context.baconTheme?.tokens.borderColor.inverse ??
-                tokens.borderColor.inverse;
-            iconColor = context.baconTheme?.tokens.contentColor.inverse ??
-                tokens.contentColor.inverse;
+            background = tokens.modes.background.inverse;
+            textColor = tokens.modes.content.inverse;
+            borderColor = tokens.modes.border.secondary;
+            iconColor = tokens.modes.content.inverse;
             break;
         }
     }

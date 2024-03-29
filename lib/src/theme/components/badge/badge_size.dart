@@ -20,12 +20,12 @@ class BaconBadgeSizes extends ThemeExtension<BaconBadgeSizes>
     BaconBadgeSizeProperties? sm,
   })  : md = md ??
             BaconBadgeSizeProperties(
-              borderRadius: tokens.borderRadius.xl,
-              gap: tokens.gapScale.xxs,
-              iconSizeValue: tokens.componentScale.md,
+              borderRadius: tokens.shape.borderRadius.x3l,
+              gap: tokens.scale.gap.x3s,
+              iconSizeValue: tokens.scale.component.x2s,
               padding: EdgeInsets.symmetric(
-                vertical: tokens.paddingScale.xxs,
-                horizontal: tokens.paddingScale.xs,
+                vertical: tokens.scale.padding.x3s,
+                horizontal: tokens.scale.padding.xs,
               ),
               textStyle: tokens.typography.label.xs,
               upperCaseTextStyle:
@@ -33,12 +33,12 @@ class BaconBadgeSizes extends ThemeExtension<BaconBadgeSizes>
             ),
         sm = sm ??
             BaconBadgeSizeProperties(
-              borderRadius: tokens.borderRadius.xl,
-              gap: tokens.gapScale.xxs,
-              iconSizeValue: tokens.componentScale.sm,
+              borderRadius: tokens.shape.borderRadius.xl,
+              gap: tokens.scale.gap.x2s,
+              iconSizeValue: tokens.scale.component.sm,
               padding: EdgeInsets.symmetric(
-                vertical: tokens.paddingScale.xxs,
-                horizontal: tokens.paddingScale.xs,
+                vertical: tokens.scale.padding.x2s,
+                horizontal: tokens.scale.padding.xs,
               ),
               textStyle: tokens.typography.label.xxs,
               upperCaseTextStyle:

@@ -1,5 +1,5 @@
+import 'package:bacon/src/theme/tokens/primitives/font.dart';
 import 'package:bacon/src/theme/tokens/typography/text_styles.dart';
-import 'package:bacon/src/theme/tokens/variables/primitives/font.dart';
 import 'package:flutter/material.dart';
 
 final PrimitiveFont primitiveFont = PrimitiveFont();

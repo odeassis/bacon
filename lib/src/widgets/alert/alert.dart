@@ -257,7 +257,7 @@ class _BaconAlertState extends State<BaconAlert>
     final TextStyle effectiveBodyTextStyle = effectiveAvatarSize.bodyTitleStyle;
 
     final double effectiveIconSize =
-        effectiveAvatarSize.iconSize ?? BaconTokens.light.iconScale.lg;
+        effectiveAvatarSize.iconSize ?? BaconTokens.light.scale.component.lg;
 
     final Duration effectiveTransitionDuration =
         widget.duration ?? effectiveAvatarSize.duration;

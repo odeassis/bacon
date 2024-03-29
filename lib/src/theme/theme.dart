@@ -2,6 +2,12 @@ import 'package:bacon/bacon.dart';
 import 'package:bacon/src/theme/components/alert/alert_theme.dart';
 import 'package:bacon/src/theme/components/avatar/avatar_theme.dart';
 import 'package:bacon/src/theme/components/badge/badge_theme.dart';
+import 'package:bacon/src/theme/tokens/semantic_tokens/modes/action/base.dart';
+import 'package:bacon/src/theme/tokens/semantic_tokens/modes/alert/base.dart';
+import 'package:bacon/src/theme/tokens/semantic_tokens/scale/component/base.dart';
+import 'package:bacon/src/theme/tokens/semantic_tokens/scale/gap/base.dart';
+import 'package:bacon/src/theme/tokens/semantic_tokens/scale/padding/base.dart';
+import 'package:bacon/src/theme/tokens/semantic_tokens/shape/radii/base.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -68,8 +74,40 @@ class BaconTheme extends ThemeExtension<BaconTheme>
 extension BaconThemeB on BuildContext {
   BaconTheme? get baconTheme => Theme.of(this).extension<BaconTheme>();
 
-  BaconBaseTypography? get baconTypography => baconTheme?.tokens.typography;
-  BaconBaseColor? get baconBgColors => baconTheme?.tokens.backgroundColor;
-  BaconBaseColor? get baconBorderColors => baconTheme?.tokens.borderColor;
-  BaconBaseColor? get baconContentColors => baconTheme?.tokens.contentColor;
+  /// Bacons default typography
+  BaconBaseTypography? get typography => baconTheme?.tokens.typography;
+
+  ///
+  BaconBaseLayersSemanticTokensColors? get background =>
+      baconTheme?.tokens.modes.background;
+
+  ///
+  BaconBaseLayersSemanticTokensColors? get borderColors =>
+      baconTheme?.tokens.modes.border;
+
+  ///
+  BaconBaseLayersSemanticTokensColors? get contentColors =>
+      baconTheme?.tokens.modes.content;
+
+  /// Bacons default action colors
+  BaconBaseActionSemanticTokensColors get actionsColors =>
+      baconTheme!.tokens.modes.action;
+
+  BaconBaseAlertSemanticTokensColors get alertColors =>
+      baconTheme!.tokens.modes.alert;
+
+  /// Bacons default component border radius
+  BaconBaseRadiiSemanticTokensShape? get radii =>
+      baconTheme?.tokens.shape.borderRadius;
+
+  /// Bacons default component scale
+  BaconBaseComponentsSemanticTokensScale? get componentScale =>
+      baconTheme?.tokens.scale.component;
+
+  /// Bacons default padding
+  BaconBasePaddingSemanticTokensScale? get padding =>
+      baconTheme?.tokens.scale.padding;
+
+  /// Bacons default gap
+  BaconBaseGapSemanticTokensScale? get gap => baconTheme?.tokens.scale.gap;
 }

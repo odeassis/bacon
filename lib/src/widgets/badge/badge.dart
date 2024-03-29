@@ -33,7 +33,7 @@ class BaconBadge extends StatelessWidget {
   final BorderRadiusGeometry? borderRadius;
 
   /// The background color of the badge.
-  final Color? backgroundColor;
+  final Color? background;
 
   /// The text color of the badge.
   final Color? textColor;
@@ -82,7 +82,7 @@ class BaconBadge extends StatelessWidget {
     super.key,
     this.isUpperCase = true,
     this.borderRadius,
-    this.backgroundColor,
+    this.background,
     this.iconColor,
     this.textColor,
     this.height,
@@ -119,17 +119,17 @@ class BaconBadge extends StatelessWidget {
     final BorderRadiusGeometry effectiveBorderRadius =
         borderRadius ?? effectiveBaconBadgeSize.borderRadius;
 
-    final Color effectiveBackgroundColor = backgroundColor ??
-        context.baconTheme?.badgeTheme.colors.backgroundColor ??
-        BaconTokens.light.backgroundColor.brand;
+    final Color effectiveBackground = background ??
+        context.baconTheme?.badgeTheme.colors.background ??
+        BaconTokens.light.modes.accent.blue;
 
     final Color effectiveTextColor = textColor ??
         context.baconTheme?.badgeTheme.colors.textColor ??
-        BaconTokens.light.contentColor.primary;
+        BaconTokens.light.modes.content.inverse;
 
     final Color effectiveIconColor = iconColor ??
         context.baconTheme?.badgeTheme.colors.iconColor ??
-        BaconTokens.light.contentColor.primary;
+        BaconTokens.light.modes.content.inverse;
 
     final double? effectiveHeight = height ?? effectiveBaconBadgeSize.height;
 
@@ -170,10 +170,10 @@ class BaconBadge extends StatelessWidget {
       final labelPadding = EdgeInsetsDirectional.only(
         start: leading != null
             ? effectiveGap
-            : context.baconTheme?.tokens.paddingScale.xs ?? 8.0,
+            : context.padding?.xs ?? BaconTokens.light.scale.padding.xs,
         end: trailing != null
             ? effectiveGap
-            : context.baconTheme?.tokens.paddingScale.xs ?? 8.0,
+            : context.padding?.xs ?? BaconTokens.light.scale.padding.xs,
       );
 
       effectiveLabelWidget = Padding(
@@ -212,7 +212,7 @@ class BaconBadge extends StatelessWidget {
             constraints: BoxConstraints(minWidth: effectiveHeight ?? 20),
             decoration: decoration ??
                 ShapeDecorationWithPremultipliedAlpha(
-                  color: effectiveBackgroundColor,
+                  color: effectiveBackground,
                   shape: BaconSquircleBorder(
                     borderRadius:
                         effectiveBorderRadius.squircleBorderRadius(context),

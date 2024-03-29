@@ -8,24 +8,24 @@ class BaconBadgeColors extends ThemeExtension<BaconBadgeColors>
   ///
   final Color textColor;
   final Color iconColor;
-  final Color backgroundColor;
+  final Color background;
 
   const BaconBadgeColors({
     required this.textColor,
     required this.iconColor,
-    required this.backgroundColor,
+    required this.background,
   });
 
   @override
   BaconBadgeColors copyWith({
     Color? textColor,
     Color? iconColor,
-    Color? backgroundColor,
+    Color? background,
   }) {
     return BaconBadgeColors(
       textColor: textColor ?? this.textColor,
       iconColor: iconColor ?? this.iconColor,
-      backgroundColor: backgroundColor ?? this.backgroundColor,
+      background: background ?? this.background,
     );
   }
 
@@ -39,7 +39,7 @@ class BaconBadgeColors extends ThemeExtension<BaconBadgeColors>
     return BaconBadgeColors(
       textColor: colorsLerp(textColor, other.textColor, t)!,
       iconColor: colorsLerp(iconColor, other.iconColor, t)!,
-      backgroundColor: colorsLerp(backgroundColor, other.backgroundColor, t)!,
+      background: colorsLerp(background, other.background, t)!,
     );
   }
 
@@ -50,6 +50,6 @@ class BaconBadgeColors extends ThemeExtension<BaconBadgeColors>
       ..add(DiagnosticsProperty("type", "bacon-badge-colors"))
       ..add(ColorProperty("textColor", textColor))
       ..add(ColorProperty("iconColor", iconColor))
-      ..add(ColorProperty("backgroundColor", backgroundColor));
+      ..add(ColorProperty("background", background));
   }
 }

@@ -1,5 +1,4 @@
 import 'package:bacon/bacon.dart';
-import 'package:bacon/src/theme/tokens/variables/primitives/shape.dart';
 import 'package:bacon/src/utils/extensions.dart';
 import 'package:bacon/src/utils/squircle/squircle_border.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +11,7 @@ class BaconBadgeOutlined extends StatelessWidget {
   final BorderRadiusGeometry? borderRadius;
 
   /// The background color of the badge.
-  final Color? backgroundColor;
+  final Color? background;
 
   /// The border color of the badge.
   final Color? borderColor;
@@ -64,7 +63,7 @@ class BaconBadgeOutlined extends StatelessWidget {
     super.key,
     this.isUpperCase = true,
     this.borderRadius,
-    this.backgroundColor,
+    this.background,
     this.borderColor,
     this.iconColor,
     this.textColor,
@@ -84,29 +83,29 @@ class BaconBadgeOutlined extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final effectiveBackgroundColor =
-        backgroundColor ?? context.baconTheme?.tokens.backgroundColor.primary;
+    final effectiveBackground = background ??
+        context.background?.primary ??
+        BaconTokens.light.modes.background.primary;
 
     final effectiveBorderRadius = borderRadius ??
-        context.baconTheme?.tokens.borderRadius.xl ??
-        const BorderRadius.all(
-          Radius.circular(baconShape24),
-        );
+        context.radii?.xl ??
+        BaconTokens.light.shape.borderRadius.xl;
 
     final effectiveBorderColor = borderColor ??
-        context.baconTheme?.tokens.borderColor.brand ??
-        Colors.transparent;
+        context.borderColors?.brand ??
+        BaconTokens.light.modes.border.brand;
 
     final effectiveTextColor = textColor ??
-        context.baconTheme?.tokens.contentColor.brand ??
-        Colors.black;
+        context.contentColors?.brand ??
+        BaconTokens.light.modes.content.brand;
 
-    final effectiveIconColor =
-        iconColor ?? context.baconTheme?.tokens.contentColor.brand;
+    final effectiveIconColor = iconColor ??
+        context.contentColors?.brand ??
+        BaconTokens.light.modes.content.brand;
 
     final effectiveDecoration = decoration ??
         ShapeDecoration(
-          color: effectiveBackgroundColor,
+          color: effectiveBackground,
           shape: BaconSquircleBorder(
             borderRadius: effectiveBorderRadius.squircleBorderRadius(context),
             borderAlign: BorderAlign.inside,
@@ -119,7 +118,7 @@ class BaconBadgeOutlined extends StatelessWidget {
     return BaconBadge(
       isUpperCase: isUpperCase,
       borderRadius: borderRadius,
-      backgroundColor: effectiveBackgroundColor,
+      background: effectiveBackground,
       textColor: effectiveTextColor,
       iconColor: effectiveIconColor,
       height: height,

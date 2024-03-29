@@ -19,10 +19,10 @@ class BaconAvatarTheme extends ThemeExtension<BaconAvatarTheme>
     BaconAvatarColors? colors,
   })  : colors = colors ??
             BaconAvatarColors(
-              background: tokens.backgroundColor.brand,
-              bodgeColor: tokens.backgroundColor.accentGreen,
-              iconColor: tokens.contentColor.secondary,
-              textColor: tokens.contentColor.secondary,
+              background: tokens.modes.background.brand,
+              bodgeColor: tokens.modes.content.primary,
+              iconColor: tokens.modes.content.secondary,
+              textColor: tokens.modes.content.secondary,
             ),
         sizes = sizes ?? BaconAvatarSizes(tokens: tokens);
 

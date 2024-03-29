@@ -117,14 +117,14 @@ class BaconAvatar extends StatelessWidget {
 
     final Color effectiveBackground = background ??
         context.baconTheme?.avatarTheme.colors.background ??
-        BaconTokens.light.backgroundColor.brand;
+        BaconTokens.light.modes.background.brand;
 
     final effectiveBorderRadius =
         borderRadius ?? effectiveAvatarSize.borderRadius;
 
     final effectiveBadgeColor = badgeColor ??
         context.baconTheme?.avatarTheme.colors.bodgeColor ??
-        BaconTokens.light.backgroundColor.brand;
+        BaconTokens.light.modes.background.brand;
 
     final effectiveBadgeSize = badgeSize ?? effectiveAvatarSize.badgeSize;
 
@@ -136,14 +136,14 @@ class BaconAvatar extends StatelessWidget {
 
     final effectiveTextColor =
         context.baconTheme?.avatarTheme.colors.textColor ??
-            BaconTokens.light.contentColor.secondary;
+            BaconTokens.light.modes.content.secondary;
 
     final resolvedBorderRadius =
         effectiveBorderRadius.resolve(Directionality.of(context));
 
     final effectiveIconColor =
         context.baconTheme?.avatarTheme.colors.iconColor ??
-            BaconTokens.light.contentColor.primary;
+            BaconTokens.light.modes.content.primary;
 
     return Semantics(
       label: semanticLabel,
