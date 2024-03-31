@@ -9,23 +9,23 @@ class BaconDefaultRadiiComponentShape
           surface: BorderRadius.all(
               Radius.circular(const BaconDefaultPrimitiveShapes().shape12)),
           x3s: BorderRadius.all(
-              Radius.circular(const BaconDefaultPrimitiveShapes().shape16)),
+              Radius.circular(const BaconDefaultPrimitiveShapes().shape2)),
           x2s: BorderRadius.all(
-              Radius.circular(const BaconDefaultPrimitiveShapes().shape16)),
+              Radius.circular(const BaconDefaultPrimitiveShapes().shape4)),
           xs: BorderRadius.all(
-              Radius.circular(const BaconDefaultPrimitiveShapes().shape16)),
+              Radius.circular(const BaconDefaultPrimitiveShapes().shape8)),
           sm: BorderRadius.all(
-              Radius.circular(const BaconDefaultPrimitiveShapes().shape16)),
+              Radius.circular(const BaconDefaultPrimitiveShapes().shape12)),
           md: BorderRadius.all(
               Radius.circular(const BaconDefaultPrimitiveShapes().shape16)),
           lg: BorderRadius.all(
-              Radius.circular(const BaconDefaultPrimitiveShapes().shape16)),
+              Radius.circular(const BaconDefaultPrimitiveShapes().shape20)),
           xl: BorderRadius.all(
-              Radius.circular(const BaconDefaultPrimitiveShapes().shape16)),
+              Radius.circular(const BaconDefaultPrimitiveShapes().shape24)),
           x2l: BorderRadius.all(
-              Radius.circular(const BaconDefaultPrimitiveShapes().shape16)),
+              Radius.circular(const BaconDefaultPrimitiveShapes().shape32)),
           x3l: BorderRadius.all(
-              Radius.circular(const BaconDefaultPrimitiveShapes().shape16)),
+              Radius.circular(const BaconDefaultPrimitiveShapes().shape40)),
           defaultBorderWidth: 1,
           activeBorderWidth: 1.5,
         );

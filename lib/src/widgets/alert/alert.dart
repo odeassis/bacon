@@ -136,7 +136,7 @@ class _BaconAlertState extends State<BaconAlert>
   AnimationController? _controller;
   Animation<double>? _curve;
 
-  BaconAlertProperties _getAvatarSize(
+  BaconAlertProperties _getAlertSize(
     BuildContext context,
     BaconAlertSize? size,
   ) {
@@ -155,9 +155,9 @@ class _BaconAlertState extends State<BaconAlert>
 
   TextStyle _getTitleStyle({required BuildContext context}) {
     if (widget.body != null) {
-      return _getAvatarSize(context, widget.size).titleTextStyle;
+      return _getAlertSize(context, widget.size).titleTextStyle;
     } else {
-      return _getAvatarSize(context, widget.size).bodyTitleStyle;
+      return _getAlertSize(context, widget.size).bodyTitleStyle;
     }
   }
 
@@ -203,26 +203,25 @@ class _BaconAlertState extends State<BaconAlert>
 
   @override
   Widget build(BuildContext context) {
-    final BaconAlertProperties effectiveAvatarSize =
-        _getAvatarSize(context, widget.size);
+    final BaconAlertProperties effectiveAlertSize =
+        _getAlertSize(context, widget.size);
 
     final BorderRadiusGeometry effectiveBorderRadius =
-        widget.borderRadius ?? effectiveAvatarSize.borderRadius;
+        widget.borderRadius ?? effectiveAlertSize.borderRadius;
 
     final double effectiveHorizontalGap =
-        widget.hGap ?? effectiveAvatarSize.hGap;
+        widget.hGap ?? effectiveAlertSize.hGap;
 
-    final double effectiveVerticalGap = widget.vGap ?? effectiveAvatarSize.vGap;
+    final double effectiveVerticalGap = widget.vGap ?? effectiveAlertSize.vGap;
 
     final double effectiveMinimumHeight =
-        widget.minHeight ?? effectiveAvatarSize.minHeight;
+        widget.minHeight ?? effectiveAlertSize.minHeight;
 
     final Color effectiveBackgroundColor = widget.background ??
         BaconAlertTheme.fromStatusAndStyle(
           context: context,
           status: widget.status!,
           style: widget.style!,
-          tokens: BaconTokens.light,
         ).colors.background;
 
     final Color effectiveBorderColor = widget.borderColor ??
@@ -230,7 +229,6 @@ class _BaconAlertState extends State<BaconAlert>
           context: context,
           status: widget.status!,
           style: widget.style!,
-          tokens: BaconTokens.light,
         ).colors.borderColor;
 
     final Color effectiveTextColor = widget.textAndIconColor ??
@@ -238,7 +236,6 @@ class _BaconAlertState extends State<BaconAlert>
           context: context,
           status: widget.status!,
           style: widget.style!,
-          tokens: BaconTokens.light,
         ).colors.textColor;
 
     final Color effectiveIconColor = widget.textAndIconColor ??
@@ -246,24 +243,23 @@ class _BaconAlertState extends State<BaconAlert>
           context: context,
           status: widget.status!,
           style: widget.style!,
-          tokens: BaconTokens.light,
         ).colors.iconColor;
 
     final EdgeInsetsGeometry effectivePadding =
-        widget.padding ?? effectiveAvatarSize.padding;
+        widget.padding ?? effectiveAlertSize.padding;
 
     final TextStyle effectiveTitleTextStyle = _getTitleStyle(context: context);
 
-    final TextStyle effectiveBodyTextStyle = effectiveAvatarSize.bodyTitleStyle;
+    final TextStyle effectiveBodyTextStyle = effectiveAlertSize.bodyTitleStyle;
 
     final double effectiveIconSize =
-        effectiveAvatarSize.iconSize ?? BaconTokens.light.scale.component.lg;
+        effectiveAlertSize.iconSize ?? BaconTokens.light.scale.component.lg;
 
     final Duration effectiveTransitionDuration =
-        widget.duration ?? effectiveAvatarSize.duration;
+        widget.duration ?? effectiveAlertSize.duration;
 
     final Curve effectiveTransitionCurve =
-        widget.curve ?? effectiveAvatarSize.curve;
+        widget.curve ?? effectiveAlertSize.curve;
 
     _controller ??= AnimationController(
       duration: effectiveTransitionDuration,
