@@ -15,15 +15,16 @@ class MainPage extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: router,
       theme: ThemeData.light().copyWith(extensions: <ThemeExtension<dynamic>>[
-        BaconTheme(
-          tokens: BaconTokens.light,
-        )
+        BaconTheme(tokens: BaconTokens.light)
       ]),
-      darkTheme: ThemeData.dark().copyWith(
-          extensions: <ThemeExtension<dynamic>>[
-            BaconTheme(tokens: BaconTokens.dark)
-          ]),
-      themeMode: ThemeMode.light,
+      darkTheme:
+          ThemeData.dark().copyWith(extensions: <ThemeExtension<dynamic>>[
+        BaconTheme(
+            tokens: BaconTokens.dark.copyWith(
+          shape: BaconDefaultSemanticTokensShapes.sharp(),
+        ))
+      ]),
+      themeMode: ThemeMode.dark,
     );
   }
 }
