@@ -20,16 +20,16 @@ class BaconAlertSizes extends ThemeExtension<BaconAlertSizes>
     BaconAlertProperties? sm,
   })  : lg = lg ??
             BaconAlertProperties(
-              titleTextStyle: tokens.typography.label.xs,
-              bodyTitleStyle: tokens.typography.paragraph.xs,
+              iconSize: tokens.scale.component.xs,
               minHeight: tokens.scale.component.x3l,
-              borderRadius: tokens.shape.radii.surface,
               hGap: tokens.scale.padding.sm,
               vGap: tokens.scale.padding.sm,
               padding: EdgeInsets.all(tokens.scale.padding.sm),
+              titleTextStyle: tokens.typography.label.sm,
+              bodyTitleStyle: tokens.typography.paragraph.sm,
+              borderRadius: tokens.shape.radii.surface,
               duration: tokens.transitions.transitionDuration,
               curve: tokens.transitions.transitionCurve,
-              iconSize: tokens.scale.component.lg,
             ),
         sm = sm ??
             BaconAlertProperties(

@@ -29,7 +29,6 @@ class BaconAlertTheme extends ThemeExtension<BaconAlertTheme>
 
   factory BaconAlertTheme.fromStatusAndStyle({
     required BuildContext context,
-    required BaconTokens tokens,
     required BaconAlertStatus status,
     required BaconAlertStyle style,
   }) {
@@ -37,6 +36,8 @@ class BaconAlertTheme extends ThemeExtension<BaconAlertTheme>
     Color textColor;
     Color borderColor;
     Color iconColor;
+
+    final BaconTokens tokens = context.baconTheme?.tokens ?? BaconTokens.light;
 
     switch (status) {
       case BaconAlertStatus.info:

@@ -32,42 +32,42 @@ class BaconAvatarSizes extends ThemeExtension<BaconAvatarSizes>
     BaconAvatarSizeProperties? xs,
   })  : xl = xl ??
             BaconAvatarSizeProperties(
-              avatarSize: tokens.scale.component.x3l,
-              borderRadius: tokens.shape.radii.xl,
-              badgeSize: tokens.scale.component.sm,
-              badgeMargin: tokens.scale.component.x3s,
+              avatarSize: tokens.scale.component.xl,
+              borderRadius: tokens.shape.radii.x3l,
+              badgeSize: tokens.scale.component.x3s,
+              badgeMargin: tokens.scale.component.x6s,
               textStyle: tokens.typography.label.lg,
             ),
         lg = lg ??
             BaconAvatarSizeProperties(
-              avatarSize: tokens.scale.component.x2l,
-              borderRadius: tokens.shape.radii.xl,
-              badgeSize: tokens.scale.component.sm,
-              badgeMargin: tokens.scale.component.x3s,
+              avatarSize: tokens.scale.component.lg,
+              borderRadius: tokens.shape.radii.x3l,
+              badgeSize: tokens.scale.component.x3s,
+              badgeMargin: tokens.scale.component.x6s,
               textStyle: tokens.typography.label.md,
             ),
         md = md ??
             BaconAvatarSizeProperties(
-              avatarSize: tokens.scale.component.xl,
-              borderRadius: tokens.shape.radii.xl,
-              badgeSize: tokens.scale.component.xs,
-              badgeMargin: tokens.scale.component.x3s,
+              avatarSize: tokens.scale.component.md,
+              borderRadius: tokens.shape.radii.x3l,
+              badgeSize: tokens.scale.component.x4s,
+              badgeMargin: tokens.scale.component.x6s,
               textStyle: tokens.typography.label.xs,
             ),
         sm = sm ??
             BaconAvatarSizeProperties(
-              avatarSize: tokens.scale.component.lg,
-              borderRadius: tokens.shape.radii.xl,
-              badgeSize: tokens.scale.component.xs,
-              badgeMargin: tokens.scale.component.x3s,
+              avatarSize: tokens.scale.component.sm,
+              borderRadius: tokens.shape.radii.x3l,
+              badgeSize: tokens.scale.component.x4s,
+              badgeMargin: tokens.scale.component.x7s,
               textStyle: tokens.typography.label.xs,
             ),
         xs = xs ??
             BaconAvatarSizeProperties(
-              avatarSize: tokens.scale.component.md,
-              borderRadius: tokens.shape.radii.xl,
-              badgeSize: tokens.scale.component.x2s,
-              badgeMargin: tokens.scale.component.x3s,
+              avatarSize: tokens.scale.component.xs,
+              borderRadius: tokens.shape.radii.x3l,
+              badgeSize: tokens.scale.component.x5s,
+              badgeMargin: tokens.scale.component.x7s,
               textStyle: tokens.typography.label.xs,
             );
 
