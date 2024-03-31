@@ -88,11 +88,11 @@ extension BaconThemeB on BuildContext {
       baconTheme?.tokens.modes.content;
 
   /// Bacons default action colors
-  BaconBaseActionSemanticTokensColors get actionsColors =>
-      baconTheme!.tokens.modes.action;
+  BaconBaseActionSemanticTokensColors? get actionsColors =>
+      baconTheme?.tokens.modes.action;
 
-  BaconBaseAlertSemanticTokensColors get alertColors =>
-      baconTheme!.tokens.modes.alert;
+  BaconBaseAlertSemanticTokensColors? get alertColors =>
+      baconTheme?.tokens.modes.alert;
 
   /// Bacons default component border radius
   BaconBaseRadiiSemanticTokensShape? get radii =>

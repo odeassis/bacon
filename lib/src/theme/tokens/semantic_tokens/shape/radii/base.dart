@@ -7,16 +7,36 @@ import 'package:flutter/material.dart';
 class BaconBaseRadiiSemanticTokensShape
     extends ThemeExtension<BaconBaseRadiiSemanticTokensShape>
     with DiagnosticableTreeMixin {
+  /// Border radius for surface: [12] for default, [16] for rounded and [2] for sharp
   final BorderRadiusGeometry surface;
+
+  /// Border radius for 3xs: [2] for default, [32] for rounded and [2] for sharp
   final BorderRadiusGeometry x3s;
+
+  /// Border radius for 2xs: [4] for default, [32] for rounded and [2] for sharp
   final BorderRadiusGeometry x2s;
+
+  /// Border radius for xs: [8] for default, [32] for rounded and [2] for sharp
   final BorderRadiusGeometry xs;
+
+  /// Border radius for sm: [12] for default, [32] for rounded and [2] for sharp
   final BorderRadiusGeometry sm;
+
+  /// Border radius for md: [16] for default, [32] for rounded and [2] for sharp
   final BorderRadiusGeometry md;
+
+  /// Border radius for lg: [20] for default, [32] for rounded and [2] for sharp
   final BorderRadiusGeometry lg;
+
+  /// Border radius for xl: [24] for default, [32] for rounded and [2] for sharp
   final BorderRadiusGeometry xl;
+
+  /// Border radius for 2xl: [32] for default, [32] for rounded and [2] for sharp
   final BorderRadiusGeometry x2l;
+
+  /// Border radius for 3xl: [40] for default, [32] for rounded and [2] for sharp
   final BorderRadiusGeometry x3l;
+
   final double defaultBorderWidth;
   final double activeBorderWidth;
 
