@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bacon/bacon.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +15,6 @@ class TextDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log("color: ${context.alertColors?.success}");
     return Padding(
       padding: EdgeInsets.only(top: paddingTop, bottom: paddingBottom),
       child: Row(
@@ -30,7 +27,7 @@ class TextDivider extends StatelessWidget {
             child: Text(
               text,
               style: context.typography?.label.md.copyWith(
-                color: context.alertColors?.success,
+                color: context.contentColors?.primary,
               ),
             ),
           ),

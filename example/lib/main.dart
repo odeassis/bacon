@@ -24,7 +24,7 @@ class MainPage extends StatelessWidget {
           shape: BaconDefaultSemanticTokensShapes.sharp(),
         ))
       ]),
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.light,
     );
   }
 }
