@@ -15,16 +15,409 @@ class PrimitiveAlert extends StatelessWidget {
         child: Column(
           children: [
             TextDivider(
-              text: "Alert Size [large]",
+              text: "Alert [Information] [Large]",
               paddingTop: 0,
             ),
-            BaconAlert.light(
-              show: true,
-              status: BaconAlertStatus.update,
-              leading: Icon(BaconIcons.cog),
-              title: Text("Update available"),
-              body: Text(
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(
+                  child: BaconAlert(
+                    show: true,
+                    status: BaconAlertStatus.info,
+                    leading: Icon(BaconIcons.cog),
+                    title: Text("Alert Information Large Fill"),
+                    size: BaconAlertSize.large,
+                    body: Text(
+                        "lore ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+                  ),
+                ),
+                SizedBox(width: 16.0),
+                Expanded(
+                  child: BaconAlert.light(
+                    show: true,
+                    status: BaconAlertStatus.info,
+                    leading: Icon(BaconIcons.cog),
+                    title: Text("Alert Information Large Light"),
+                    size: BaconAlertSize.large,
+                    body: Text(
+                        "lore ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+                  ),
+                ),
+                SizedBox(width: 16.0),
+                Expanded(
+                  child: BaconAlert.outlined(
+                    show: true,
+                    status: BaconAlertStatus.info,
+                    leading: Icon(BaconIcons.cog),
+                    title: Text("Alert Information Large Outlined"),
+                    size: BaconAlertSize.large,
+                    body: Text(
+                        "lore ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+                  ),
+                ),
+              ],
+            ),
+            TextDivider(
+              text: "Alert [Success] [Large]",
+              paddingTop: 16.0,
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(
+                  child: BaconAlert(
+                    show: true,
+                    status: BaconAlertStatus.success,
+                    leading: Icon(BaconIcons.cog),
+                    title: Text("Alert Success Large Fill"),
+                    size: BaconAlertSize.large,
+                    body: Text(
+                        "lore ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+                  ),
+                ),
+                SizedBox(width: 16.0),
+                Expanded(
+                  child: BaconAlert.light(
+                    show: true,
+                    status: BaconAlertStatus.success,
+                    leading: Icon(BaconIcons.cog),
+                    title: Text("Alert Success Large Light"),
+                    size: BaconAlertSize.large,
+                    body: Text(
+                        "lore ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+                  ),
+                ),
+                SizedBox(width: 16.0),
+                Expanded(
+                  child: BaconAlert.outlined(
+                    show: true,
+                    status: BaconAlertStatus.success,
+                    leading: Icon(BaconIcons.cog),
+                    title: Text("Alert Success Large Outlined"),
+                    size: BaconAlertSize.large,
+                    body: Text(
+                        "lore ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+                  ),
+                ),
+              ],
+            ),
+            TextDivider(
+              text: "Alert [Warning] [Large]",
+              paddingTop: 16.0,
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(
+                  child: BaconAlert(
+                    show: true,
+                    status: BaconAlertStatus.warning,
+                    leading: Icon(BaconIcons.cog),
+                    title: Text("Alert Warning Large Fill"),
+                    size: BaconAlertSize.large,
+                    body: Text(
+                        "lore ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+                  ),
+                ),
+                SizedBox(width: 16.0),
+                Expanded(
+                  child: BaconAlert.light(
+                    show: true,
+                    status: BaconAlertStatus.warning,
+                    leading: Icon(BaconIcons.cog),
+                    title: Text("Alert Warning Large Light"),
+                    size: BaconAlertSize.large,
+                    body: Text(
+                        "lore ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+                  ),
+                ),
+                SizedBox(width: 16.0),
+                Expanded(
+                  child: BaconAlert.outlined(
+                    show: true,
+                    status: BaconAlertStatus.warning,
+                    leading: Icon(BaconIcons.cog),
+                    title: Text("Alert Warning Large Outlined"),
+                    size: BaconAlertSize.large,
+                    body: Text(
+                        "lore ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+                  ),
+                ),
+              ],
+            ),
+            TextDivider(
+              text: "Alert [Error] [Large]",
+              paddingTop: 16.0,
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(
+                  child: BaconAlert(
+                    show: true,
+                    status: BaconAlertStatus.error,
+                    leading: Icon(BaconIcons.cog),
+                    title: Text("Alert Error Large Fill"),
+                    size: BaconAlertSize.large,
+                    body: Text(
+                        "lore ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+                  ),
+                ),
+                SizedBox(width: 16.0),
+                Expanded(
+                  child: BaconAlert.light(
+                    show: true,
+                    status: BaconAlertStatus.error,
+                    leading: Icon(BaconIcons.cog),
+                    title: Text("Alert Error Large Light"),
+                    size: BaconAlertSize.large,
+                    body: Text(
+                        "lore ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+                  ),
+                ),
+                SizedBox(width: 16.0),
+                Expanded(
+                  child: BaconAlert.outlined(
+                    show: true,
+                    status: BaconAlertStatus.error,
+                    leading: Icon(BaconIcons.cog),
+                    title: Text("Alert Error Large Outlined"),
+                    size: BaconAlertSize.large,
+                    body: Text(
+                        "lore ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+                  ),
+                ),
+              ],
+            ),
+            TextDivider(
+              text: "Alert [Update] [Large]",
+              paddingTop: 16.0,
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(
+                  child: BaconAlert(
+                    show: true,
+                    status: BaconAlertStatus.update,
+                    leading: Icon(BaconIcons.cog),
+                    title: Text("Alert Update Large Fill"),
+                    size: BaconAlertSize.large,
+                    body: Text(
+                        "lore ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+                  ),
+                ),
+                SizedBox(width: 16.0),
+                Expanded(
+                  child: BaconAlert.light(
+                    show: true,
+                    status: BaconAlertStatus.update,
+                    leading: Icon(BaconIcons.cog),
+                    title: Text("Alert Update Large Light"),
+                    size: BaconAlertSize.large,
+                    body: Text(
+                        "lore ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+                  ),
+                ),
+                SizedBox(width: 16.0),
+                Expanded(
+                  child: BaconAlert.outlined(
+                    show: true,
+                    status: BaconAlertStatus.update,
+                    leading: Icon(BaconIcons.cog),
+                    title: Text("Alert Update Large Outlined"),
+                    size: BaconAlertSize.large,
+                    body: Text(
+                        "lore ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+                  ),
+                ),
+              ],
+            ),
+            TextDivider(
+              text: "Alert [Information] [Medium]",
+              paddingTop: 16.0,
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(
+                  child: BaconAlert(
+                    show: true,
+                    status: BaconAlertStatus.info,
+                    leading: Icon(BaconIcons.cog),
+                    title: Text("Alert Update Large Fill"),
+                    size: BaconAlertSize.medium,
+                  ),
+                ),
+                SizedBox(width: 16.0),
+                Expanded(
+                    child: BaconAlert.light(
+                  show: true,
+                  status: BaconAlertStatus.info,
+                  leading: Icon(BaconIcons.cog),
+                  title: Text("Alert Update Large Light"),
+                  size: BaconAlertSize.medium,
+                )),
+                SizedBox(width: 16.0),
+                Expanded(
+                  child: BaconAlert.outlined(
+                    show: true,
+                    status: BaconAlertStatus.info,
+                    leading: Icon(BaconIcons.cog),
+                    title: Text("Alert Update Large Outlined"),
+                    size: BaconAlertSize.medium,
+                  ),
+                ),
+              ],
+            ),
+            TextDivider(
+              text: "Alert [Success] [Medium]",
+              paddingTop: 16.0,
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(
+                  child: BaconAlert(
+                    show: true,
+                    status: BaconAlertStatus.success,
+                    leading: Icon(BaconIcons.cog),
+                    title: Text("Alert Update Large Fill"),
+                    size: BaconAlertSize.medium,
+                  ),
+                ),
+                SizedBox(width: 16.0),
+                Expanded(
+                    child: BaconAlert.light(
+                  show: true,
+                  status: BaconAlertStatus.success,
+                  leading: Icon(BaconIcons.cog),
+                  title: Text("Alert Update Large Light"),
+                  size: BaconAlertSize.medium,
+                )),
+                SizedBox(width: 16.0),
+                Expanded(
+                  child: BaconAlert.outlined(
+                    show: true,
+                    status: BaconAlertStatus.success,
+                    leading: Icon(BaconIcons.cog),
+                    title: Text("Alert Update Large Outlined"),
+                    size: BaconAlertSize.medium,
+                  ),
+                ),
+              ],
+            ),
+            TextDivider(
+              text: "Alert [Warning] [Medium]",
+              paddingTop: 16.0,
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(
+                  child: BaconAlert(
+                    show: true,
+                    status: BaconAlertStatus.warning,
+                    leading: Icon(BaconIcons.cog),
+                    title: Text("Alert Update Large Fill"),
+                    size: BaconAlertSize.medium,
+                  ),
+                ),
+                SizedBox(width: 16.0),
+                Expanded(
+                    child: BaconAlert.light(
+                  show: true,
+                  status: BaconAlertStatus.warning,
+                  leading: Icon(BaconIcons.cog),
+                  title: Text("Alert Update Large Light"),
+                  size: BaconAlertSize.medium,
+                )),
+                SizedBox(width: 16.0),
+                Expanded(
+                  child: BaconAlert.outlined(
+                    show: true,
+                    status: BaconAlertStatus.warning,
+                    leading: Icon(BaconIcons.cog),
+                    title: Text("Alert Update Large Outlined"),
+                    size: BaconAlertSize.medium,
+                  ),
+                ),
+              ],
+            ),
+            TextDivider(
+              text: "Alert [Error] [Medium]",
+              paddingTop: 16.0,
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(
+                  child: BaconAlert(
+                    show: true,
+                    status: BaconAlertStatus.error,
+                    leading: Icon(BaconIcons.cog),
+                    title: Text("Alert Update Large Fill"),
+                    size: BaconAlertSize.medium,
+                  ),
+                ),
+                SizedBox(width: 16.0),
+                Expanded(
+                    child: BaconAlert.light(
+                  show: true,
+                  status: BaconAlertStatus.error,
+                  leading: Icon(BaconIcons.cog),
+                  title: Text("Alert Update Large Light"),
+                  size: BaconAlertSize.medium,
+                )),
+                SizedBox(width: 16.0),
+                Expanded(
+                  child: BaconAlert.outlined(
+                    show: true,
+                    status: BaconAlertStatus.error,
+                    leading: Icon(BaconIcons.cog),
+                    title: Text("Alert Update Large Outlined"),
+                    size: BaconAlertSize.medium,
+                  ),
+                ),
+              ],
+            ),
+            TextDivider(
+              text: "Alert [Update] [Medium]",
+              paddingTop: 16.0,
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(
+                  child: BaconAlert(
+                    show: true,
+                    status: BaconAlertStatus.update,
+                    leading: Icon(BaconIcons.cog),
+                    title: Text("Alert Update Large Fill"),
+                    size: BaconAlertSize.medium,
+                  ),
+                ),
+                SizedBox(width: 16.0),
+                Expanded(
+                    child: BaconAlert.light(
+                  show: true,
+                  status: BaconAlertStatus.update,
+                  leading: Icon(BaconIcons.cog),
+                  title: Text("Alert Update Large Light"),
+                  size: BaconAlertSize.medium,
+                )),
+                SizedBox(width: 16.0),
+                Expanded(
+                  child: BaconAlert.outlined(
+                    show: true,
+                    status: BaconAlertStatus.update,
+                    leading: Icon(BaconIcons.cog),
+                    title: Text("Alert Update Large Outlined"),
+                    size: BaconAlertSize.medium,
+                  ),
+                ),
+              ],
             ),
           ],
         ),

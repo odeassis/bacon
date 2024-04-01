@@ -11,12 +11,15 @@ class BaconAlertSizes extends ThemeExtension<BaconAlertSizes>
   // Alert with size large
   final BaconAlertProperties lg;
 
-  // Alert with size small
+  // Alert with size medium
+  final BaconAlertProperties md;
+
   final BaconAlertProperties sm;
 
   BaconAlertSizes({
     required this.tokens,
     BaconAlertProperties? lg,
+    BaconAlertProperties? md,
     BaconAlertProperties? sm,
   })  : lg = lg ??
             BaconAlertProperties(
@@ -31,29 +34,42 @@ class BaconAlertSizes extends ThemeExtension<BaconAlertSizes>
               duration: tokens.transitions.transitionDuration,
               curve: tokens.transitions.transitionCurve,
             ),
-        sm = sm ??
+        md = md ??
             BaconAlertProperties(
-              titleTextStyle: tokens.typography.label.xs,
-              bodyTitleStyle: tokens.typography.paragraph.xs,
-              minHeight: tokens.scale.component.x2l,
-              borderRadius: tokens.shape.radii.surface,
+              iconSize: tokens.scale.component.x2s,
+              minHeight: tokens.scale.component.md,
               hGap: tokens.scale.padding.xs,
               vGap: tokens.scale.padding.xs,
               padding: EdgeInsets.all(tokens.scale.padding.xs),
+              titleTextStyle: tokens.typography.label.xs,
+              bodyTitleStyle: tokens.typography.paragraph.xs,
+              borderRadius: tokens.shape.radii.surface,
               duration: tokens.transitions.transitionDuration,
               curve: tokens.transitions.transitionCurve,
-              iconSize: tokens.scale.component.md,
+            ),
+        sm = sm ??
+            BaconAlertProperties(
+              iconSize: tokens.scale.component.x2s,
+              minHeight: tokens.scale.component.md,
+              hGap: tokens.scale.padding.xs,
+              vGap: tokens.scale.padding.xs,
+              padding: EdgeInsets.all(tokens.scale.padding.xs),
+              titleTextStyle: tokens.typography.label.xs,
+              bodyTitleStyle: tokens.typography.paragraph.xs,
+              borderRadius: tokens.shape.radii.surface,
+              duration: tokens.transitions.transitionDuration,
+              curve: tokens.transitions.transitionCurve,
             );
 
   @override
   BaconAlertSizes copyWith({
     BaconAlertProperties? lg,
-    BaconAlertProperties? sm,
+    BaconAlertProperties? md,
   }) {
     return BaconAlertSizes(
       tokens: tokens,
       lg: lg ?? this.lg,
-      sm: sm ?? this.sm,
+      md: md ?? this.md,
     );
   }
 
@@ -63,7 +79,7 @@ class BaconAlertSizes extends ThemeExtension<BaconAlertSizes>
     return BaconAlertSizes(
       tokens: tokens,
       lg: lg.lerp(other.lg, t),
-      sm: sm.lerp(other.sm, t),
+      md: md.lerp(other.md, t),
     );
   }
 
@@ -73,6 +89,6 @@ class BaconAlertSizes extends ThemeExtension<BaconAlertSizes>
     properties.add(DiagnosticsProperty("type", "BaconAlertSizes"));
     properties.add(DiagnosticsProperty<BaconTokens>('tokens', tokens));
     properties.add(DiagnosticsProperty<BaconAlertProperties>('lg', lg));
-    properties.add(DiagnosticsProperty<BaconAlertProperties>('sm', sm));
+    properties.add(DiagnosticsProperty<BaconAlertProperties>('md', md));
   }
 }

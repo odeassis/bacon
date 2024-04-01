@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 
 enum BaconAlertSize {
   large,
+  medium,
   small,
 }
 
