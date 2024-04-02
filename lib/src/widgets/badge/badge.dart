@@ -77,7 +77,7 @@ class BaconBadge extends StatelessWidget {
   /// The widget to display after the [label] widget of the badge.
   final Widget? trailing;
 
-  /// Creates a Moon Design badge.
+  /// Creates a Bacon Design badge.
   const BaconBadge({
     super.key,
     this.isUpperCase = true,

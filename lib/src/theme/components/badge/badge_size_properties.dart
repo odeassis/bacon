@@ -6,25 +6,25 @@ import 'package:flutter/material.dart';
 @immutable
 class BaconBadgeSizeProperties extends ThemeExtension<BaconBadgeSizeProperties>
     with DiagnosticableTreeMixin {
-  /// The border radius of the MoonTag.
+  /// The border radius of the BaconTag.
   final BorderRadiusGeometry borderRadius;
 
-  /// The horizontal gap between the leading, label and trailing widgets of the MoonTag.
+  /// The horizontal gap between the leading, label and trailing widgets of the BaconTag.
   final double gap;
 
-  /// The height of the MoonTag.
+  /// The height of the BaconTag.
   final double? height;
 
-  /// The size value of the MoonTag icon.
+  /// The size value of the BaconTag icon.
   final double iconSizeValue;
 
-  /// The padding of the MoonTag.
+  /// The padding of the BaconTag.
   final EdgeInsetsGeometry padding;
 
-  /// The text style of the MoonTag.
+  /// The text style of the BaconTag.
   final TextStyle textStyle;
 
-  /// The upper case text style of the MoonTag.
+  /// The upper case text style of the BaconTag.
   final TextStyle upperCaseTextStyle;
 
   const BaconBadgeSizeProperties({

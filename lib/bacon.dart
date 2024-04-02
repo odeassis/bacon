@@ -35,3 +35,5 @@ export 'src/widgets/avatar/avatar.dart';
 export 'src/widgets/badge/badge.dart';
 export 'src/widgets/badge/light_badge.dart';
 export 'src/widgets/badge/outlined_badge.dart';
+// Button
+export 'src/widgets/button/button.dart';

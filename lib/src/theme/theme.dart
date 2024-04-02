@@ -2,6 +2,9 @@ import 'package:bacon/bacon.dart';
 import 'package:bacon/src/theme/components/alert/alert_theme.dart';
 import 'package:bacon/src/theme/components/avatar/avatar_theme.dart';
 import 'package:bacon/src/theme/components/badge/badge_theme.dart';
+import 'package:bacon/src/theme/components/button/button_theme.dart';
+import 'package:bacon/src/theme/effects/effects_theme.dart';
+import 'package:bacon/src/theme/tokens/opacities.dart';
 import 'package:bacon/src/theme/tokens/semantic_tokens/scale/component/base.dart';
 import 'package:bacon/src/theme/tokens/semantic_tokens/scale/gap/base.dart';
 import 'package:bacon/src/theme/tokens/semantic_tokens/scale/padding/base.dart';
@@ -15,15 +18,24 @@ class BaconTheme extends ThemeExtension<BaconTheme>
   final BaconBadgeTheme badgeTheme;
   final BaconAvatarTheme avatarTheme;
   final BaconAlertTheme alertTheme;
+  final BaconOpacities opacities;
+  final BaconEffectsTheme effects;
+  final BaconButtonTheme buttonTheme;
 
   BaconTheme({
     required this.tokens,
     BaconBadgeTheme? badgeTheme,
     BaconAvatarTheme? avatarTheme,
     BaconAlertTheme? alertTheme,
+    BaconOpacities? opacities,
+    BaconEffectsTheme? effects,
+    BaconButtonTheme? buttonTheme,
   })  : badgeTheme = badgeTheme ?? BaconBadgeTheme(tokens: tokens),
         avatarTheme = avatarTheme ?? BaconAvatarTheme(tokens: tokens),
-        alertTheme = alertTheme ?? BaconAlertTheme(tokens: tokens);
+        alertTheme = alertTheme ?? BaconAlertTheme(tokens: tokens),
+        opacities = opacities ?? BaconOpacities.opacities,
+        effects = effects ?? BaconEffectsTheme(tokens: tokens),
+        buttonTheme = buttonTheme ?? BaconButtonTheme(tokens: tokens);
 
   @override
   BaconTheme copyWith({
@@ -31,12 +43,18 @@ class BaconTheme extends ThemeExtension<BaconTheme>
     BaconBadgeTheme? badgeTheme,
     BaconAvatarTheme? avatarTheme,
     BaconAlertTheme? alertTheme,
+    BaconOpacities? opacities,
+    BaconEffectsTheme? effects,
+    BaconButtonTheme? buttonTheme,
   }) {
     return BaconTheme(
       tokens: tokens ?? this.tokens,
       badgeTheme: badgeTheme ?? this.badgeTheme,
       avatarTheme: avatarTheme ?? this.avatarTheme,
       alertTheme: alertTheme ?? this.alertTheme,
+      opacities: opacities ?? this.opacities,
+      effects: effects ?? this.effects,
+      buttonTheme: buttonTheme ?? this.buttonTheme,
     );
   }
 
@@ -52,6 +70,9 @@ class BaconTheme extends ThemeExtension<BaconTheme>
       badgeTheme: badgeTheme.lerp(other.badgeTheme, t),
       avatarTheme: avatarTheme.lerp(other.avatarTheme, t),
       alertTheme: alertTheme.lerp(other.alertTheme, t),
+      opacities: opacities.lerp(other.opacities, t),
+      effects: effects.lerp(other.effects, t),
+      buttonTheme: buttonTheme.lerp(other.buttonTheme, t),
     );
   }
 
@@ -66,11 +87,19 @@ class BaconTheme extends ThemeExtension<BaconTheme>
         .add(DiagnosticsProperty<BaconAvatarTheme>('avatarTheme', avatarTheme));
     properties
         .add(DiagnosticsProperty<BaconAlertTheme>('alertTheme', alertTheme));
+    properties.add(DiagnosticsProperty<BaconOpacities>('opacities', opacities));
+    properties.add(DiagnosticsProperty<BaconEffectsTheme>('effects', effects));
+    properties
+        .add(DiagnosticsProperty<BaconButtonTheme>('buttonTheme', buttonTheme));
   }
 }
 
 extension BaconThemeB on BuildContext {
   BaconTheme? get baconTheme => Theme.of(this).extension<BaconTheme>();
+
+  BaconOpacities? get opacities => baconTheme?.tokens.opacities;
+
+  BaconEffectsTheme? get baconEffects => baconTheme?.effects;
 
   /// Bacons default typography
   BaconBaseTypography? get typography => baconTheme?.tokens.typography;

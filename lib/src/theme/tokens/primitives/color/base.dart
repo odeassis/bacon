@@ -97,41 +97,9 @@ class BaconBasePrimitiveColors extends ThemeExtension<BaconBasePrimitiveColors>
   final Color red800;
   final Color red900;
   final Color red1000;
-  final Color alphaLight0;
-  final Color alphaLight2;
-  final Color alphaLight4;
-  final Color alphaLight8;
-  final Color alphaLight16;
-  final Color alphaLight24;
-  final Color alphaLight32;
-  final Color alphaDark0;
-  final Color alphaDark2;
-  final Color alphaDark4;
-  final Color alphaDark8;
-  final Color alphaDark16;
-  final Color alphaDark24;
-  final Color alphaDark32;
-  final Color alphaBrand0;
-  final Color alphaBrand2;
-  final Color alphaBrand4;
-  final Color alphaBrand8;
-  final Color alphaBrand16;
-  final Color alphaBrand24;
-  final Color alphaBrand32;
-  final Color alphaNeutral0;
-  final Color alphaNeutral2;
-  final Color alphaNeutral4;
-  final Color alphaNeutral8;
-  final Color alphaNeutral16;
-  final Color alphaNeutral24;
-  final Color alphaNeutral32;
-  final Color alphaRed0;
-  final Color alphaRed2;
-  final Color alphaRed4;
-  final Color alphaRed8;
-  final Color alphaRed16;
-  final Color alphaRed24;
-  final Color alphaRed32;
+  final Color alpha;
+  final Color alphaBrand;
+  final Color alphaRed;
 
   BaconBasePrimitiveColors({
     required this.neutral0,
@@ -226,41 +194,9 @@ class BaconBasePrimitiveColors extends ThemeExtension<BaconBasePrimitiveColors>
     required this.red800,
     required this.red900,
     required this.red1000,
-    required this.alphaLight0,
-    required this.alphaLight2,
-    required this.alphaLight4,
-    required this.alphaLight8,
-    required this.alphaLight16,
-    required this.alphaLight24,
-    required this.alphaLight32,
-    required this.alphaDark0,
-    required this.alphaDark2,
-    required this.alphaDark4,
-    required this.alphaDark8,
-    required this.alphaDark16,
-    required this.alphaDark24,
-    required this.alphaDark32,
-    required this.alphaBrand0,
-    required this.alphaBrand2,
-    required this.alphaBrand4,
-    required this.alphaBrand8,
-    required this.alphaBrand16,
-    required this.alphaBrand24,
-    required this.alphaBrand32,
-    required this.alphaNeutral0,
-    required this.alphaNeutral2,
-    required this.alphaNeutral4,
-    required this.alphaNeutral8,
-    required this.alphaNeutral16,
-    required this.alphaNeutral24,
-    required this.alphaNeutral32,
-    required this.alphaRed0,
-    required this.alphaRed2,
-    required this.alphaRed4,
-    required this.alphaRed8,
-    required this.alphaRed16,
-    required this.alphaRed24,
-    required this.alphaRed32,
+    required this.alpha,
+    required this.alphaBrand,
+    required this.alphaRed,
   });
 
   @override
@@ -357,41 +293,9 @@ class BaconBasePrimitiveColors extends ThemeExtension<BaconBasePrimitiveColors>
     Color? red800,
     Color? red900,
     Color? red1000,
-    Color? alphaLight0,
-    Color? alphaLight2,
-    Color? alphaLight4,
-    Color? alphaLight8,
-    Color? alphaLight16,
-    Color? alphaLight24,
-    Color? alphaLight32,
-    Color? alphaDark0,
-    Color? alphaDark2,
-    Color? alphaDark4,
-    Color? alphaDark8,
-    Color? alphaDark16,
-    Color? alphaDark24,
-    Color? alphaDark32,
-    Color? alphaBrand0,
-    Color? alphaBrand2,
-    Color? alphaBrand4,
-    Color? alphaBrand8,
-    Color? alphaBrand16,
-    Color? alphaBrand24,
-    Color? alphaBrand32,
-    Color? alphaNeutral0,
-    Color? alphaNeutral2,
-    Color? alphaNeutral4,
-    Color? alphaNeutral8,
-    Color? alphaNeutral16,
-    Color? alphaNeutral24,
-    Color? alphaNeutral32,
-    Color? alphaRed0,
-    Color? alphaRed2,
-    Color? alphaRed4,
-    Color? alphaRed8,
-    Color? alphaRed16,
-    Color? alphaRed24,
-    Color? alphaRed32,
+    Color? alpha,
+    Color? alphaBrand,
+    Color? alphaRed,
   }) {
     return BaconBasePrimitiveColors(
       neutral0: neutral0 ?? this.neutral0,
@@ -486,41 +390,9 @@ class BaconBasePrimitiveColors extends ThemeExtension<BaconBasePrimitiveColors>
       red800: red800 ?? this.red800,
       red900: red900 ?? this.red900,
       red1000: red1000 ?? this.red1000,
-      alphaLight0: alphaLight0 ?? this.alphaLight0,
-      alphaLight2: alphaLight2 ?? this.alphaLight2,
-      alphaLight4: alphaLight4 ?? this.alphaLight4,
-      alphaLight8: alphaLight8 ?? this.alphaLight8,
-      alphaLight16: alphaLight16 ?? this.alphaLight16,
-      alphaLight24: alphaLight24 ?? this.alphaLight24,
-      alphaLight32: alphaLight32 ?? this.alphaLight32,
-      alphaDark0: alphaDark0 ?? this.alphaDark0,
-      alphaDark2: alphaDark2 ?? this.alphaDark2,
-      alphaDark4: alphaDark4 ?? this.alphaDark4,
-      alphaDark8: alphaDark8 ?? this.alphaDark8,
-      alphaDark16: alphaDark16 ?? this.alphaDark16,
-      alphaDark24: alphaDark24 ?? this.alphaDark24,
-      alphaDark32: alphaDark32 ?? this.alphaDark32,
-      alphaBrand0: alphaBrand0 ?? this.alphaBrand0,
-      alphaBrand2: alphaBrand2 ?? this.alphaBrand2,
-      alphaBrand4: alphaBrand4 ?? this.alphaBrand4,
-      alphaBrand8: alphaBrand8 ?? this.alphaBrand8,
-      alphaBrand16: alphaBrand16 ?? this.alphaBrand16,
-      alphaBrand24: alphaBrand24 ?? this.alphaBrand24,
-      alphaBrand32: alphaBrand32 ?? this.alphaBrand32,
-      alphaNeutral0: alphaNeutral0 ?? this.alphaNeutral0,
-      alphaNeutral2: alphaNeutral2 ?? this.alphaNeutral2,
-      alphaNeutral4: alphaNeutral4 ?? this.alphaNeutral4,
-      alphaNeutral8: alphaNeutral8 ?? this.alphaNeutral8,
-      alphaNeutral16: alphaNeutral16 ?? this.alphaNeutral16,
-      alphaNeutral24: alphaNeutral24 ?? this.alphaNeutral24,
-      alphaNeutral32: alphaNeutral32 ?? this.alphaNeutral32,
-      alphaRed0: alphaRed0 ?? this.alphaRed0,
-      alphaRed2: alphaRed2 ?? this.alphaRed2,
-      alphaRed4: alphaRed4 ?? this.alphaRed4,
-      alphaRed8: alphaRed8 ?? this.alphaRed8,
-      alphaRed16: alphaRed16 ?? this.alphaRed16,
-      alphaRed24: alphaRed24 ?? this.alphaRed24,
-      alphaRed32: alphaRed32 ?? this.alphaRed32,
+      alpha: alpha ?? this.alpha,
+      alphaBrand: alphaBrand ?? this.alphaBrand,
+      alphaRed: alphaRed ?? this.alphaRed,
     );
   }
 
@@ -621,41 +493,9 @@ class BaconBasePrimitiveColors extends ThemeExtension<BaconBasePrimitiveColors>
       red800: colorsLerp(red800, other.red800, t)!,
       red900: colorsLerp(red900, other.red900, t)!,
       red1000: colorsLerp(red1000, other.red1000, t)!,
-      alphaLight0: colorsLerp(alphaLight0, other.alphaLight0, t)!,
-      alphaLight2: colorsLerp(alphaLight2, other.alphaLight2, t)!,
-      alphaLight4: colorsLerp(alphaLight4, other.alphaLight4, t)!,
-      alphaLight8: colorsLerp(alphaLight8, other.alphaLight8, t)!,
-      alphaLight16: colorsLerp(alphaLight16, other.alphaLight16, t)!,
-      alphaLight24: colorsLerp(alphaLight24, other.alphaLight24, t)!,
-      alphaLight32: colorsLerp(alphaLight32, other.alphaLight32, t)!,
-      alphaDark0: colorsLerp(alphaDark0, other.alphaDark0, t)!,
-      alphaDark2: colorsLerp(alphaDark2, other.alphaDark2, t)!,
-      alphaDark4: colorsLerp(alphaDark4, other.alphaDark4, t)!,
-      alphaDark8: colorsLerp(alphaDark8, other.alphaDark8, t)!,
-      alphaDark16: colorsLerp(alphaDark16, other.alphaDark16, t)!,
-      alphaDark24: colorsLerp(alphaDark24, other.alphaDark24, t)!,
-      alphaDark32: colorsLerp(alphaDark32, other.alphaDark32, t)!,
-      alphaBrand0: colorsLerp(alphaBrand0, other.alphaBrand0, t)!,
-      alphaBrand2: colorsLerp(alphaBrand2, other.alphaBrand2, t)!,
-      alphaBrand4: colorsLerp(alphaBrand4, other.alphaBrand4, t)!,
-      alphaBrand8: colorsLerp(alphaBrand8, other.alphaBrand8, t)!,
-      alphaBrand16: colorsLerp(alphaBrand16, other.alphaBrand16, t)!,
-      alphaBrand24: colorsLerp(alphaBrand24, other.alphaBrand24, t)!,
-      alphaBrand32: colorsLerp(alphaBrand32, other.alphaBrand32, t)!,
-      alphaNeutral0: colorsLerp(alphaNeutral0, other.alphaNeutral0, t)!,
-      alphaNeutral2: colorsLerp(alphaNeutral2, other.alphaNeutral2, t)!,
-      alphaNeutral4: colorsLerp(alphaNeutral4, other.alphaNeutral4, t)!,
-      alphaNeutral8: colorsLerp(alphaNeutral8, other.alphaNeutral8, t)!,
-      alphaNeutral16: colorsLerp(alphaNeutral16, other.alphaNeutral16, t)!,
-      alphaNeutral24: colorsLerp(alphaNeutral24, other.alphaNeutral24, t)!,
-      alphaNeutral32: colorsLerp(alphaNeutral32, other.alphaNeutral32, t)!,
-      alphaRed0: colorsLerp(alphaRed0, other.alphaRed0, t)!,
-      alphaRed2: colorsLerp(alphaRed2, other.alphaRed2, t)!,
-      alphaRed4: colorsLerp(alphaRed4, other.alphaRed4, t)!,
-      alphaRed8: colorsLerp(alphaRed8, other.alphaRed8, t)!,
-      alphaRed16: colorsLerp(alphaRed16, other.alphaRed16, t)!,
-      alphaRed24: colorsLerp(alphaRed24, other.alphaRed24, t)!,
-      alphaRed32: colorsLerp(alphaRed32, other.alphaRed32, t)!,
+      alpha: colorsLerp(alpha, other.alpha, t)!,
+      alphaBrand: colorsLerp(alphaBrand, other.alphaBrand, t)!,
+      alphaRed: colorsLerp(alphaRed, other.alphaRed, t)!,
     );
   }
 
@@ -756,41 +596,8 @@ class BaconBasePrimitiveColors extends ThemeExtension<BaconBasePrimitiveColors>
     properties.add(ColorProperty('red800', red800));
     properties.add(ColorProperty('red900', red900));
     properties.add(ColorProperty('red1000', red1000));
-    properties.add(ColorProperty('alphaLight0', alphaLight0));
-    properties.add(ColorProperty('alphaLight2', alphaLight2));
-    properties.add(ColorProperty('alphaLight4', alphaLight4));
-    properties.add(ColorProperty('alphaLight8', alphaLight8));
-    properties.add(ColorProperty('alphaLight16', alphaLight16));
-    properties.add(ColorProperty('alphaLight24', alphaLight24));
-    properties.add(ColorProperty('alphaLight32', alphaLight32));
-    properties.add(ColorProperty('alphaDark0', alphaDark0));
-    properties.add(ColorProperty('alphaDark2', alphaDark2));
-    properties.add(ColorProperty('alphaDark4', alphaDark4));
-    properties.add(ColorProperty('alphaDark8', alphaDark8));
-    properties.add(ColorProperty('alphaDark16', alphaDark16));
-    properties.add(ColorProperty('alphaDark24', alphaDark24));
-    properties.add(ColorProperty('alphaDark32', alphaDark32));
-    properties.add(ColorProperty('alphaBrand0', alphaBrand0));
-    properties.add(ColorProperty('alphaBrand2', alphaBrand2));
-    properties.add(ColorProperty('alphaBrand4', alphaBrand4));
-    properties.add(ColorProperty('alphaBrand8', alphaBrand8));
-    properties.add(ColorProperty('alphaBrand16', alphaBrand16));
-    properties.add(ColorProperty('alphaBrand24', alphaBrand24));
-    properties.add(ColorProperty('alphaBrand32', alphaBrand32));
-    properties.add(ColorProperty('alphaNeutral0', alphaNeutral0));
-
-    properties.add(ColorProperty('alphaNeutral2', alphaNeutral2));
-    properties.add(ColorProperty('alphaNeutral4', alphaNeutral4));
-    properties.add(ColorProperty('alphaNeutral8', alphaNeutral8));
-    properties.add(ColorProperty('alphaNeutral16', alphaNeutral16));
-    properties.add(ColorProperty('alphaNeutral24', alphaNeutral24));
-    properties.add(ColorProperty('alphaNeutral32', alphaNeutral32));
-    properties.add(ColorProperty('alphaRed0', alphaRed0));
-    properties.add(ColorProperty('alphaRed2', alphaRed2));
-    properties.add(ColorProperty('alphaRed4', alphaRed4));
-    properties.add(ColorProperty('alphaRed8', alphaRed8));
-    properties.add(ColorProperty('alphaRed16', alphaRed16));
-    properties.add(ColorProperty('alphaRed24', alphaRed24));
-    properties.add(ColorProperty('alphaRed32', alphaRed32));
+    properties.add(ColorProperty('alpha', alpha));
+    properties.add(ColorProperty('alphaBrand', alphaBrand));
+    properties.add(ColorProperty('alphaRed', alphaRed));
   }
 }

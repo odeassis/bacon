@@ -223,7 +223,7 @@ class BaconDefaultSemanticTokensTypography {
       fontStyle: FontStyle.normal,
       fontSize: BaconDefaultPrimitiveFontSizes.font.fontSize12,
       fontWeight: BaconDefaultPrimitiveFontSizes.font.fontWeightMedium,
-      height: BaconDefaultPrimitiveFontSizes.font.height170,
+      height: BaconDefaultPrimitiveFontSizes.font.height140,
       letterSpacing: BaconDefaultPrimitiveFontSizes.font.letterSpacingDefault,
     ),
     x2s: _BaconTextStyle(
