@@ -24,7 +24,6 @@ class PrimitiveAlert extends StatelessWidget {
                 Expanded(
                   child: BaconAlert(
                     show: true,
-                    status: BaconAlertStatus.info,
                     leading: Icon(BaconIcons.cog),
                     title: Text("Alert Information Large Fill"),
                     size: BaconAlertSize.large,

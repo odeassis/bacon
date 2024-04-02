@@ -2,6 +2,7 @@ import 'package:example/main.dart';
 import 'package:example/src/widgets/primitives/alert.dart';
 import 'package:example/src/widgets/primitives/avatar.dart';
 import 'package:example/src/widgets/primitives/badge.dart';
+import 'package:example/src/widgets/primitives/button.dart';
 import 'package:go_router/go_router.dart';
 
 final router = GoRouter(routes: [
@@ -20,5 +21,9 @@ final router = GoRouter(routes: [
   GoRoute(
     path: '/primitives/badge',
     builder: (context, GoRouterState state) => const PrimitiveBadge(),
+  ),
+  GoRoute(
+    path: '/primitives/button',
+    builder: (context, GoRouterState state) => const PrimitiveButton(),
   ),
 ]);
