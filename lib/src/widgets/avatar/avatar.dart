@@ -1,10 +1,10 @@
 import 'package:bacon/bacon.dart';
 import 'package:bacon/src/theme/components/avatar/avatar_size_properties.dart';
 import 'package:bacon/src/theme/components/avatar/avatar_sizes.dart';
+import 'package:bacon/src/utils/avatar_clipper.dart';
 import 'package:bacon/src/utils/extensions.dart';
 import 'package:bacon/src/utils/shape_decoration.dart';
 import 'package:bacon/src/utils/squircle/squircle_border.dart';
-import 'package:bacon/src/widgets/avatar/clipper.dart';
 import 'package:flutter/material.dart';
 
 enum BaconAvatarSize {
