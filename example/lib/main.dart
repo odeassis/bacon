@@ -60,6 +60,11 @@ class HomeScreen extends StatelessWidget {
                 onTap: () => context.go('/primitives/button'),
                 label: const Text('Button Widget'),
               ),
+              const SizedBox(height: 16.0),
+              BaconButton(
+                onTap: () => context.go('/primitives/divider'),
+                label: const Text('Divider Widget'),
+              ),
             ],
           ),
         ),
