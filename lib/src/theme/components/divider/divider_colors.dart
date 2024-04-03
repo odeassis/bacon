@@ -1,3 +1,4 @@
+import 'package:bacon/src/utils/colors_lerp.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -32,9 +33,9 @@ class BaconDividerColors extends ThemeExtension<BaconDividerColors>
       covariant ThemeExtension<BaconDividerColors>? other, double t) {
     if (other is! BaconDividerColors) return this;
     return BaconDividerColors(
-      dividerColor: Color.lerp(dividerColor, other.dividerColor, t)!,
-      textColor: Color.lerp(textColor, other.textColor, t)!,
-      iconColor: Color.lerp(iconColor, other.iconColor, t)!,
+      dividerColor: colorsLerp(dividerColor, other.dividerColor, t)!,
+      textColor: colorsLerp(textColor, other.textColor, t)!,
+      iconColor: colorsLerp(iconColor, other.iconColor, t)!,
     );
   }
 
