@@ -15,13 +15,17 @@ class MainPage extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: router,
       theme: ThemeData.light().copyWith(extensions: <ThemeExtension<dynamic>>[
-        BaconTheme(tokens: BaconTokens.light)
+        BaconTheme(
+            tokens: BaconTokens.light.copyWith(
+          scale: BaconDefaultSemanticTokensScale.compact(),
+          shape: BaconDefaultSemanticTokensShapes.rounded(),
+        ))
       ]),
       darkTheme: ThemeData.dark().copyWith(
           extensions: <ThemeExtension<dynamic>>[
             BaconTheme(tokens: BaconTokens.dark)
           ]),
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.system,
     );
   }
 }
@@ -64,6 +68,11 @@ class HomeScreen extends StatelessWidget {
               BaconButton(
                 onTap: () => context.go('/primitives/divider'),
                 label: const Text('Divider Widget'),
+              ),
+              const SizedBox(height: 16.0),
+              BaconButton(
+                onTap: () => context.go('/primitives/text_input'),
+                label: const Text('Text Input Widget'),
               ),
             ],
           ),

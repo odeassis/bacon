@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:developer';
+
 import 'package:bacon/bacon.dart';
 import 'package:example/src/widgets/text_divider.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +13,13 @@ class PrimitiveButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool showPulseEffect = true;
+    Timer.periodic(const Duration(seconds: 5), (timer) {
+      showPulseEffect = !showPulseEffect;
+      timer.cancel();
+      log("showPulseEffect: $showPulseEffect");
+    });
+
     return Scaffold(
       body: Center(
           child: SingleChildScrollView(
@@ -27,6 +37,9 @@ class PrimitiveButton extends StatelessWidget {
                   paddingTop: 0,
                 ),
                 BaconButton(
+                  showPulseEffect: showPulseEffect,
+                  // showScaleEffect: true,
+                  showPulseEffectJiggle: false,
                   leading: const Icon(Icons.add),
                   label: const Text("Button medium"),
                   trailing: const Icon(Icons.add),
