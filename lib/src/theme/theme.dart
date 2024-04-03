@@ -3,6 +3,7 @@ import 'package:bacon/src/theme/components/alert/alert_theme.dart';
 import 'package:bacon/src/theme/components/avatar/avatar_theme.dart';
 import 'package:bacon/src/theme/components/badge/badge_theme.dart';
 import 'package:bacon/src/theme/components/button/button_theme.dart';
+import 'package:bacon/src/theme/components/divider/divider_theme.dart';
 import 'package:bacon/src/theme/effects/effects_theme.dart';
 import 'package:bacon/src/theme/tokens/opacities.dart';
 import 'package:bacon/src/theme/tokens/semantic_tokens/scale/component/base.dart';
@@ -21,6 +22,7 @@ class BaconTheme extends ThemeExtension<BaconTheme>
   final BaconOpacities opacities;
   final BaconEffectsTheme effects;
   final BaconButtonTheme buttonTheme;
+  final BaconDividerTheme dividerTheme;
 
   BaconTheme({
     required this.tokens,
@@ -30,12 +32,14 @@ class BaconTheme extends ThemeExtension<BaconTheme>
     BaconOpacities? opacities,
     BaconEffectsTheme? effects,
     BaconButtonTheme? buttonTheme,
+    BaconDividerTheme? dividerTheme,
   })  : badgeTheme = badgeTheme ?? BaconBadgeTheme(tokens: tokens),
         avatarTheme = avatarTheme ?? BaconAvatarTheme(tokens: tokens),
         alertTheme = alertTheme ?? BaconAlertTheme(tokens: tokens),
         opacities = opacities ?? BaconOpacities.opacities,
         effects = effects ?? BaconEffectsTheme(tokens: tokens),
-        buttonTheme = buttonTheme ?? BaconButtonTheme(tokens: tokens);
+        buttonTheme = buttonTheme ?? BaconButtonTheme(tokens: tokens),
+        dividerTheme = dividerTheme ?? BaconDividerTheme(tokens: tokens);
 
   @override
   BaconTheme copyWith({
@@ -46,6 +50,7 @@ class BaconTheme extends ThemeExtension<BaconTheme>
     BaconOpacities? opacities,
     BaconEffectsTheme? effects,
     BaconButtonTheme? buttonTheme,
+    BaconDividerTheme? dividerTheme,
   }) {
     return BaconTheme(
       tokens: tokens ?? this.tokens,
@@ -55,6 +60,7 @@ class BaconTheme extends ThemeExtension<BaconTheme>
       opacities: opacities ?? this.opacities,
       effects: effects ?? this.effects,
       buttonTheme: buttonTheme ?? this.buttonTheme,
+      dividerTheme: dividerTheme ?? this.dividerTheme,
     );
   }
 
@@ -73,6 +79,7 @@ class BaconTheme extends ThemeExtension<BaconTheme>
       opacities: opacities.lerp(other.opacities, t),
       effects: effects.lerp(other.effects, t),
       buttonTheme: buttonTheme.lerp(other.buttonTheme, t),
+      dividerTheme: dividerTheme.lerp(other.dividerTheme, t),
     );
   }
 
@@ -91,6 +98,8 @@ class BaconTheme extends ThemeExtension<BaconTheme>
     properties.add(DiagnosticsProperty<BaconEffectsTheme>('effects', effects));
     properties
         .add(DiagnosticsProperty<BaconButtonTheme>('buttonTheme', buttonTheme));
+    properties.add(
+        DiagnosticsProperty<BaconDividerTheme>('dividerTheme', dividerTheme));
   }
 }
 
