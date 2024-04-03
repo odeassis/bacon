@@ -10,17 +10,20 @@ export "src/theme/tokens/primitives/size/base.dart";
 export "src/theme/tokens/primitives/size/sizes.dart";
 export "src/theme/tokens/primitives/space/base.dart";
 export "src/theme/tokens/primitives/space/spaces.dart";
+// Semantic tokens
 export "src/theme/tokens/semantic_tokens/modes/action/action.dart";
 export "src/theme/tokens/semantic_tokens/modes/action/base.dart";
 export "src/theme/tokens/semantic_tokens/modes/alert/alert.dart";
 export "src/theme/tokens/semantic_tokens/modes/alert/base.dart";
-// Tokens
 export 'src/theme/tokens/semantic_tokens/modes/layers/background.dart';
 export 'src/theme/tokens/semantic_tokens/modes/layers/base.dart';
 export 'src/theme/tokens/semantic_tokens/modes/layers/border.dart';
 export 'src/theme/tokens/semantic_tokens/modes/layers/content.dart';
+export 'src/theme/tokens/semantic_tokens/scale/base.dart';
+export 'src/theme/tokens/semantic_tokens/scale/scales.dart';
 export 'src/theme/tokens/semantic_tokens/shape/base.dart';
 export 'src/theme/tokens/semantic_tokens/shape/shapes.dart';
+// Tokens
 export 'src/theme/tokens/shadows.dart';
 export 'src/theme/tokens/tokens.dart';
 export 'src/theme/tokens/typography/base.dart';
@@ -39,3 +42,6 @@ export 'src/widgets/badge/outlined_badge.dart';
 export 'src/widgets/button/button.dart';
 // Divider
 export 'src/widgets/divider/divider.dart';
+// Text input
+export 'src/widgets/text_input/text_input.dart';
+export 'src/widgets/text_input/text_input_form.dart';
