@@ -25,7 +25,7 @@ class MainPage extends StatelessWidget {
           extensions: <ThemeExtension<dynamic>>[
             BaconTheme(tokens: BaconTokens.dark)
           ]),
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.light,
     );
   }
 }
@@ -73,6 +73,11 @@ class HomeScreen extends StatelessWidget {
               BaconButton(
                 onTap: () => context.go('/primitives/text_input'),
                 label: const Text('Text Input Widget'),
+              ),
+              const SizedBox(height: 16.0),
+              BaconButton(
+                onTap: () => context.go('/primitives/tag'),
+                label: const Text('Tag Widget'),
               ),
             ],
           ),

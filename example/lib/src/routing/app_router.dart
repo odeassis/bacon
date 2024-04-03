@@ -4,6 +4,7 @@ import 'package:example/src/widgets/primitives/avatar.dart';
 import 'package:example/src/widgets/primitives/badge.dart';
 import 'package:example/src/widgets/primitives/button.dart';
 import 'package:example/src/widgets/primitives/divider.dart';
+import 'package:example/src/widgets/primitives/tag.dart';
 import 'package:example/src/widgets/primitives/text_input.dart';
 import 'package:go_router/go_router.dart';
 
@@ -35,5 +36,9 @@ final router = GoRouter(routes: [
   GoRoute(
     path: '/primitives/text_input',
     builder: (context, GoRouterState state) => const PrimitiveTextInput(),
+  ),
+  GoRoute(
+    path: '/primitives/tag',
+    builder: (context, GoRouterState state) => const PrimitiveTag(),
   ),
 ]);
