@@ -37,3 +37,5 @@ export 'src/widgets/badge/light_badge.dart';
 export 'src/widgets/badge/outlined_badge.dart';
 // Button
 export 'src/widgets/button/button.dart';
+// Divider
+export 'src/widgets/divider/divider.dart';
