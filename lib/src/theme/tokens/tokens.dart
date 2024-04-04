@@ -5,6 +5,7 @@ import 'package:bacon/src/theme/tokens/semantic_tokens/scale/base.dart';
 import 'package:bacon/src/theme/tokens/semantic_tokens/scale/scales.dart';
 import 'package:bacon/src/theme/tokens/semantic_tokens/shape/base.dart';
 import 'package:bacon/src/theme/tokens/semantic_tokens/shape/shapes.dart';
+import 'package:bacon/src/theme/tokens/shadows.dart';
 import 'package:bacon/src/theme/tokens/transitions.dart';
 import 'package:bacon/src/theme/tokens/typography/base.dart';
 import 'package:bacon/src/theme/tokens/typography/typography.dart';
@@ -14,30 +15,34 @@ import 'package:flutter/material.dart';
 class BaconTokens extends ThemeExtension<BaconTokens>
     with DiagnosticableTreeMixin {
   static BaconTokens light = BaconTokens(
-      modes: BaconDefaultSemanticTokensModes.light(),
-      scale: BaconDefaultSemanticTokensScale.kDefault(),
-      shape: BaconDefaultSemanticTokensShapes.kDefault(),
-      typography: BaconBaseTypography(
-        display: BaconDefaultSemanticTokensTypography.display,
-        headline: BaconDefaultSemanticTokensTypography.headline,
-        paragraph: BaconDefaultSemanticTokensTypography.paragraph,
-        label: BaconDefaultSemanticTokensTypography.label,
-      ),
-      transitions: BaconTransitions.transitions,
-      opacities: BaconOpacities.opacities);
+    modes: BaconDefaultSemanticTokensModes.light(),
+    scale: BaconDefaultSemanticTokensScale.kDefault(),
+    shape: BaconDefaultSemanticTokensShapes.kDefault(),
+    typography: BaconBaseTypography(
+      display: BaconDefaultSemanticTokensTypography.display,
+      headline: BaconDefaultSemanticTokensTypography.headline,
+      paragraph: BaconDefaultSemanticTokensTypography.paragraph,
+      label: BaconDefaultSemanticTokensTypography.label,
+    ),
+    transitions: BaconTransitions.transitions,
+    opacities: BaconOpacities.opacities,
+    shadows: BaconShadows.light,
+  );
 
   static BaconTokens dark = BaconTokens(
-      modes: BaconDefaultSemanticTokensModes.dark(),
-      scale: BaconDefaultSemanticTokensScale.kDefault(),
-      shape: BaconDefaultSemanticTokensShapes.kDefault(),
-      typography: BaconBaseTypography(
-        display: BaconDefaultSemanticTokensTypography.display,
-        headline: BaconDefaultSemanticTokensTypography.headline,
-        paragraph: BaconDefaultSemanticTokensTypography.paragraph,
-        label: BaconDefaultSemanticTokensTypography.label,
-      ),
-      transitions: BaconTransitions.transitions,
-      opacities: BaconOpacities.opacities);
+    modes: BaconDefaultSemanticTokensModes.dark(),
+    scale: BaconDefaultSemanticTokensScale.kDefault(),
+    shape: BaconDefaultSemanticTokensShapes.kDefault(),
+    typography: BaconBaseTypography(
+      display: BaconDefaultSemanticTokensTypography.display,
+      headline: BaconDefaultSemanticTokensTypography.headline,
+      paragraph: BaconDefaultSemanticTokensTypography.paragraph,
+      label: BaconDefaultSemanticTokensTypography.label,
+    ),
+    transitions: BaconTransitions.transitions,
+    opacities: BaconOpacities.opacities,
+    shadows: BaconShadows.dark,
+  );
 
   final BaconSemanticTokensModes modes;
   final BaconSemanticTokensScale scale;
@@ -45,6 +50,7 @@ class BaconTokens extends ThemeExtension<BaconTokens>
   final BaconBaseTypography typography;
   final BaconTransitions transitions;
   final BaconOpacities opacities;
+  final BaconShadows shadows;
 
   const BaconTokens({
     required this.modes,
@@ -53,6 +59,7 @@ class BaconTokens extends ThemeExtension<BaconTokens>
     required this.typography,
     required this.transitions,
     required this.opacities,
+    required this.shadows,
   });
 
   @override
@@ -63,6 +70,7 @@ class BaconTokens extends ThemeExtension<BaconTokens>
     BaconBaseTypography? typography,
     BaconTransitions? transitions,
     BaconOpacities? opacities,
+    BaconShadows? shadows,
   }) {
     return BaconTokens(
       modes: modes ?? this.modes,
@@ -71,6 +79,7 @@ class BaconTokens extends ThemeExtension<BaconTokens>
       typography: typography ?? this.typography,
       transitions: transitions ?? this.transitions,
       opacities: opacities ?? this.opacities,
+      shadows: shadows ?? this.shadows,
     );
   }
 
@@ -87,6 +96,7 @@ class BaconTokens extends ThemeExtension<BaconTokens>
       typography: typography.lerp(other.typography, t),
       transitions: transitions.lerp(other.transitions, t),
       opacities: opacities.lerp(other.opacities, t),
+      shadows: shadows.lerp(other.shadows, t),
     );
   }
 
@@ -100,6 +110,7 @@ class BaconTokens extends ThemeExtension<BaconTokens>
       ..add(shape.toDiagnosticsNode(name: 'shape'))
       ..add(typography.toDiagnosticsNode(name: 'typography'))
       ..add(transitions.toDiagnosticsNode(name: 'transitions'))
-      ..add(opacities.toDiagnosticsNode(name: 'opacities'));
+      ..add(opacities.toDiagnosticsNode(name: 'opacities'))
+      ..add(shadows.toDiagnosticsNode(name: 'shadows'));
   }
 }
