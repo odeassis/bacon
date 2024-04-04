@@ -44,6 +44,8 @@ export 'src/widgets/button/button.dart';
 export 'src/widgets/checkbox/checkbox.dart';
 // Divider
 export 'src/widgets/divider/divider.dart';
+// Dropdown
+export 'src/widgets/dropdown/dropdown.dart';
 //Tag
 export 'src/widgets/tag/tag.dart';
 // Text input
