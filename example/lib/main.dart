@@ -67,6 +67,11 @@ class HomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16.0),
               BaconButton(
+                onTap: () => context.go('/primitives/dropdown'),
+                label: const Text('Dropdown Widget'),
+              ),
+              const SizedBox(height: 16.0),
+              BaconButton(
                 onTap: () => context.go('/primitives/text_input'),
                 label: const Text('Text Input Widget'),
               ),
