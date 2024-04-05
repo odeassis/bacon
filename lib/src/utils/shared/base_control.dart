@@ -338,7 +338,6 @@ class _BaconBaseControlState extends State<BaconBaseControl> {
         context.opacities?.disabled ??
         BaconOpacities.opacities.disabled;
 
-    // Focus effect properties.
     final Color effectiveFocusEffectColor = widget.focusEffectColor ??
         context.baconEffects?.controlFocusEffect.effectColor ??
         BaconEffectsTheme(tokens: BaconTokens.light)
