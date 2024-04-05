@@ -31,7 +31,7 @@ class BaconEffectsTheme extends ThemeExtension<BaconEffectsTheme>
     BaconControlEffect? controlScaleEffect,
   })  : controlFocusEffect = controlFocusEffect ??
             BaconFocusEffect(
-              effectColor: tokens.modes.background.brand.withOpacity(0.25),
+              effectColor: tokens.modes.action.focusRingBrand,
               effectExtent: 4,
               effectDuration: tokens.transitions.transitionDuration,
               effectCurve: tokens.transitions.transitionCurve,
@@ -45,7 +45,7 @@ class BaconEffectsTheme extends ThemeExtension<BaconEffectsTheme>
             ),
         controlPulseEffect = controlPulseEffect ??
             BaconControlEffect(
-              effectColor: tokens.modes.action.active.withOpacity(0.25),
+              effectColor: tokens.modes.action.focusRingBrand,
               effectDuration: const Duration(milliseconds: 1400),
               effectCurve: tokens.transitions.transitionCurve,
               effectExtent: 24,
