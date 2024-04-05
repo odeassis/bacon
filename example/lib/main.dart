@@ -38,62 +38,69 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: context.baconTheme?.tokens.modes.background.primary,
       appBar: AppBar(title: const Text('Bacon Design System Widgets')),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 32.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              BaconButton(
-                onTap: () => context.go('/primitives/alert'),
-                label: const Text('Alert Widget'),
-              ),
-              const SizedBox(height: 16.0),
-              BaconButton(
-                onTap: () => context.go('/primitives/avatar'),
-                label: const Text('Avatar Widget'),
-              ),
-              const SizedBox(height: 16.0),
-              BaconButton(
-                onTap: () => context.go('/primitives/badge'),
-                label: const Text('Badge Widget'),
-              ),
-              const SizedBox(height: 16.0),
-              BaconButton(
-                onTap: () => context.go('/primitives/button'),
-                label: const Text('Button Widget'),
-              ),
-              const SizedBox(height: 16.0),
-              BaconButton(
-                onTap: () => context.go('/primitives/divider'),
-                label: const Text('Divider Widget'),
-              ),
-              const SizedBox(height: 16.0),
-              BaconButton(
-                onTap: () => context.go('/primitives/dropdown'),
-                label: const Text('Dropdown Widget'),
-              ),
-              const SizedBox(height: 16.0),
-              BaconButton(
-                onTap: () => context.go('/primitives/text_input'),
-                label: const Text('Text Input Widget'),
-              ),
-              const SizedBox(height: 16.0),
-              BaconButton(
-                onTap: () => context.go('/primitives/tag'),
-                label: const Text('Tag Widget'),
-              ),
-              const SizedBox(height: 16.0),
-              BaconButton(
-                onTap: () => context.go('/primitives/checkbox'),
-                label: const Text('Checkbox Widget'),
-              ),
-              const SizedBox(height: 16.0),
-              BaconButton(
-                onTap: () => context.go('/primitives/menu_item'),
-                label: const Text('Menu Item Widget'),
-              ),
-            ],
+      body: SingleChildScrollView(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 32.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                BaconButton(
+                  onTap: () => context.go('/primitives/alert'),
+                  label: const Text('Alert Widget'),
+                ),
+                const SizedBox(height: 16.0),
+                BaconButton(
+                  onTap: () => context.go('/primitives/avatar'),
+                  label: const Text('Avatar Widget'),
+                ),
+                const SizedBox(height: 16.0),
+                BaconButton(
+                  onTap: () => context.go('/primitives/badge'),
+                  label: const Text('Badge Widget'),
+                ),
+                const SizedBox(height: 16.0),
+                BaconButton(
+                  onTap: () => context.go('/primitives/button'),
+                  label: const Text('Button Widget'),
+                ),
+                const SizedBox(height: 16.0),
+                BaconButton(
+                  onTap: () => context.go('/primitives/divider'),
+                  label: const Text('Divider Widget'),
+                ),
+                const SizedBox(height: 16.0),
+                BaconButton(
+                  onTap: () => context.go('/primitives/dropdown'),
+                  label: const Text('Dropdown Widget'),
+                ),
+                const SizedBox(height: 16.0),
+                BaconButton(
+                  onTap: () => context.go('/primitives/text_input'),
+                  label: const Text('Text Input Widget'),
+                ),
+                const SizedBox(height: 16.0),
+                BaconButton(
+                  onTap: () => context.go('/primitives/tag'),
+                  label: const Text('Tag Widget'),
+                ),
+                const SizedBox(height: 16.0),
+                BaconButton(
+                  onTap: () => context.go('/primitives/checkbox'),
+                  label: const Text('Checkbox Widget'),
+                ),
+                const SizedBox(height: 16.0),
+                BaconButton(
+                  onTap: () => context.go('/primitives/carousel'),
+                  label: const Text('Carousel Widget'),
+                ),
+                const SizedBox(height: 16.0),
+                BaconButton(
+                  onTap: () => context.go('/primitives/menu_item'),
+                  label: const Text('Menu Item Widget'),
+                ),
+              ],
+            ),
           ),
         ),
       ),

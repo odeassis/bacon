@@ -3,6 +3,7 @@ import 'package:example/src/widgets/primitives/alert.dart';
 import 'package:example/src/widgets/primitives/avatar.dart';
 import 'package:example/src/widgets/primitives/badge.dart';
 import 'package:example/src/widgets/primitives/button.dart';
+import 'package:example/src/widgets/primitives/carousel.dart';
 import 'package:example/src/widgets/primitives/checkbox.dart';
 import 'package:example/src/widgets/primitives/divider.dart';
 import 'package:example/src/widgets/primitives/dropdown.dart';
@@ -31,6 +32,10 @@ final router = GoRouter(routes: [
   GoRoute(
     path: '/primitives/button',
     builder: (context, GoRouterState state) => const PrimitiveButton(),
+  ),
+  GoRoute(
+    path: '/primitives/carousel',
+    builder: (context, GoRouterState state) => const PrimitiveCarousel(),
   ),
   GoRoute(
     path: '/primitives/checkbox',
