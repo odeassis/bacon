@@ -46,6 +46,8 @@ export 'src/widgets/checkbox/checkbox.dart';
 export 'src/widgets/divider/divider.dart';
 // Dropdown
 export 'src/widgets/dropdown/dropdown.dart';
+// Menu item
+export 'src/widgets/menu_item/menu_item.dart';
 //Tag
 export 'src/widgets/tag/tag.dart';
 // Text input
