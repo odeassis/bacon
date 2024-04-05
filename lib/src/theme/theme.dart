@@ -8,6 +8,7 @@ import 'package:bacon/src/theme/components/checkbox/checkbox_theme.dart';
 import 'package:bacon/src/theme/components/divider/divider_theme.dart';
 import 'package:bacon/src/theme/components/dropdown/dropdown_theme.dart';
 import 'package:bacon/src/theme/components/menu_item/menu_item_theme.dart';
+import 'package:bacon/src/theme/components/radio/radio_theme.dart';
 import 'package:bacon/src/theme/components/tag/tag_theme.dart';
 import 'package:bacon/src/theme/components/text_input/input_theme.dart';
 import 'package:bacon/src/theme/effects/effects_theme.dart';
@@ -35,6 +36,7 @@ class BaconTheme extends ThemeExtension<BaconTheme>
   final BaconDropdownTheme dropdownTheme;
   final BaconMenuItemTheme menuItemTheme;
   final BaconCarouselTheme carouselTheme;
+  final BaconRadioTheme radioTheme;
 
   BaconTheme({
     required this.tokens,
@@ -51,6 +53,7 @@ class BaconTheme extends ThemeExtension<BaconTheme>
     BaconDropdownTheme? dropdownTheme,
     BaconMenuItemTheme? menuItemTheme,
     BaconCarouselTheme? carouselTheme,
+    BaconRadioTheme? radioTheme,
   })  : badgeTheme = badgeTheme ?? BaconBadgeTheme(tokens: tokens),
         avatarTheme = avatarTheme ?? BaconAvatarTheme(tokens: tokens),
         alertTheme = alertTheme ?? BaconAlertTheme(tokens: tokens),
@@ -63,7 +66,8 @@ class BaconTheme extends ThemeExtension<BaconTheme>
         checkboxTheme = checkboxTheme ?? BaconCheckboxTheme(tokens: tokens),
         dropdownTheme = dropdownTheme ?? BaconDropdownTheme(tokens: tokens),
         menuItemTheme = menuItemTheme ?? BaconMenuItemTheme(tokens: tokens),
-        carouselTheme = carouselTheme ?? BaconCarouselTheme(tokens: tokens);
+        carouselTheme = carouselTheme ?? BaconCarouselTheme(tokens: tokens),
+        radioTheme = radioTheme ?? BaconRadioTheme(tokens: tokens);
 
   @override
   BaconTheme copyWith({
@@ -81,6 +85,7 @@ class BaconTheme extends ThemeExtension<BaconTheme>
     BaconDropdownTheme? dropdownTheme,
     BaconMenuItemTheme? menuItemTheme,
     BaconCarouselTheme? carouselTheme,
+    BaconRadioTheme? radioTheme,
   }) {
     return BaconTheme(
       tokens: tokens ?? this.tokens,
@@ -97,6 +102,7 @@ class BaconTheme extends ThemeExtension<BaconTheme>
       dropdownTheme: dropdownTheme ?? this.dropdownTheme,
       menuItemTheme: menuItemTheme ?? this.menuItemTheme,
       carouselTheme: carouselTheme ?? this.carouselTheme,
+      radioTheme: radioTheme ?? this.radioTheme,
     );
   }
 
@@ -122,6 +128,7 @@ class BaconTheme extends ThemeExtension<BaconTheme>
       dropdownTheme: dropdownTheme.lerp(other.dropdownTheme, t),
       menuItemTheme: menuItemTheme.lerp(other.menuItemTheme, t),
       carouselTheme: carouselTheme.lerp(other.carouselTheme, t),
+      radioTheme: radioTheme.lerp(other.radioTheme, t),
     );
   }
 
@@ -153,6 +160,8 @@ class BaconTheme extends ThemeExtension<BaconTheme>
         'menuItemTheme', menuItemTheme));
     properties.add(DiagnosticsProperty<BaconCarouselTheme>(
         'carouselTheme', carouselTheme));
+    properties
+        .add(DiagnosticsProperty<BaconRadioTheme>('radioTheme', radioTheme));
   }
 }
 
