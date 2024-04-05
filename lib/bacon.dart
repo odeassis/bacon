@@ -29,6 +29,13 @@ export 'src/theme/tokens/tokens.dart';
 export 'src/theme/tokens/typography/base.dart';
 export 'src/theme/tokens/typography/text_styles.dart';
 export 'src/theme/tokens/typography/typography.dart';
+export 'src/utils/extensions.dart';
+// utils
+export 'src/utils/shape_decoration.dart';
+// utils / squircle
+export 'src/utils/squircle/squircle_border.dart';
+export 'src/utils/squircle/squircle_border_radius.dart';
+export 'src/utils/squircle/squircle_radius.dart';
 // Widgets
 // Alert
 export 'src/widgets/alert/alert.dart';
@@ -40,6 +47,8 @@ export 'src/widgets/badge/light_badge.dart';
 export 'src/widgets/badge/outlined_badge.dart';
 // Button
 export 'src/widgets/button/button.dart';
+// Carousel
+export 'src/widgets/carousel/carousel.dart';
 // Checkbox
 export 'src/widgets/checkbox/checkbox.dart';
 // Divider
