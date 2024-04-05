@@ -6,6 +6,7 @@ import 'package:example/src/widgets/primitives/button.dart';
 import 'package:example/src/widgets/primitives/checkbox.dart';
 import 'package:example/src/widgets/primitives/divider.dart';
 import 'package:example/src/widgets/primitives/dropdown.dart';
+import 'package:example/src/widgets/primitives/menu_item.dart';
 import 'package:example/src/widgets/primitives/tag.dart';
 import 'package:example/src/widgets/primitives/text_input.dart';
 import 'package:go_router/go_router.dart';
@@ -42,6 +43,10 @@ final router = GoRouter(routes: [
   GoRoute(
     path: '/primitives/dropdown',
     builder: (context, GoRouterState state) => const PrimitiveDropdown(),
+  ),
+  GoRoute(
+    path: '/primitives/menu_item',
+    builder: (context, GoRouterState state) => const PrimitiveMenuItem(),
   ),
   GoRoute(
     path: '/primitives/tag',

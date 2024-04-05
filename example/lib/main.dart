@@ -15,7 +15,10 @@ class MainPage extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: router,
       theme: ThemeData.light().copyWith(extensions: <ThemeExtension<dynamic>>[
-        BaconTheme(tokens: BaconTokens.light)
+        BaconTheme(
+            tokens: BaconTokens.light.copyWith(
+          shape: BaconDefaultSemanticTokensShapes.kDefault(),
+        ))
       ]),
       darkTheme: ThemeData.dark().copyWith(
           extensions: <ThemeExtension<dynamic>>[
@@ -84,6 +87,11 @@ class HomeScreen extends StatelessWidget {
               BaconButton(
                 onTap: () => context.go('/primitives/checkbox'),
                 label: const Text('Checkbox Widget'),
+              ),
+              const SizedBox(height: 16.0),
+              BaconButton(
+                onTap: () => context.go('/primitives/menu_item'),
+                label: const Text('Menu Item Widget'),
               ),
             ],
           ),
