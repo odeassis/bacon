@@ -57,6 +57,8 @@ export 'src/widgets/divider/divider.dart';
 export 'src/widgets/dropdown/dropdown.dart';
 // Menu item
 export 'src/widgets/menu_item/menu_item.dart';
+// Radio
+export 'src/widgets/radio/radio.dart';
 //Tag
 export 'src/widgets/tag/tag.dart';
 // Text input
