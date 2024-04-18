@@ -64,3 +64,5 @@ export 'src/widgets/tag/tag.dart';
 // Text input
 export 'src/widgets/text_input/text_input.dart';
 export 'src/widgets/text_input/text_input_form.dart';
+// Tooltip
+export 'src/widgets/tooltip/tooltip.dart';
