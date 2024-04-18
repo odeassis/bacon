@@ -1,8 +1,5 @@
 import 'package:bacon/bacon.dart';
 import 'package:bacon/src/theme/tokens/transitions.dart';
-import 'package:bacon/src/utils/extensions.dart';
-import 'package:bacon/src/utils/shape_decoration.dart';
-import 'package:bacon/src/utils/squircle/squircle_border.dart';
 import 'package:flutter/material.dart';
 
 enum BaconDropdownAnchorPosition {
@@ -121,7 +118,7 @@ class BaconDropdown extends StatefulWidget {
   /// The widget to display inside the dropdown as its content.
   final Widget content;
 
-  /// Creates a Moon Design dropdown.
+  /// Creates a Bacon Design dropdown.
   const BaconDropdown({
     super.key,
     required this.show,
