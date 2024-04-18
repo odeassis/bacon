@@ -62,7 +62,7 @@ class BaconRadio<T> extends StatefulWidget {
   /// [StatefulWidget] using the [State.setState] method, so that the parent gets rebuilt.
   final ValueChanged<T?>? onChanged;
 
-  /// Creates a Moon Design radio button.
+  /// Creates a Bacon Design radio button.
   const BaconRadio({
     super.key,
     this.autofocus = false,
@@ -77,8 +77,8 @@ class BaconRadio<T> extends StatefulWidget {
     required this.onChanged,
   });
 
-  /// Creates a Moon Design radio button with label.
-  @Deprecated("Use MoonMenuItem with BaconRadio as a trailing widget instead.")
+  /// Creates a Bacon Design radio button with label.
+  @Deprecated("Use BaconMenuItem with BaconRadio as a trailing widget instead.")
   static Widget withLabel<T>(
     BuildContext context, {
     Key? key,
