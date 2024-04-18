@@ -86,7 +86,7 @@ class BaconCarousel extends StatefulWidget {
   final Widget Function(BuildContext context, int itemIndex, int realIndex)
       itemBuilder;
 
-  /// Creates a Moon Design carousel.
+  /// Creates a Bacon Design carousel.
   const BaconCarousel({
     super.key,
     this.axisDirection = Axis.horizontal,
@@ -119,7 +119,7 @@ class _BaconCarouselState extends State<BaconCarousel> {
   late int _lastReportedItemIndex;
   late BaconCarouselScrollController _scrollController;
 
-  final Key _forwardListKey = const ValueKey<String>("moon_carousel_key");
+  final Key _forwardListKey = const ValueKey<String>("bacon_carousel_key");
 
   double _effectiveGap = 0;
 
