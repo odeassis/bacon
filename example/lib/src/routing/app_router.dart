@@ -11,6 +11,7 @@ import 'package:example/src/widgets/primitives/menu_item.dart';
 import 'package:example/src/widgets/primitives/radio.dart';
 import 'package:example/src/widgets/primitives/tag.dart';
 import 'package:example/src/widgets/primitives/text_input.dart';
+import 'package:example/src/widgets/primitives/tooltip.dart';
 import 'package:go_router/go_router.dart';
 
 final router = GoRouter(routes: [
@@ -65,5 +66,9 @@ final router = GoRouter(routes: [
   GoRoute(
     path: '/primitives/radio',
     builder: (context, GoRouterState state) => const PrimitiveRadio(),
+  ),
+  GoRoute(
+    path: '/primitives/tooltip',
+    builder: (context, GoRouterState state) => const PrimitiveTooltip(),
   ),
 ]);
