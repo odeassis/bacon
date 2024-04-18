@@ -1,9 +1,7 @@
 import 'package:bacon/bacon.dart';
 import 'package:bacon/src/theme/effects/effects_theme.dart';
 import 'package:bacon/src/utils/color_tween.dart';
-import 'package:bacon/src/utils/extensions.dart';
 import 'package:bacon/src/utils/shared/base_control.dart';
-import 'package:bacon/src/utils/squircle/squircle_border.dart';
 import 'package:flutter/material.dart';
 
 class BaconMenuItem extends StatefulWidget {
@@ -78,7 +76,7 @@ class BaconMenuItem extends StatefulWidget {
   /// The widget to display after the [label] widget of the menu item.
   final Widget? trailing;
 
-  /// Creates a Moon Design menu item.
+  /// Creates a Bacon Design menu item.
   const BaconMenuItem({
     super.key,
     this.menuItemCrossAxisAlignment,
