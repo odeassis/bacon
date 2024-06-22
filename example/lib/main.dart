@@ -17,14 +17,18 @@ class MainPage extends StatelessWidget {
       theme: ThemeData.light().copyWith(extensions: <ThemeExtension<dynamic>>[
         BaconTheme(
             tokens: BaconTokens.light.copyWith(
-          shape: BaconDefaultSemanticTokensShapes.kDefault(),
+          modes: BaconDefaultSemanticTokensModes.colors(
+            primitives: BaconDefaultPrimitiveColors.light().copyWith(
+              brand600: Colors.red,
+            ),
+          ),
         ))
       ]),
       darkTheme: ThemeData.dark().copyWith(
           extensions: <ThemeExtension<dynamic>>[
             BaconTheme(tokens: BaconTokens.dark)
           ]),
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.dark,
     );
   }
 }

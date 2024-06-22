@@ -8,6 +8,7 @@ class BaconAlertProperties extends ThemeExtension<BaconAlertProperties>
     with DiagnosticableTreeMixin {
   final TextStyle bodyTitleStyle;
   final TextStyle titleTextStyle;
+  final TextStyle linkTextStyle;
   final BorderRadiusGeometry borderRadius;
   final double minHeight;
   final double hGap;
@@ -20,6 +21,7 @@ class BaconAlertProperties extends ThemeExtension<BaconAlertProperties>
   const BaconAlertProperties({
     required this.bodyTitleStyle,
     required this.titleTextStyle,
+    required this.linkTextStyle,
     required this.borderRadius,
     required this.minHeight,
     required this.hGap,
@@ -34,6 +36,7 @@ class BaconAlertProperties extends ThemeExtension<BaconAlertProperties>
   BaconAlertProperties copyWith({
     TextStyle? bodyTitleStyle,
     TextStyle? titleTextStyle,
+    TextStyle? linkTextStyle,
     BorderRadiusGeometry? borderRadius,
     double? minHeight,
     double? hGap,
@@ -46,6 +49,7 @@ class BaconAlertProperties extends ThemeExtension<BaconAlertProperties>
     return BaconAlertProperties(
       bodyTitleStyle: bodyTitleStyle ?? this.bodyTitleStyle,
       titleTextStyle: titleTextStyle ?? this.titleTextStyle,
+      linkTextStyle: linkTextStyle ?? this.linkTextStyle,
       borderRadius: borderRadius ?? this.borderRadius,
       minHeight: minHeight ?? this.minHeight,
       hGap: hGap ?? this.hGap,
@@ -64,6 +68,7 @@ class BaconAlertProperties extends ThemeExtension<BaconAlertProperties>
     return BaconAlertProperties(
       bodyTitleStyle: TextStyle.lerp(bodyTitleStyle, other.bodyTitleStyle, t)!,
       titleTextStyle: TextStyle.lerp(titleTextStyle, other.titleTextStyle, t)!,
+      linkTextStyle: TextStyle.lerp(linkTextStyle, other.linkTextStyle, t)!,
       borderRadius:
           BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t)!,
       minHeight: lerpDouble(minHeight, other.minHeight, t)!,
@@ -82,6 +87,7 @@ class BaconAlertProperties extends ThemeExtension<BaconAlertProperties>
     properties.add(DiagnosticsProperty("type", "BaconAlertProperties"));
     properties.add(DiagnosticsProperty('bodyTitleStyle', bodyTitleStyle));
     properties.add(DiagnosticsProperty('titleTextStyle', titleTextStyle));
+    properties.add(DiagnosticsProperty('linkTextStyle', linkTextStyle));
     properties.add(DiagnosticsProperty('borderRadius', borderRadius));
     properties.add(DoubleProperty('minHeight', minHeight));
     properties.add(DoubleProperty('hGap', hGap));

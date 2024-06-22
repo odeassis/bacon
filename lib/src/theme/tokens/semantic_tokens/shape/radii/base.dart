@@ -37,6 +37,8 @@ class BaconBaseRadiiSemanticTokensShape
   /// Border radius for 3xl: [40] for default, [32] for rounded and [2] for sharp
   final BorderRadiusGeometry x3l;
 
+  final BorderRadiusGeometry full;
+
   final double defaultBorderWidth;
   final double activeBorderWidth;
 
@@ -53,6 +55,7 @@ class BaconBaseRadiiSemanticTokensShape
     required this.x3l,
     required this.defaultBorderWidth,
     required this.activeBorderWidth,
+    required this.full,
   });
 
   @override
@@ -77,6 +80,7 @@ class BaconBaseRadiiSemanticTokensShape
           lerpDouble(defaultBorderWidth, other.defaultBorderWidth, t)!,
       activeBorderWidth:
           lerpDouble(activeBorderWidth, other.activeBorderWidth, t)!,
+      full: BorderRadiusGeometry.lerp(full, other.full, t)!,
     );
   }
 
@@ -92,6 +96,7 @@ class BaconBaseRadiiSemanticTokensShape
     BorderRadiusGeometry? xl,
     BorderRadiusGeometry? x2l,
     BorderRadiusGeometry? x3l,
+    BorderRadiusGeometry? full,
     double? defaultBorderWidth,
     double? activeBorderWidth,
   }) {
@@ -106,6 +111,7 @@ class BaconBaseRadiiSemanticTokensShape
       xl: xl ?? this.xl,
       x2l: x2l ?? this.x2l,
       x3l: x3l ?? this.x3l,
+      full: full ?? this.full,
       defaultBorderWidth: defaultBorderWidth ?? this.defaultBorderWidth,
       activeBorderWidth: activeBorderWidth ?? this.activeBorderWidth,
     );
@@ -126,6 +132,7 @@ class BaconBaseRadiiSemanticTokensShape
       ..add(DiagnosticsProperty<BorderRadiusGeometry>("xl", xl))
       ..add(DiagnosticsProperty<BorderRadiusGeometry>("x2l", x2l))
       ..add(DiagnosticsProperty<BorderRadiusGeometry>("x3l", x3l))
+      ..add(DiagnosticsProperty<BorderRadiusGeometry>("full", full))
       ..add(
           DiagnosticsProperty<double>("defaultBorderWidth", defaultBorderWidth))
       ..add(

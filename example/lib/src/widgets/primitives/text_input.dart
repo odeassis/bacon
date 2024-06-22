@@ -118,6 +118,7 @@ class _PrimitiveTextInputState extends State<PrimitiveTextInput> {
                     hintText: "Email Address",
                     hasFloatingLabel: true,
                     helper: Text("We will never share your email address."),
+                    leading: Icon(Icons.email),
                   ),
                 ],
               );

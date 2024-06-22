@@ -389,7 +389,6 @@ class _BaconFormTextInputState extends FormFieldState<String> {
     if (_controller != null) {
       _registerController();
     }
-    // Update the internal [FormFieldState] value to synchronize with the text editing controller value.
     setValue(_effectiveController.text);
   }
 
@@ -461,15 +460,11 @@ class _BaconFormTextInputState extends FormFieldState<String> {
 
   @override
   void reset() {
-    // SetState is handled in the superclass, no additional call needed here.
     _effectiveController.text = widget.initialValue ?? '';
     super.reset();
   }
 
   void _handleControllerChanged() {
-    // Suppress changes originating from within this class.
-    // When a controller is provided, this change listener is registered. In such cases, we may receive notifications
-    // for changes within this class (e.g., the reset() method), but the FormField value will already be set.
     if (_effectiveController.text != value) {
       didChange(_effectiveController.text);
     }

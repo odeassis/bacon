@@ -1,4 +1,5 @@
 import 'package:bacon/src/theme/tokens/opacities.dart';
+import 'package:bacon/src/theme/tokens/primitives/color/colors.dart';
 import 'package:bacon/src/theme/tokens/semantic_tokens/modes/base.dart';
 import 'package:bacon/src/theme/tokens/semantic_tokens/modes/modes.dart';
 import 'package:bacon/src/theme/tokens/semantic_tokens/scale/base.dart';
@@ -15,7 +16,9 @@ import 'package:flutter/material.dart';
 class BaconTokens extends ThemeExtension<BaconTokens>
     with DiagnosticableTreeMixin {
   static BaconTokens light = BaconTokens(
-    modes: BaconDefaultSemanticTokensModes.light(),
+    modes: BaconDefaultSemanticTokensModes.colors(
+      primitives: BaconDefaultPrimitiveColors.light(),
+    ),
     scale: BaconDefaultSemanticTokensScale.kDefault(),
     shape: BaconDefaultSemanticTokensShapes.kDefault(),
     typography: BaconBaseTypography(
@@ -23,6 +26,7 @@ class BaconTokens extends ThemeExtension<BaconTokens>
       headline: BaconDefaultSemanticTokensTypography.headline,
       paragraph: BaconDefaultSemanticTokensTypography.paragraph,
       label: BaconDefaultSemanticTokensTypography.label,
+      link: BaconDefaultSemanticTokensTypography.link,
     ),
     transitions: BaconTransitions.transitions,
     opacities: BaconOpacities.opacities,
@@ -30,7 +34,9 @@ class BaconTokens extends ThemeExtension<BaconTokens>
   );
 
   static BaconTokens dark = BaconTokens(
-    modes: BaconDefaultSemanticTokensModes.dark(),
+    modes: BaconDefaultSemanticTokensModes.colors(
+      primitives: BaconDefaultPrimitiveColors.dark(),
+    ),
     scale: BaconDefaultSemanticTokensScale.kDefault(),
     shape: BaconDefaultSemanticTokensShapes.kDefault(),
     typography: BaconBaseTypography(
@@ -38,6 +44,7 @@ class BaconTokens extends ThemeExtension<BaconTokens>
       headline: BaconDefaultSemanticTokensTypography.headline,
       paragraph: BaconDefaultSemanticTokensTypography.paragraph,
       label: BaconDefaultSemanticTokensTypography.label,
+      link: BaconDefaultSemanticTokensTypography.link,
     ),
     transitions: BaconTransitions.transitions,
     opacities: BaconOpacities.opacities,

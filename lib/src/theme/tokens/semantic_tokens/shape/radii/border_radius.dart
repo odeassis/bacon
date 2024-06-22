@@ -26,6 +26,7 @@ class BaconDefaultRadiiComponentShape
               Radius.circular(const BaconDefaultPrimitiveShapes().shape32)),
           x3l: BorderRadius.all(
               Radius.circular(const BaconDefaultPrimitiveShapes().shape40)),
+          full: const BorderRadius.all(Radius.circular(9999)),
           defaultBorderWidth: 1,
           activeBorderWidth: 1.5,
         );
@@ -52,6 +53,7 @@ class BaconDefaultRadiiComponentShape
               Radius.circular(const BaconDefaultPrimitiveShapes().shape32)),
           x3l: BorderRadius.all(
               Radius.circular(const BaconDefaultPrimitiveShapes().shape32)),
+          full: const BorderRadius.all(Radius.circular(9999)),
           defaultBorderWidth: 1,
           activeBorderWidth: 1.5,
         );
@@ -78,6 +80,7 @@ class BaconDefaultRadiiComponentShape
               Radius.circular(const BaconDefaultPrimitiveShapes().shape2)),
           x3l: BorderRadius.all(
               Radius.circular(const BaconDefaultPrimitiveShapes().shape2)),
+          full: const BorderRadius.all(Radius.circular(9999)),
           defaultBorderWidth: 1,
           activeBorderWidth: 1.5,
         );

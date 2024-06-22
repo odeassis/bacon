@@ -1,3 +1,4 @@
+import 'package:bacon/src/theme/tokens/primitives/color/base.dart';
 import 'package:bacon/src/theme/tokens/semantic_tokens/modes/accent/accent.dart';
 import 'package:bacon/src/theme/tokens/semantic_tokens/modes/action/action.dart';
 import 'package:bacon/src/theme/tokens/semantic_tokens/modes/alert/alert.dart';
@@ -7,23 +8,15 @@ import 'package:bacon/src/theme/tokens/semantic_tokens/modes/layers/border.dart'
 import 'package:bacon/src/theme/tokens/semantic_tokens/modes/layers/content.dart';
 
 class BaconDefaultSemanticTokensModes extends BaconSemanticTokensModes {
-  BaconDefaultSemanticTokensModes.light()
-      : super(
-          action: BaconDefaultActionColors.light(),
-          alert: BaconDefaultAlertColors.light(),
-          background: BaconDefaultBackgroundColors.light(),
-          content: BaconDefaultContentColors.light(),
-          border: BaconDefaultBorderColors.light(),
-          accent: BaconDefaultAccentColors.light(),
-        );
-
-  BaconDefaultSemanticTokensModes.dark()
-      : super(
-          action: BaconDefaultActionColors.dark(),
-          alert: BaconDefaultAlertColors.dark(),
-          background: BaconDefaultBackgroundColors.dark(),
-          content: BaconDefaultContentColors.dark(),
-          border: BaconDefaultBorderColors.dark(),
-          accent: BaconDefaultAccentColors.dark(),
+  BaconDefaultSemanticTokensModes.colors({
+    required BaconBasePrimitiveColors primitives,
+  }) : super(
+          action: BaconDefaultActionColors.colors(primitives: primitives),
+          alert: BaconDefaultAlertColors.colors(primitives: primitives),
+          background:
+              BaconDefaultBackgroundColors.colors(primitives: primitives),
+          content: BaconDefaultContentColors.colors(primitives: primitives),
+          border: BaconDefaultBorderColors.colors(primitives: primitives),
+          accent: BaconDefaultAccentColors.colors(primitives: primitives),
         );
 }

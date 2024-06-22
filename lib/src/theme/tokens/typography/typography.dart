@@ -235,6 +235,64 @@ class BaconDefaultSemanticTokensTypography {
       letterSpacing: BaconDefaultPrimitiveFontSizes.font.letterSpacingTight,
     ),
   );
+  static BaconTextStyles link = BaconTextStyles(
+    x2l: _BaconTextStyle(
+      decoration: TextDecoration.underline,
+      fontStyle: FontStyle.normal,
+      fontSize: BaconDefaultPrimitiveFontSizes.font.fontSize32,
+      fontWeight: BaconDefaultPrimitiveFontSizes.font.fontWeightMedium,
+      height: BaconDefaultPrimitiveFontSizes.font.height140,
+      letterSpacing: BaconDefaultPrimitiveFontSizes.font.letterSpacingDefault,
+    ),
+    xl: _BaconTextStyle(
+      decoration: TextDecoration.underline,
+      fontStyle: FontStyle.normal,
+      fontSize: BaconDefaultPrimitiveFontSizes.font.fontSize20,
+      fontWeight: BaconDefaultPrimitiveFontSizes.font.fontWeightMedium,
+      height: BaconDefaultPrimitiveFontSizes.font.height140,
+      letterSpacing: BaconDefaultPrimitiveFontSizes.font.letterSpacingDefault,
+    ),
+    lg: _BaconTextStyle(
+      decoration: TextDecoration.underline,
+      fontStyle: FontStyle.normal,
+      fontSize: BaconDefaultPrimitiveFontSizes.font.fontSize18,
+      fontWeight: BaconDefaultPrimitiveFontSizes.font.fontWeightMedium,
+      height: BaconDefaultPrimitiveFontSizes.font.height140,
+      letterSpacing: BaconDefaultPrimitiveFontSizes.font.letterSpacingDefault,
+    ),
+    md: _BaconTextStyle(
+      decoration: TextDecoration.underline,
+      fontStyle: FontStyle.normal,
+      fontSize: BaconDefaultPrimitiveFontSizes.font.fontSize16,
+      fontWeight: BaconDefaultPrimitiveFontSizes.font.fontWeightMedium,
+      height: BaconDefaultPrimitiveFontSizes.font.height140,
+      letterSpacing: BaconDefaultPrimitiveFontSizes.font.letterSpacingDefault,
+    ),
+    sm: _BaconTextStyle(
+      decoration: TextDecoration.underline,
+      fontStyle: FontStyle.normal,
+      fontSize: BaconDefaultPrimitiveFontSizes.font.fontSize14,
+      fontWeight: BaconDefaultPrimitiveFontSizes.font.fontWeightMedium,
+      height: BaconDefaultPrimitiveFontSizes.font.height140,
+      letterSpacing: BaconDefaultPrimitiveFontSizes.font.letterSpacingDefault,
+    ),
+    xs: _BaconTextStyle(
+      decoration: TextDecoration.underline,
+      fontStyle: FontStyle.normal,
+      fontSize: BaconDefaultPrimitiveFontSizes.font.fontSize12,
+      fontWeight: BaconDefaultPrimitiveFontSizes.font.fontWeightMedium,
+      height: BaconDefaultPrimitiveFontSizes.font.height140,
+      letterSpacing: BaconDefaultPrimitiveFontSizes.font.letterSpacingDefault,
+    ),
+    x2s: _BaconTextStyle(
+      decoration: TextDecoration.underline,
+      fontStyle: FontStyle.normal,
+      fontSize: BaconDefaultPrimitiveFontSizes.font.fontSize12,
+      fontWeight: BaconDefaultPrimitiveFontSizes.font.fontWeightMedium,
+      height: BaconDefaultPrimitiveFontSizes.font.height140,
+      letterSpacing: BaconDefaultPrimitiveFontSizes.font.letterSpacingTight,
+    ),
+  );
 }
 
 class _BaconTextStyle extends TextStyle {

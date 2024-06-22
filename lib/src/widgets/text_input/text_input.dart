@@ -5,11 +5,9 @@ import 'package:bacon/src/theme/components/text_input/input_size_properties.dart
 import 'package:bacon/src/theme/components/text_input/input_sizes.dart';
 import 'package:bacon/src/theme/effects/effects_theme.dart';
 import 'package:bacon/src/theme/tokens/opacities.dart';
-import 'package:bacon/src/utils/extensions.dart';
 import 'package:bacon/src/utils/shared/common/border_container.dart';
 import 'package:bacon/src/utils/shared/common/effects/focus_effect.dart';
 import 'package:bacon/src/utils/shared/common/error_message.dart';
-import 'package:bacon/src/utils/squircle/squircle_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
@@ -36,7 +34,6 @@ typedef BaconTextInputErrorBuilder = Widget Function(
     BuildContext context, String? errorText);
 
 class BaconTextInput extends StatefulWidget {
-  /// If [maxLength] is set to this value, only the "current input length" part of the character counter is displayed.
   static const int noMaxLength = -1;
 
   static Widget _defaultContextMenuBuilder(
@@ -47,6 +44,7 @@ class BaconTextInput extends StatefulWidget {
   }
 
   // Bacon Design System properties.
+
   /// Whether the text input has floating label.
   final bool hasFloatingLabel;
 
@@ -132,20 +130,10 @@ class BaconTextInput extends StatefulWidget {
 
   // Flutter properties.
 
-  /// {@macro flutter.widgets.magnifier.TextMagnifierConfiguration.intro}
-  ///
-  /// {@macro flutter.widgets.magnifier.intro}
-  ///
-  /// {@macro flutter.widgets.magnifier.TextMagnifierConfiguration.details}
-  ///
-  /// By default, builds a [CupertinoTextMagnifier] on iOS and [TextMagnifier]
-  /// on Android, and builds nothing on all other platforms. If it is desired to
-  /// suppress the magnifier, consider passing [TextMagnifierConfiguration.disabled].
-  ///
   /// {@tool dartpad}
   /// This sample demonstrates how to customize the magnifier that this text field uses.
   ///
-  /// ** See code in examples/api/lib/widgets/text_magnifier/text_magnifier.0.dart **
+  /// ** See https://api.flutter.dev/flutter/widgets/TextMagnifierConfiguration-class.html
   /// {@end-tool}
   final TextMagnifierConfiguration? magnifierConfiguration;
 

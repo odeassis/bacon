@@ -14,6 +14,7 @@ class BaconAlertSizes extends ThemeExtension<BaconAlertSizes>
   // Alert with size medium
   final BaconAlertProperties md;
 
+  // Alert with size small
   final BaconAlertProperties sm;
 
   BaconAlertSizes({
@@ -26,10 +27,11 @@ class BaconAlertSizes extends ThemeExtension<BaconAlertSizes>
               iconSize: tokens.scale.component.xs,
               minHeight: tokens.scale.component.x3l,
               hGap: tokens.scale.padding.sm,
-              vGap: tokens.scale.padding.sm,
+              vGap: tokens.scale.padding.x2s,
               padding: EdgeInsets.all(tokens.scale.padding.sm),
               titleTextStyle: tokens.typography.label.sm,
               bodyTitleStyle: tokens.typography.paragraph.sm,
+              linkTextStyle: tokens.typography.link.sm,
               borderRadius: tokens.shape.radii.surface,
               duration: tokens.transitions.transitionDuration,
               curve: tokens.transitions.transitionCurve,
@@ -43,6 +45,7 @@ class BaconAlertSizes extends ThemeExtension<BaconAlertSizes>
               padding: EdgeInsets.all(tokens.scale.padding.xs),
               titleTextStyle: tokens.typography.label.xs,
               bodyTitleStyle: tokens.typography.paragraph.xs,
+              linkTextStyle: tokens.typography.link.sm,
               borderRadius: tokens.shape.radii.surface,
               duration: tokens.transitions.transitionDuration,
               curve: tokens.transitions.transitionCurve,
@@ -56,6 +59,7 @@ class BaconAlertSizes extends ThemeExtension<BaconAlertSizes>
               padding: EdgeInsets.all(tokens.scale.padding.xs),
               titleTextStyle: tokens.typography.label.xs,
               bodyTitleStyle: tokens.typography.paragraph.xs,
+              linkTextStyle: tokens.typography.link.sm,
               borderRadius: tokens.shape.radii.surface,
               duration: tokens.transitions.transitionDuration,
               curve: tokens.transitions.transitionCurve,

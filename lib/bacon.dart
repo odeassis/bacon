@@ -10,7 +10,6 @@ export "src/theme/tokens/primitives/size/base.dart";
 export "src/theme/tokens/primitives/size/sizes.dart";
 export "src/theme/tokens/primitives/space/base.dart";
 export "src/theme/tokens/primitives/space/spaces.dart";
-// Semantic tokens
 export "src/theme/tokens/semantic_tokens/modes/action/action.dart";
 export "src/theme/tokens/semantic_tokens/modes/action/base.dart";
 export "src/theme/tokens/semantic_tokens/modes/alert/alert.dart";
@@ -19,6 +18,8 @@ export 'src/theme/tokens/semantic_tokens/modes/layers/background.dart';
 export 'src/theme/tokens/semantic_tokens/modes/layers/base.dart';
 export 'src/theme/tokens/semantic_tokens/modes/layers/border.dart';
 export 'src/theme/tokens/semantic_tokens/modes/layers/content.dart';
+// Semantic tokens
+export "src/theme/tokens/semantic_tokens/modes/modes.dart";
 export 'src/theme/tokens/semantic_tokens/scale/base.dart';
 export 'src/theme/tokens/semantic_tokens/scale/scales.dart';
 export 'src/theme/tokens/semantic_tokens/shape/base.dart';
@@ -45,6 +46,8 @@ export 'src/widgets/avatar/avatar.dart';
 export 'src/widgets/badge/badge.dart';
 export 'src/widgets/badge/light_badge.dart';
 export 'src/widgets/badge/outlined_badge.dart';
+// Bottom sheet
+export 'src/widgets/bottom_sheet/modal_bottom_sheet.dart';
 // Button
 export 'src/widgets/button/button.dart';
 // Carousel
@@ -53,10 +56,14 @@ export 'src/widgets/carousel/carousel.dart';
 export 'src/widgets/checkbox/checkbox.dart';
 // Divider
 export 'src/widgets/divider/divider.dart';
+// Drawer
+export 'src/widgets/drawer/drawer.dart';
 // Dropdown
 export 'src/widgets/dropdown/dropdown.dart';
 // Menu item
 export 'src/widgets/menu_item/menu_item.dart';
+// Linear progress
+export 'src/widgets/progress/linear_progress.dart';
 // Radio
 export 'src/widgets/radio/radio.dart';
 //Tag

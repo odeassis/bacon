@@ -1,25 +1,29 @@
-import 'package:bacon/bacon.dart';
-import 'package:bacon/src/theme/components/alert/alert_theme.dart';
-import 'package:bacon/src/theme/components/avatar/avatar_theme.dart';
-import 'package:bacon/src/theme/components/badge/badge_theme.dart';
-import 'package:bacon/src/theme/components/button/button_theme.dart';
-import 'package:bacon/src/theme/components/carousel/carousel_theme.dart';
-import 'package:bacon/src/theme/components/checkbox/checkbox_theme.dart';
-import 'package:bacon/src/theme/components/divider/divider_theme.dart';
-import 'package:bacon/src/theme/components/dropdown/dropdown_theme.dart';
-import 'package:bacon/src/theme/components/menu_item/menu_item_theme.dart';
-import 'package:bacon/src/theme/components/radio/radio_theme.dart';
-import 'package:bacon/src/theme/components/tag/tag_theme.dart';
-import 'package:bacon/src/theme/components/text_input/input_theme.dart';
-import 'package:bacon/src/theme/components/tooltip/tooltip_theme.dart';
-import 'package:bacon/src/theme/effects/effects_theme.dart';
-import 'package:bacon/src/theme/tokens/opacities.dart';
-import 'package:bacon/src/theme/tokens/semantic_tokens/scale/component/base.dart';
-import 'package:bacon/src/theme/tokens/semantic_tokens/scale/gap/base.dart';
-import 'package:bacon/src/theme/tokens/semantic_tokens/scale/padding/base.dart';
-import 'package:bacon/src/theme/tokens/semantic_tokens/shape/radii/base.dart';
+import 'package:bacon/src/theme/components/bottom_sheet/bottom_sheet_theme.dart';
+import 'package:bacon/src/theme/components/drawer/drawer_theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import '../../bacon.dart';
+import 'components/alert/alert_theme.dart';
+import 'components/avatar/avatar_theme.dart';
+import 'components/badge/badge_theme.dart';
+import 'components/button/button_theme.dart';
+import 'components/carousel/carousel_theme.dart';
+import 'components/checkbox/checkbox_theme.dart';
+import 'components/divider/divider_theme.dart';
+import 'components/dropdown/dropdown_theme.dart';
+import 'components/menu_item/menu_item_theme.dart';
+import 'components/progress/linear/linear_progress_theme.dart';
+import 'components/radio/radio_theme.dart';
+import 'components/tag/tag_theme.dart';
+import 'components/text_input/input_theme.dart';
+import 'components/tooltip/tooltip_theme.dart';
+import 'effects/effects_theme.dart';
+import 'tokens/opacities.dart';
+import 'tokens/semantic_tokens/scale/component/base.dart';
+import 'tokens/semantic_tokens/scale/gap/base.dart';
+import 'tokens/semantic_tokens/scale/padding/base.dart';
+import 'tokens/semantic_tokens/shape/radii/base.dart';
 
 class BaconTheme extends ThemeExtension<BaconTheme>
     with DiagnosticableTreeMixin {
@@ -39,7 +43,9 @@ class BaconTheme extends ThemeExtension<BaconTheme>
   final BaconCarouselTheme carouselTheme;
   final BaconRadioTheme radioTheme;
   final BaconTooltipTheme tooltipTheme;
-
+  final BaconLinearProgressTheme linearProgressTheme;
+  final BaconDrawerTheme drawerTheme;
+  final BaconBottomSheetTheme bottomSheetTheme;
   BaconTheme({
     required this.tokens,
     BaconBadgeTheme? badgeTheme,
@@ -57,6 +63,9 @@ class BaconTheme extends ThemeExtension<BaconTheme>
     BaconCarouselTheme? carouselTheme,
     BaconRadioTheme? radioTheme,
     BaconTooltipTheme? tooltipTheme,
+    BaconLinearProgressTheme? linearProgressTheme,
+    BaconDrawerTheme? drawerTheme,
+    BaconBottomSheetTheme? bottomSheetTheme,
   })  : badgeTheme = badgeTheme ?? BaconBadgeTheme(tokens: tokens),
         avatarTheme = avatarTheme ?? BaconAvatarTheme(tokens: tokens),
         alertTheme = alertTheme ?? BaconAlertTheme(tokens: tokens),
@@ -71,7 +80,12 @@ class BaconTheme extends ThemeExtension<BaconTheme>
         menuItemTheme = menuItemTheme ?? BaconMenuItemTheme(tokens: tokens),
         carouselTheme = carouselTheme ?? BaconCarouselTheme(tokens: tokens),
         radioTheme = radioTheme ?? BaconRadioTheme(tokens: tokens),
-        tooltipTheme = tooltipTheme ?? BaconTooltipTheme(tokens: tokens);
+        tooltipTheme = tooltipTheme ?? BaconTooltipTheme(tokens: tokens),
+        linearProgressTheme =
+            linearProgressTheme ?? BaconLinearProgressTheme(tokens: tokens),
+        drawerTheme = drawerTheme ?? BaconDrawerTheme(tokens: tokens),
+        bottomSheetTheme =
+            bottomSheetTheme ?? BaconBottomSheetTheme(tokens: tokens);
 
   @override
   BaconTheme copyWith({
@@ -91,6 +105,9 @@ class BaconTheme extends ThemeExtension<BaconTheme>
     BaconCarouselTheme? carouselTheme,
     BaconRadioTheme? radioTheme,
     BaconTooltipTheme? tooltipTheme,
+    BaconLinearProgressTheme? linearProgressTheme,
+    BaconDrawerTheme? drawerTheme,
+    BaconBottomSheetTheme? bottomSheetTheme,
   }) {
     return BaconTheme(
       tokens: tokens ?? this.tokens,
@@ -109,6 +126,9 @@ class BaconTheme extends ThemeExtension<BaconTheme>
       carouselTheme: carouselTheme ?? this.carouselTheme,
       radioTheme: radioTheme ?? this.radioTheme,
       tooltipTheme: tooltipTheme ?? this.tooltipTheme,
+      linearProgressTheme: linearProgressTheme ?? this.linearProgressTheme,
+      drawerTheme: drawerTheme ?? this.drawerTheme,
+      bottomSheetTheme: bottomSheetTheme ?? this.bottomSheetTheme,
     );
   }
 
@@ -136,6 +156,10 @@ class BaconTheme extends ThemeExtension<BaconTheme>
       carouselTheme: carouselTheme.lerp(other.carouselTheme, t),
       radioTheme: radioTheme.lerp(other.radioTheme, t),
       tooltipTheme: tooltipTheme.lerp(other.tooltipTheme, t),
+      linearProgressTheme:
+          linearProgressTheme.lerp(other.linearProgressTheme, t),
+      drawerTheme: drawerTheme.lerp(other.drawerTheme, t),
+      bottomSheetTheme: bottomSheetTheme.lerp(other.bottomSheetTheme, t),
     );
   }
 
@@ -171,6 +195,12 @@ class BaconTheme extends ThemeExtension<BaconTheme>
         .add(DiagnosticsProperty<BaconRadioTheme>('radioTheme', radioTheme));
     properties.add(
         DiagnosticsProperty<BaconTooltipTheme>('tooltipTheme', tooltipTheme));
+    properties.add(DiagnosticsProperty<BaconLinearProgressTheme>(
+        'linearProgressTheme', linearProgressTheme));
+    properties
+        .add(DiagnosticsProperty<BaconDrawerTheme>('drawerTheme', drawerTheme));
+    properties.add(DiagnosticsProperty<BaconBottomSheetTheme>(
+        'bottomSheetTheme', bottomSheetTheme));
   }
 }
 

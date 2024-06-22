@@ -25,10 +25,11 @@ class PrimitiveAlert extends StatelessWidget {
                   child: BaconAlert(
                     show: true,
                     leading: Icon(BaconIcons.cog),
-                    title: Text("Alert Information Large Fill"),
+                    title: Text("Your alert text goes here"),
                     size: BaconAlertSize.large,
-                    body: Text(
-                        "lore ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+                    body: Text("Your alert text goes here"),
+                    link: Text("Link"),
+                    trailing: Icon(BaconIcons.delete),
                   ),
                 ),
                 SizedBox(width: 16.0),

@@ -4,9 +4,7 @@ import 'package:bacon/src/theme/components/button/button_sizes.dart';
 import 'package:bacon/src/theme/components/button/button_theme.dart';
 import 'package:bacon/src/theme/effects/effects_theme.dart';
 import 'package:bacon/src/utils/color_tween.dart';
-import 'package:bacon/src/utils/extensions.dart';
 import 'package:bacon/src/utils/shared/base_control.dart';
-import 'package:bacon/src/utils/squircle/squircle_border.dart';
 import 'package:flutter/material.dart';
 
 enum BaconButtonSize {
@@ -585,8 +583,8 @@ class _BaconButtonState extends State<BaconButton>
           child: Padding(
             padding: widget.isFullWidth ? EdgeInsets.zero : correctedPadding,
             child: widget.isFullWidth
-                ? Stack(
-                    fit: StackFit.expand,
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       if (widget.leading != null)
                         Container(

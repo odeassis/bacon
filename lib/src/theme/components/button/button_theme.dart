@@ -24,8 +24,8 @@ class BaconButtonTheme extends ThemeExtension<BaconButtonTheme>
             BaconButtonColors(
               borderColor: tokens.modes.border.primary,
               background: tokens.modes.background.brand,
-              textColor: tokens.modes.content.inverse,
-              iconColor: tokens.modes.content.inverse,
+              textColor: tokens.modes.content.alwaysDark,
+              iconColor: tokens.modes.content.alwaysDark,
               hoverBackground: tokens.modes.action.hoverOnColor,
               focusRing: tokens.modes.action.focusRingBrand,
             ),
@@ -47,8 +47,8 @@ class BaconButtonTheme extends ThemeExtension<BaconButtonTheme>
               colors: BaconButtonColors(
                 borderColor: tokens.modes.border.brand,
                 background: tokens.modes.background.brand,
-                textColor: tokens.modes.content.inverse,
-                iconColor: tokens.modes.content.inverse,
+                textColor: tokens.modes.content.alwaysDark,
+                iconColor: tokens.modes.content.alwaysDark,
                 hoverBackground: tokens.modes.action.hoverOnColor,
                 focusRing: tokens.modes.action.focusRingBrand,
               ),

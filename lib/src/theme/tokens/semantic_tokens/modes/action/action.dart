@@ -1,4 +1,5 @@
 import 'package:bacon/src/theme/tokens/opacities.dart';
+import 'package:bacon/src/theme/tokens/primitives/color/base.dart';
 import 'package:bacon/src/theme/tokens/primitives/color/colors.dart';
 import 'package:bacon/src/theme/tokens/semantic_tokens/modes/action/base.dart';
 
@@ -13,45 +14,22 @@ class BaconDefaultActionColors extends BaconBaseActionSemanticTokensColors {
     required super.focusRingDanger,
   });
 
-  BaconDefaultActionColors.light()
-      : super(
-          active: BaconDefaultPrimitiveColors.light().brand600,
+  BaconDefaultActionColors.colors({
+    required BaconBasePrimitiveColors primitives,
+  }) : super(
+          active: primitives.brand600,
           hoverOnColor: BaconDefaultPrimitiveColors.dark()
               .alpha
               .withOpacity(BaconOpacities.opacities.hoverOnColor),
-          hoverOnDark: BaconDefaultPrimitiveColors.light()
-              .alpha
+          hoverOnDark: primitives.alpha
               .withOpacity(BaconOpacities.opacities.hoverOnDark),
-          disabled: BaconDefaultPrimitiveColors.light().neutral300,
-          focusRingBrand: BaconDefaultPrimitiveColors.light()
-              .alphaBrand
+          disabled: primitives.neutral300,
+          focusRingBrand: primitives.alphaBrand
               .withOpacity(BaconOpacities.opacities.focusRing),
           focusRingNeutral: BaconDefaultPrimitiveColors.dark()
               .alpha
               .withOpacity(BaconOpacities.opacities.focusRing),
-          focusRingDanger: BaconDefaultPrimitiveColors.light()
-              .alphaRed
-              .withOpacity(BaconOpacities.opacities.focusRing),
-        );
-
-  BaconDefaultActionColors.dark()
-      : super(
-          active: BaconDefaultPrimitiveColors.dark().brand700,
-          hoverOnColor: BaconDefaultPrimitiveColors.light()
-              .alpha
-              .withOpacity(BaconOpacities.opacities.hoverOnColor),
-          hoverOnDark: BaconDefaultPrimitiveColors.dark()
-              .alpha
-              .withOpacity(BaconOpacities.opacities.hoverOnDark),
-          disabled: BaconDefaultPrimitiveColors.dark().neutral300,
-          focusRingBrand: BaconDefaultPrimitiveColors.dark()
-              .alphaBrand
-              .withOpacity(BaconOpacities.opacities.focusRing),
-          focusRingNeutral: BaconDefaultPrimitiveColors.light()
-              .alpha
-              .withOpacity(BaconOpacities.opacities.focusRing),
-          focusRingDanger: BaconDefaultPrimitiveColors.dark()
-              .alphaRed
+          focusRingDanger: primitives.alphaRed
               .withOpacity(BaconOpacities.opacities.focusRing),
         );
 }

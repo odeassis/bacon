@@ -2,9 +2,6 @@ import 'package:bacon/bacon.dart';
 import 'package:bacon/src/theme/components/alert/alert_properties.dart';
 import 'package:bacon/src/theme/components/alert/alert_sizes.dart';
 import 'package:bacon/src/theme/components/alert/alert_theme.dart';
-import 'package:bacon/src/utils/extensions.dart';
-import 'package:bacon/src/utils/shape_decoration.dart';
-import 'package:bacon/src/utils/squircle/squircle_border.dart';
 import 'package:flutter/material.dart';
 
 enum BaconAlertSize {
@@ -28,10 +25,6 @@ enum BaconAlertStyle {
 }
 
 class BaconAlert extends StatefulWidget {
-  final Widget title;
-  final Widget? body;
-  final Widget? leading;
-  final Widget? trailing;
   final String? semanticLabel;
   final Curve? curve;
   final Duration? duration;
@@ -49,13 +42,15 @@ class BaconAlert extends StatefulWidget {
   final BaconAlertSize? size;
   final BaconAlertStatus? status;
   final BaconAlertStyle? style;
+  final Widget title;
+  final Widget? body;
+  final Widget? link;
+  final Widget? leading;
+  final Widget? trailing;
 
   const BaconAlert({
     super.key,
     required this.title,
-    this.body,
-    this.leading,
-    this.trailing,
     this.semanticLabel,
     this.curve,
     this.duration,
@@ -72,6 +67,10 @@ class BaconAlert extends StatefulWidget {
     this.decoration,
     this.size,
     this.status = BaconAlertStatus.info,
+    this.body,
+    this.link,
+    this.leading,
+    this.trailing,
   })  : style = BaconAlertStyle.filled,
         assert(
           !(size == BaconAlertSize.small && body != null),
@@ -88,6 +87,7 @@ class BaconAlert extends StatefulWidget {
     this.semanticLabel,
     this.leading,
     this.body,
+    this.link,
     this.trailing,
     this.size,
     this.status = BaconAlertStatus.info,
@@ -112,6 +112,7 @@ class BaconAlert extends StatefulWidget {
     this.semanticLabel,
     this.leading,
     this.body,
+    this.link,
     this.trailing,
     this.size,
     this.status = BaconAlertStatus.info,
@@ -145,12 +146,16 @@ class _BaconAlertState extends State<BaconAlert>
       case BaconAlertSize.large:
         return context.baconTheme?.alertTheme.sizes.lg ??
             BaconAlertSizes(tokens: BaconTokens.light).lg;
+
+      case BaconAlertSize.medium:
+        return context.baconTheme?.alertTheme.sizes.md ??
+            BaconAlertSizes(tokens: BaconTokens.light).md;
       case BaconAlertSize.small:
         return context.baconTheme?.alertTheme.sizes.sm ??
             BaconAlertSizes(tokens: BaconTokens.light).sm;
       default:
-        return context.baconTheme?.alertTheme.sizes.lg ??
-            BaconAlertSizes(tokens: BaconTokens.light).lg;
+        return context.baconTheme?.alertTheme.sizes.md ??
+            BaconAlertSizes(tokens: BaconTokens.light).md;
     }
   }
 
@@ -253,6 +258,8 @@ class _BaconAlertState extends State<BaconAlert>
 
     final TextStyle effectiveBodyTextStyle = effectiveAlertSize.bodyTitleStyle;
 
+    final TextStyle effectiveLinkTextStyle = effectiveAlertSize.linkTextStyle;
+
     final double effectiveIconSize =
         effectiveAlertSize.iconSize ?? BaconTokens.light.scale.component.lg;
 
@@ -337,6 +344,20 @@ class _BaconAlertState extends State<BaconAlert>
                                     child: widget.body!,
                                   ),
                                 ),
+                                widget.link != null
+                                    ? Padding(
+                                        padding: EdgeInsetsDirectional.only(
+                                          top: effectiveVerticalGap,
+                                        ),
+                                        child: DefaultTextStyle(
+                                          style:
+                                              effectiveLinkTextStyle.copyWith(
+                                            color: effectiveTextColor,
+                                          ),
+                                          child: widget.link!,
+                                        ),
+                                      )
+                                    : const SizedBox.shrink(),
                               ],
                             ),
                           )

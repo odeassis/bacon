@@ -5,17 +5,19 @@ import 'package:flutter/material.dart';
 @immutable
 class BaconBaseTypography extends ThemeExtension<BaconBaseTypography>
     with DiagnosticableTreeMixin {
+  final BaconTextStyles display;
+  final BaconTextStyles headline;
+  final BaconTextStyles paragraph;
+  final BaconTextStyles label;
+  final BaconTextStyles link;
+
   const BaconBaseTypography({
     required this.display,
     required this.headline,
-    required this.label,
     required this.paragraph,
+    required this.label,
+    required this.link,
   });
-
-  final BaconTextStyles display;
-  final BaconTextStyles headline;
-  final BaconTextStyles label;
-  final BaconTextStyles paragraph;
 
   @override
   ThemeExtension<BaconBaseTypography> copyWith({
@@ -23,12 +25,14 @@ class BaconBaseTypography extends ThemeExtension<BaconBaseTypography>
     BaconTextStyles? headline,
     BaconTextStyles? label,
     BaconTextStyles? paragraph,
+    BaconTextStyles? link,
   }) {
     return BaconBaseTypography(
       display: display ?? this.display,
       headline: headline ?? this.headline,
       label: label ?? this.label,
       paragraph: paragraph ?? this.paragraph,
+      link: link ?? this.link,
     );
   }
 
@@ -42,6 +46,7 @@ class BaconBaseTypography extends ThemeExtension<BaconBaseTypography>
       headline: display.lerp(other.headline, t),
       label: display.lerp(other.label, t),
       paragraph: display.lerp(other.paragraph, t),
+      link: display.lerp(other.link, t),
     );
   }
 
@@ -51,7 +56,8 @@ class BaconBaseTypography extends ThemeExtension<BaconBaseTypography>
     properties.add(DiagnosticsProperty("type", "BaconBaseTypography"));
     properties.add(DiagnosticsProperty("display", display));
     properties.add(DiagnosticsProperty("headline", headline));
-    properties.add(DiagnosticsProperty("label", label));
     properties.add(DiagnosticsProperty("paragraph", paragraph));
+    properties.add(DiagnosticsProperty("label", label));
+    properties.add(DiagnosticsProperty("link", link));
   }
 }
