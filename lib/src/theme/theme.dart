@@ -1,5 +1,6 @@
 import 'package:bacon/src/theme/components/bottom_sheet/bottom_sheet_theme.dart';
 import 'package:bacon/src/theme/components/drawer/drawer_theme.dart';
+import 'package:bacon/src/theme/components/text_area/text_area_theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -46,6 +47,7 @@ class BaconTheme extends ThemeExtension<BaconTheme>
   final BaconLinearProgressTheme linearProgressTheme;
   final BaconDrawerTheme drawerTheme;
   final BaconBottomSheetTheme bottomSheetTheme;
+  final BaconTextAreaTheme textAreaTheme;
   BaconTheme({
     required this.tokens,
     BaconBadgeTheme? badgeTheme,
@@ -66,6 +68,7 @@ class BaconTheme extends ThemeExtension<BaconTheme>
     BaconLinearProgressTheme? linearProgressTheme,
     BaconDrawerTheme? drawerTheme,
     BaconBottomSheetTheme? bottomSheetTheme,
+    BaconTextAreaTheme? textAreaTheme,
   })  : badgeTheme = badgeTheme ?? BaconBadgeTheme(tokens: tokens),
         avatarTheme = avatarTheme ?? BaconAvatarTheme(tokens: tokens),
         alertTheme = alertTheme ?? BaconAlertTheme(tokens: tokens),
@@ -85,7 +88,8 @@ class BaconTheme extends ThemeExtension<BaconTheme>
             linearProgressTheme ?? BaconLinearProgressTheme(tokens: tokens),
         drawerTheme = drawerTheme ?? BaconDrawerTheme(tokens: tokens),
         bottomSheetTheme =
-            bottomSheetTheme ?? BaconBottomSheetTheme(tokens: tokens);
+            bottomSheetTheme ?? BaconBottomSheetTheme(tokens: tokens),
+        textAreaTheme = textAreaTheme ?? BaconTextAreaTheme(tokens: tokens);
 
   @override
   BaconTheme copyWith({
@@ -108,6 +112,7 @@ class BaconTheme extends ThemeExtension<BaconTheme>
     BaconLinearProgressTheme? linearProgressTheme,
     BaconDrawerTheme? drawerTheme,
     BaconBottomSheetTheme? bottomSheetTheme,
+    BaconTextAreaTheme? textAreaTheme,
   }) {
     return BaconTheme(
       tokens: tokens ?? this.tokens,
@@ -129,6 +134,7 @@ class BaconTheme extends ThemeExtension<BaconTheme>
       linearProgressTheme: linearProgressTheme ?? this.linearProgressTheme,
       drawerTheme: drawerTheme ?? this.drawerTheme,
       bottomSheetTheme: bottomSheetTheme ?? this.bottomSheetTheme,
+      textAreaTheme: textAreaTheme ?? this.textAreaTheme,
     );
   }
 
@@ -160,6 +166,7 @@ class BaconTheme extends ThemeExtension<BaconTheme>
           linearProgressTheme.lerp(other.linearProgressTheme, t),
       drawerTheme: drawerTheme.lerp(other.drawerTheme, t),
       bottomSheetTheme: bottomSheetTheme.lerp(other.bottomSheetTheme, t),
+      textAreaTheme: textAreaTheme.lerp(other.textAreaTheme, t),
     );
   }
 
@@ -201,6 +208,8 @@ class BaconTheme extends ThemeExtension<BaconTheme>
         .add(DiagnosticsProperty<BaconDrawerTheme>('drawerTheme', drawerTheme));
     properties.add(DiagnosticsProperty<BaconBottomSheetTheme>(
         'bottomSheetTheme', bottomSheetTheme));
+    properties.add(DiagnosticsProperty<BaconTextAreaTheme>(
+        'textAreaTheme', textAreaTheme));
   }
 }
 

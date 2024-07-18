@@ -33,7 +33,7 @@ class BaconTextInputTheme extends ThemeExtension<BaconTextInputTheme>
             BaconTextInputProperties(
               transitionDuration: const Duration(milliseconds: 167),
               transitionCurve: Curves.fastOutSlowIn,
-              helperPadding: EdgeInsets.only(top: tokens.scale.gap.xs),
+              helperPadding: EdgeInsets.only(top: tokens.scale.padding.xs),
               helperTextStyle: tokens.typography.paragraph.xs,
             ),
         sizes = sizes ?? BaconTextInputSizes(tokens: tokens);

@@ -68,6 +68,8 @@ export 'src/widgets/progress/linear_progress.dart';
 export 'src/widgets/radio/radio.dart';
 //Tag
 export 'src/widgets/tag/tag.dart';
+// Text area
+export 'src/widgets/text_area/text_area.dart';
 // Text input
 export 'src/widgets/text_input/text_input.dart';
 export 'src/widgets/text_input/text_input_form.dart';
