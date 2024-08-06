@@ -3,7 +3,7 @@ import 'package:bacon/src/theme/components/bottom_sheet/bottom_sheet_properties.
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../tokens/tokens.dart';
+import '../../tokens/hive_tokens.dart';
 
 @immutable
 class BaconBottomSheetTheme extends ThemeExtension<BaconBottomSheetTheme>

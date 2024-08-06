@@ -1,28 +1,26 @@
-import 'package:bacon/bacon.dart';
-import 'package:bacon/src/theme/components/avatar/avatar_size_properties.dart';
-import 'package:bacon/src/theme/components/avatar/avatar_sizes.dart';
-import 'package:bacon/src/utils/avatar_clipper.dart';
-import 'package:bacon/src/utils/extensions.dart';
-import 'package:bacon/src/utils/shape_decoration.dart';
-import 'package:bacon/src/utils/squircle/squircle_border.dart';
 import 'package:flutter/material.dart';
 
-enum BaconAvatarSize {
-  xlarge,
+import '../../theme/components/components.dart';
+import '../../theme/hive_theme.dart';
+import '../../theme/tokens/hive_tokens.dart';
+import '../../utils/utils.dart' as utils;
+
+enum AvatarSize {
+  xLarge,
   large,
   medium,
   small,
-  xsmall,
+  xSmall,
 }
 
-enum BaconBadgeAlignment {
+enum AvatarBadgeAlignment {
   topLeft,
   topRight,
   bottomLeft,
   bottomRight,
 }
 
-class BaconAvatar extends StatelessWidget {
+class HiveAvatar extends StatelessWidget {
   final bool showBadge;
   final BorderRadiusGeometry? borderRadius;
   final String? semanticLabel;
@@ -31,13 +29,13 @@ class BaconAvatar extends StatelessWidget {
   final double? width;
   final double? height;
   final double? badgeMargin;
-  final BaconBadgeAlignment badgeAlignment;
+  final AvatarBadgeAlignment avatarBadgeAlignment;
   final double? badgeSize;
-  final BaconAvatarSize? size;
+  final AvatarSize? size;
   final ImageProvider<Object>? imageProvider;
   final Widget? content;
 
-  const BaconAvatar({
+  const HiveAvatar({
     super.key,
     this.showBadge = false,
     this.borderRadius,
@@ -47,7 +45,7 @@ class BaconAvatar extends StatelessWidget {
     this.width,
     this.height,
     this.badgeMargin,
-    this.badgeAlignment = BaconBadgeAlignment.bottomRight,
+    this.avatarBadgeAlignment = AvatarBadgeAlignment.bottomRight,
     this.badgeSize,
     this.size,
     this.imageProvider,
@@ -57,27 +55,27 @@ class BaconAvatar extends StatelessWidget {
   Alignment _getAlignment(BuildContext context) {
     final bool isRightToLeft = Directionality.of(context) == TextDirection.rtl;
     if (isRightToLeft) {
-      switch (badgeAlignment) {
-        case BaconBadgeAlignment.topLeft:
+      switch (avatarBadgeAlignment) {
+        case AvatarBadgeAlignment.topLeft:
           return Alignment.topRight;
-        case BaconBadgeAlignment.topRight:
+        case AvatarBadgeAlignment.topRight:
           return Alignment.topLeft;
-        case BaconBadgeAlignment.bottomLeft:
+        case AvatarBadgeAlignment.bottomLeft:
           return Alignment.bottomRight;
-        case BaconBadgeAlignment.bottomRight:
+        case AvatarBadgeAlignment.bottomRight:
           return Alignment.bottomLeft;
         default:
           return Alignment.bottomRight;
       }
     } else {
-      switch (badgeAlignment) {
-        case BaconBadgeAlignment.topLeft:
+      switch (avatarBadgeAlignment) {
+        case AvatarBadgeAlignment.topLeft:
           return Alignment.topLeft;
-        case BaconBadgeAlignment.topRight:
+        case AvatarBadgeAlignment.topRight:
           return Alignment.topRight;
-        case BaconBadgeAlignment.bottomLeft:
+        case AvatarBadgeAlignment.bottomLeft:
           return Alignment.bottomLeft;
-        case BaconBadgeAlignment.bottomRight:
+        case AvatarBadgeAlignment.bottomRight:
           return Alignment.bottomRight;
         default:
           return Alignment.bottomRight;
@@ -85,46 +83,46 @@ class BaconAvatar extends StatelessWidget {
     }
   }
 
-  BaconAvatarSizeProperties _getAvatarSizes(
+  HiveAvatarSizeProperties _getHiveAvatarSizes(
     BuildContext context,
-    BaconAvatarSize? size,
+    AvatarSize? size,
   ) {
     switch (size) {
-      case BaconAvatarSize.xlarge:
-        return context.baconTheme?.avatarTheme.sizes.xl ??
-            BaconAvatarSizes(tokens: BaconTokens.light).xl;
-      case BaconAvatarSize.large:
-        return context.baconTheme?.avatarTheme.sizes.lg ??
-            BaconAvatarSizes(tokens: BaconTokens.light).lg;
-      case BaconAvatarSize.medium:
-        return context.baconTheme?.avatarTheme.sizes.md ??
-            BaconAvatarSizes(tokens: BaconTokens.light).md;
-      case BaconAvatarSize.small:
-        return context.baconTheme?.avatarTheme.sizes.sm ??
-            BaconAvatarSizes(tokens: BaconTokens.light).sm;
-      case BaconAvatarSize.xsmall:
-        return context.baconTheme?.avatarTheme.sizes.xs ??
-            BaconAvatarSizes(tokens: BaconTokens.light).xs;
+      case AvatarSize.xLarge:
+        return context.hiveTheme?.avatarTheme.sizes.xl ??
+            HiveAvatarSizes(tokens: HiveTokens.light).xl;
+      case AvatarSize.large:
+        return context.hiveTheme?.avatarTheme.sizes.lg ??
+            HiveAvatarSizes(tokens: HiveTokens.light).lg;
+      case AvatarSize.medium:
+        return context.hiveTheme?.avatarTheme.sizes.md ??
+            HiveAvatarSizes(tokens: HiveTokens.light).md;
+      case AvatarSize.small:
+        return context.hiveTheme?.avatarTheme.sizes.sm ??
+            HiveAvatarSizes(tokens: HiveTokens.light).sm;
+      case AvatarSize.xSmall:
+        return context.hiveTheme?.avatarTheme.sizes.xs ??
+            HiveAvatarSizes(tokens: HiveTokens.light).xs;
       default:
-        return context.baconTheme?.avatarTheme.sizes.md ??
-            BaconAvatarSizes(tokens: BaconTokens.light).md;
+        return context.hiveTheme?.avatarTheme.sizes.md ??
+            HiveAvatarSizes(tokens: HiveTokens.light).md;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final effectiveAvatarSize = _getAvatarSizes(context, size);
+    final effectiveAvatarSize = _getHiveAvatarSizes(context, size);
 
     final Color effectiveBackground = background ??
-        context.baconTheme?.avatarTheme.colors.background ??
-        BaconTokens.light.modes.background.brand;
+        context.hiveTheme?.avatarTheme.colors.background ??
+        HiveTokens.light.modes.background.primary;
 
     final effectiveBorderRadius =
         borderRadius ?? effectiveAvatarSize.borderRadius;
 
     final effectiveBadgeColor = badgeColor ??
-        context.baconTheme?.avatarTheme.colors.bodgeColor ??
-        BaconTokens.light.modes.background.brand;
+        context.hiveTheme?.avatarTheme.colors.bodgeColor ??
+        HiveTokens.light.modes.background.brand;
 
     final effectiveBadgeSize = badgeSize ?? effectiveAvatarSize.badgeSize;
 
@@ -135,15 +133,15 @@ class BaconAvatar extends StatelessWidget {
     final effectiveHeight = height ?? effectiveAvatarSize.avatarSize;
 
     final effectiveTextColor =
-        context.baconTheme?.avatarTheme.colors.textColor ??
-            BaconTokens.light.modes.content.secondary;
+        context.hiveTheme?.avatarTheme.colors.textColor ??
+            HiveTokens.light.modes.content.secondary;
 
     final resolvedBorderRadius =
         effectiveBorderRadius.resolve(Directionality.of(context));
 
     final effectiveIconColor =
-        context.baconTheme?.avatarTheme.colors.iconColor ??
-            BaconTokens.light.modes.content.primary;
+        context.hiveTheme?.avatarTheme.colors.iconColor ??
+            HiveTokens.light.modes.content.primary;
 
     return Semantics(
       label: semanticLabel,
@@ -170,17 +168,17 @@ class BaconAvatar extends StatelessWidget {
                 //   borderRadius: resolveBorderRadius,
                 //   badgeSize: effectiveBadgeSize,
                 //   badgeMarginValue: effectiveBadgeMargin,
-                //   badgeAlignment: badgeAlignment,
+                //   AvatarBadgeAlignment: AvatarBadgeAlignment,
                 //   textDirection: Directionality.of(context),
                 // ),
-                clipper: AvatarClipper(
+                clipper: utils.AvatarClipper(
                   showBadge: showBadge,
                   height: effectiveHeight,
                   width: effectiveWidth,
                   borderRadius: resolvedBorderRadius,
                   badgeSize: effectiveBadgeSize,
                   badgeMarginValue: effectiveBadgeMargin,
-                  badgeAlignment: badgeAlignment,
+                  badgeAlignment: avatarBadgeAlignment,
                   textDirection: Directionality.of(context),
                 ),
                 child: DefaultTextStyle(
@@ -190,8 +188,8 @@ class BaconAvatar extends StatelessWidget {
                   child: IconTheme(
                     data: IconThemeData(color: effectiveIconColor),
                     child: DecoratedBox(
-                      decoration: ShapeDecorationWithPremultipliedAlpha(
-                        shape: BaconSquircleBorder(
+                      decoration: utils.ShapeDecorationWithPremultipliedAlpha(
+                        shape: utils.HiveSquircleBorder(
                           borderRadius: resolvedBorderRadius
                               .squircleBorderRadius(context),
                         ),

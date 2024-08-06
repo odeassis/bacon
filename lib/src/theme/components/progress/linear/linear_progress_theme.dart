@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../../tokens/tokens.dart';
+import '../../../tokens/hive_tokens.dart';
 import 'linear_progress_colors.dart';
 import 'linear_progress_sizes.dart';
 

@@ -1,8 +1,8 @@
-import 'package:bacon/src/theme/tokens/primitives/color/base.dart';
-import 'package:bacon/src/theme/tokens/semantic_tokens/modes/layers/base.dart';
+import '../../../primitives/primitives.dart';
+import 'layers_tokens.dart';
 
-class BaconDefaultBorderColors extends BaconBaseLayersSemanticTokensColors {
-  const BaconDefaultBorderColors({
+class HiveBorderColors extends HiveLayersColorsTokens {
+  const HiveBorderColors({
     required super.brand,
     required super.brandLight,
     required super.primary,
@@ -13,8 +13,8 @@ class BaconDefaultBorderColors extends BaconBaseLayersSemanticTokensColors {
     required super.alwaysDark,
   });
 
-  BaconDefaultBorderColors.colors({
-    required BaconBasePrimitiveColors primitives,
+  HiveBorderColors.colors({
+    required HivePrimitiveColorsTokens primitives,
   }) : super(
           brand: primitives.brand600,
           brandLight: primitives.brand200,

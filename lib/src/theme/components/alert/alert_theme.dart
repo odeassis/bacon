@@ -1,60 +1,68 @@
-import 'package:bacon/bacon.dart';
-import 'package:bacon/src/theme/components/alert/alert_colors.dart';
-import 'package:bacon/src/theme/components/alert/alert_sizes.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-@immutable
-class BaconAlertTheme extends ThemeExtension<BaconAlertTheme>
-    with DiagnosticableTreeMixin {
-  final BaconAlertColors colors;
-  final BaconTokens tokens;
-  final BaconAlertSizes sizes;
+import '../../../widgets/widgets.dart' as widget;
+import '../../hive_theme.dart';
+import '../../tokens/hive_tokens.dart';
+import 'alert_colors.dart';
+import 'alert_sizes.dart';
 
-  BaconAlertTheme({
+@immutable
+class HiveAlertTheme extends ThemeExtension<HiveAlertTheme>
+    with DiagnosticableTreeMixin {
+  // Hive Tokens [HiveTokens]
+  final HiveTokens tokens;
+
+  // Hive Colors [HiveAlertComponentColors]
+  final HiveAlertComponentColors colors;
+
+  // Hive Sizes [HiveAlertSizes]
+  final HiveAlertSizes sizes;
+
+  HiveAlertTheme({
     required this.tokens,
-    BaconAlertColors? colors,
-    BaconAlertSizes? sizes,
+    HiveAlertComponentColors? colors,
+    HiveAlertSizes? sizes,
   })  : colors = colors ??
-            BaconAlertColors(
+            HiveAlertComponentColors(
               background: tokens.modes.alert.info,
               textColor: tokens.modes.content.inverse,
               borderColor: tokens.modes.border.primary,
               iconColor: tokens.modes.content.inverse,
             ),
         sizes = sizes ??
-            BaconAlertSizes(
+            HiveAlertSizes(
               tokens: tokens,
             );
 
-  factory BaconAlertTheme.fromStatusAndStyle({
+  factory HiveAlertTheme.fromStatusAndStyle({
     required BuildContext context,
-    required BaconAlertStatus status,
-    required BaconAlertStyle style,
+    required widget.AlertStatus status,
+    required widget.AlertStyle style,
   }) {
     Color background;
     Color textColor;
     Color borderColor;
     Color iconColor;
 
-    final BaconTokens tokens = context.baconTheme?.tokens ?? BaconTokens.light;
+    final HiveTokens tokens = context.hiveTheme!.tokens;
 
     switch (status) {
-      case BaconAlertStatus.info:
+      case widget.AlertStatus.info:
         switch (style) {
-          case BaconAlertStyle.outlined:
+          case widget.AlertStyle.outlined:
             background = tokens.modes.background.primary;
             textColor = tokens.modes.content.primary;
             borderColor = tokens.modes.border.primary;
             iconColor = tokens.modes.content.primary;
             break;
-          case BaconAlertStyle.filled:
+          case widget.AlertStyle.filled:
             background = tokens.modes.alert.info;
             textColor = tokens.modes.content.inverse;
             borderColor = tokens.modes.border.secondary;
             iconColor = tokens.modes.content.inverse;
             break;
-          case BaconAlertStyle.light:
+          case widget.AlertStyle.light:
             background = tokens.modes.alert.infoLight;
             textColor = tokens.modes.content.primary;
             borderColor = tokens.modes.border.secondary;
@@ -68,21 +76,21 @@ class BaconAlertTheme extends ThemeExtension<BaconAlertTheme>
             break;
         }
         break;
-      case BaconAlertStatus.success:
+      case widget.AlertStatus.success:
         switch (style) {
-          case BaconAlertStyle.outlined:
+          case widget.AlertStyle.outlined:
             background = tokens.modes.background.primary;
             textColor = tokens.modes.content.primary;
             borderColor = tokens.modes.border.primary;
             iconColor = tokens.modes.content.primary;
             break;
-          case BaconAlertStyle.filled:
+          case widget.AlertStyle.filled:
             background = tokens.modes.alert.success;
             textColor = tokens.modes.content.inverse;
             borderColor = tokens.modes.border.secondary;
             iconColor = tokens.modes.content.inverse;
             break;
-          case BaconAlertStyle.light:
+          case widget.AlertStyle.light:
             background = tokens.modes.alert.successLight;
             textColor = tokens.modes.content.primary;
             borderColor = tokens.modes.border.secondary;
@@ -96,21 +104,21 @@ class BaconAlertTheme extends ThemeExtension<BaconAlertTheme>
             break;
         }
         break;
-      case BaconAlertStatus.warning:
+      case widget.AlertStatus.warning:
         switch (style) {
-          case BaconAlertStyle.outlined:
+          case widget.AlertStyle.outlined:
             background = tokens.modes.background.primary;
             textColor = tokens.modes.content.primary;
             borderColor = tokens.modes.border.primary;
             iconColor = tokens.modes.content.primary;
             break;
-          case BaconAlertStyle.filled:
+          case widget.AlertStyle.filled:
             background = tokens.modes.alert.warning;
             textColor = tokens.modes.content.alwaysDark;
             borderColor = tokens.modes.border.secondary;
             iconColor = tokens.modes.content.alwaysDark;
             break;
-          case BaconAlertStyle.light:
+          case widget.AlertStyle.light:
             background = tokens.modes.alert.warningLight;
             textColor = tokens.modes.content.primary;
             borderColor = tokens.modes.border.secondary;
@@ -124,21 +132,21 @@ class BaconAlertTheme extends ThemeExtension<BaconAlertTheme>
             break;
         }
         break;
-      case BaconAlertStatus.error:
+      case widget.AlertStatus.error:
         switch (style) {
-          case BaconAlertStyle.outlined:
+          case widget.AlertStyle.outlined:
             background = tokens.modes.background.primary;
             textColor = tokens.modes.content.primary;
             borderColor = tokens.modes.border.primary;
             iconColor = tokens.modes.content.primary;
             break;
-          case BaconAlertStyle.filled:
+          case widget.AlertStyle.filled:
             background = tokens.modes.alert.danger;
             textColor = tokens.modes.content.inverse;
             borderColor = tokens.modes.border.secondary;
             iconColor = tokens.modes.content.inverse;
             break;
-          case BaconAlertStyle.light:
+          case widget.AlertStyle.light:
             background = tokens.modes.alert.dangerLight;
             textColor = tokens.modes.content.primary;
             borderColor = tokens.modes.border.secondary;
@@ -152,21 +160,21 @@ class BaconAlertTheme extends ThemeExtension<BaconAlertTheme>
             break;
         }
         break;
-      case BaconAlertStatus.update:
+      case widget.AlertStatus.update:
         switch (style) {
-          case BaconAlertStyle.outlined:
+          case widget.AlertStyle.outlined:
             background = tokens.modes.background.primary;
             textColor = tokens.modes.content.primary;
             borderColor = tokens.modes.border.primary;
             iconColor = tokens.modes.content.primary;
             break;
-          case BaconAlertStyle.filled:
+          case widget.AlertStyle.filled:
             background = tokens.modes.background.inverse;
             textColor = tokens.modes.content.inverse;
             borderColor = tokens.modes.border.secondary;
             iconColor = tokens.modes.content.inverse;
             break;
-          case BaconAlertStyle.light:
+          case widget.AlertStyle.light:
             background = tokens.modes.background.tertiary;
             textColor = tokens.modes.content.primary;
             borderColor = tokens.modes.border.secondary;
@@ -181,24 +189,24 @@ class BaconAlertTheme extends ThemeExtension<BaconAlertTheme>
         }
     }
 
-    return BaconAlertTheme(
+    return HiveAlertTheme(
       tokens: tokens,
-      colors: BaconAlertColors(
+      colors: HiveAlertComponentColors(
         background: background,
         textColor: textColor,
         borderColor: borderColor,
         iconColor: iconColor,
       ),
-      sizes: BaconAlertSizes(tokens: tokens),
+      sizes: HiveAlertSizes(tokens: tokens),
     );
   }
 
   @override
-  BaconAlertTheme copyWith({
-    BaconAlertColors? colors,
-    BaconAlertSizes? sizes,
+  HiveAlertTheme copyWith({
+    HiveAlertComponentColors? colors,
+    HiveAlertSizes? sizes,
   }) {
-    return BaconAlertTheme(
+    return HiveAlertTheme(
       tokens: tokens,
       colors: colors ?? this.colors,
       sizes: sizes ?? this.sizes,
@@ -206,10 +214,10 @@ class BaconAlertTheme extends ThemeExtension<BaconAlertTheme>
   }
 
   @override
-  BaconAlertTheme lerp(ThemeExtension<BaconAlertTheme>? other, double t) {
-    if (other is! BaconAlertTheme) return this;
+  HiveAlertTheme lerp(ThemeExtension<HiveAlertTheme>? other, double t) {
+    if (other is! HiveAlertTheme) return this;
 
-    return BaconAlertTheme(
+    return HiveAlertTheme(
       tokens: tokens.lerp(other.tokens, t),
       colors: colors.lerp(other.colors, t),
       sizes: sizes.lerp(other.sizes, t),
@@ -219,9 +227,10 @@ class BaconAlertTheme extends ThemeExtension<BaconAlertTheme>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty("type", "BaconAlertTheme"));
-    properties.add(DiagnosticsProperty<BaconTokens>('tokens', tokens));
-    properties.add(DiagnosticsProperty<BaconAlertColors>('colors', colors));
-    properties.add(DiagnosticsProperty<BaconAlertSizes>('sizes', sizes));
+    properties.add(DiagnosticsProperty("type", "HiveAlertTheme"));
+    properties.add(DiagnosticsProperty<HiveTokens>('tokens', tokens));
+    properties
+        .add(DiagnosticsProperty<HiveAlertComponentColors>('colors', colors));
+    properties.add(DiagnosticsProperty<HiveAlertSizes>('sizes', sizes));
   }
 }

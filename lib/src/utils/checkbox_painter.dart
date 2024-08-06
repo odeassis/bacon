@@ -1,7 +1,8 @@
-import 'package:bacon/src/utils/colors_lerp.dart';
 import 'package:flutter/material.dart';
 
-class BaconCheckboxPainter extends ToggleablePainter {
+import 'colors_lerp.dart';
+
+class HiveCheckboxPainter extends ToggleablePainter {
   static const double _kEdgeSize = 16;
   static const double _kStrokeWidth = 2.5;
 

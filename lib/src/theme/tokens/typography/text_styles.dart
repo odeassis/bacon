@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class BaconTextStyles extends ThemeExtension<BaconTextStyles>
+class HiveTextStyles extends ThemeExtension<HiveTextStyles>
     with DiagnosticableTreeMixin {
   final TextStyle x2l;
   final TextStyle xl;
@@ -11,7 +11,7 @@ class BaconTextStyles extends ThemeExtension<BaconTextStyles>
   final TextStyle xs;
   final TextStyle x2s;
 
-  const BaconTextStyles({
+  const HiveTextStyles({
     required this.x2l,
     required this.xl,
     required this.lg,
@@ -22,7 +22,7 @@ class BaconTextStyles extends ThemeExtension<BaconTextStyles>
   });
 
   @override
-  BaconTextStyles copyWith({
+  HiveTextStyles copyWith({
     TextStyle? x2l,
     TextStyle? xl,
     TextStyle? lg,
@@ -31,7 +31,7 @@ class BaconTextStyles extends ThemeExtension<BaconTextStyles>
     TextStyle? xs,
     TextStyle? x2s,
   }) {
-    return BaconTextStyles(
+    return HiveTextStyles(
       x2l: x2l ?? this.x2l,
       xl: xl ?? this.xl,
       lg: lg ?? this.lg,
@@ -43,11 +43,11 @@ class BaconTextStyles extends ThemeExtension<BaconTextStyles>
   }
 
   @override
-  BaconTextStyles lerp(
-      covariant ThemeExtension<BaconTextStyles>? other, double t) {
-    if (other is! BaconTextStyles) return this;
+  HiveTextStyles lerp(
+      covariant ThemeExtension<HiveTextStyles>? other, double t) {
+    if (other is! HiveTextStyles) return this;
 
-    return BaconTextStyles(
+    return HiveTextStyles(
       x2l: TextStyle.lerp(x2l, other.x2l, t)!,
       xl: TextStyle.lerp(xl, other.xl, t)!,
       lg: TextStyle.lerp(lg, other.lg, t)!,
@@ -61,7 +61,7 @@ class BaconTextStyles extends ThemeExtension<BaconTextStyles>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty("type", "BaconTextStyles"));
+    properties.add(DiagnosticsProperty("type", "HiveTextStyles"));
     properties.add(DiagnosticsProperty("x2l", x2l));
     properties.add(DiagnosticsProperty("xl", xl));
     properties.add(DiagnosticsProperty("lg", lg));
@@ -71,7 +71,7 @@ class BaconTextStyles extends ThemeExtension<BaconTextStyles>
     properties.add(DiagnosticsProperty("x2s", x2s));
   }
 
-  BaconTextStyles apply({
+  HiveTextStyles apply({
     Color? backgroundColor,
     Color? color,
     Color? decorationColor,
@@ -128,7 +128,7 @@ class BaconTextStyles extends ThemeExtension<BaconTextStyles>
       );
     }
 
-    return BaconTextStyles(
+    return HiveTextStyles(
       x2l: applyProps(x2l),
       xl: applyProps(xl),
       lg: applyProps(lg),

@@ -1,4 +1,4 @@
-name: bacon
+name: hive
 description: "A new Flutter package project."
 version: 0.1.0
 
@@ -44,20 +44,3 @@ flutter:
     - family: BaconIcons
       fonts:
         - asset: fonts/BaconIcons.ttf
-# icon_font:
-#   input_svg_dir: "assets/icons/"
-#   output_font_file: "fonts/Bacon-Icons.ttf"
-
-#   output_class_file: "lib/src/bacon_icons.dart"
-#   symlink_map_file: "assets/symlinks.json"
-#   class_name: "BaconIcons"
-#   package: bacon
-#   format: false
-#   naming_strategy: "snake"
-
-#   font_name: "BaconIcons"
-#   normalize: false
-#   ignore_shapes: false
-
-#   recursive: true
-#   verbose: true

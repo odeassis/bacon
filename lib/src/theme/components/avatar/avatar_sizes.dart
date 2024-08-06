@@ -1,37 +1,38 @@
-import 'package:bacon/src/theme/components/avatar/avatar_size_properties.dart';
-import 'package:bacon/src/theme/tokens/tokens.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../tokens/hive_tokens.dart';
+import 'avatar_size_properties.dart';
+
 @immutable
-class BaconAvatarSizes extends ThemeExtension<BaconAvatarSizes>
+class HiveAvatarSizes extends ThemeExtension<HiveAvatarSizes>
     with DiagnosticableTreeMixin {
-  final BaconTokens tokens;
+  final HiveTokens tokens;
 
   /// Extra large avatar size
-  final BaconAvatarSizeProperties xl;
+  final HiveAvatarSizeProperties xl;
 
   /// Large avatar size
-  final BaconAvatarSizeProperties lg;
+  final HiveAvatarSizeProperties lg;
 
   /// Medium avatar size
-  final BaconAvatarSizeProperties md;
+  final HiveAvatarSizeProperties md;
 
   /// Small avatar size
-  final BaconAvatarSizeProperties sm;
+  final HiveAvatarSizeProperties sm;
 
   /// Extra small avatar size
-  final BaconAvatarSizeProperties xs;
+  final HiveAvatarSizeProperties xs;
 
-  BaconAvatarSizes({
+  HiveAvatarSizes({
     required this.tokens,
-    BaconAvatarSizeProperties? xl,
-    BaconAvatarSizeProperties? lg,
-    BaconAvatarSizeProperties? md,
-    BaconAvatarSizeProperties? sm,
-    BaconAvatarSizeProperties? xs,
+    HiveAvatarSizeProperties? xl,
+    HiveAvatarSizeProperties? lg,
+    HiveAvatarSizeProperties? md,
+    HiveAvatarSizeProperties? sm,
+    HiveAvatarSizeProperties? xs,
   })  : xl = xl ??
-            BaconAvatarSizeProperties(
+            HiveAvatarSizeProperties(
               avatarSize: tokens.scale.component.xl,
               borderRadius: tokens.shape.radii.x3l,
               badgeSize: tokens.scale.component.x3s,
@@ -39,7 +40,7 @@ class BaconAvatarSizes extends ThemeExtension<BaconAvatarSizes>
               textStyle: tokens.typography.label.lg,
             ),
         lg = lg ??
-            BaconAvatarSizeProperties(
+            HiveAvatarSizeProperties(
               avatarSize: tokens.scale.component.lg,
               borderRadius: tokens.shape.radii.x3l,
               badgeSize: tokens.scale.component.x3s,
@@ -47,7 +48,7 @@ class BaconAvatarSizes extends ThemeExtension<BaconAvatarSizes>
               textStyle: tokens.typography.label.md,
             ),
         md = md ??
-            BaconAvatarSizeProperties(
+            HiveAvatarSizeProperties(
               avatarSize: tokens.scale.component.md,
               borderRadius: tokens.shape.radii.x3l,
               badgeSize: tokens.scale.component.x4s,
@@ -55,7 +56,7 @@ class BaconAvatarSizes extends ThemeExtension<BaconAvatarSizes>
               textStyle: tokens.typography.label.xs,
             ),
         sm = sm ??
-            BaconAvatarSizeProperties(
+            HiveAvatarSizeProperties(
               avatarSize: tokens.scale.component.sm,
               borderRadius: tokens.shape.radii.x3l,
               badgeSize: tokens.scale.component.x4s,
@@ -63,7 +64,7 @@ class BaconAvatarSizes extends ThemeExtension<BaconAvatarSizes>
               textStyle: tokens.typography.label.xs,
             ),
         xs = xs ??
-            BaconAvatarSizeProperties(
+            HiveAvatarSizeProperties(
               avatarSize: tokens.scale.component.xs,
               borderRadius: tokens.shape.radii.x3l,
               badgeSize: tokens.scale.component.x5s,
@@ -72,15 +73,15 @@ class BaconAvatarSizes extends ThemeExtension<BaconAvatarSizes>
             );
 
   @override
-  BaconAvatarSizes copyWith({
-    BaconTokens? tokens,
-    BaconAvatarSizeProperties? xl,
-    BaconAvatarSizeProperties? lg,
-    BaconAvatarSizeProperties? md,
-    BaconAvatarSizeProperties? sm,
-    BaconAvatarSizeProperties? xs,
+  HiveAvatarSizes copyWith({
+    HiveTokens? tokens,
+    HiveAvatarSizeProperties? xl,
+    HiveAvatarSizeProperties? lg,
+    HiveAvatarSizeProperties? md,
+    HiveAvatarSizeProperties? sm,
+    HiveAvatarSizeProperties? xs,
   }) {
-    return BaconAvatarSizes(
+    return HiveAvatarSizes(
       tokens: tokens ?? this.tokens,
       xl: xl ?? this.xl,
       lg: lg ?? this.lg,
@@ -91,9 +92,9 @@ class BaconAvatarSizes extends ThemeExtension<BaconAvatarSizes>
   }
 
   @override
-  BaconAvatarSizes lerp(ThemeExtension<BaconAvatarSizes>? other, double t) {
-    if (other is! BaconAvatarSizes) return this;
-    return BaconAvatarSizes(
+  HiveAvatarSizes lerp(ThemeExtension<HiveAvatarSizes>? other, double t) {
+    if (other is! HiveAvatarSizes) return this;
+    return HiveAvatarSizes(
       tokens: tokens.lerp(other.tokens, t),
       xl: xl.lerp(other.xl, t),
       lg: lg.lerp(other.lg, t),
@@ -106,12 +107,12 @@ class BaconAvatarSizes extends ThemeExtension<BaconAvatarSizes>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty("type", "BaconAvatarSizes"));
-    properties.add(DiagnosticsProperty<BaconTokens>("tokens", tokens));
-    properties.add(DiagnosticsProperty<BaconAvatarSizeProperties>("xl", xl));
-    properties.add(DiagnosticsProperty<BaconAvatarSizeProperties>("lg", lg));
-    properties.add(DiagnosticsProperty<BaconAvatarSizeProperties>("md", md));
-    properties.add(DiagnosticsProperty<BaconAvatarSizeProperties>("sm", sm));
-    properties.add(DiagnosticsProperty<BaconAvatarSizeProperties>("xs", xs));
+    properties.add(DiagnosticsProperty("type", "HiveAvatarSizes"));
+    properties.add(DiagnosticsProperty<HiveTokens>("tokens", tokens));
+    properties.add(DiagnosticsProperty<HiveAvatarSizeProperties>("xl", xl));
+    properties.add(DiagnosticsProperty<HiveAvatarSizeProperties>("lg", lg));
+    properties.add(DiagnosticsProperty<HiveAvatarSizeProperties>("md", md));
+    properties.add(DiagnosticsProperty<HiveAvatarSizeProperties>("sm", sm));
+    properties.add(DiagnosticsProperty<HiveAvatarSizeProperties>("xs", xs));
   }
 }

@@ -1,37 +1,38 @@
-import 'package:bacon/src/theme/components/badge/badge_colors.dart';
-import 'package:bacon/src/theme/components/badge/badge_size.dart';
-import 'package:bacon/src/theme/tokens/tokens.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../tokens/hive_tokens.dart';
+import 'badge_colors.dart';
+import 'badge_sizes.dart';
+
 @immutable
-class BaconBadgeTheme extends ThemeExtension<BaconBadgeTheme>
+class HiveBadgeTheme extends ThemeExtension<HiveBadgeTheme>
     with DiagnosticableTreeMixin {
-  final BaconTokens tokens;
+  final HiveTokens tokens;
 
-  final BaconBadgeColors colors;
+  final HiveBadgeColors colors;
 
-  final BaconBadgeSizes sizes;
+  final HiveBadgeSizes sizes;
 
-  BaconBadgeTheme({
+  HiveBadgeTheme({
     required this.tokens,
-    BaconBadgeColors? colors,
-    BaconBadgeSizes? sizes,
+    HiveBadgeColors? colors,
+    HiveBadgeSizes? sizes,
   })  : colors = colors ??
-            BaconBadgeColors(
+            HiveBadgeColors(
               textColor: tokens.modes.content.inverse,
               iconColor: tokens.modes.content.inverse,
               background: tokens.modes.accent.blue,
             ),
-        sizes = sizes ?? BaconBadgeSizes(tokens: tokens);
+        sizes = sizes ?? HiveBadgeSizes(tokens: tokens);
 
   @override
-  BaconBadgeTheme copyWith({
-    BaconTokens? tokens,
-    BaconBadgeColors? colors,
-    BaconBadgeSizes? sizes,
+  HiveBadgeTheme copyWith({
+    HiveTokens? tokens,
+    HiveBadgeColors? colors,
+    HiveBadgeSizes? sizes,
   }) {
-    return BaconBadgeTheme(
+    return HiveBadgeTheme(
       tokens: tokens ?? this.tokens,
       colors: colors ?? this.colors,
       sizes: sizes ?? this.sizes,
@@ -39,10 +40,10 @@ class BaconBadgeTheme extends ThemeExtension<BaconBadgeTheme>
   }
 
   @override
-  BaconBadgeTheme lerp(ThemeExtension<BaconBadgeTheme>? other, double t) {
-    if (other is! BaconBadgeTheme) return this;
+  HiveBadgeTheme lerp(ThemeExtension<HiveBadgeTheme>? other, double t) {
+    if (other is! HiveBadgeTheme) return this;
 
-    return BaconBadgeTheme(
+    return HiveBadgeTheme(
       tokens: tokens.lerp(other.tokens, t),
       colors: colors.lerp(other.colors, t),
       sizes: sizes.lerp(other.sizes, t),
@@ -52,10 +53,9 @@ class BaconBadgeTheme extends ThemeExtension<BaconBadgeTheme>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty("type", "BaconBadgeTheme"))
-      ..add(DiagnosticsProperty<BaconTokens>("tokens", tokens))
-      ..add(DiagnosticsProperty<BaconBadgeColors>("colors", colors))
-      ..add(DiagnosticsProperty<BaconBadgeSizes>("sizes", sizes));
+    properties.add(DiagnosticsProperty("type", "HiveBadgeTheme"));
+    properties.add(DiagnosticsProperty<HiveTokens>("tokens", tokens));
+    properties.add(DiagnosticsProperty<HiveBadgeColors>("colors", colors));
+    properties.add(DiagnosticsProperty<HiveBadgeSizes>("sizes", sizes));
   }
 }

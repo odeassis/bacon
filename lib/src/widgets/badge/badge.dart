@@ -1,12 +1,9 @@
-import 'package:bacon/bacon.dart';
-import 'package:bacon/src/theme/components/badge/badge_size.dart';
-import 'package:bacon/src/theme/components/badge/badge_size_properties.dart';
-import 'package:bacon/src/utils/extensions.dart';
-import 'package:bacon/src/utils/shape_decoration.dart';
-import 'package:bacon/src/utils/squircle/squircle_border.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/src/theme/hive_theme.dart';
 
-enum BaconBadgeSize {
+import '../../theme/components/components.dart' as components;
+
+enum BadgeSize {
   /// The minimum size of the badge.
   md,
 
@@ -14,7 +11,7 @@ enum BaconBadgeSize {
   sm,
 }
 
-enum BaconBadgeType {
+enum BadgeType {
   /// The filled type of the badge.
   filled,
 
@@ -25,7 +22,7 @@ enum BaconBadgeType {
   light,
 }
 
-class BaconBadge extends StatelessWidget {
+class HiveBadge extends StatelessWidget {
   /// Whether to use the upper case text style for the badge.
   final bool isUpperCase;
 
@@ -54,7 +51,7 @@ class BaconBadge extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
 
   /// The size of the badge.
-  final BaconBadgeSize? badgeSize;
+  final BadgeSize? badgeSize;
 
   /// The custom decoration of the badge.
   final Decoration? decoration;
@@ -78,7 +75,7 @@ class BaconBadge extends StatelessWidget {
   final Widget? trailing;
 
   /// Creates a Bacon Design badge.
-  const BaconBadge({
+  const HiveBadge({
     super.key,
     this.isUpperCase = true,
     this.borderRadius,
@@ -99,46 +96,46 @@ class BaconBadge extends StatelessWidget {
     this.trailing,
   });
 
-  BaconBadgeSizeProperties _getBaconBadgeSize(
+  components.HiveBadgeSizeProperties _getBadgeSize(
     BuildContext context,
-    BaconBadgeSize? baconBadgeSize,
+    BadgeSize? badgeSize,
   ) {
-    return switch (baconBadgeSize) {
-      BaconBadgeSize.md => context.baconTheme?.badgeTheme.sizes.md ??
-          BaconBadgeSizes(tokens: BaconTokens.light).md,
-      _ => context.baconTheme?.badgeTheme.sizes.sm ??
-          BaconBadgeSizes(tokens: BaconTokens.light).sm,
+    return switch (badgeSize) {
+      BadgeSize.md => context.hiveTheme?.badgeTheme.sizes.md ??
+          BadgeSizes(tokens: BaconTokens.light).md,
+      _ => context.hiveTheme?.badgeTheme.sizes.sm ??
+          BadgeSizes(tokens: BaconTokens.light).sm,
     };
   }
 
   @override
   Widget build(BuildContext context) {
-    final BaconBadgeSizeProperties effectiveBaconBadgeSize =
-        _getBaconBadgeSize(context, badgeSize);
+    final BadgeSizeProperties effectiveBadgeSize =
+        _getBadgeSize(context, badgeSize);
 
-    final TextStyle effectiveTextStyle = effectiveBaconBadgeSize.textStyle;
+    final TextStyle effectiveTextStyle = effectiveBadgeSize.textStyle;
 
     final Color effectiveTextColor = textColor ??
-        context.baconTheme?.badgeTheme.colors.textColor ??
+        context.hiveTheme?.badgeTheme.colors.textColor ??
         BaconTokens.light.modes.content.inverse;
 
     final BorderRadiusGeometry effectiveBorderRadius =
-        borderRadius ?? effectiveBaconBadgeSize.borderRadius;
+        borderRadius ?? effectiveBadgeSize.borderRadius;
 
     final Color effectiveBackground = background ??
-        context.baconTheme?.badgeTheme.colors.background ??
+        context.hiveTheme?.badgeTheme.colors.background ??
         BaconTokens.light.modes.accent.blue;
 
     final Color effectiveIconColor = iconColor ??
-        context.baconTheme?.badgeTheme.colors.iconColor ??
+        context.hiveTheme?.badgeTheme.colors.iconColor ??
         BaconTokens.light.modes.content.inverse;
 
-    final double? effectiveHeight = height ?? effectiveBaconBadgeSize.height;
+    final double? effectiveHeight = height ?? effectiveBadgeSize.height;
 
-    final double effectiveGap = gap ?? effectiveBaconBadgeSize.gap;
+    final double effectiveGap = gap ?? effectiveBadgeSize.gap;
 
     final EdgeInsetsGeometry effectivePadding =
-        padding ?? effectiveBaconBadgeSize.padding;
+        padding ?? effectiveBadgeSize.padding;
 
     final EdgeInsets resolvedDirectionalPadding =
         effectivePadding.resolve(Directionality.of(context));
@@ -213,7 +210,7 @@ class BaconBadge extends StatelessWidget {
             child: IconTheme(
               data: IconThemeData(
                 color: effectiveIconColor,
-                size: effectiveBaconBadgeSize.iconSizeValue,
+                size: effectiveBadgeSize.iconSizeValue,
               ),
               child: DefaultTextStyle(
                 style: effectiveTextStyle.copyWith(color: effectiveTextColor),

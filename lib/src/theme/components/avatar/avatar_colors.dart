@@ -1,16 +1,17 @@
-import 'package:bacon/src/utils/colors_lerp.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../../utils/utils.dart' as utils;
+
 @immutable
-class BaconAvatarColors extends ThemeExtension<BaconAvatarColors>
+class HiveAvatarColors extends ThemeExtension<HiveAvatarColors>
     with DiagnosticableTreeMixin {
   final Color background;
   final Color bodgeColor;
   final Color iconColor;
   final Color textColor;
 
-  const BaconAvatarColors({
+  const HiveAvatarColors({
     required this.background,
     required this.bodgeColor,
     required this.iconColor,
@@ -18,13 +19,13 @@ class BaconAvatarColors extends ThemeExtension<BaconAvatarColors>
   });
 
   @override
-  BaconAvatarColors copyWith({
+  HiveAvatarColors copyWith({
     Color? background,
     Color? bodgeColor,
     Color? iconColor,
     Color? textColor,
   }) {
-    return BaconAvatarColors(
+    return HiveAvatarColors(
       background: background ?? this.background,
       bodgeColor: bodgeColor ?? this.bodgeColor,
       iconColor: iconColor ?? this.iconColor,
@@ -33,21 +34,21 @@ class BaconAvatarColors extends ThemeExtension<BaconAvatarColors>
   }
 
   @override
-  BaconAvatarColors lerp(
-      covariant ThemeExtension<BaconAvatarColors>? other, double t) {
-    if (other is! BaconAvatarColors) return this;
-    return BaconAvatarColors(
-      background: colorsLerp(background, other.background, t)!,
-      bodgeColor: colorsLerp(bodgeColor, other.bodgeColor, t)!,
-      iconColor: colorsLerp(iconColor, other.iconColor, t)!,
-      textColor: colorsLerp(textColor, other.textColor, t)!,
+  HiveAvatarColors lerp(
+      covariant ThemeExtension<HiveAvatarColors>? other, double t) {
+    if (other is! HiveAvatarColors) return this;
+    return HiveAvatarColors(
+      background: utils.colorsLerp(background, other.background, t)!,
+      bodgeColor: utils.colorsLerp(bodgeColor, other.bodgeColor, t)!,
+      iconColor: utils.colorsLerp(iconColor, other.iconColor, t)!,
+      textColor: utils.colorsLerp(textColor, other.textColor, t)!,
     );
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty("type", "BaconAvatarColors"));
+    properties.add(DiagnosticsProperty("type", "HiveAvatarColors"));
     properties.add(ColorProperty('background', background));
     properties.add(ColorProperty('bodgeColor', bodgeColor));
     properties.add(ColorProperty('iconColor', iconColor));

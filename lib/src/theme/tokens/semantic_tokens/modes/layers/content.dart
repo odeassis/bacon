@@ -1,7 +1,8 @@
-import 'package:bacon/bacon.dart';
+import '../../../primitives/primitives.dart';
+import 'layers_tokens.dart';
 
-class BaconDefaultContentColors extends BaconBaseLayersSemanticTokensColors {
-  const BaconDefaultContentColors({
+class HiveContentColors extends HiveLayersColorsTokens {
+  const HiveContentColors({
     required super.brand,
     required super.brandLight,
     required super.primary,
@@ -12,8 +13,8 @@ class BaconDefaultContentColors extends BaconBaseLayersSemanticTokensColors {
     required super.alwaysDark,
   });
 
-  BaconDefaultContentColors.colors({
-    required BaconBasePrimitiveColors primitives,
+  HiveContentColors.colors({
+    required HivePrimitiveColorsTokens primitives,
   }) : super(
           brand: primitives.brand600,
           brandLight: primitives.brand200,

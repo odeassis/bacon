@@ -1,0 +1,311 @@
+import 'package:flutter/material.dart';
+
+import '../primitives/primitives.dart';
+import 'text_styles.dart';
+
+class HiveTypography {
+  static HiveTextStyles display = HiveTextStyles(
+    x2l: _BaconTextStyle(
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize112,
+      fontWeight: HiveFontSizes.font.fontWeightBlack,
+      letterSpacing: HiveFontSizes.font.letterSpacingTight,
+    ),
+    xl: _BaconTextStyle(
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize112,
+      fontWeight: HiveFontSizes.font.fontWeightBlack,
+    ),
+    lg: _BaconTextStyle(
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize96,
+      fontWeight: HiveFontSizes.font.fontWeightBold,
+      height: HiveFontSizes.font.height120,
+      letterSpacing: HiveFontSizes.font.letterSpacingTight,
+    ),
+    md: _BaconTextStyle(
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize52,
+      fontWeight: HiveFontSizes.font.fontWeightBold,
+      height: HiveFontSizes.font.height120,
+      letterSpacing: HiveFontSizes.font.letterSpacingTight,
+    ),
+    sm: _BaconTextStyle(
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize44,
+      fontWeight: HiveFontSizes.font.fontWeightBold,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingDefault,
+    ),
+    xs: _BaconTextStyle(
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize36,
+      fontWeight: HiveFontSizes.font.fontWeightBold,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingDefault,
+    ),
+    x2s: _BaconTextStyle(
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize32,
+      fontWeight: HiveFontSizes.font.fontWeightBold,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingDefault,
+    ),
+  );
+
+  static HiveTextStyles headline = HiveTextStyles(
+    x2l: _BaconTextStyle(
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize40,
+      fontWeight: HiveFontSizes.font.fontWeightBold,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingDefault,
+    ),
+    xl: _BaconTextStyle(
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize36,
+      fontWeight: HiveFontSizes.font.fontWeightBold,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingDefault,
+    ),
+    lg: _BaconTextStyle(
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize32,
+      fontWeight: HiveFontSizes.font.fontWeightBold,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingDefault,
+    ),
+    md: _BaconTextStyle(
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize28,
+      fontWeight: HiveFontSizes.font.fontWeightBold,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingDefault,
+    ),
+    sm: _BaconTextStyle(
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize24,
+      fontWeight: HiveFontSizes.font.fontWeightBold,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingDefault,
+    ),
+    xs: _BaconTextStyle(
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize20,
+      fontWeight: HiveFontSizes.font.fontWeightBold,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingDefault,
+    ),
+    x2s: _BaconTextStyle(
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize24,
+      fontWeight: HiveFontSizes.font.fontWeightBold,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingDefault,
+    ),
+  );
+
+  static HiveTextStyles paragraph = HiveTextStyles(
+    x2l: _BaconTextStyle(
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize32,
+      fontWeight: HiveFontSizes.font.fontWeightRegular,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingDefault,
+    ),
+    xl: _BaconTextStyle(
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize20,
+      fontWeight: HiveFontSizes.font.fontWeightRegular,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingDefault,
+    ),
+    lg: _BaconTextStyle(
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize18,
+      fontWeight: HiveFontSizes.font.fontWeightRegular,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingDefault,
+    ),
+    md: _BaconTextStyle(
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize16,
+      fontWeight: HiveFontSizes.font.fontWeightRegular,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingDefault,
+    ),
+    sm: _BaconTextStyle(
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize14,
+      fontWeight: HiveFontSizes.font.fontWeightRegular,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingDefault,
+    ),
+    xs: _BaconTextStyle(
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize12,
+      fontWeight: HiveFontSizes.font.fontWeightRegular,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingDefault,
+    ),
+    x2s: _BaconTextStyle(
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize12,
+      fontWeight: HiveFontSizes.font.fontWeightRegular,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingTight,
+    ),
+  );
+
+  static HiveTextStyles label = HiveTextStyles(
+    x2l: _BaconTextStyle(
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize32,
+      fontWeight: HiveFontSizes.font.fontWeightMedium,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingDefault,
+    ),
+    xl: _BaconTextStyle(
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize20,
+      fontWeight: HiveFontSizes.font.fontWeightMedium,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingDefault,
+    ),
+    lg: _BaconTextStyle(
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize18,
+      fontWeight: HiveFontSizes.font.fontWeightMedium,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingDefault,
+    ),
+    md: _BaconTextStyle(
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize16,
+      fontWeight: HiveFontSizes.font.fontWeightMedium,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingDefault,
+    ),
+    sm: _BaconTextStyle(
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize14,
+      fontWeight: HiveFontSizes.font.fontWeightMedium,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingDefault,
+    ),
+    xs: _BaconTextStyle(
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize12,
+      fontWeight: HiveFontSizes.font.fontWeightMedium,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingDefault,
+    ),
+    x2s: _BaconTextStyle(
+      decoration: TextDecoration.none,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize12,
+      fontWeight: HiveFontSizes.font.fontWeightMedium,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingTight,
+    ),
+  );
+  static HiveTextStyles link = HiveTextStyles(
+    x2l: _BaconTextStyle(
+      decoration: TextDecoration.underline,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize32,
+      fontWeight: HiveFontSizes.font.fontWeightMedium,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingDefault,
+    ),
+    xl: _BaconTextStyle(
+      decoration: TextDecoration.underline,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize20,
+      fontWeight: HiveFontSizes.font.fontWeightMedium,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingDefault,
+    ),
+    lg: _BaconTextStyle(
+      decoration: TextDecoration.underline,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize18,
+      fontWeight: HiveFontSizes.font.fontWeightMedium,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingDefault,
+    ),
+    md: _BaconTextStyle(
+      decoration: TextDecoration.underline,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize16,
+      fontWeight: HiveFontSizes.font.fontWeightMedium,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingDefault,
+    ),
+    sm: _BaconTextStyle(
+      decoration: TextDecoration.underline,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize14,
+      fontWeight: HiveFontSizes.font.fontWeightMedium,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingDefault,
+    ),
+    xs: _BaconTextStyle(
+      decoration: TextDecoration.underline,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize12,
+      fontWeight: HiveFontSizes.font.fontWeightMedium,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingDefault,
+    ),
+    x2s: _BaconTextStyle(
+      decoration: TextDecoration.underline,
+      fontStyle: FontStyle.normal,
+      fontSize: HiveFontSizes.font.fontSize12,
+      fontWeight: HiveFontSizes.font.fontWeightMedium,
+      height: HiveFontSizes.font.height140,
+      letterSpacing: HiveFontSizes.font.letterSpacingTight,
+    ),
+  );
+}
+
+class _BaconTextStyle extends TextStyle {
+  const _BaconTextStyle({
+    super.fontSize,
+    super.decoration,
+    super.fontStyle,
+    super.fontWeight,
+    super.height,
+    super.letterSpacing,
+  }) : super(
+          fontFamily: 'Inter',
+          package: 'bacon',
+        );
+}

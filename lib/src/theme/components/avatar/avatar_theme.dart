@@ -1,38 +1,39 @@
-import 'package:bacon/bacon.dart';
-import 'package:bacon/src/theme/components/avatar/avatar_colors.dart';
-import 'package:bacon/src/theme/components/avatar/avatar_sizes.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../tokens/hive_tokens.dart';
+import 'avatar_colors.dart';
+import 'avatar_sizes.dart';
+
 @immutable
-class BaconAvatarTheme extends ThemeExtension<BaconAvatarTheme>
+class HiveAvatarTheme extends ThemeExtension<HiveAvatarTheme>
     with DiagnosticableTreeMixin {
-  final BaconTokens tokens;
+  final HiveTokens tokens;
 
-  final BaconAvatarSizes sizes;
+  final HiveAvatarSizes sizes;
 
-  final BaconAvatarColors colors;
+  final HiveAvatarColors colors;
 
-  BaconAvatarTheme({
+  HiveAvatarTheme({
     required this.tokens,
-    BaconAvatarSizes? sizes,
-    BaconAvatarColors? colors,
+    HiveAvatarSizes? sizes,
+    HiveAvatarColors? colors,
   })  : colors = colors ??
-            BaconAvatarColors(
+            HiveAvatarColors(
               background: tokens.modes.background.brandLight,
               bodgeColor: tokens.modes.content.primary,
               iconColor: tokens.modes.content.secondary,
               textColor: tokens.modes.content.secondary,
             ),
-        sizes = sizes ?? BaconAvatarSizes(tokens: tokens);
+        sizes = sizes ?? HiveAvatarSizes(tokens: tokens);
 
   @override
-  BaconAvatarTheme copyWith({
-    BaconTokens? tokens,
-    BaconAvatarSizes? sizes,
-    BaconAvatarColors? colors,
+  HiveAvatarTheme copyWith({
+    HiveTokens? tokens,
+    HiveAvatarSizes? sizes,
+    HiveAvatarColors? colors,
   }) {
-    return BaconAvatarTheme(
+    return HiveAvatarTheme(
       tokens: tokens ?? this.tokens,
       sizes: sizes ?? this.sizes,
       colors: colors ?? this.colors,
@@ -40,9 +41,9 @@ class BaconAvatarTheme extends ThemeExtension<BaconAvatarTheme>
   }
 
   @override
-  BaconAvatarTheme lerp(ThemeExtension<BaconAvatarTheme>? other, double t) {
-    if (other is! BaconAvatarTheme) return this;
-    return BaconAvatarTheme(
+  HiveAvatarTheme lerp(ThemeExtension<HiveAvatarTheme>? other, double t) {
+    if (other is! HiveAvatarTheme) return this;
+    return HiveAvatarTheme(
       tokens: tokens.lerp(other.tokens, t),
       sizes: sizes.lerp(other.sizes, t),
       colors: colors.lerp(other.colors, t),
@@ -52,9 +53,9 @@ class BaconAvatarTheme extends ThemeExtension<BaconAvatarTheme>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty("type", "BaconAvatarTheme"));
-    properties.add(DiagnosticsProperty<BaconTokens>("tokens", tokens));
-    properties.add(DiagnosticsProperty<BaconAvatarSizes>("sizes", sizes));
-    properties.add(DiagnosticsProperty<BaconAvatarColors>("colors", colors));
+    properties.add(DiagnosticsProperty("type", "HiveAvatarTheme"));
+    properties.add(DiagnosticsProperty<HiveTokens>("tokens", tokens));
+    properties.add(DiagnosticsProperty<HiveAvatarSizes>("sizes", sizes));
+    properties.add(DiagnosticsProperty<HiveAvatarColors>("colors", colors));
   }
 }

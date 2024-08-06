@@ -1,7 +1,8 @@
-import 'package:bacon/src/utils/shared/common/effects/painters/pulse_effect_paint.dart';
 import 'package:flutter/material.dart';
 
-class BaconPulseEffect extends StatefulWidget {
+import '../painters/painters.dart';
+
+class HivePulseEffect extends StatefulWidget {
   final bool show;
   final bool showJiggle;
   final BorderRadiusGeometry? childBorderRadius;
@@ -12,7 +13,7 @@ class BaconPulseEffect extends StatefulWidget {
   final Widget child;
 
   /// Creates a Bacon Design pulse effect.
-  const BaconPulseEffect({
+  const HivePulseEffect({
     super.key,
     required this.show,
     required this.showJiggle,
@@ -25,10 +26,10 @@ class BaconPulseEffect extends StatefulWidget {
   });
 
   @override
-  State<BaconPulseEffect> createState() => _BaconPulseEffectState();
+  State<HivePulseEffect> createState() => _HivePulseEffectState();
 }
 
-class _BaconPulseEffectState extends State<BaconPulseEffect>
+class _HivePulseEffectState extends State<HivePulseEffect>
     with SingleTickerProviderStateMixin {
   static const double _jiggleTimePercentage = 28.6;
   static const double _jiggleRestTimePercentage =
@@ -38,7 +39,7 @@ class _BaconPulseEffectState extends State<BaconPulseEffect>
     animationBehavior: AnimationBehavior.preserve,
     vsync: this,
     duration: widget.effectDuration,
-    debugLabel: "BaconPulseEffect animation controller.",
+    debugLabel: "HivePulseEffect animation controller.",
   );
 
   late final CurvedAnimation _pulseAnimation = CurvedAnimation(
@@ -76,7 +77,7 @@ class _BaconPulseEffectState extends State<BaconPulseEffect>
   ).animate(_animationController);
 
   @override
-  void didUpdateWidget(covariant BaconPulseEffect oldWidget) {
+  void didUpdateWidget(covariant HivePulseEffect oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (widget.show != oldWidget.show) {

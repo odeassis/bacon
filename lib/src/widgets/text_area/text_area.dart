@@ -2,7 +2,7 @@ import 'package:bacon/src/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../theme/tokens/tokens.dart';
+import '../../theme/tokens/hive_tokens.dart';
 import '../text_input/text_input_form.dart';
 
 typedef BaconTextAreaErrorBuilder = Widget Function(

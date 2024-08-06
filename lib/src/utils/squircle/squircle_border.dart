@@ -1,11 +1,11 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:bacon/src/utils/colors_lerp.dart';
-import 'package:bacon/src/utils/squircle/squircle_border_radius.dart';
-import 'package:bacon/src/utils/squircle/squircle_radius.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/src/utils/colors_lerp.dart';
+
+import 'squircle.dart';
 
 enum BorderAlign {
   inside,
@@ -13,16 +13,16 @@ enum BorderAlign {
   outside,
 }
 
-class BaconSquircleBorder extends OutlinedBorder {
+class HiveSquircleBorder extends OutlinedBorder {
   /// The radius for each corner.
   ///
   /// Negative radius values are clamped to 0.0 by [getInnerPath] and [getOuterPath].
-  final BaconSquircleBorderRadius borderRadius;
+  final HiveSquircleBorderRadius borderRadius;
   final BorderAlign borderAlign;
 
-  const BaconSquircleBorder({
+  const HiveSquircleBorder({
     super.side = BaconSquicleBorderSide.none,
-    this.borderRadius = BaconSquircleBorderRadius.zero,
+    this.borderRadius = HiveSquircleBorderRadius.zero,
     this.borderAlign = BorderAlign.inside,
   });
 
@@ -41,7 +41,7 @@ class BaconSquircleBorder extends OutlinedBorder {
 
   @override
   ShapeBorder scale(double t) {
-    return BaconSquircleBorder(
+    return HiveSquircleBorder(
       side: side.scale(t),
       borderRadius: borderRadius * t,
     );
@@ -49,11 +49,11 @@ class BaconSquircleBorder extends OutlinedBorder {
 
   @override
   ShapeBorder? lerpFrom(ShapeBorder? a, double t) {
-    if (a is BaconSquircleBorder) {
-      return BaconSquircleBorder(
+    if (a is HiveSquircleBorder) {
+      return HiveSquircleBorder(
         side: BaconSquicleBorderSide.lerp(a.side, side, t),
         borderRadius:
-            BaconSquircleBorderRadius.lerp(a.borderRadius, borderRadius, t)!,
+            HiveSquircleBorderRadius.lerp(a.borderRadius, borderRadius, t)!,
       );
     }
     return super.lerpFrom(a, t);
@@ -61,11 +61,11 @@ class BaconSquircleBorder extends OutlinedBorder {
 
   @override
   ShapeBorder? lerpTo(ShapeBorder? b, double t) {
-    if (b is BaconSquircleBorder) {
-      return BaconSquircleBorder(
+    if (b is HiveSquircleBorder) {
+      return HiveSquircleBorder(
         side: BaconSquicleBorderSide.lerp(side, b.side, t),
         borderRadius:
-            BaconSquircleBorderRadius.lerp(borderRadius, b.borderRadius, t)!,
+            HiveSquircleBorderRadius.lerp(borderRadius, b.borderRadius, t)!,
       );
     }
     return super.lerpTo(b, t);
@@ -88,15 +88,15 @@ class BaconSquircleBorder extends OutlinedBorder {
       switch (borderAlign) {
         case BorderAlign.inside:
           return borderRadius -
-              BaconSquircleBorderRadius.all(
-                BaconSquircleRadius(
+              HiveSquircleBorderRadius.all(
+                HiveSquircleRadius(
                   cornerRadius: side.width,
                 ),
               );
         case BorderAlign.center:
           return borderRadius -
-              BaconSquircleBorderRadius.all(
-                BaconSquircleRadius(
+              HiveSquircleBorderRadius.all(
+                HiveSquircleRadius(
                   cornerRadius: side.width / 2,
                 ),
               );
@@ -120,7 +120,7 @@ class BaconSquircleBorder extends OutlinedBorder {
 
   Path _getPath(
     Rect rect,
-    BaconSquircleBorderRadius radius, {
+    HiveSquircleBorderRadius radius, {
     TextDirection? textDirection,
   }) {
     if ([radius.bottomLeft, radius.bottomRight, radius.topLeft, radius.topRight]
@@ -132,12 +132,12 @@ class BaconSquircleBorder extends OutlinedBorder {
   }
 
   @override
-  BaconSquircleBorder copyWith({
+  HiveSquircleBorder copyWith({
     BorderSide? side,
-    BaconSquircleBorderRadius? borderRadius,
+    HiveSquircleBorderRadius? borderRadius,
     BorderAlign? borderAlign,
   }) {
-    return BaconSquircleBorder(
+    return HiveSquircleBorder(
       side: side ?? this.side,
       borderRadius: borderRadius ?? this.borderRadius,
       borderAlign: borderAlign ?? this.borderAlign,
@@ -168,8 +168,8 @@ class BaconSquircleBorder extends OutlinedBorder {
           switch (borderAlign) {
             case BorderAlign.inside:
               return borderRadius -
-                  BaconSquircleBorderRadius.all(
-                    BaconSquircleRadius(
+                  HiveSquircleBorderRadius.all(
+                    HiveSquircleRadius(
                       cornerRadius: side.width / 2,
                     ),
                   );
@@ -177,8 +177,8 @@ class BaconSquircleBorder extends OutlinedBorder {
               return borderRadius;
             case BorderAlign.outside:
               return borderRadius +
-                  BaconSquircleBorderRadius.all(
-                    BaconSquircleRadius(
+                  HiveSquircleBorderRadius.all(
+                    HiveSquircleRadius(
                       cornerRadius: side.width / 2,
                     ),
                   );
@@ -201,7 +201,7 @@ class BaconSquircleBorder extends OutlinedBorder {
   @override
   bool operator ==(Object other) {
     if (other.runtimeType != runtimeType) return false;
-    return other is BaconSquircleBorder &&
+    return other is HiveSquircleBorder &&
         other.side == side &&
         other.borderRadius == borderRadius &&
         other.borderAlign == borderAlign;
@@ -212,7 +212,7 @@ class BaconSquircleBorder extends OutlinedBorder {
 
   @override
   String toString() {
-    return '${objectRuntimeType(this, 'BaconSquircleBorder')}($side, $borderRadius, $borderAlign)';
+    return '${objectRuntimeType(this, 'HiveSquircleBorder')}($side, $borderRadius, $borderAlign)';
   }
 }
 

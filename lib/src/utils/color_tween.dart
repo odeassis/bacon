@@ -1,5 +1,6 @@
-import 'package:bacon/src/utils/colors_lerp.dart';
 import 'package:flutter/animation.dart';
+
+import 'colors_lerp.dart';
 
 // TODO: Remove this once Flutter transitions from straight alpha to premultiplied alpha for color lerping.
 class ColorTweenWithPremultipliedAlpha extends Tween<Color?> {

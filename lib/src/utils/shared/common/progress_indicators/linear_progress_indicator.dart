@@ -1,9 +1,9 @@
 import 'package:flutter/widgets.dart';
 
+import '../painters/painters.dart';
 import 'base_progress.dart';
-import 'painters/linear_progress_indicator.dart';
 
-class BaconLinearProgressIndicator extends BaconBaseProgressIndicator {
+class HiveLinearProgressIndicator extends HiveBaseProgressIndicator {
   /// The container radius of the linear progress indicator.
   final BorderRadiusGeometry containerRadius;
 
@@ -14,7 +14,7 @@ class BaconLinearProgressIndicator extends BaconBaseProgressIndicator {
   final double minHeight;
 
   /// Creates a Bacon Design linear progress indicator.
-  const BaconLinearProgressIndicator({
+  const HiveLinearProgressIndicator({
     super.key,
     super.value,
     required super.backgroundColor,
@@ -32,12 +32,12 @@ class BaconLinearProgressIndicator extends BaconBaseProgressIndicator {
   Color get backgroundColor => super.backgroundColor;
 
   @override
-  State<BaconLinearProgressIndicator> createState() =>
-      _BaconLinearProgressIndicatorState();
+  State<HiveLinearProgressIndicator> createState() =>
+      _HiveLinearProgressIndicatorState();
 }
 
-class _BaconLinearProgressIndicatorState
-    extends State<BaconLinearProgressIndicator>
+class _HiveLinearProgressIndicatorState
+    extends State<HiveLinearProgressIndicator>
     with SingleTickerProviderStateMixin {
   static const int _kIndeterminateLinearDuration = 1800;
 
@@ -56,7 +56,7 @@ class _BaconLinearProgressIndicatorState
   }
 
   @override
-  void didUpdateWidget(BaconLinearProgressIndicator oldWidget) {
+  void didUpdateWidget(HiveLinearProgressIndicator oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (widget.value == null && !_controller.isAnimating) {
@@ -89,7 +89,7 @@ class _BaconLinearProgressIndicatorState
         ),
         child: RepaintBoundary(
           child: CustomPaint(
-            painter: BaconLinearProgressIndicatorPainter(
+            painter: HiveLinearProgressIndicatorPainter(
               backgroundColor: widget.backgroundColor,
               valueColor: widget.color,
               value: widget.value,

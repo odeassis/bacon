@@ -1,7 +1,8 @@
-import 'package:bacon/src/utils/shared/common/effects/painters/focus_effect_paint.dart';
 import 'package:flutter/material.dart';
 
-class BaconFocusEffect extends StatefulWidget {
+import '../painters/painters.dart';
+
+class HiveFocusEffect extends StatefulWidget {
   final bool show;
   final BorderRadiusGeometry? childBorderRadius;
   final Color effectColor;
@@ -11,7 +12,7 @@ class BaconFocusEffect extends StatefulWidget {
   final Widget child;
 
   /// Creates a Bacon Design focus effect.
-  const BaconFocusEffect({
+  const HiveFocusEffect({
     super.key,
     required this.show,
     this.childBorderRadius,
@@ -23,15 +24,15 @@ class BaconFocusEffect extends StatefulWidget {
   });
 
   @override
-  State<BaconFocusEffect> createState() => _BaconFocusEffectState();
+  State<HiveFocusEffect> createState() => _HiveFocusEffectState();
 }
 
-class _BaconFocusEffectState extends State<BaconFocusEffect>
+class _HiveFocusEffectState extends State<HiveFocusEffect>
     with SingleTickerProviderStateMixin {
   late final AnimationController _animationController = AnimationController(
     vsync: this,
     duration: widget.effectDuration,
-    debugLabel: "BaconFocusEffect animation controller.",
+    debugLabel: "HiveFocusEffect animation controller.",
   );
 
   late final CurvedAnimation _focusAnimation = CurvedAnimation(
@@ -40,7 +41,7 @@ class _BaconFocusEffectState extends State<BaconFocusEffect>
   );
 
   @override
-  void didUpdateWidget(BaconFocusEffect oldWidget) {
+  void didUpdateWidget(HiveFocusEffect oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     widget.show

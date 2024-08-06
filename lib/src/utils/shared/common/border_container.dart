@@ -1,5 +1,6 @@
-import 'package:bacon/src/utils/shape_decoration.dart';
 import 'package:flutter/material.dart';
+
+import '../../utils.dart' as utils;
 
 class BorderContainer extends StatefulWidget {
   final bool expands;
@@ -98,7 +99,7 @@ class _BorderContainerState extends State<BorderContainer>
           ),
           clipBehavior: widget.clipBehavior,
           decoration: widget.decoration ??
-              ShapeDecorationWithPremultipliedAlpha(
+              utils.ShapeDecorationWithPremultipliedAlpha(
                 color: widget.backgroundColor,
                 shape: _border.evaluate(_borderAnimation)!,
               ),

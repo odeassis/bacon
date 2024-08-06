@@ -1,6 +1,7 @@
-import 'package:bacon/src/utils/squircle/squircle_radius.dart';
-import 'package:bacon/src/widgets/avatar/avatar.dart';
 import 'package:flutter/rendering.dart';
+
+import '../widgets/avatar/avatar.dart';
+import 'squircle/squircle_radius.dart';
 
 class AvatarClipper extends CustomClipper<Path> {
   final bool showBadge;
@@ -9,7 +10,7 @@ class AvatarClipper extends CustomClipper<Path> {
   final double width;
   final double badgeMarginValue;
   final double badgeSize;
-  final BaconBadgeAlignment badgeAlignment;
+  final AvatarBadgeAlignment badgeAlignment;
   final TextDirection textDirection;
 
   AvatarClipper({
@@ -28,7 +29,7 @@ class AvatarClipper extends CustomClipper<Path> {
 
     if (textDirection == TextDirection.rtl) {
       switch (badgeAlignment) {
-        case BaconBadgeAlignment.topLeft:
+        case AvatarBadgeAlignment.topLeft:
           return Path()
             ..addOval(
               Rect.fromCircle(
@@ -36,7 +37,7 @@ class AvatarClipper extends CustomClipper<Path> {
                 radius: badgeRadius + badgeMarginValue,
               ),
             );
-        case BaconBadgeAlignment.topRight:
+        case AvatarBadgeAlignment.topRight:
           return Path()
             ..addOval(
               Rect.fromCircle(
@@ -44,7 +45,7 @@ class AvatarClipper extends CustomClipper<Path> {
                 radius: badgeRadius + badgeMarginValue,
               ),
             );
-        case BaconBadgeAlignment.bottomLeft:
+        case AvatarBadgeAlignment.bottomLeft:
           return Path()
             ..addOval(
               Rect.fromCircle(
@@ -52,7 +53,7 @@ class AvatarClipper extends CustomClipper<Path> {
                 radius: badgeRadius + badgeMarginValue,
               ),
             );
-        case BaconBadgeAlignment.bottomRight:
+        case AvatarBadgeAlignment.bottomRight:
           return Path()
             ..addOval(
               Rect.fromCircle(
@@ -71,7 +72,7 @@ class AvatarClipper extends CustomClipper<Path> {
       }
     } else {
       switch (badgeAlignment) {
-        case BaconBadgeAlignment.topLeft:
+        case AvatarBadgeAlignment.topLeft:
           return Path()
             ..addOval(
               Rect.fromCircle(
@@ -79,7 +80,7 @@ class AvatarClipper extends CustomClipper<Path> {
                 radius: badgeRadius + badgeMarginValue,
               ),
             );
-        case BaconBadgeAlignment.topRight:
+        case AvatarBadgeAlignment.topRight:
           return Path()
             ..addOval(
               Rect.fromCircle(
@@ -87,7 +88,7 @@ class AvatarClipper extends CustomClipper<Path> {
                 radius: badgeRadius + badgeMarginValue,
               ),
             );
-        case BaconBadgeAlignment.bottomLeft:
+        case AvatarBadgeAlignment.bottomLeft:
           return Path()
             ..addOval(
               Rect.fromCircle(
@@ -95,7 +96,7 @@ class AvatarClipper extends CustomClipper<Path> {
                 radius: badgeRadius + badgeMarginValue,
               ),
             );
-        case BaconBadgeAlignment.bottomRight:
+        case AvatarBadgeAlignment.bottomRight:
           return Path()
             ..addOval(
               Rect.fromCircle(
@@ -127,13 +128,12 @@ class AvatarClipper extends CustomClipper<Path> {
             0,
             width,
             height,
-            topLeft: BaconSquircleRadius(cornerRadius: borderRadius.topLeft.x),
-            topRight:
-                BaconSquircleRadius(cornerRadius: borderRadius.topRight.x),
+            topLeft: HiveSquircleRadius(cornerRadius: borderRadius.topLeft.x),
+            topRight: HiveSquircleRadius(cornerRadius: borderRadius.topRight.x),
             bottomLeft:
-                BaconSquircleRadius(cornerRadius: borderRadius.bottomLeft.x),
+                HiveSquircleRadius(cornerRadius: borderRadius.bottomLeft.x),
             bottomRight:
-                BaconSquircleRadius(cornerRadius: borderRadius.bottomRight.x),
+                HiveSquircleRadius(cornerRadius: borderRadius.bottomRight.x),
           ),
         ),
 
@@ -147,12 +147,12 @@ class AvatarClipper extends CustomClipper<Path> {
           0,
           width,
           height,
-          topLeft: BaconSquircleRadius(cornerRadius: borderRadius.topLeft.x),
-          topRight: BaconSquircleRadius(cornerRadius: borderRadius.topRight.x),
+          topLeft: HiveSquircleRadius(cornerRadius: borderRadius.topLeft.x),
+          topRight: HiveSquircleRadius(cornerRadius: borderRadius.topRight.x),
           bottomLeft:
-              BaconSquircleRadius(cornerRadius: borderRadius.bottomLeft.x),
+              HiveSquircleRadius(cornerRadius: borderRadius.bottomLeft.x),
           bottomRight:
-              BaconSquircleRadius(cornerRadius: borderRadius.bottomRight.x),
+              HiveSquircleRadius(cornerRadius: borderRadius.bottomRight.x),
         ),
       );
 

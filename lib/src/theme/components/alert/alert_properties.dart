@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class BaconAlertProperties extends ThemeExtension<BaconAlertProperties>
+class HiveAlertProperties extends ThemeExtension<HiveAlertProperties>
     with DiagnosticableTreeMixin {
   final TextStyle bodyTitleStyle;
   final TextStyle titleTextStyle;
@@ -18,7 +18,7 @@ class BaconAlertProperties extends ThemeExtension<BaconAlertProperties>
   final Curve curve;
   final double? iconSize;
 
-  const BaconAlertProperties({
+  const HiveAlertProperties({
     required this.bodyTitleStyle,
     required this.titleTextStyle,
     required this.linkTextStyle,
@@ -33,7 +33,7 @@ class BaconAlertProperties extends ThemeExtension<BaconAlertProperties>
   });
 
   @override
-  BaconAlertProperties copyWith({
+  HiveAlertProperties copyWith({
     TextStyle? bodyTitleStyle,
     TextStyle? titleTextStyle,
     TextStyle? linkTextStyle,
@@ -46,7 +46,7 @@ class BaconAlertProperties extends ThemeExtension<BaconAlertProperties>
     Curve? curve,
     double? iconSize,
   }) {
-    return BaconAlertProperties(
+    return HiveAlertProperties(
       bodyTitleStyle: bodyTitleStyle ?? this.bodyTitleStyle,
       titleTextStyle: titleTextStyle ?? this.titleTextStyle,
       linkTextStyle: linkTextStyle ?? this.linkTextStyle,
@@ -62,10 +62,10 @@ class BaconAlertProperties extends ThemeExtension<BaconAlertProperties>
   }
 
   @override
-  BaconAlertProperties lerp(
-      ThemeExtension<BaconAlertProperties>? other, double t) {
-    if (other is! BaconAlertProperties) return this;
-    return BaconAlertProperties(
+  HiveAlertProperties lerp(
+      ThemeExtension<HiveAlertProperties>? other, double t) {
+    if (other is! HiveAlertProperties) return this;
+    return HiveAlertProperties(
       bodyTitleStyle: TextStyle.lerp(bodyTitleStyle, other.bodyTitleStyle, t)!,
       titleTextStyle: TextStyle.lerp(titleTextStyle, other.titleTextStyle, t)!,
       linkTextStyle: TextStyle.lerp(linkTextStyle, other.linkTextStyle, t)!,
@@ -84,7 +84,7 @@ class BaconAlertProperties extends ThemeExtension<BaconAlertProperties>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty("type", "BaconAlertProperties"));
+    properties.add(DiagnosticsProperty("type", "HiveAlertProperties"));
     properties.add(DiagnosticsProperty('bodyTitleStyle', bodyTitleStyle));
     properties.add(DiagnosticsProperty('titleTextStyle', titleTextStyle));
     properties.add(DiagnosticsProperty('linkTextStyle', linkTextStyle));

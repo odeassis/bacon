@@ -1,16 +1,17 @@
-import 'package:bacon/bacon.dart';
-import 'package:bacon/src/theme/components/alert/alert_properties.dart';
-import 'package:bacon/src/theme/components/alert/alert_sizes.dart';
-import 'package:bacon/src/theme/components/alert/alert_theme.dart';
 import 'package:flutter/material.dart';
 
-enum BaconAlertSize {
+import '../../theme/components/components.dart' as components;
+import '../../theme/hive_theme.dart';
+import '../../theme/tokens/tokens.dart';
+import '../../utils/utils.dart' as utils;
+
+enum AlertSize {
   large,
   medium,
   small,
 }
 
-enum BaconAlertStatus {
+enum AlertStatus {
   info,
   success,
   warning,
@@ -18,13 +19,13 @@ enum BaconAlertStatus {
   update,
 }
 
-enum BaconAlertStyle {
+enum AlertStyle {
   outlined,
   filled,
   light,
 }
 
-class BaconAlert extends StatefulWidget {
+class HiveAlert extends StatefulWidget {
   final String? semanticLabel;
   final Curve? curve;
   final Duration? duration;
@@ -39,16 +40,16 @@ class BaconAlert extends StatefulWidget {
   final bool show;
   final Color? textAndIconColor;
   final Decoration? decoration;
-  final BaconAlertSize? size;
-  final BaconAlertStatus? status;
-  final BaconAlertStyle? style;
+  final AlertSize? size;
+  final AlertStatus? status;
+  final AlertStyle? style;
   final Widget title;
   final Widget? body;
   final Widget? link;
   final Widget? leading;
   final Widget? trailing;
 
-  const BaconAlert({
+  const HiveAlert({
     super.key,
     required this.title,
     this.semanticLabel,
@@ -66,18 +67,18 @@ class BaconAlert extends StatefulWidget {
     this.textAndIconColor,
     this.decoration,
     this.size,
-    this.status = BaconAlertStatus.info,
+    this.status = AlertStatus.info,
     this.body,
     this.link,
     this.leading,
     this.trailing,
-  })  : style = BaconAlertStyle.filled,
+  })  : style = AlertStyle.filled,
         assert(
-          !(size == BaconAlertSize.small && body != null),
+          !(size == AlertSize.small && body != null),
           'The body must be null when using the small size.',
         );
 
-  const BaconAlert.light({
+  const HiveAlert.light({
     super.key,
     required this.title,
     this.background,
@@ -90,7 +91,7 @@ class BaconAlert extends StatefulWidget {
     this.link,
     this.trailing,
     this.size,
-    this.status = BaconAlertStatus.info,
+    this.status = AlertStatus.info,
   })  : curve = null,
         duration = null,
         padding = null,
@@ -100,9 +101,9 @@ class BaconAlert extends StatefulWidget {
         borderColor = null,
         showBorder = false,
         decoration = null,
-        style = BaconAlertStyle.light;
+        style = AlertStyle.light;
 
-  const BaconAlert.outlined({
+  const HiveAlert.outlined({
     super.key,
     required this.title,
     this.borderColor,
@@ -115,7 +116,7 @@ class BaconAlert extends StatefulWidget {
     this.link,
     this.trailing,
     this.size,
-    this.status = BaconAlertStatus.info,
+    this.status = AlertStatus.info,
   })  : curve = null,
         duration = null,
         background = null,
@@ -125,37 +126,37 @@ class BaconAlert extends StatefulWidget {
         minHeight = null,
         showBorder = true,
         decoration = null,
-        style = BaconAlertStyle.outlined;
+        style = AlertStyle.outlined;
 
   @override
-  State<BaconAlert> createState() => _BaconAlertState();
+  State<HiveAlert> createState() => _HiveAlertState();
 }
 
-class _BaconAlertState extends State<BaconAlert>
+class _HiveAlertState extends State<HiveAlert>
     with SingleTickerProviderStateMixin {
   bool _isVisible = true;
 
   AnimationController? _controller;
   Animation<double>? _curve;
 
-  BaconAlertProperties _getAlertSize(
+  components.HiveAlertProperties _getAlertSize(
     BuildContext context,
-    BaconAlertSize? size,
+    AlertSize? size,
   ) {
     switch (size) {
-      case BaconAlertSize.large:
-        return context.baconTheme?.alertTheme.sizes.lg ??
-            BaconAlertSizes(tokens: BaconTokens.light).lg;
+      case AlertSize.large:
+        return context.hiveTheme?.alertTheme.sizes.lg ??
+            components.HiveAlertSizes(tokens: HiveTokens.light).lg;
 
-      case BaconAlertSize.medium:
-        return context.baconTheme?.alertTheme.sizes.md ??
-            BaconAlertSizes(tokens: BaconTokens.light).md;
-      case BaconAlertSize.small:
-        return context.baconTheme?.alertTheme.sizes.sm ??
-            BaconAlertSizes(tokens: BaconTokens.light).sm;
+      case AlertSize.medium:
+        return context.hiveTheme?.alertTheme.sizes.md ??
+            components.HiveAlertSizes(tokens: HiveTokens.light).md;
+      case AlertSize.small:
+        return context.hiveTheme?.alertTheme.sizes.sm ??
+            components.HiveAlertSizes(tokens: HiveTokens.light).sm;
       default:
-        return context.baconTheme?.alertTheme.sizes.md ??
-            BaconAlertSizes(tokens: BaconTokens.light).md;
+        return context.hiveTheme?.alertTheme.sizes.md ??
+            components.HiveAlertSizes(tokens: HiveTokens.light).md;
     }
   }
 
@@ -193,7 +194,7 @@ class _BaconAlertState extends State<BaconAlert>
   }
 
   @override
-  didUpdateWidget(BaconAlert oldWidget) {
+  didUpdateWidget(HiveAlert oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (widget.show != oldWidget.show) {
@@ -209,7 +210,7 @@ class _BaconAlertState extends State<BaconAlert>
 
   @override
   Widget build(BuildContext context) {
-    final BaconAlertProperties effectiveAlertSize =
+    final components.HiveAlertProperties effectiveAlertSize =
         _getAlertSize(context, widget.size);
 
     final BorderRadiusGeometry effectiveBorderRadius =
@@ -224,28 +225,28 @@ class _BaconAlertState extends State<BaconAlert>
         widget.minHeight ?? effectiveAlertSize.minHeight;
 
     final Color effectiveBackgroundColor = widget.background ??
-        BaconAlertTheme.fromStatusAndStyle(
+        components.HiveAlertTheme.fromStatusAndStyle(
           context: context,
           status: widget.status!,
           style: widget.style!,
         ).colors.background;
 
     final Color effectiveBorderColor = widget.borderColor ??
-        BaconAlertTheme.fromStatusAndStyle(
+        components.HiveAlertTheme.fromStatusAndStyle(
           context: context,
           status: widget.status!,
           style: widget.style!,
         ).colors.borderColor;
 
     final Color effectiveTextColor = widget.textAndIconColor ??
-        BaconAlertTheme.fromStatusAndStyle(
+        components.HiveAlertTheme.fromStatusAndStyle(
           context: context,
           status: widget.status!,
           style: widget.style!,
         ).colors.textColor;
 
     final Color effectiveIconColor = widget.textAndIconColor ??
-        BaconAlertTheme.fromStatusAndStyle(
+        components.HiveAlertTheme.fromStatusAndStyle(
           context: context,
           status: widget.status!,
           style: widget.style!,
@@ -261,7 +262,7 @@ class _BaconAlertState extends State<BaconAlert>
     final TextStyle effectiveLinkTextStyle = effectiveAlertSize.linkTextStyle;
 
     final double effectiveIconSize =
-        effectiveAlertSize.iconSize ?? BaconTokens.light.scale.component.lg;
+        effectiveAlertSize.iconSize ?? HiveTokens.light.scale.component.lg;
 
     final Duration effectiveTransitionDuration =
         widget.duration ?? effectiveAlertSize.duration;
@@ -290,9 +291,9 @@ class _BaconAlertState extends State<BaconAlert>
               padding: effectivePadding,
               constraints: BoxConstraints(minHeight: effectiveMinimumHeight),
               decoration: widget.decoration ??
-                  ShapeDecorationWithPremultipliedAlpha(
+                  utils.ShapeDecorationWithPremultipliedAlpha(
                     color: effectiveBackgroundColor,
-                    shape: BaconSquircleBorder(
+                    shape: utils.HiveSquircleBorder(
                       side: BorderSide(
                         color: effectiveBorderColor,
                         style: widget.showBorder

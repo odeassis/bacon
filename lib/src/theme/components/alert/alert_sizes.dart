@@ -1,29 +1,30 @@
-import 'package:bacon/bacon.dart';
-import 'package:bacon/src/theme/components/alert/alert_properties.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../tokens/hive_tokens.dart';
+import 'alert_properties.dart';
+
 @immutable
-class BaconAlertSizes extends ThemeExtension<BaconAlertSizes>
+class HiveAlertSizes extends ThemeExtension<HiveAlertSizes>
     with DiagnosticableTreeMixin {
-  final BaconTokens tokens;
+  final HiveTokens tokens;
 
   // Alert with size large
-  final BaconAlertProperties lg;
+  final HiveAlertProperties lg;
 
   // Alert with size medium
-  final BaconAlertProperties md;
+  final HiveAlertProperties md;
 
   // Alert with size small
-  final BaconAlertProperties sm;
+  final HiveAlertProperties sm;
 
-  BaconAlertSizes({
+  HiveAlertSizes({
     required this.tokens,
-    BaconAlertProperties? lg,
-    BaconAlertProperties? md,
-    BaconAlertProperties? sm,
+    HiveAlertProperties? lg,
+    HiveAlertProperties? md,
+    HiveAlertProperties? sm,
   })  : lg = lg ??
-            BaconAlertProperties(
+            HiveAlertProperties(
               iconSize: tokens.scale.component.xs,
               minHeight: tokens.scale.component.x3l,
               hGap: tokens.scale.padding.sm,
@@ -37,7 +38,7 @@ class BaconAlertSizes extends ThemeExtension<BaconAlertSizes>
               curve: tokens.transitions.transitionCurve,
             ),
         md = md ??
-            BaconAlertProperties(
+            HiveAlertProperties(
               iconSize: tokens.scale.component.x2s,
               minHeight: tokens.scale.component.md,
               hGap: tokens.scale.padding.xs,
@@ -51,7 +52,7 @@ class BaconAlertSizes extends ThemeExtension<BaconAlertSizes>
               curve: tokens.transitions.transitionCurve,
             ),
         sm = sm ??
-            BaconAlertProperties(
+            HiveAlertProperties(
               iconSize: tokens.scale.component.x2s,
               minHeight: tokens.scale.component.md,
               hGap: tokens.scale.padding.xs,
@@ -66,11 +67,11 @@ class BaconAlertSizes extends ThemeExtension<BaconAlertSizes>
             );
 
   @override
-  BaconAlertSizes copyWith({
-    BaconAlertProperties? lg,
-    BaconAlertProperties? md,
+  HiveAlertSizes copyWith({
+    HiveAlertProperties? lg,
+    HiveAlertProperties? md,
   }) {
-    return BaconAlertSizes(
+    return HiveAlertSizes(
       tokens: tokens,
       lg: lg ?? this.lg,
       md: md ?? this.md,
@@ -78,9 +79,9 @@ class BaconAlertSizes extends ThemeExtension<BaconAlertSizes>
   }
 
   @override
-  BaconAlertSizes lerp(ThemeExtension<BaconAlertSizes>? other, double t) {
-    if (other is! BaconAlertSizes) return this;
-    return BaconAlertSizes(
+  HiveAlertSizes lerp(ThemeExtension<HiveAlertSizes>? other, double t) {
+    if (other is! HiveAlertSizes) return this;
+    return HiveAlertSizes(
       tokens: tokens,
       lg: lg.lerp(other.lg, t),
       md: md.lerp(other.md, t),
@@ -90,9 +91,9 @@ class BaconAlertSizes extends ThemeExtension<BaconAlertSizes>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty("type", "BaconAlertSizes"));
-    properties.add(DiagnosticsProperty<BaconTokens>('tokens', tokens));
-    properties.add(DiagnosticsProperty<BaconAlertProperties>('lg', lg));
-    properties.add(DiagnosticsProperty<BaconAlertProperties>('md', md));
+    properties.add(DiagnosticsProperty("type", "HiveAlertSizes"));
+    properties.add(DiagnosticsProperty<HiveTokens>('tokens', tokens));
+    properties.add(DiagnosticsProperty<HiveAlertProperties>('lg', lg));
+    properties.add(DiagnosticsProperty<HiveAlertProperties>('md', md));
   }
 }

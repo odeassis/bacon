@@ -1,28 +1,28 @@
-import 'package:bacon/src/utils/colors_lerp.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../../utils/utils.dart' as utils;
+
 @immutable
-class BaconBadgeColors extends ThemeExtension<BaconBadgeColors>
+class HiveBadgeColors extends ThemeExtension<HiveBadgeColors>
     with DiagnosticableTreeMixin {
-  ///
   final Color textColor;
   final Color iconColor;
   final Color background;
 
-  const BaconBadgeColors({
+  const HiveBadgeColors({
     required this.textColor,
     required this.iconColor,
     required this.background,
   });
 
   @override
-  BaconBadgeColors copyWith({
+  HiveBadgeColors copyWith({
     Color? textColor,
     Color? iconColor,
     Color? background,
   }) {
-    return BaconBadgeColors(
+    return HiveBadgeColors(
       textColor: textColor ?? this.textColor,
       iconColor: iconColor ?? this.iconColor,
       background: background ?? this.background,
@@ -30,26 +30,25 @@ class BaconBadgeColors extends ThemeExtension<BaconBadgeColors>
   }
 
   @override
-  BaconBadgeColors lerp(
-    ThemeExtension<BaconBadgeColors>? other,
+  HiveBadgeColors lerp(
+    ThemeExtension<HiveBadgeColors>? other,
     double t,
   ) {
-    if (other is! BaconBadgeColors) return this;
+    if (other is! HiveBadgeColors) return this;
 
-    return BaconBadgeColors(
-      textColor: colorsLerp(textColor, other.textColor, t)!,
-      iconColor: colorsLerp(iconColor, other.iconColor, t)!,
-      background: colorsLerp(background, other.background, t)!,
+    return HiveBadgeColors(
+      textColor: utils.colorsLerp(textColor, other.textColor, t)!,
+      iconColor: utils.colorsLerp(iconColor, other.iconColor, t)!,
+      background: utils.colorsLerp(background, other.background, t)!,
     );
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty("type", "bacon-badge-colors"))
-      ..add(ColorProperty("textColor", textColor))
-      ..add(ColorProperty("iconColor", iconColor))
-      ..add(ColorProperty("background", background));
+    properties.add(DiagnosticsProperty("type", "bacon-badge-colors"));
+    properties.add(ColorProperty("textColor", textColor));
+    properties.add(ColorProperty("iconColor", iconColor));
+    properties.add(ColorProperty("background", background));
   }
 }

@@ -1,16 +1,16 @@
-import 'package:bacon/src/utils/squircle/squircle_border.dart';
-import 'package:bacon/src/utils/squircle/squircle_border_radius.dart';
 import 'package:flutter/widgets.dart';
 
-class BaconClipSquircleRect extends StatelessWidget {
-  final BaconSquircleBorderRadius radius;
+import 'squircle.dart';
+
+class HiveClipSquircleRect extends StatelessWidget {
+  final HiveSquircleBorderRadius radius;
   final Clip clipBehavior;
   final Widget? child;
 
-  const BaconClipSquircleRect({
+  const HiveClipSquircleRect({
     super.key,
     required this.child,
-    this.radius = BaconSquircleBorderRadius.zero,
+    this.radius = HiveSquircleBorderRadius.zero,
     this.clipBehavior = Clip.antiAlias,
   });
 
@@ -18,7 +18,7 @@ class BaconClipSquircleRect extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipPath.shape(
       clipBehavior: clipBehavior,
-      shape: BaconSquircleBorder(
+      shape: HiveSquircleBorder(
         borderRadius: radius,
       ),
       child: child,

@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class BaconBadgeSizeProperties extends ThemeExtension<BaconBadgeSizeProperties>
+class HiveBadgeSizeProperties extends ThemeExtension<HiveBadgeSizeProperties>
     with DiagnosticableTreeMixin {
   /// The border radius of the BaconTag.
   final BorderRadiusGeometry borderRadius;
@@ -27,7 +27,7 @@ class BaconBadgeSizeProperties extends ThemeExtension<BaconBadgeSizeProperties>
   /// The upper case text style of the BaconTag.
   final TextStyle upperCaseTextStyle;
 
-  const BaconBadgeSizeProperties({
+  const HiveBadgeSizeProperties({
     required this.borderRadius,
     required this.gap,
     this.height,
@@ -38,7 +38,7 @@ class BaconBadgeSizeProperties extends ThemeExtension<BaconBadgeSizeProperties>
   });
 
   @override
-  BaconBadgeSizeProperties copyWith({
+  HiveBadgeSizeProperties copyWith({
     BorderRadiusGeometry? borderRadius,
     double? gap,
     double? height,
@@ -47,7 +47,7 @@ class BaconBadgeSizeProperties extends ThemeExtension<BaconBadgeSizeProperties>
     TextStyle? textStyle,
     TextStyle? upperCaseTextStyle,
   }) {
-    return BaconBadgeSizeProperties(
+    return HiveBadgeSizeProperties(
       borderRadius: borderRadius ?? this.borderRadius,
       gap: gap ?? this.gap,
       height: height ?? this.height,
@@ -59,11 +59,11 @@ class BaconBadgeSizeProperties extends ThemeExtension<BaconBadgeSizeProperties>
   }
 
   @override
-  BaconBadgeSizeProperties lerp(
-      ThemeExtension<BaconBadgeSizeProperties>? other, double t) {
-    if (other is! BaconBadgeSizeProperties) return this;
+  HiveBadgeSizeProperties lerp(
+      ThemeExtension<HiveBadgeSizeProperties>? other, double t) {
+    if (other is! HiveBadgeSizeProperties) return this;
 
-    return BaconBadgeSizeProperties(
+    return HiveBadgeSizeProperties(
       borderRadius:
           BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t)!,
       gap: lerpDouble(gap, other.gap, t)!,
@@ -79,16 +79,15 @@ class BaconBadgeSizeProperties extends ThemeExtension<BaconBadgeSizeProperties>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty("type", "BaconBadgeSizeProperties"))
-      ..add(DiagnosticsProperty<BorderRadiusGeometry>(
-          "borderRadius", borderRadius))
-      ..add(DoubleProperty("gap", gap))
-      ..add(DoubleProperty("height", height))
-      ..add(DoubleProperty("iconSizeValue", iconSizeValue))
-      ..add(DiagnosticsProperty<EdgeInsetsGeometry>("padding", padding))
-      ..add(DiagnosticsProperty<TextStyle>("textStyle", textStyle))
-      ..add(DiagnosticsProperty<TextStyle>(
-          "upperCaseTextStyle", upperCaseTextStyle));
+    properties.add(DiagnosticsProperty("type", "HiveBadgeSizeProperties"));
+    properties.add(DiagnosticsProperty<BorderRadiusGeometry>(
+        "borderRadius", borderRadius));
+    properties.add(DoubleProperty("gap", gap));
+    properties.add(DoubleProperty("height", height));
+    properties.add(DoubleProperty("iconSizeValue", iconSizeValue));
+    properties.add(DiagnosticsProperty<EdgeInsetsGeometry>("padding", padding));
+    properties.add(DiagnosticsProperty<TextStyle>("textStyle", textStyle));
+    properties.add(DiagnosticsProperty<TextStyle>(
+        "upperCaseTextStyle", upperCaseTextStyle));
   }
 }

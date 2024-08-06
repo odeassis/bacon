@@ -4,8 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class BaconAvatarSizeProperties
-    extends ThemeExtension<BaconAvatarSizeProperties>
+class HiveAvatarSizeProperties extends ThemeExtension<HiveAvatarSizeProperties>
     with DiagnosticableTreeMixin {
   final BorderRadiusGeometry borderRadius;
   final double avatarSize;
@@ -13,7 +12,7 @@ class BaconAvatarSizeProperties
   final double badgeSize;
   final TextStyle textStyle;
 
-  const BaconAvatarSizeProperties({
+  const HiveAvatarSizeProperties({
     required this.borderRadius,
     required this.avatarSize,
     required this.badgeMargin,
@@ -22,14 +21,14 @@ class BaconAvatarSizeProperties
   });
 
   @override
-  BaconAvatarSizeProperties copyWith({
+  HiveAvatarSizeProperties copyWith({
     BorderRadiusGeometry? borderRadius,
     double? avatarSize,
     double? badgeMargin,
     double? badgeSize,
     TextStyle? textStyle,
   }) {
-    return BaconAvatarSizeProperties(
+    return HiveAvatarSizeProperties(
       borderRadius: borderRadius ?? this.borderRadius,
       avatarSize: avatarSize ?? this.avatarSize,
       badgeMargin: badgeMargin ?? this.badgeMargin,
@@ -39,10 +38,10 @@ class BaconAvatarSizeProperties
   }
 
   @override
-  BaconAvatarSizeProperties lerp(
-      ThemeExtension<BaconAvatarSizeProperties>? other, double t) {
-    if (other is! BaconAvatarSizeProperties) return this;
-    return BaconAvatarSizeProperties(
+  HiveAvatarSizeProperties lerp(
+      ThemeExtension<HiveAvatarSizeProperties>? other, double t) {
+    if (other is! HiveAvatarSizeProperties) return this;
+    return HiveAvatarSizeProperties(
       borderRadius:
           BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t)!,
       avatarSize: lerpDouble(avatarSize, other.avatarSize, t)!,
@@ -55,7 +54,7 @@ class BaconAvatarSizeProperties
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty("type", "BaconAvatarSizeProperties"));
+    properties.add(DiagnosticsProperty("type", "HiveAvatarSizeProperties"));
     properties.add(DoubleProperty('avatarSize', avatarSize));
     properties.add(DoubleProperty('badgeMargin', badgeMargin));
     properties.add(DoubleProperty('badgeSize', badgeSize));

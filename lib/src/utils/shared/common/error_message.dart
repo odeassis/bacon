@@ -1,5 +1,6 @@
-import 'package:bacon/bacon.dart';
 import 'package:flutter/material.dart';
+
+import '../../../theme/hive_theme.dart';
 
 class ErrorMessages extends StatelessWidget {
   final List<String> errors;
@@ -19,7 +20,9 @@ class ErrorMessages extends StatelessWidget {
 
         return index.isEven
             ? ErrorMessage(errorText: _nonEmptyErrors[derivedIndex])
-            : SizedBox(height: context.componentScale?.x5s ?? 4);
+            : SizedBox(
+                height: context.hiveTheme?.tokens.scale.component.x5s ?? 4,
+              );
       }),
     );
   }
@@ -79,8 +82,13 @@ class _ErrorMessageState extends State<ErrorMessage>
       opacity: _opacityAnimation,
       child: Row(
         children: [
-          Icon(Icons.error, size: context.componentScale?.x2s ?? 16),
-          SizedBox(width: context.componentScale?.x5s ?? 4),
+          Icon(
+            Icons.error,
+            size: context.hiveTheme?.tokens.scale.component.x2s ?? 16,
+          ),
+          SizedBox(
+            width: context.hiveTheme?.tokens.scale.component.x5s ?? 4,
+          ),
           Text(widget.errorText),
         ],
       ),

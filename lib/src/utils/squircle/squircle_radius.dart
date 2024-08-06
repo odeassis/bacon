@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 /// A class representing a squircular radius with Bacon's smoothing algorithm.
-class BaconSquircleRadius extends Radius {
-  static const zero = BaconSquircleRadius(
+class HiveSquircleRadius extends Radius {
+  static const zero = HiveSquircleRadius(
     cornerRadius: 0,
     cornerSmoothing: 0,
   );
@@ -10,11 +10,11 @@ class BaconSquircleRadius extends Radius {
   /// The amount of corner smoothing applied to the squircle radius.
   final double cornerSmoothing;
 
-  /// Constructs a BaconSquircleRadius with the given corner radius and corner smoothing.
+  /// Constructs a HiveSquircleRadius with the given corner radius and corner smoothing.
   ///
   /// The value of 1 or 1.0 leads to NaN error in mobile web/PWA for some reason.
   /// So we use 0.9 instead as the default value for [cornerSmoothing].
-  const BaconSquircleRadius({
+  const HiveSquircleRadius({
     required double cornerRadius,
     this.cornerSmoothing = 0.9,
   }) : super.circular(cornerRadius);
@@ -31,7 +31,7 @@ class BaconSquircleRadius extends Radius {
   /// and then adding the result to another radius is equivalent to subtracting
   /// a radius of one pixel from the other.
   @override
-  Radius operator -() => BaconSquircleRadius(
+  Radius operator -() => HiveSquircleRadius(
         cornerRadius: -cornerRadius,
         cornerSmoothing: cornerSmoothing,
       );
@@ -43,14 +43,14 @@ class BaconSquircleRadius extends Radius {
   /// left-hand-side operand's [y] minus the right-hand-side operand's [y].
   @override
   Radius operator -(Radius other) {
-    if (other is BaconSquircleRadius) {
-      return BaconSquircleRadius(
+    if (other is HiveSquircleRadius) {
+      return HiveSquircleRadius(
         cornerRadius: cornerRadius - other.cornerRadius,
         cornerSmoothing: (cornerSmoothing + other.cornerSmoothing) / 2,
       );
     }
 
-    return BaconSquircleRadius(
+    return HiveSquircleRadius(
       cornerRadius: cornerRadius - other.x,
       cornerSmoothing: cornerSmoothing,
     );
@@ -63,14 +63,14 @@ class BaconSquircleRadius extends Radius {
   /// two operands.
   @override
   Radius operator +(Radius other) {
-    if (other is BaconSquircleRadius) {
-      return BaconSquircleRadius(
+    if (other is HiveSquircleRadius) {
+      return HiveSquircleRadius(
         cornerRadius: cornerRadius + other.cornerRadius,
         cornerSmoothing: (cornerSmoothing + other.cornerSmoothing) / 2,
       );
     }
 
-    return BaconSquircleRadius(
+    return HiveSquircleRadius(
       cornerRadius: cornerRadius + other.x,
       cornerSmoothing: cornerSmoothing,
     );
@@ -82,7 +82,7 @@ class BaconSquircleRadius extends Radius {
   /// left-hand-side operand (a radius) multiplied by the scalar
   /// right-hand-side operand (a double).
   @override
-  BaconSquircleRadius operator *(double operand) => BaconSquircleRadius(
+  HiveSquircleRadius operator *(double operand) => HiveSquircleRadius(
         cornerRadius: cornerRadius * operand,
         cornerSmoothing: cornerSmoothing * operand,
       );
@@ -93,7 +93,7 @@ class BaconSquircleRadius extends Radius {
   /// left-hand-side operand (a radius) divided by the scalar right-hand-side
   /// operand (a double).
   @override
-  BaconSquircleRadius operator /(double operand) => BaconSquircleRadius(
+  HiveSquircleRadius operator /(double operand) => HiveSquircleRadius(
         cornerRadius: cornerRadius / operand,
         cornerSmoothing: cornerSmoothing / operand,
       );
@@ -104,7 +104,7 @@ class BaconSquircleRadius extends Radius {
   /// left-hand-side operand (a radius) divided by the scalar right-hand-side
   /// operand (a double), rounded towards zero.
   @override
-  BaconSquircleRadius operator ~/(double operand) => BaconSquircleRadius(
+  HiveSquircleRadius operator ~/(double operand) => HiveSquircleRadius(
         cornerRadius: (cornerRadius ~/ operand).toDouble(),
         cornerSmoothing: (cornerSmoothing ~/ operand).toDouble(),
       );
@@ -115,14 +115,14 @@ class BaconSquircleRadius extends Radius {
   /// coordinates of the left-hand-side operand (a radius) by the scalar
   /// right-hand-side operand (a double).
   @override
-  BaconSquircleRadius operator %(double operand) => BaconSquircleRadius(
+  HiveSquircleRadius operator %(double operand) => HiveSquircleRadius(
         cornerRadius: cornerRadius % operand,
         cornerSmoothing: cornerSmoothing % operand,
       );
 
   /// Linearly interpolate between two smooth radii.
   ///
-  /// If either is null, this function substitutes [BaconSquircleRadius.zero] instead.
+  /// If either is null, this function substitutes [HiveSquircleRadius.zero] instead.
   ///
   /// The `t` argument represents position on the timeline, with 0.0 meaning
   /// that the interpolation has not started, returning `a` (or something
@@ -135,26 +135,26 @@ class BaconSquircleRadius extends Radius {
   ///
   /// Values for `t` are usually obtained from an [Animation<double>], such as
   /// an [AnimationController].
-  static BaconSquircleRadius? lerp(
-      BaconSquircleRadius? a, BaconSquircleRadius? b, double t) {
+  static HiveSquircleRadius? lerp(
+      HiveSquircleRadius? a, HiveSquircleRadius? b, double t) {
     if (b == null) {
       if (a == null) {
         return null;
       } else {
         final double k = 1.0 - t;
-        return BaconSquircleRadius(
+        return HiveSquircleRadius(
           cornerRadius: a.cornerRadius * k,
           cornerSmoothing: a.cornerSmoothing * k,
         );
       }
     } else {
       if (a == null) {
-        return BaconSquircleRadius(
+        return HiveSquircleRadius(
           cornerRadius: b.cornerRadius * t,
           cornerSmoothing: b.cornerSmoothing * t,
         );
       } else {
-        return BaconSquircleRadius(
+        return HiveSquircleRadius(
           cornerRadius: lerpDouble(a.cornerRadius, b.cornerRadius, t) ?? 0,
           cornerSmoothing:
               lerpDouble(a.cornerSmoothing, b.cornerSmoothing, t) ?? 0,
@@ -168,7 +168,7 @@ class BaconSquircleRadius extends Radius {
     if (identical(this, other)) return true;
     if (runtimeType != other.runtimeType) return false;
 
-    return other is BaconSquircleRadius &&
+    return other is HiveSquircleRadius &&
         other.cornerRadius == cornerRadius &&
         other.cornerSmoothing == cornerSmoothing;
   }
@@ -178,7 +178,7 @@ class BaconSquircleRadius extends Radius {
 
   @override
   String toString() {
-    return 'BaconSquircleRadius('
+    return 'HiveSquircleRadius('
         'cornerRadius: ${cornerRadius.toStringAsFixed(2)}, '
         'cornerSmoothing: ${cornerSmoothing.toStringAsFixed(2)}, '
         ')';

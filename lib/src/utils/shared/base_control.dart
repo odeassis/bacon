@@ -1,13 +1,12 @@
-import 'package:bacon/bacon.dart';
-import 'package:bacon/src/theme/effects/effects_theme.dart';
-import 'package:bacon/src/theme/tokens/opacities.dart';
-import 'package:bacon/src/theme/tokens/transitions.dart';
-import 'package:bacon/src/utils/shared/common/effects/focus_effect.dart';
-import 'package:bacon/src/utils/shared/common/effects/pulse_effect.dart';
-import 'package:bacon/src/utils/touch_targert_padding.dart';
 import 'package:flutter/material.dart';
 
-typedef BaconBaseControlBuilder = Widget Function(
+import '../../theme/effects/effects.dart';
+import '../../theme/hive_theme.dart';
+import '../../theme/tokens/tokens.dart';
+import '../utils.dart' as utils;
+import 'common/common.dart';
+
+typedef HiveBaseControlBuilder = Widget Function(
   BuildContext context,
   bool isEnabled,
   bool isHovered,
@@ -15,7 +14,7 @@ typedef BaconBaseControlBuilder = Widget Function(
   bool isPressed,
 );
 
-class BaconBaseControl extends StatefulWidget {
+class HiveBaseControl extends StatefulWidget {
   /// {@macro flutter.widgets.Focus.autofocus}
   final bool autofocus;
 
@@ -98,7 +97,7 @@ class BaconBaseControl extends StatefulWidget {
 
   /// A builder to build a custom child for the base control.
   /// Cannot be used in conjunction with the [child] property, one of them must be null.
-  final BaconBaseControlBuilder? builder;
+  final HiveBaseControlBuilder? builder;
 
   /// The mouse cursor of the base control.
   final MouseCursor cursor;
@@ -122,8 +121,8 @@ class BaconBaseControl extends StatefulWidget {
   /// Cannot be used in conjunction with the [builder] property, one of them must be null.
   final Widget? child;
 
-  /// Creates a Bacon Design base control.
-  const BaconBaseControl({
+  /// Creates a Hive Design base control.
+  const HiveBaseControl({
     super.key,
     this.autofocus = false,
     this.absorbDragEvents = false,
@@ -166,10 +165,10 @@ class BaconBaseControl extends StatefulWidget {
         );
 
   @override
-  State<BaconBaseControl> createState() => _BaconBaseControlState();
+  State<HiveBaseControl> createState() => _HiveBaseControlState();
 }
 
-class _BaconBaseControlState extends State<BaconBaseControl> {
+class _HiveBaseControlState extends State<HiveBaseControl> {
   late Map<Type, Action<Intent>> _actions;
 
   FocusNode? _focusNode;
@@ -312,7 +311,7 @@ class _BaconBaseControlState extends State<BaconBaseControl> {
   }
 
   @override
-  void didUpdateWidget(BaconBaseControl oldWidget) {
+  void didUpdateWidget(HiveBaseControl oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (widget.onTap != oldWidget.onTap ||
@@ -335,74 +334,63 @@ class _BaconBaseControlState extends State<BaconBaseControl> {
   @override
   Widget build(BuildContext context) {
     final double effectiveDisabledOpacityValue = widget.disabledOpacityValue ??
-        context.opacities?.disabled ??
-        BaconOpacities.opacities.disabled;
+        context.hiveTheme?.tokens.opacities.disabled ??
+        HiveOpacities.opacities.disabled;
 
     final Color effectiveFocusEffectColor = widget.focusEffectColor ??
-        context.baconEffects?.controlFocusEffect.effectColor ??
-        BaconEffectsTheme(tokens: BaconTokens.light)
+        HiveEffectsTheme(tokens: HiveTokens.light)
             .controlFocusEffect
             .effectColor;
 
     final double effectiveFocusEffectExtent = widget.focusEffectExtent ??
-        context.baconEffects?.controlFocusEffect.effectExtent ??
-        BaconEffectsTheme(tokens: BaconTokens.light)
+        HiveEffectsTheme(tokens: HiveTokens.light)
             .controlFocusEffect
             .effectExtent;
 
     final Duration effectiveFocusEffectDuration = widget.focusEffectDuration ??
-        context.baconEffects?.controlFocusEffect.effectDuration ??
-        BaconEffectsTheme(tokens: BaconTokens.light)
+        HiveEffectsTheme(tokens: HiveTokens.light)
             .controlFocusEffect
             .effectDuration;
 
     final Curve effectiveFocusEffectCurve = widget.focusEffectCurve ??
-        context.baconEffects?.controlFocusEffect.effectCurve ??
-        BaconEffectsTheme(tokens: BaconTokens.light)
+        HiveEffectsTheme(tokens: HiveTokens.light)
             .controlFocusEffect
             .effectCurve;
 
     // Pulse effect properties.
     final Color effectivePulseEffectColor = widget.pulseEffectColor ??
-        context.baconEffects?.controlPulseEffect.effectColor ??
-        BaconEffectsTheme(tokens: BaconTokens.light)
+        HiveEffectsTheme(tokens: HiveTokens.light)
             .controlPulseEffect
             .effectColor!;
 
     final double effectivePulseEffectExtent = widget.pulseEffectExtent ??
-        context.baconEffects?.controlPulseEffect.effectExtent ??
-        BaconEffectsTheme(tokens: BaconTokens.light)
+        HiveEffectsTheme(tokens: HiveTokens.light)
             .controlPulseEffect
             .effectExtent!;
 
     final Duration effectivePulseEffectDuration = widget.pulseEffectDuration ??
-        context.baconEffects?.controlPulseEffect.effectDuration ??
-        BaconEffectsTheme(tokens: BaconTokens.light)
+        HiveEffectsTheme(tokens: HiveTokens.light)
             .controlPulseEffect
             .effectDuration;
 
     final Curve effectivePulseEffectCurve = widget.pulseEffectCurve ??
-        context.baconEffects?.controlPulseEffect.effectCurve ??
-        BaconEffectsTheme(tokens: BaconTokens.light)
+        HiveEffectsTheme(tokens: HiveTokens.light)
             .controlPulseEffect
             .effectCurve;
 
     // Scale effect properties.
     final double effectiveScaleEffectScalar = widget.scaleEffectScalar ??
-        context.baconEffects?.controlScaleEffect.effectScalar ??
-        BaconEffectsTheme(tokens: BaconTokens.light)
+        HiveEffectsTheme(tokens: HiveTokens.light)
             .controlScaleEffect
             .effectScalar!;
 
     final Duration effectiveScaleEffectDuration = widget.scaleEffectDuration ??
-        context.baconEffects?.controlScaleEffect.effectDuration ??
-        BaconEffectsTheme(tokens: BaconTokens.light)
+        HiveEffectsTheme(tokens: HiveTokens.light)
             .controlScaleEffect
             .effectDuration;
 
     final Curve effectiveScaleEffectCurve = widget.scaleEffectCurve ??
-        context.baconEffects?.controlScaleEffect.effectCurve ??
-        BaconEffectsTheme(tokens: BaconTokens.light)
+        HiveEffectsTheme(tokens: HiveTokens.light)
             .controlScaleEffect
             .effectCurve;
 
@@ -452,7 +440,7 @@ class _BaconBaseControlState extends State<BaconBaseControl> {
                   widget.absorbDragEvents ? _handleVerticalDragStart : null,
               onVerticalDragEnd:
                   widget.absorbDragEvents ? _handleVerticalDragEnd : null,
-              child: TouchTargetPadding(
+              child: utils.TouchTargetPadding(
                 minSize: widget.ensureMinimalTouchTargetSize
                     ? Size(widget.minTouchTargetSize, widget.minTouchTargetSize)
                     : Size.zero,
@@ -463,7 +451,7 @@ class _BaconBaseControlState extends State<BaconBaseControl> {
                       scale: _canAnimateScale ? effectiveScaleEffectScalar : 1,
                       duration: effectiveScaleEffectDuration,
                       curve: effectiveScaleEffectCurve,
-                      child: BaconPulseEffect(
+                      child: HivePulseEffect(
                         show: _canAnimatePulse,
                         showJiggle: widget.showPulseEffectJiggle,
                         childBorderRadius: widget.borderRadius,
@@ -474,13 +462,13 @@ class _BaconBaseControlState extends State<BaconBaseControl> {
                         child: AnimatedOpacity(
                           opacity:
                               _isEnabled ? 1 : effectiveDisabledOpacityValue,
-                          duration: context.baconTheme?.tokens.transitions
+                          duration: context.hiveTheme?.tokens.transitions
                                   .transitionDuration ??
-                              BaconTransitions.transitions.transitionDuration,
-                          curve: context.baconTheme?.tokens.transitions
+                              HiveTransitions.transitions.transitionDuration,
+                          curve: context.hiveTheme?.tokens.transitions
                                   .transitionCurve ??
-                              BaconTransitions.transitions.transitionCurve,
-                          child: BaconFocusEffect(
+                              HiveTransitions.transitions.transitionCurve,
+                          child: HiveFocusEffect(
                             show: _canAnimateFocus,
                             effectColor: effectiveFocusEffectColor,
                             effectExtent: effectiveFocusEffectExtent,

@@ -4,7 +4,7 @@ import 'package:bacon/src/theme/components/drawer/drawer_shadows.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../tokens/tokens.dart';
+import '../../tokens/hive_tokens.dart';
 
 @immutable
 class BaconDrawerTheme extends ThemeExtension<BaconDrawerTheme>

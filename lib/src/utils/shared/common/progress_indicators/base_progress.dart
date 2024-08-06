@@ -1,13 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-/// The base class for the Bacon Design progress indicators.
+/// The base class for the Hive Design progress indicators.
 ///
-/// This class defines the common properties and behavior for Bacon Design progress
+/// This class defines the common properties and behavior for Hive Design progress
 /// indicators. It can not be instantiated directly.
-/// Use [BaconLinearProgressIndicator] for a linear progress indicator and [BaconCircularProgressIndicator] for a
+/// Use [HiveLinearProgressIndicator] for a linear progress indicator and [HiveCircularProgressIndicator] for a
 /// circular progress indicator.
-abstract class BaconBaseProgressIndicator extends StatefulWidget {
+abstract class HiveBaseProgressIndicator extends StatefulWidget {
   /// The progress indicator's color as an animated value.
   final Animation<Color?>? valueColor;
 
@@ -44,7 +44,7 @@ abstract class BaconBaseProgressIndicator extends StatefulWidget {
   /// [ProgressIndicator.value] expressed as a percentage, i.e. `0.1` will become '10%'.
   final String? semanticsValue;
 
-  /// Creates a Bacon Design progress indicator.
+  /// Creates a Hive Design progress indicator.
   ///
   /// The [value] argument determines whether the progress indicator is determinate
   /// or indeterminate:
@@ -60,7 +60,7 @@ abstract class BaconBaseProgressIndicator extends StatefulWidget {
   ///
   /// The [semanticsLabel] can be used to identify the purpose of this progress bar for screen reading software.
   /// The [semanticsValue] property may be used for determinate progress indicators to announce how much progress has been made.
-  const BaconBaseProgressIndicator({
+  const HiveBaseProgressIndicator({
     super.key,
     this.valueColor,
     required this.backgroundColor,
