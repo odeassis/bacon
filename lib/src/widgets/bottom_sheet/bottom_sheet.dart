@@ -1,9 +1,11 @@
 import 'dart:async';
 
-import 'package:bacon/bacon.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/src/theme/theme.dart';
 
+import '../../theme/tokens/tokens.dart';
+import '../../utils/utils.dart' as utils;
 import 'utils/bottom_sheet_custom_scroll_physics.dart';
 import 'utils/bottom_sheet_suspended_curve.dart';
 import 'utils/scroll_to_top_status_bar.dart';
@@ -16,9 +18,9 @@ typedef WidgetWithChildBuilder = Widget Function(
 
 /// The Bacon Design bottom sheet.
 ///
-/// The BaconBottomSheet widget itself is rarely used directly.
+/// The HiveBottomSheet widget itself is rarely used directly.
 /// Instead, prefer to create a modal bottom sheet with [showBaconModalBottomSheet].
-class BaconBottomSheet extends StatefulWidget {
+class HiveBottomSheet extends StatefulWidget {
   /// Whether the bottom sheet can be dragged vertically and dismissed by swiping downwards.
   final bool enableDrag;
 
@@ -80,7 +82,7 @@ class BaconBottomSheet extends StatefulWidget {
   final Widget child;
 
   /// Creates a Bacon Design modal bottom sheet.
-  const BaconBottomSheet({
+  const HiveBottomSheet({
     super.key,
     this.enableDrag = true,
     this.isExpanded = false,
@@ -102,9 +104,9 @@ class BaconBottomSheet extends StatefulWidget {
             closeProgressThreshold ?? _closeProgressThreshold;
 
   @override
-  BaconBottomSheetState createState() => BaconBottomSheetState();
+  HiveBottomSheetState createState() => HiveBottomSheetState();
 
-  /// Creates an [AnimationController] specifically designed for a [BaconBottomSheet.animationController].
+  /// Creates an [AnimationController] specifically designed for a [HiveBottomSheet.animationController].
   ///
   /// This API serves as a convenient mechanism to create a Material compliant bottom sheet animation.
   /// If custom animation durations are required, a different animation controller should be utilized.
@@ -112,13 +114,13 @@ class BaconBottomSheet extends StatefulWidget {
       TickerProvider vsync, Duration duration) {
     return AnimationController(
       duration: duration,
-      debugLabel: 'BaconBottomSheet',
+      debugLabel: 'HiveBottomSheet',
       vsync: vsync,
     );
   }
 }
 
-class BaconBottomSheetState extends State<BaconBottomSheet>
+class HiveBottomSheetState extends State<HiveBottomSheet>
     with TickerProviderStateMixin {
   final GlobalKey _childKey = GlobalKey(debugLabel: 'BottomSheet child');
 
@@ -326,27 +328,27 @@ class BaconBottomSheetState extends State<BaconBottomSheet>
   @override
   Widget build(BuildContext context) {
     final BorderRadiusGeometry effectiveBorderRadius = widget.borderRadius ??
-        context.baconTheme?.bottomSheetTheme.properties.borderRadius ??
-        BaconTokens.light.shape.radii.surface;
+        context.hiveTheme?.bottomSheetTheme.properties.borderRadius ??
+        HiveTokens.light.shape.radii.surface;
 
     final Color effectiveBackgroundColor = widget.backgroundColor ??
-        context.baconTheme?.bottomSheetTheme.colors.backgroundColor ??
-        BaconTokens.light.modes.background.primary;
+        context.hiveTheme?.bottomSheetTheme.colors.backgroundColor ??
+        HiveTokens.light.modes.background.primary;
 
     final Color effectiveIconColor =
-        context.baconTheme?.bottomSheetTheme.colors.iconColor ??
-            BaconTokens.light.modes.background.secondary;
+        context.hiveTheme?.bottomSheetTheme.colors.iconColor ??
+            HiveTokens.light.modes.background.secondary;
 
     final Color effectiveTextColor =
-        context.baconTheme?.bottomSheetTheme.colors.textColor ??
-            BaconTokens.light.modes.background.primary;
+        context.hiveTheme?.bottomSheetTheme.colors.textColor ??
+            HiveTokens.light.modes.background.primary;
 
     final TextStyle effectiveTextStyle =
-        context.baconTheme?.bottomSheetTheme.properties.textStyle ??
-            BaconTokens.light.typography.label.md;
+        context.hiveTheme?.bottomSheetTheme.properties.textStyle ??
+            HiveTokens.light.typography.label.md;
 
     _defaultCurve ??= widget.transitionCurve ??
-        context.baconTheme?.bottomSheetTheme.properties.transitionCurve ??
+        context.hiveTheme?.bottomSheetTheme.properties.transitionCurve ??
         const Cubic(0.0, 0.0, 0.2, 1.0);
 
     transitionCurve ??= _defaultCurve;
@@ -414,10 +416,10 @@ class BaconBottomSheetState extends State<BaconBottomSheet>
                   child: Container(
                     height: widget.height,
                     decoration: widget.decoration ??
-                        ShapeDecorationWithPremultipliedAlpha(
+                        utils.ShapeDecorationWithPremultipliedAlpha(
                           color: effectiveBackgroundColor,
-                          shape: BaconSquircleBorder(
-                            borderRadius: BaconSquircleBorderRadius.only(
+                          shape: utils.HiveSquircleBorder(
+                            borderRadius: utils.HiveSquircleBorderRadius.only(
                               topLeft: effectiveBorderRadius
                                   .squircleBorderRadius(context)
                                   .topLeft,

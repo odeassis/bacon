@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class BaconBottomSheetProperties
-    extends ThemeExtension<BaconBottomSheetProperties>
+class HiveBottomSheetProperties
+    extends ThemeExtension<HiveBottomSheetProperties>
     with DiagnosticableTreeMixin {
   /// The border radius of the BaconBottomSheet.
   final BorderRadiusGeometry borderRadius;
@@ -17,7 +17,7 @@ class BaconBottomSheetProperties
   /// The text style of the BaconBottomSheet.
   final TextStyle textStyle;
 
-  const BaconBottomSheetProperties({
+  const HiveBottomSheetProperties({
     required this.borderRadius,
     required this.transitionDuration,
     required this.transitionCurve,
@@ -25,13 +25,13 @@ class BaconBottomSheetProperties
   });
 
   @override
-  BaconBottomSheetProperties copyWith({
+  HiveBottomSheetProperties copyWith({
     BorderRadiusGeometry? borderRadius,
     Duration? transitionDuration,
     Curve? transitionCurve,
     TextStyle? textStyle,
   }) {
-    return BaconBottomSheetProperties(
+    return HiveBottomSheetProperties(
       borderRadius: borderRadius ?? this.borderRadius,
       transitionDuration: transitionDuration ?? this.transitionDuration,
       transitionCurve: transitionCurve ?? this.transitionCurve,
@@ -40,11 +40,11 @@ class BaconBottomSheetProperties
   }
 
   @override
-  BaconBottomSheetProperties lerp(
-      ThemeExtension<BaconBottomSheetProperties>? other, double t) {
-    if (other is! BaconBottomSheetProperties) return this;
+  HiveBottomSheetProperties lerp(
+      ThemeExtension<HiveBottomSheetProperties>? other, double t) {
+    if (other is! HiveBottomSheetProperties) return this;
 
-    return BaconBottomSheetProperties(
+    return HiveBottomSheetProperties(
       borderRadius:
           BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t)!,
       transitionDuration:
@@ -58,7 +58,7 @@ class BaconBottomSheetProperties
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty("type", "BaconBottomSheetProperties"))
+      ..add(DiagnosticsProperty("type", "HiveBottomSheetProperties"))
       ..add(DiagnosticsProperty<BorderRadiusGeometry>(
           "borderRadius", borderRadius))
       ..add(DiagnosticsProperty<Duration>(

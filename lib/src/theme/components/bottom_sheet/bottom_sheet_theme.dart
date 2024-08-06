@@ -1,35 +1,35 @@
-import 'package:bacon/src/theme/components/bottom_sheet/bottom_sheet_colors.dart';
-import 'package:bacon/src/theme/components/bottom_sheet/bottom_sheet_properties.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../tokens/hive_tokens.dart';
+import '../../tokens/tokens.dart';
+import 'bottom_sheet_colors.dart';
+import 'bottom_sheet_properties.dart';
 
 @immutable
-class BaconBottomSheetTheme extends ThemeExtension<BaconBottomSheetTheme>
+class HiveBottomSheetTheme extends ThemeExtension<HiveBottomSheetTheme>
     with DiagnosticableTreeMixin {
-  /// The tokens of the Bacon Design System.
-  final BaconTokens tokens;
+  /// The tokens of the Hive Design System.
+  final HiveTokens tokens;
 
-  /// The colors of the BaconBottomSheet.
-  final BaconBottomSheetColors colors;
+  /// The colors of the HiveBottomSheet.
+  final HiveBottomSheetColors colors;
 
-  /// The properties of the BaconBottomSheet.
-  final BaconBottomSheetProperties properties;
+  /// The properties of the HiveBottomSheet.
+  final HiveBottomSheetProperties properties;
 
-  BaconBottomSheetTheme({
+  HiveBottomSheetTheme({
     required this.tokens,
-    BaconBottomSheetColors? colors,
-    BaconBottomSheetProperties? properties,
+    HiveBottomSheetColors? colors,
+    HiveBottomSheetProperties? properties,
   })  : colors = colors ??
-            BaconBottomSheetColors(
+            HiveBottomSheetColors(
               textColor: tokens.modes.content.primary,
               iconColor: tokens.modes.content.secondary,
               backgroundColor: tokens.modes.background.primary,
               barrierColor: tokens.modes.background.secondary,
             ),
         properties = properties ??
-            BaconBottomSheetProperties(
+            HiveBottomSheetProperties(
               borderRadius: tokens.shape.radii.surface,
               transitionDuration: const Duration(milliseconds: 350),
               transitionCurve: const Cubic(0.0, 0.0, 0.2, 1.0),
@@ -37,12 +37,12 @@ class BaconBottomSheetTheme extends ThemeExtension<BaconBottomSheetTheme>
             );
 
   @override
-  BaconBottomSheetTheme copyWith({
-    BaconTokens? tokens,
-    BaconBottomSheetColors? colors,
-    BaconBottomSheetProperties? properties,
+  HiveBottomSheetTheme copyWith({
+    HiveTokens? tokens,
+    HiveBottomSheetColors? colors,
+    HiveBottomSheetProperties? properties,
   }) {
-    return BaconBottomSheetTheme(
+    return HiveBottomSheetTheme(
       tokens: tokens ?? this.tokens,
       colors: colors ?? this.colors,
       properties: properties ?? this.properties,
@@ -50,11 +50,11 @@ class BaconBottomSheetTheme extends ThemeExtension<BaconBottomSheetTheme>
   }
 
   @override
-  BaconBottomSheetTheme lerp(
-      ThemeExtension<BaconBottomSheetTheme>? other, double t) {
-    if (other is! BaconBottomSheetTheme) return this;
+  HiveBottomSheetTheme lerp(
+      ThemeExtension<HiveBottomSheetTheme>? other, double t) {
+    if (other is! HiveBottomSheetTheme) return this;
 
-    return BaconBottomSheetTheme(
+    return HiveBottomSheetTheme(
       tokens: tokens.lerp(other.tokens, t),
       colors: colors.lerp(other.colors, t),
       properties: properties.lerp(other.properties, t),
@@ -65,10 +65,9 @@ class BaconBottomSheetTheme extends ThemeExtension<BaconBottomSheetTheme>
   void debugFillProperties(DiagnosticPropertiesBuilder diagnosticProperties) {
     super.debugFillProperties(diagnosticProperties);
     diagnosticProperties
-      ..add(DiagnosticsProperty("type", "BaconBottomSheetTheme"))
-      ..add(DiagnosticsProperty<BaconTokens>("tokens", tokens))
-      ..add(DiagnosticsProperty<BaconBottomSheetColors>("colors", colors))
-      ..add(DiagnosticsProperty<BaconBottomSheetProperties>(
-          "properties", properties));
+        .add(DiagnosticsProperty("type", "HiveBottomSheetTheme"));
+    diagnosticProperties.add(DiagnosticsProperty<HiveTokens>("tokens", tokens));
+    diagnosticProperties
+        .add(DiagnosticsProperty<HiveBottomSheetColors>("colors", colors));
   }
 }

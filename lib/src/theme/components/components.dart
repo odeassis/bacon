@@ -13,3 +13,7 @@ export './badge/badge_colors.dart';
 export './badge/badge_size_properties.dart';
 export './badge/badge_sizes.dart';
 export './badge/badge_theme.dart';
+// BottomSheet
+export './bottom_sheet/bottom_sheet_colors.dart';
+export './bottom_sheet/bottom_sheet_properties.dart';
+export './bottom_sheet/bottom_sheet_theme.dart';

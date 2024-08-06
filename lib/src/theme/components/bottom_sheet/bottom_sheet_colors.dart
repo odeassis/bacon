@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../../utils/colors_lerp.dart';
+import '../../../utils/colors_lerp.dart' as utils;
 
 @immutable
-class BaconBottomSheetColors extends ThemeExtension<BaconBottomSheetColors>
+class HiveBottomSheetColors extends ThemeExtension<HiveBottomSheetColors>
     with DiagnosticableTreeMixin {
   final Color textColor;
 
@@ -14,7 +14,7 @@ class BaconBottomSheetColors extends ThemeExtension<BaconBottomSheetColors>
 
   final Color barrierColor;
 
-  const BaconBottomSheetColors({
+  const HiveBottomSheetColors({
     required this.textColor,
     required this.iconColor,
     required this.backgroundColor,
@@ -22,13 +22,13 @@ class BaconBottomSheetColors extends ThemeExtension<BaconBottomSheetColors>
   });
 
   @override
-  BaconBottomSheetColors copyWith({
+  HiveBottomSheetColors copyWith({
     Color? textColor,
     Color? iconColor,
     Color? backgroundColor,
     Color? barrierColor,
   }) {
-    return BaconBottomSheetColors(
+    return HiveBottomSheetColors(
       textColor: textColor ?? this.textColor,
       iconColor: iconColor ?? this.iconColor,
       backgroundColor: backgroundColor ?? this.backgroundColor,
@@ -37,15 +37,16 @@ class BaconBottomSheetColors extends ThemeExtension<BaconBottomSheetColors>
   }
 
   @override
-  BaconBottomSheetColors lerp(
-      ThemeExtension<BaconBottomSheetColors>? other, double t) {
-    if (other is! BaconBottomSheetColors) return this;
+  HiveBottomSheetColors lerp(
+      ThemeExtension<HiveBottomSheetColors>? other, double t) {
+    if (other is! HiveBottomSheetColors) return this;
 
-    return BaconBottomSheetColors(
-      textColor: colorsLerp(textColor, other.textColor, t)!,
-      iconColor: colorsLerp(iconColor, other.iconColor, t)!,
-      backgroundColor: colorsLerp(backgroundColor, other.backgroundColor, t)!,
-      barrierColor: colorsLerp(barrierColor, other.barrierColor, t)!,
+    return HiveBottomSheetColors(
+      textColor: utils.colorsLerp(textColor, other.textColor, t)!,
+      iconColor: utils.colorsLerp(iconColor, other.iconColor, t)!,
+      backgroundColor:
+          utils.colorsLerp(backgroundColor, other.backgroundColor, t)!,
+      barrierColor: utils.colorsLerp(barrierColor, other.barrierColor, t)!,
     );
   }
 
@@ -53,7 +54,7 @@ class BaconBottomSheetColors extends ThemeExtension<BaconBottomSheetColors>
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty("type", "BaconBottomSheetColors"))
+      ..add(DiagnosticsProperty("type", "HiveBottomSheetColors"))
       ..add(ColorProperty("textColor", textColor))
       ..add(ColorProperty("iconColor", iconColor))
       ..add(ColorProperty("backgroundColor", backgroundColor))

@@ -9,15 +9,19 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
   final HiveAlertTheme alertTheme;
   final HiveAvatarTheme avatarTheme;
   final HiveBadgeTheme badgeTheme;
+  final HiveBottomSheetTheme bottomSheetTheme;
 
   HiveTheme({
     required this.tokens,
     HiveAlertTheme? alertTheme,
     HiveAvatarTheme? avatarTheme,
     HiveBadgeTheme? badgeTheme,
+    HiveBottomSheetTheme? bottomSheetTheme,
   })  : alertTheme = alertTheme ?? HiveAlertTheme(tokens: tokens),
         avatarTheme = avatarTheme ?? HiveAvatarTheme(tokens: tokens),
-        badgeTheme = badgeTheme ?? HiveBadgeTheme(tokens: tokens);
+        badgeTheme = badgeTheme ?? HiveBadgeTheme(tokens: tokens),
+        bottomSheetTheme =
+            bottomSheetTheme ?? HiveBottomSheetTheme(tokens: tokens);
 
   @override
   HiveTheme copyWith({
@@ -25,12 +29,14 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
     HiveAlertTheme? alertTheme,
     HiveAvatarTheme? avatarTheme,
     HiveBadgeTheme? badgeTheme,
+    HiveBottomSheetTheme? bottomSheetTheme,
   }) {
     return HiveTheme(
       tokens: tokens ?? this.tokens,
       alertTheme: alertTheme ?? this.alertTheme,
       avatarTheme: avatarTheme ?? this.avatarTheme,
       badgeTheme: badgeTheme ?? this.badgeTheme,
+      bottomSheetTheme: bottomSheetTheme ?? this.bottomSheetTheme,
     );
   }
 
@@ -46,6 +52,7 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
       alertTheme: alertTheme.lerp(other.alertTheme, t),
       avatarTheme: avatarTheme.lerp(other.avatarTheme, t),
       badgeTheme: badgeTheme.lerp(other.badgeTheme, t),
+      bottomSheetTheme: bottomSheetTheme.lerp(other.bottomSheetTheme, t),
     );
   }
 
@@ -60,6 +67,8 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
         .add(DiagnosticsProperty<HiveAvatarTheme>('avatarTheme', avatarTheme));
     properties
         .add(DiagnosticsProperty<HiveBadgeTheme>('badgeTheme', badgeTheme));
+    properties.add(DiagnosticsProperty<HiveBottomSheetTheme>(
+        'bottomSheetTheme', bottomSheetTheme));
   }
 }
 

@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import '../../theme/hive_theme.dart';
-import '../../theme/tokens/hive_tokens.dart';
-import './bottom_sheet.dart';
+import '../../theme/theme.dart';
+import '../../theme/tokens/tokens.dart';
+import 'bottom_sheet.dart';
 
 Future<T?> showBaconModalBottomSheet<T>({
   required BuildContext context,
@@ -42,15 +42,15 @@ Future<T?> showBaconModalBottomSheet<T>({
   );
 
   final Color effectiveBarrierColor = barrierColor ??
-      context.baconTheme?.bottomSheetTheme.colors.barrierColor ??
-      BaconTokens.light.modes.content.primary;
+      context.hiveTheme?.bottomSheetTheme.colors.barrierColor ??
+      HiveTokens.light.modes.content.primary;
 
   final Duration effectiveTransitionDuration = transitionDuration ??
-      context.baconTheme?.bottomSheetTheme.properties.transitionDuration ??
+      context.hiveTheme?.bottomSheetTheme.properties.transitionDuration ??
       const Duration(milliseconds: 350);
 
   final Curve effectiveTransitionCurve = transitionCurve ??
-      context.baconTheme?.bottomSheetTheme.properties.transitionCurve ??
+      context.hiveTheme?.bottomSheetTheme.properties.transitionCurve ??
       const Cubic(0.0, 0.0, 0.2, 1.0);
 
   final T? result =
@@ -146,7 +146,7 @@ class BaconModalBottomSheetRoute<T> extends PageRoute<T> {
   AnimationController createAnimationController() {
     assert(_animationController == null);
 
-    _animationController = BaconBottomSheet.createAnimationController(
+    _animationController = HiveBottomSheet.createAnimationController(
       navigator!.overlay!,
       transitionDuration,
     );
@@ -300,7 +300,7 @@ class _ModalBottomSheetState<T> extends State<_ModalBottomSheet<T>> {
               label: _getRouteLabel(),
               namesRoute: true,
               scopesRoute: true,
-              child: BaconBottomSheet(
+              child: HiveBottomSheet(
                 enableDrag: widget.enableDrag,
                 isExpanded: widget.route.isExpanded,
                 borderRadius: widget.borderRadius,
