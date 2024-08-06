@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hive/src/theme/hive_theme.dart';
 
 import '../../theme/components/components.dart' as components;
+import '../../theme/hive_theme.dart';
+import '../../theme/tokens/tokens.dart';
+import '../../utils/utils.dart' as utils;
 
 enum BadgeSize {
   /// The minimum size of the badge.
@@ -102,33 +104,33 @@ class HiveBadge extends StatelessWidget {
   ) {
     return switch (badgeSize) {
       BadgeSize.md => context.hiveTheme?.badgeTheme.sizes.md ??
-          BadgeSizes(tokens: BaconTokens.light).md,
+          components.HiveBadgeSizes(tokens: HiveTokens.light).md,
       _ => context.hiveTheme?.badgeTheme.sizes.sm ??
-          BadgeSizes(tokens: BaconTokens.light).sm,
+          components.HiveBadgeSizes(tokens: HiveTokens.light).sm,
     };
   }
 
   @override
   Widget build(BuildContext context) {
-    final BadgeSizeProperties effectiveBadgeSize =
+    final components.HiveBadgeSizeProperties effectiveBadgeSize =
         _getBadgeSize(context, badgeSize);
 
     final TextStyle effectiveTextStyle = effectiveBadgeSize.textStyle;
 
     final Color effectiveTextColor = textColor ??
         context.hiveTheme?.badgeTheme.colors.textColor ??
-        BaconTokens.light.modes.content.inverse;
+        HiveTokens.light.modes.content.inverse;
 
     final BorderRadiusGeometry effectiveBorderRadius =
         borderRadius ?? effectiveBadgeSize.borderRadius;
 
     final Color effectiveBackground = background ??
         context.hiveTheme?.badgeTheme.colors.background ??
-        BaconTokens.light.modes.accent.blue;
+        HiveTokens.light.modes.accent.blue;
 
     final Color effectiveIconColor = iconColor ??
         context.hiveTheme?.badgeTheme.colors.iconColor ??
-        BaconTokens.light.modes.content.inverse;
+        HiveTokens.light.modes.content.inverse;
 
     final double? effectiveHeight = height ?? effectiveBadgeSize.height;
 
@@ -200,9 +202,9 @@ class HiveBadge extends StatelessWidget {
             padding: correctedPadding,
             constraints: BoxConstraints(minWidth: effectiveHeight ?? 20),
             decoration: decoration ??
-                ShapeDecorationWithPremultipliedAlpha(
+                utils.ShapeDecorationWithPremultipliedAlpha(
                   color: effectiveBackground,
-                  shape: BaconSquircleBorder(
+                  shape: utils.HiveSquircleBorder(
                     borderRadius:
                         effectiveBorderRadius.squircleBorderRadius(context),
                   ),

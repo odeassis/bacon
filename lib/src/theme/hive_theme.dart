@@ -8,24 +8,29 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
   final HiveTokens tokens;
   final HiveAlertTheme alertTheme;
   final HiveAvatarTheme avatarTheme;
+  final HiveBadgeTheme badgeTheme;
 
   HiveTheme({
     required this.tokens,
     HiveAlertTheme? alertTheme,
     HiveAvatarTheme? avatarTheme,
+    HiveBadgeTheme? badgeTheme,
   })  : alertTheme = alertTheme ?? HiveAlertTheme(tokens: tokens),
-        avatarTheme = avatarTheme ?? HiveAvatarTheme(tokens: tokens);
+        avatarTheme = avatarTheme ?? HiveAvatarTheme(tokens: tokens),
+        badgeTheme = badgeTheme ?? HiveBadgeTheme(tokens: tokens);
 
   @override
   HiveTheme copyWith({
     HiveTokens? tokens,
     HiveAlertTheme? alertTheme,
     HiveAvatarTheme? avatarTheme,
+    HiveBadgeTheme? badgeTheme,
   }) {
     return HiveTheme(
       tokens: tokens ?? this.tokens,
       alertTheme: alertTheme ?? this.alertTheme,
       avatarTheme: avatarTheme ?? this.avatarTheme,
+      badgeTheme: badgeTheme ?? this.badgeTheme,
     );
   }
 
@@ -40,6 +45,7 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
       tokens: tokens.lerp(other.tokens, t),
       alertTheme: alertTheme.lerp(other.alertTheme, t),
       avatarTheme: avatarTheme.lerp(other.avatarTheme, t),
+      badgeTheme: badgeTheme.lerp(other.badgeTheme, t),
     );
   }
 
@@ -52,6 +58,8 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
         .add(DiagnosticsProperty<HiveAlertTheme>('alertTheme', alertTheme));
     properties
         .add(DiagnosticsProperty<HiveAvatarTheme>('avatarTheme', avatarTheme));
+    properties
+        .add(DiagnosticsProperty<HiveBadgeTheme>('badgeTheme', badgeTheme));
   }
 }
 
