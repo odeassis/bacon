@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class BaconTextAreaProperties extends ThemeExtension<BaconTextAreaProperties>
+class HiveTextAreaProperties extends ThemeExtension<HiveTextAreaProperties>
     with DiagnosticableTreeMixin {
   final BorderRadiusGeometry borderRadius;
 
@@ -18,7 +18,7 @@ class BaconTextAreaProperties extends ThemeExtension<BaconTextAreaProperties>
 
   final TextStyle helperTextStyle;
 
-  const BaconTextAreaProperties({
+  const HiveTextAreaProperties({
     required this.borderRadius,
     required this.transitionDuration,
     required this.transitionCurve,
@@ -29,7 +29,7 @@ class BaconTextAreaProperties extends ThemeExtension<BaconTextAreaProperties>
   });
 
   @override
-  BaconTextAreaProperties copyWith({
+  HiveTextAreaProperties copyWith({
     BorderRadiusGeometry? borderRadius,
     Duration? transitionDuration,
     Curve? transitionCurve,
@@ -38,7 +38,7 @@ class BaconTextAreaProperties extends ThemeExtension<BaconTextAreaProperties>
     TextStyle? textStyle,
     TextStyle? helperTextStyle,
   }) {
-    return BaconTextAreaProperties(
+    return HiveTextAreaProperties(
       borderRadius: borderRadius ?? this.borderRadius,
       transitionDuration: transitionDuration ?? this.transitionDuration,
       transitionCurve: transitionCurve ?? this.transitionCurve,
@@ -50,11 +50,11 @@ class BaconTextAreaProperties extends ThemeExtension<BaconTextAreaProperties>
   }
 
   @override
-  BaconTextAreaProperties lerp(
-      ThemeExtension<BaconTextAreaProperties>? other, double t) {
-    if (other is! BaconTextAreaProperties) return this;
+  HiveTextAreaProperties lerp(
+      ThemeExtension<HiveTextAreaProperties>? other, double t) {
+    if (other is! HiveTextAreaProperties) return this;
 
-    return BaconTextAreaProperties(
+    return HiveTextAreaProperties(
       borderRadius:
           BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t)!,
       transitionDuration:
@@ -72,17 +72,19 @@ class BaconTextAreaProperties extends ThemeExtension<BaconTextAreaProperties>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty("type", "HiveTextAreaProperties"));
+    properties.add(DiagnosticsProperty<BorderRadiusGeometry>(
+        "borderRadius", borderRadius));
+    properties.add(DiagnosticsProperty<Duration>(
+        "transitionDuration", transitionDuration));
     properties
-      ..add(DiagnosticsProperty("type", "BaconTextAreaProperties"))
-      ..add(DiagnosticsProperty<BorderRadiusGeometry>(
-          "borderRadius", borderRadius))
-      ..add(DiagnosticsProperty<Duration>(
-          "transitionDuration", transitionDuration))
-      ..add(DiagnosticsProperty<Curve>("transitionCurve", transitionCurve))
-      ..add(DiagnosticsProperty<EdgeInsetsGeometry>(
-          "helperPadding", helperPadding))
-      ..add(DiagnosticsProperty<EdgeInsetsGeometry>("textPadding", textPadding))
-      ..add(DiagnosticsProperty<TextStyle>("textStyle", textStyle))
-      ..add(DiagnosticsProperty<TextStyle>("helperTextStyle", helperTextStyle));
+        .add(DiagnosticsProperty<Curve>("transitionCurve", transitionCurve));
+    properties.add(DiagnosticsProperty<EdgeInsetsGeometry>(
+        "helperPadding", helperPadding));
+    properties.add(
+        DiagnosticsProperty<EdgeInsetsGeometry>("textPadding", textPadding));
+    properties.add(DiagnosticsProperty<TextStyle>("textStyle", textStyle));
+    properties.add(
+        DiagnosticsProperty<TextStyle>("helperTextStyle", helperTextStyle));
   }
 }

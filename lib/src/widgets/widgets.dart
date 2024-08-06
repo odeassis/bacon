@@ -24,3 +24,10 @@ export './menu_item/menu_item.dart';
 export './progress/linear_progress.dart';
 // Radio
 export './radio/radio.dart';
+// Tag
+export './tag/tag.dart';
+// TextArea
+export './text_area/text_area.dart';
+// TextInput
+export './text_input/text_input.dart';
+export './text_input/text_input_form.dart';

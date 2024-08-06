@@ -2,14 +2,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class BaconTextInputProperties extends ThemeExtension<BaconTextInputProperties>
+class HiveTextInputProperties extends ThemeExtension<HiveTextInputProperties>
     with DiagnosticableTreeMixin {
   final Curve transitionCurve;
   final Duration transitionDuration;
   final TextStyle helperTextStyle;
   final EdgeInsetsGeometry helperPadding;
 
-  const BaconTextInputProperties({
+  const HiveTextInputProperties({
     required this.transitionCurve,
     required this.transitionDuration,
     required this.helperTextStyle,
@@ -17,13 +17,13 @@ class BaconTextInputProperties extends ThemeExtension<BaconTextInputProperties>
   });
 
   @override
-  BaconTextInputProperties copyWith({
+  HiveTextInputProperties copyWith({
     Curve? transitionCurve,
     Duration? transitionDuration,
     TextStyle? helperTextStyle,
     EdgeInsetsGeometry? helperPadding,
   }) {
-    return BaconTextInputProperties(
+    return HiveTextInputProperties(
       transitionCurve: transitionCurve ?? this.transitionCurve,
       transitionDuration: transitionDuration ?? this.transitionDuration,
       helperTextStyle: helperTextStyle ?? this.helperTextStyle,
@@ -32,10 +32,10 @@ class BaconTextInputProperties extends ThemeExtension<BaconTextInputProperties>
   }
 
   @override
-  BaconTextInputProperties lerp(
-      ThemeExtension<BaconTextInputProperties>? other, double t) {
-    if (other is! BaconTextInputProperties) return this;
-    return BaconTextInputProperties(
+  HiveTextInputProperties lerp(
+      ThemeExtension<HiveTextInputProperties>? other, double t) {
+    if (other is! HiveTextInputProperties) return this;
+    return HiveTextInputProperties(
       transitionCurve: other.transitionCurve,
       transitionDuration:
           lerpDuration(transitionDuration, other.transitionDuration, t),
@@ -49,7 +49,7 @@ class BaconTextInputProperties extends ThemeExtension<BaconTextInputProperties>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'BaconTextInputProperties'));
+    properties.add(DiagnosticsProperty('type', 'HiveTextInputProperties'));
     properties
         .add(DiagnosticsProperty<Curve>('transitionCurve', transitionCurve));
     properties.add(DiagnosticsProperty<Duration>(

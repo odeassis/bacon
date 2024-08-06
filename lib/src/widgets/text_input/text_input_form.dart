@@ -1,29 +1,30 @@
 import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
 
-import 'package:bacon/src/widgets/text_input/text_input.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'text_input.dart' as input;
+
 export 'package:flutter/services.dart' show SmartDashesType, SmartQuotesType;
 
-typedef BaconFormTextInputValidationStatusCallback = void Function(
+typedef HiveFormTextInputValidationStatusCallback = void Function(
     String? validationErrorText);
 
-class BaconFormTextInput extends FormField<String> {
-  final BaconFormTextInputConfiguration configuration;
+class HiveFormTextInput extends FormField<String> {
+  final HiveFormTextInputConfiguration configuration;
 
-  /// Creates a Bacon Design [BaconFormTextInput] with a [BaconTextInput].
+  /// Creates a Hive Design [HiveFormTextInput] with a [HiveTextInput].
   ///
   /// If a [controller] is specified, [initialValue] must be null. If [controller] is null,
   /// a [TextEditingController] is automatically created with its `text` initialized to [initialValue] or an empty string.
   ///
-  /// See [BaconTextInput] documentation for details on various parameters.
+  /// See [HiveTextInput] documentation for details on various parameters.
   ///
   /// Validator errors take precedence over the provided [errorText].
-  BaconFormTextInput({
+  HiveFormTextInput({
     super.key,
-    // Bacon Design system properties.
+    // Hive Design system properties.
     bool hasFloatingLabel = false,
     BorderRadiusGeometry? borderRadius,
     Color? backgroundColor,
@@ -42,13 +43,13 @@ class BaconFormTextInput extends FormField<String> {
     Curve? transitionCurve,
     EdgeInsetsGeometry? padding,
     EdgeInsetsGeometry? helperPadding,
-    BaconFormTextInputValidationStatusCallback? validationStatusCallback,
-    BaconTextInputSize? textInputSize,
+    HiveFormTextInputValidationStatusCallback? validationStatusCallback,
+    input.TextInputSize? textInputSize,
     String? errorText,
     String? hintText,
     String? initialValue,
     TextStyle? helperTextStyle,
-    BaconTextInputErrorBuilder? errorBuilder,
+    input.HiveTextInputErrorBuilder? errorBuilder,
     Widget? leading,
     Widget? trailing,
     Widget? helper,
@@ -135,9 +136,9 @@ class BaconFormTextInput extends FormField<String> {
         assert(!obscureText || maxLines == 1,
             "Obscured fields cannot be multiline."),
         assert(maxLength == null ||
-            maxLength == BaconTextInput.noMaxLength ||
+            maxLength == input.HiveTextInput.noMaxLength ||
             maxLength > 0),
-        configuration = BaconFormTextInputConfiguration(
+        configuration = HiveFormTextInputConfiguration(
           activeBorderColor: activeBorderColor,
           autocorrect: autocorrect,
           autofillHints: autofillHints,
@@ -243,8 +244,8 @@ class BaconFormTextInput extends FormField<String> {
           enabled: enabled ?? true,
           autovalidateMode: autovalidateMode ?? AutovalidateMode.disabled,
           builder: (FormFieldState<String> field) {
-            final _BaconFormTextInputState state =
-                field as _BaconFormTextInputState;
+            final _HiveFormTextInputState state =
+                field as _HiveFormTextInputState;
 
             validationStatusCallback?.call(field.errorText);
 
@@ -257,7 +258,7 @@ class BaconFormTextInput extends FormField<String> {
 
             return UnmanagedRestorationScope(
               bucket: field.bucket,
-              child: BaconTextInput(
+              child: input.HiveTextInput(
                 activeBorderColor: activeBorderColor,
                 autocorrect: autocorrect,
                 autofillHints: autofillHints,
@@ -371,17 +372,16 @@ class BaconFormTextInput extends FormField<String> {
   }
 
   @override
-  FormFieldState<String> createState() => _BaconFormTextInputState();
+  FormFieldState<String> createState() => _HiveFormTextInputState();
 }
 
-class _BaconFormTextInputState extends FormFieldState<String> {
+class _HiveFormTextInputState extends FormFieldState<String> {
   RestorableTextEditingController? _controller;
 
   TextEditingController get _effectiveController =>
-      _BaconFormTextInput.controller ?? _controller!.value;
+      _HiveFormTextInput.controller ?? _controller!.value;
 
-  BaconFormTextInput get _BaconFormTextInput =>
-      super.widget as BaconFormTextInput;
+  HiveFormTextInput get _HiveFormTextInput => super.widget as HiveFormTextInput;
 
   @override
   void restoreState(RestorationBucket? oldBucket, bool initialRestore) {
@@ -410,29 +410,29 @@ class _BaconFormTextInputState extends FormFieldState<String> {
   @override
   void initState() {
     super.initState();
-    if (_BaconFormTextInput.controller == null) {
+    if (_HiveFormTextInput.controller == null) {
       _createLocalController(widget.initialValue != null
           ? TextEditingValue(text: widget.initialValue!)
           : null);
     } else {
-      _BaconFormTextInput.controller!.addListener(_handleControllerChanged);
+      _HiveFormTextInput.controller!.addListener(_handleControllerChanged);
     }
   }
 
   @override
-  void didUpdateWidget(BaconFormTextInput oldWidget) {
+  void didUpdateWidget(HiveFormTextInput oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (_BaconFormTextInput.controller != oldWidget.controller) {
+    if (_HiveFormTextInput.controller != oldWidget.controller) {
       oldWidget.controller?.removeListener(_handleControllerChanged);
-      _BaconFormTextInput.controller?.addListener(_handleControllerChanged);
+      _HiveFormTextInput.controller?.addListener(_handleControllerChanged);
 
       if (oldWidget.controller != null &&
-          _BaconFormTextInput.controller == null) {
+          _HiveFormTextInput.controller == null) {
         _createLocalController(oldWidget.controller!.value);
       }
 
-      if (_BaconFormTextInput.controller != null) {
-        setValue(_BaconFormTextInput.controller!.text);
+      if (_HiveFormTextInput.controller != null) {
+        setValue(_HiveFormTextInput.controller!.text);
         if (oldWidget.controller == null) {
           unregisterFromRestoration(_controller!);
           _controller!.dispose();
@@ -444,7 +444,7 @@ class _BaconFormTextInputState extends FormFieldState<String> {
 
   @override
   void dispose() {
-    _BaconFormTextInput.controller?.removeListener(_handleControllerChanged);
+    _HiveFormTextInput.controller?.removeListener(_handleControllerChanged);
     _controller?.dispose();
     super.dispose();
   }
@@ -471,8 +471,8 @@ class _BaconFormTextInputState extends FormFieldState<String> {
   }
 }
 
-class BaconFormTextInputConfiguration {
-  // Bacon Design System properties.
+class HiveFormTextInputConfiguration {
+  // Hive Design System properties.
   final bool hasFloatingLabel;
   final BorderRadiusGeometry? borderRadius;
   final Color? backgroundColor;
@@ -491,13 +491,13 @@ class BaconFormTextInputConfiguration {
   final Curve? transitionCurve;
   final EdgeInsetsGeometry? padding;
   final EdgeInsetsGeometry? helperPadding;
-  final BaconFormTextInputValidationStatusCallback? validationStatusCallback;
-  final BaconTextInputSize? textInputSize;
+  final HiveFormTextInputValidationStatusCallback? validationStatusCallback;
+  final input.TextInputSize? textInputSize;
   final String? errorText;
   final String? hintText;
   final String? initialValue;
   final TextStyle? helperTextStyle;
-  final BaconTextInputErrorBuilder? errorBuilder;
+  final input.HiveTextInputErrorBuilder? errorBuilder;
   final Widget? leading;
   final Widget? trailing;
   final Widget? helper;
@@ -567,8 +567,8 @@ class BaconFormTextInputConfiguration {
   final FormFieldValidator<String>? validator;
   final AutovalidateMode autovalidateMode;
 
-  const BaconFormTextInputConfiguration({
-    // Bacon Design System properties.
+  const HiveFormTextInputConfiguration({
+    // Hive Design System properties.
     this.hasFloatingLabel = false,
     this.borderRadius,
     this.backgroundColor,
@@ -655,7 +655,7 @@ class BaconFormTextInputConfiguration {
     this.restorationId,
     this.scribbleEnabled = true,
     this.enableIMEPersonalizedLearning = true,
-    this.contextMenuBuilder = BaconFormTextInput.defaultContextMenuBuilder,
+    this.contextMenuBuilder = HiveFormTextInput.defaultContextMenuBuilder,
     this.canRequestFocus = true,
     this.spellCheckConfiguration,
     this.magnifierConfiguration,

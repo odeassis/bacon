@@ -1,25 +1,26 @@
-import 'package:bacon/src/theme/components/text_input/input_colors.dart';
-import 'package:bacon/src/theme/components/text_input/input_properties.dart';
-import 'package:bacon/src/theme/components/text_input/input_sizes.dart';
-import 'package:bacon/src/theme/tokens/tokens.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-@immutable
-class BaconTextInputTheme extends ThemeExtension<BaconTextInputTheme>
-    with DiagnosticableTreeMixin {
-  final BaconTokens tokens;
-  final BaconTextInputColors colors;
-  final BaconTextInputProperties properties;
-  final BaconTextInputSizes sizes;
+import '../../tokens/hive_tokens.dart';
+import 'input_colors.dart';
+import 'input_properties.dart';
+import 'input_sizes.dart';
 
-  BaconTextInputTheme({
+@immutable
+class HiveTextInputTheme extends ThemeExtension<HiveTextInputTheme>
+    with DiagnosticableTreeMixin {
+  final HiveTokens tokens;
+  final HiveTextInputColors colors;
+  final HiveTextInputProperties properties;
+  final HiveTextInputSizes sizes;
+
+  HiveTextInputTheme({
     required this.tokens,
-    BaconTextInputColors? colors,
-    BaconTextInputProperties? properties,
-    BaconTextInputSizes? sizes,
+    HiveTextInputColors? colors,
+    HiveTextInputProperties? properties,
+    HiveTextInputSizes? sizes,
   })  : colors = colors ??
-            BaconTextInputColors(
+            HiveTextInputColors(
               background: tokens.modes.background.primary,
               activeBorderColor: tokens.modes.action.active,
               inactiveBorderColor: tokens.modes.border.primary,
@@ -30,22 +31,22 @@ class BaconTextInputTheme extends ThemeExtension<BaconTextInputTheme>
               focusRing: tokens.modes.action.focusRingBrand,
             ),
         properties = properties ??
-            BaconTextInputProperties(
+            HiveTextInputProperties(
               transitionDuration: const Duration(milliseconds: 167),
               transitionCurve: Curves.fastOutSlowIn,
               helperPadding: EdgeInsets.only(top: tokens.scale.padding.xs),
               helperTextStyle: tokens.typography.paragraph.xs,
             ),
-        sizes = sizes ?? BaconTextInputSizes(tokens: tokens);
+        sizes = sizes ?? HiveTextInputSizes(tokens: tokens);
 
   @override
-  BaconTextInputTheme copyWith({
-    BaconTokens? tokens,
-    BaconTextInputColors? colors,
-    BaconTextInputProperties? properties,
-    BaconTextInputSizes? sizes,
+  HiveTextInputTheme copyWith({
+    HiveTokens? tokens,
+    HiveTextInputColors? colors,
+    HiveTextInputProperties? properties,
+    HiveTextInputSizes? sizes,
   }) {
-    return BaconTextInputTheme(
+    return HiveTextInputTheme(
       tokens: tokens ?? this.tokens,
       colors: colors ?? this.colors,
       properties: properties ?? this.properties,
@@ -54,11 +55,10 @@ class BaconTextInputTheme extends ThemeExtension<BaconTextInputTheme>
   }
 
   @override
-  BaconTextInputTheme lerp(
-      ThemeExtension<BaconTextInputTheme>? other, double t) {
-    if (other is! BaconTextInputTheme) return this;
+  HiveTextInputTheme lerp(ThemeExtension<HiveTextInputTheme>? other, double t) {
+    if (other is! HiveTextInputTheme) return this;
 
-    return BaconTextInputTheme(
+    return HiveTextInputTheme(
       tokens: tokens.lerp(other.tokens, t),
       colors: colors.lerp(other.colors, t),
       properties: properties.lerp(other.properties, t),
@@ -69,12 +69,13 @@ class BaconTextInputTheme extends ThemeExtension<BaconTextInputTheme>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder diagnosticProperties) {
     super.debugFillProperties(diagnosticProperties);
+    diagnosticProperties.add(DiagnosticsProperty("type", "HiveTextInputTheme"));
+    diagnosticProperties.add(DiagnosticsProperty<HiveTokens>("tokens", tokens));
     diagnosticProperties
-      ..add(DiagnosticsProperty("type", "BaconTextInputTheme"))
-      ..add(DiagnosticsProperty<BaconTokens>("tokens", tokens))
-      ..add(DiagnosticsProperty<BaconTextInputColors>("colors", colors))
-      ..add(DiagnosticsProperty<BaconTextInputProperties>(
-          "properties", properties))
-      ..add(DiagnosticsProperty<BaconTextInputSizes>("sizes", sizes));
+        .add(DiagnosticsProperty<HiveTextInputColors>("colors", colors));
+    diagnosticProperties.add(
+        DiagnosticsProperty<HiveTextInputProperties>("properties", properties));
+    diagnosticProperties
+        .add(DiagnosticsProperty<HiveTextInputSizes>("sizes", sizes));
   }
 }

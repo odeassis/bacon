@@ -4,8 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class BaconTextInputSizeProperties
-    extends ThemeExtension<BaconTextInputSizeProperties>
+class HiveTextInputSizeProperties
+    extends ThemeExtension<HiveTextInputSizeProperties>
     with DiagnosticableTreeMixin {
   final double gap;
   final double height;
@@ -14,7 +14,7 @@ class BaconTextInputSizeProperties
   final EdgeInsetsGeometry padding;
   final BorderRadiusGeometry borderRadius;
 
-  const BaconTextInputSizeProperties({
+  const HiveTextInputSizeProperties({
     required this.gap,
     required this.height,
     required this.iconSize,
@@ -24,7 +24,7 @@ class BaconTextInputSizeProperties
   });
 
   @override
-  BaconTextInputSizeProperties copyWith({
+  HiveTextInputSizeProperties copyWith({
     double? gap,
     double? height,
     double? iconSize,
@@ -32,7 +32,7 @@ class BaconTextInputSizeProperties
     EdgeInsetsGeometry? padding,
     BorderRadiusGeometry? borderRadius,
   }) {
-    return BaconTextInputSizeProperties(
+    return HiveTextInputSizeProperties(
       gap: gap ?? this.gap,
       height: height ?? this.height,
       iconSize: iconSize ?? this.iconSize,
@@ -43,10 +43,10 @@ class BaconTextInputSizeProperties
   }
 
   @override
-  BaconTextInputSizeProperties lerp(
-      ThemeExtension<BaconTextInputSizeProperties>? other, double t) {
-    if (other is! BaconTextInputSizeProperties) return this;
-    return BaconTextInputSizeProperties(
+  HiveTextInputSizeProperties lerp(
+      ThemeExtension<HiveTextInputSizeProperties>? other, double t) {
+    if (other is! HiveTextInputSizeProperties) return this;
+    return HiveTextInputSizeProperties(
       gap: lerpDouble(gap, other.gap, t)!,
       height: lerpDouble(height, other.height, t)!,
       iconSize: lerpDouble(iconSize, other.iconSize, t)!,
@@ -60,7 +60,7 @@ class BaconTextInputSizeProperties
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'BaconTextInputSizeProperties'));
+    properties.add(DiagnosticsProperty('type', 'HiveTextInputSizeProperties'));
     properties.add(DiagnosticsProperty<double>('gap', gap));
     properties.add(DiagnosticsProperty<double>('height', height));
     properties.add(DiagnosticsProperty<double>('iconSize', iconSize));

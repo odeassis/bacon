@@ -1,25 +1,25 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../tokens/hive_tokens.dart';
+import '../../tokens/tokens.dart';
 import 'text_area_colors.dart';
 import 'text_area_properties.dart';
 
 @immutable
-class BaconTextAreaTheme extends ThemeExtension<BaconTextAreaTheme>
+class HiveTextAreaTheme extends ThemeExtension<HiveTextAreaTheme>
     with DiagnosticableTreeMixin {
-  final BaconTokens tokens;
+  final HiveTokens tokens;
 
-  final BaconTextAreaColors colors;
+  final HiveTextAreaColors colors;
 
-  final BaconTextAreaProperties properties;
+  final HiveTextAreaProperties properties;
 
-  BaconTextAreaTheme({
+  HiveTextAreaTheme({
     required this.tokens,
-    BaconTextAreaColors? colors,
-    BaconTextAreaProperties? properties,
+    HiveTextAreaColors? colors,
+    HiveTextAreaProperties? properties,
   })  : colors = colors ??
-            BaconTextAreaColors(
+            HiveTextAreaColors(
               backgroundColor: tokens.modes.background.primary,
               activeBorderColor: tokens.modes.action.active,
               inactiveBorderColor: tokens.modes.action.disabled,
@@ -29,7 +29,7 @@ class BaconTextAreaTheme extends ThemeExtension<BaconTextAreaTheme>
               helperTextColor: tokens.modes.content.tertiary,
             ),
         properties = properties ??
-            BaconTextAreaProperties(
+            HiveTextAreaProperties(
               borderRadius: tokens.shape.radii.surface,
               transitionDuration: tokens.transitions.transitionDuration,
               transitionCurve: tokens.transitions.transitionCurve,
@@ -40,12 +40,12 @@ class BaconTextAreaTheme extends ThemeExtension<BaconTextAreaTheme>
             );
 
   @override
-  BaconTextAreaTheme copyWith({
-    BaconTokens? tokens,
-    BaconTextAreaColors? colors,
-    BaconTextAreaProperties? properties,
+  HiveTextAreaTheme copyWith({
+    HiveTokens? tokens,
+    HiveTextAreaColors? colors,
+    HiveTextAreaProperties? properties,
   }) {
-    return BaconTextAreaTheme(
+    return HiveTextAreaTheme(
       tokens: tokens ?? this.tokens,
       colors: colors ?? this.colors,
       properties: properties ?? this.properties,
@@ -53,10 +53,10 @@ class BaconTextAreaTheme extends ThemeExtension<BaconTextAreaTheme>
   }
 
   @override
-  BaconTextAreaTheme lerp(ThemeExtension<BaconTextAreaTheme>? other, double t) {
-    if (other is! BaconTextAreaTheme) return this;
+  HiveTextAreaTheme lerp(ThemeExtension<HiveTextAreaTheme>? other, double t) {
+    if (other is! HiveTextAreaTheme) return this;
 
-    return BaconTextAreaTheme(
+    return HiveTextAreaTheme(
       tokens: tokens.lerp(other.tokens, t),
       colors: colors.lerp(other.colors, t),
       properties: properties.lerp(other.properties, t),
@@ -66,11 +66,11 @@ class BaconTextAreaTheme extends ThemeExtension<BaconTextAreaTheme>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder diagnosticProperties) {
     super.debugFillProperties(diagnosticProperties);
+    diagnosticProperties.add(DiagnosticsProperty("type", "HiveTextAreaTheme"));
+    diagnosticProperties.add(DiagnosticsProperty<HiveTokens>("tokens", tokens));
     diagnosticProperties
-      ..add(DiagnosticsProperty("type", "BaconTextAreaTheme"))
-      ..add(DiagnosticsProperty<BaconTokens>("tokens", tokens))
-      ..add(DiagnosticsProperty<BaconTextAreaColors>("colors", colors))
-      ..add(DiagnosticsProperty<BaconTextAreaProperties>(
-          "properties", properties));
+        .add(DiagnosticsProperty<HiveTextAreaColors>("colors", colors));
+    diagnosticProperties.add(
+        DiagnosticsProperty<HiveTextAreaProperties>("properties", properties));
   }
 }

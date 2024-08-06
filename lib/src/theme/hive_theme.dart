@@ -19,6 +19,9 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
   final HiveMenuItemTheme menuItemTheme;
   final HiveLinearProgressTheme linearProgressTheme;
   final HiveRadioTheme radioTheme;
+  final HiveTagTheme tagTheme;
+  final HiveTextAreaTheme textAreaTheme;
+  final HiveTextInputTheme textInputTheme;
 
   HiveTheme({
     required this.tokens,
@@ -35,6 +38,9 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
     HiveMenuItemTheme? menuItemTheme,
     HiveLinearProgressTheme? linearProgressTheme,
     HiveRadioTheme? radioTheme,
+    HiveTagTheme? tagTheme,
+    HiveTextAreaTheme? textAreaTheme,
+    HiveTextInputTheme? textInputTheme,
   })  : alertTheme = alertTheme ?? HiveAlertTheme(tokens: tokens),
         avatarTheme = avatarTheme ?? HiveAvatarTheme(tokens: tokens),
         badgeTheme = badgeTheme ?? HiveBadgeTheme(tokens: tokens),
@@ -49,7 +55,10 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
         menuItemTheme = menuItemTheme ?? HiveMenuItemTheme(tokens: tokens),
         linearProgressTheme =
             linearProgressTheme ?? HiveLinearProgressTheme(tokens: tokens),
-        radioTheme = radioTheme ?? HiveRadioTheme(tokens: tokens);
+        radioTheme = radioTheme ?? HiveRadioTheme(tokens: tokens),
+        tagTheme = tagTheme ?? HiveTagTheme(tokens: tokens),
+        textAreaTheme = textAreaTheme ?? HiveTextAreaTheme(tokens: tokens),
+        textInputTheme = textInputTheme ?? HiveTextInputTheme(tokens: tokens);
 
   @override
   HiveTheme copyWith({
@@ -67,6 +76,9 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
     HiveMenuItemTheme? menuItemTheme,
     HiveLinearProgressTheme? linearProgressTheme,
     HiveRadioTheme? radioTheme,
+    HiveTagTheme? tagTheme,
+    HiveTextAreaTheme? textAreaTheme,
+    HiveTextInputTheme? textInputTheme,
   }) {
     return HiveTheme(
       tokens: tokens ?? this.tokens,
@@ -83,6 +95,9 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
       menuItemTheme: menuItemTheme ?? this.menuItemTheme,
       linearProgressTheme: linearProgressTheme ?? this.linearProgressTheme,
       radioTheme: radioTheme ?? this.radioTheme,
+      tagTheme: tagTheme ?? this.tagTheme,
+      textAreaTheme: textAreaTheme ?? this.textAreaTheme,
+      textInputTheme: textInputTheme ?? this.textInputTheme,
     );
   }
 
@@ -109,6 +124,9 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
       linearProgressTheme:
           linearProgressTheme.lerp(other.linearProgressTheme, t),
       radioTheme: radioTheme.lerp(other.radioTheme, t),
+      tagTheme: tagTheme.lerp(other.tagTheme, t),
+      textAreaTheme: textAreaTheme.lerp(other.textAreaTheme, t),
+      textInputTheme: textInputTheme.lerp(other.textInputTheme, t),
     );
   }
 
@@ -143,6 +161,11 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
         'linearProgressTheme', linearProgressTheme));
     properties
         .add(DiagnosticsProperty<HiveRadioTheme>('radioTheme', radioTheme));
+    properties.add(DiagnosticsProperty<HiveTagTheme>('tagTheme', tagTheme));
+    properties.add(
+        DiagnosticsProperty<HiveTextAreaTheme>('textAreaTheme', textAreaTheme));
+    properties.add(DiagnosticsProperty<HiveTextInputTheme>(
+        'textInputTheme', textInputTheme));
   }
 }
 

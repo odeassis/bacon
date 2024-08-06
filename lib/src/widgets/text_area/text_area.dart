@@ -1,16 +1,16 @@
-import 'package:bacon/src/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hive/src/theme/hive_theme.dart';
 
-import '../../theme/tokens/hive_tokens.dart';
-import '../text_input/text_input_form.dart';
+import '../../theme/tokens/tokens.dart';
+import '../text_input/text_input_form.dart' as input;
 
-typedef BaconTextAreaErrorBuilder = Widget Function(
+typedef HiveTextAreaErrorBuilder = Widget Function(
   BuildContext context,
   String? errorText,
 );
 
-class BaconTextArea extends StatelessWidget {
+class HiveTextArea extends StatelessWidget {
   /// Sets the auto validation mode of the text area.
   final AutovalidateMode autovalidateMode;
 
@@ -80,7 +80,7 @@ class BaconTextArea extends StatelessWidget {
   /// The text color of the text area hint.
   final Color? hintTextColor;
 
-  /// The height of the text area (does not include the space taken by [BaconTextArea.errorBuilder]).
+  /// The height of the text area (does not include the space taken by [HiveTextArea.errorBuilder]).
   final double? height;
 
   /// The duration of the text area transition animation (enable and disable).
@@ -212,13 +212,13 @@ class BaconTextArea extends StatelessWidget {
   final ValueChanged<String>? onSubmitted;
 
   /// A builder to build the text area error widget.
-  final BaconTextAreaErrorBuilder? errorBuilder;
+  final HiveTextAreaErrorBuilder? errorBuilder;
 
   /// The widget to display below the text area. Not displayed in error state.
   final Widget? helper;
 
   /// Creates a Bacon Design text area.
-  const BaconTextArea({
+  const HiveTextArea({
     super.key,
     this.autovalidateMode = AutovalidateMode.disabled,
     this.autocorrect = true,
@@ -282,66 +282,66 @@ class BaconTextArea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final BorderRadiusGeometry effectiveBorderRadius = borderRadius ??
-        context.baconTheme?.textAreaTheme.properties.borderRadius ??
+        context.hiveTheme?.textAreaTheme.properties.borderRadius ??
         BorderRadius.circular(8);
 
     final Color effectiveBackgroundColor = backgroundColor ??
-        context.baconTheme?.textAreaTheme.colors.backgroundColor ??
-        BaconTokens.light.modes.background.primary;
+        context.hiveTheme?.textAreaTheme.colors.backgroundColor ??
+        HiveTokens.light.modes.background.primary;
 
     final Color effectiveActiveBorderColor = activeBorderColor ??
-        context.baconTheme?.textAreaTheme.colors.activeBorderColor ??
-        BaconTokens.light.modes.action.active;
+        context.hiveTheme?.textAreaTheme.colors.activeBorderColor ??
+        HiveTokens.light.modes.action.active;
 
     final Color effectiveInactiveBorderColor = inactiveBorderColor ??
-        context.baconTheme?.textAreaTheme.colors.inactiveBorderColor ??
-        BaconTokens.light.modes.action.disabled;
+        context.hiveTheme?.textAreaTheme.colors.inactiveBorderColor ??
+        HiveTokens.light.modes.action.disabled;
 
     final Color effectiveErrorColor = errorColor ??
-        context.baconTheme?.textAreaTheme.colors.errorColor ??
-        BaconTokens.light.modes.alert.danger;
+        context.hiveTheme?.textAreaTheme.colors.errorColor ??
+        HiveTokens.light.modes.alert.danger;
 
     final Color effectiveHoverBorderColor = hoverBorderColor ??
-        context.baconTheme?.textAreaTheme.colors.hoverBorderColor ??
-        BaconTokens.light.modes.action.hoverOnColor;
+        context.hiveTheme?.textAreaTheme.colors.hoverBorderColor ??
+        HiveTokens.light.modes.action.hoverOnColor;
 
     final Color effectiveTextColor = textColor ??
-        context.baconTheme?.textAreaTheme.colors.textColor ??
-        BaconTokens.light.modes.content.primary;
+        context.hiveTheme?.textAreaTheme.colors.textColor ??
+        HiveTokens.light.modes.content.primary;
 
     final Color effectiveHelperTextColor = hintTextColor ??
-        context.baconTheme?.textAreaTheme.colors.helperTextColor ??
-        BaconTokens.light.modes.content.secondary;
+        context.hiveTheme?.textAreaTheme.colors.helperTextColor ??
+        HiveTokens.light.modes.content.secondary;
 
     final EdgeInsetsGeometry effectiveHelperPadding = helperPadding ??
-        context.baconTheme?.textAreaTheme.properties.helperPadding ??
+        context.hiveTheme?.textAreaTheme.properties.helperPadding ??
         EdgeInsets.only(
-          left: BaconTokens.light.scale.padding.x3s,
-          top: BaconTokens.light.scale.padding.x3s,
-          right: BaconTokens.light.scale.padding.x3s,
+          left: HiveTokens.light.scale.padding.x3s,
+          top: HiveTokens.light.scale.padding.x3s,
+          right: HiveTokens.light.scale.padding.x3s,
         );
 
     final EdgeInsetsGeometry effectiveTextPadding = textPadding ??
-        context.baconTheme?.textAreaTheme.properties.textPadding ??
+        context.hiveTheme?.textAreaTheme.properties.textPadding ??
         const EdgeInsets.all(16);
 
     final TextStyle effectiveTextStyle = textStyle ??
-        context.baconTheme?.textAreaTheme.properties.textStyle ??
-        BaconTokens.light.typography.label.md;
+        context.hiveTheme?.textAreaTheme.properties.textStyle ??
+        HiveTokens.light.typography.label.md;
 
     final TextStyle effectiveHelperTextStyle = helperTextStyle ??
-        context.baconTheme?.textAreaTheme.properties.helperTextStyle ??
-        BaconTokens.light.typography.paragraph.xs;
+        context.hiveTheme?.textAreaTheme.properties.helperTextStyle ??
+        HiveTokens.light.typography.paragraph.xs;
 
     final Duration effectiveTransitionDuration = transitionDuration ??
-        context.baconTheme?.textAreaTheme.properties.transitionDuration ??
-        BaconTokens.light.transitions.transitionDuration;
+        context.hiveTheme?.textAreaTheme.properties.transitionDuration ??
+        HiveTokens.light.transitions.transitionDuration;
 
     final Curve effectiveTransitionCurve = transitionCurve ??
-        context.baconTheme?.textAreaTheme.properties.transitionCurve ??
-        BaconTokens.light.transitions.transitionCurve;
+        context.hiveTheme?.textAreaTheme.properties.transitionCurve ??
+        HiveTokens.light.transitions.transitionCurve;
 
-    return BaconFormTextInput(
+    return input.HiveFormTextInput(
       activeBorderColor: effectiveActiveBorderColor,
       autocorrect: autocorrect,
       autofillHints: autofillHints,

@@ -1,19 +1,17 @@
 import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
 
-import 'package:bacon/bacon.dart';
-import 'package:bacon/src/theme/components/text_input/input_size_properties.dart';
-import 'package:bacon/src/theme/components/text_input/input_sizes.dart';
-import 'package:bacon/src/theme/effects/effects_theme.dart';
-import 'package:bacon/src/theme/tokens/opacities.dart';
-import 'package:bacon/src/utils/shared/common/border_container.dart';
-import 'package:bacon/src/utils/shared/common/effects/focus_effect.dart';
-import 'package:bacon/src/utils/shared/common/error_message.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+
+import '../../theme/components/components.dart' as components;
+import '../../theme/effects/effects.dart';
+import '../../theme/theme.dart';
+import '../../theme/tokens/tokens.dart';
+import '../../utils/utils.dart' as utils;
 
 export 'package:flutter/services.dart'
     show
@@ -23,17 +21,17 @@ export 'package:flutter/services.dart'
         TextInputAction,
         TextInputType;
 
-enum BaconTextInputSize {
+enum TextInputSize {
   sm,
   md,
   lg,
   xl,
 }
 
-typedef BaconTextInputErrorBuilder = Widget Function(
+typedef HiveTextInputErrorBuilder = Widget Function(
     BuildContext context, String? errorText);
 
-class BaconTextInput extends StatefulWidget {
+class HiveTextInput extends StatefulWidget {
   static const int noMaxLength = -1;
 
   static Widget _defaultContextMenuBuilder(
@@ -43,7 +41,7 @@ class BaconTextInput extends StatefulWidget {
     );
   }
 
-  // Bacon Design System properties.
+  // Hive Design System properties.
 
   /// Whether the text input has floating label.
   final bool hasFloatingLabel;
@@ -81,7 +79,7 @@ class BaconTextInput extends StatefulWidget {
   /// The gap between the [leading] widget, text input and [trailing] widget.
   final double? gap;
 
-  /// The height of the text input (does not include the space taken by [BaconTextInput.errorBuilder]).
+  /// The height of the text input (does not include the space taken by [HiveTextInput.errorBuilder]).
   final double? height;
 
   /// The width of the text input.
@@ -100,7 +98,7 @@ class BaconTextInput extends StatefulWidget {
   final EdgeInsetsGeometry? helperPadding;
 
   /// The size of the text input.
-  final BaconTextInputSize? textInputSize;
+  final TextInputSize? textInputSize;
 
   /// The error text can be used to force text input into an error state (useful for asynchronous errors).
   ///
@@ -117,7 +115,7 @@ class BaconTextInput extends StatefulWidget {
   final TextStyle? helperTextStyle;
 
   /// A builder to build the text input error widget.
-  final BaconTextInputErrorBuilder? errorBuilder;
+  final HiveTextInputErrorBuilder? errorBuilder;
 
   /// The widget to display before the text input.
   final Widget? leading;
@@ -266,7 +264,7 @@ class BaconTextInput extends StatefulWidget {
   /// If set, a character counter will be displayed below the
   /// field showing how many characters have been entered. If set to a number
   /// greater than 0, it will also display the maximum number allowed. If set
-  /// to [BaconTextInput.noMaxLength] then only the current character count is displayed.
+  /// to [HiveTextInput.noMaxLength] then only the current character count is displayed.
   ///
   /// After [maxLength] characters have been input, additional input
   /// is ignored, unless [maxLengthEnforcement] is set to [MaxLengthEnforcement.none].
@@ -274,9 +272,9 @@ class BaconTextInput extends StatefulWidget {
   /// The text field enforces the length with a [LengthLimitingTextInputFormatter],
   /// which is evaluated after the supplied [inputFormatters], if any.
   ///
-  /// This value must be either null, [BaconTextInput.noMaxLength], or greater than 0.
+  /// This value must be either null, [HiveTextInput.noMaxLength], or greater than 0.
   /// If null (the default) then there is no limit to the number of characters
-  /// that can be entered. If set to [BaconTextInput.noMaxLength], then no limit will
+  /// that can be entered. If set to [HiveTextInput.noMaxLength], then no limit will
   /// be enforced, but the number of characters entered will still be displayed.
   ///
   /// Whitespace characters (e.g. newline, space, tab) are included in the character count.
@@ -348,7 +346,7 @@ class BaconTextInput extends StatefulWidget {
   /// the field.
   final Color? cursorColor;
 
-  /// The color of the cursor when the [BaconTextInput] is showing an error.
+  /// The color of the cursor when the [HiveTextInput] is showing an error.
   final Color? cursorErrorColor;
 
   /// Controls how tall the selection highlight boxes are computed to be.
@@ -415,7 +413,7 @@ class BaconTextInput extends StatefulWidget {
   ///
   /// {@tool dartpad}
   /// This example shows how to use a 'TextFieldTapRegion' to wrap a set of
-  /// "spinner" buttons that increment and decrement a value in the [BaconTextInput]
+  /// "spinner" buttons that increment and decrement a value in the [HiveTextInput]
   /// without causing the text field to lose keyboard focus.
   ///
   /// This example includes a generic 'SpinnerField<T>' class that you can copy
@@ -501,7 +499,7 @@ class BaconTextInput extends StatefulWidget {
   /// configuration, then [materialMisspelledTextStyle] is used by default.
   final SpellCheckConfiguration? spellCheckConfiguration;
 
-  /// Creates a Bacon Design text input.
+  /// Creates a Hive Design text input.
   ///
   /// The [maxLines] property can be set to null to remove the restriction on
   /// the number of lines. By default, it is one, meaning this is a single-line
@@ -513,7 +511,7 @@ class BaconTextInput extends StatefulWidget {
   /// field showing how many characters have been entered. If the value is
   /// set to a positive integer it will also display the maximum allowed
   /// number of characters to be entered. If the value is set to
-  /// [BaconTextInput.noMaxLength] then only the current length is displayed.
+  /// [HiveTextInput.noMaxLength] then only the current length is displayed.
   ///
   /// After [maxLength] characters have been input, additional input
   /// is ignored, unless [maxLengthEnforcement] is set to
@@ -544,8 +542,8 @@ class BaconTextInput extends StatefulWidget {
   ///
   ///  * [maxLength], which discusses the precise meaning of "number of
   ///    characters" and how it may differ from the intuitive meaning.
-  const BaconTextInput({
-    // Bacon Design System properties.
+  const HiveTextInput({
+    // Hive Design System properties.
     this.hasFloatingLabel = false,
     this.borderRadius,
     this.backgroundColor,
@@ -654,14 +652,14 @@ class BaconTextInput extends StatefulWidget {
         assert(!obscureText || maxLines == 1,
             'Obscured fields cannot be multiline.'),
         assert(maxLength == null ||
-            maxLength == BaconTextInput.noMaxLength ||
+            maxLength == HiveTextInput.noMaxLength ||
             maxLength > 0),
         // Assert the following to prevent unexpected changes in the user's set value.
         assert(
           !identical(textInputAction, TextInputAction.newline) ||
               maxLines == 1 ||
               !identical(keyboardType, TextInputType.text),
-          'Use keyboardType TextInputType.multiline when using TextInputAction.newline on a multiline BaconTextInput.',
+          'Use keyboardType TextInputType.multiline when using TextInputAction.newline on a multiline HiveTextInput.',
         ),
         keyboardType = keyboardType ??
             (maxLines == 1 ? TextInputType.text : TextInputType.multiline),
@@ -672,7 +670,7 @@ class BaconTextInput extends StatefulWidget {
   bool get selectionEnabled => enableInteractiveSelection;
 
   @override
-  State<BaconTextInput> createState() => _BaconTextInputState();
+  State<HiveTextInput> createState() => _HiveTextInputState();
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
@@ -809,7 +807,7 @@ class BaconTextInput extends StatefulWidget {
   }
 }
 
-class _BaconTextInputState extends State<BaconTextInput>
+class _HiveTextInputState extends State<HiveTextInput>
     with RestorationMixin
     implements TextSelectionGestureDetectorBuilderDelegate, AutofillClient {
   @override
@@ -819,7 +817,7 @@ class _BaconTextInputState extends State<BaconTextInput>
   @override
   late bool forcePressEnabled;
 
-  late _BaconTextInputSelectionGestureDetectorBuilder
+  late _HiveTextInputSelectionGestureDetectorBuilder
       _selectionGestureDetectorBuilder;
 
   RestorableTextEditingController? _controller;
@@ -869,12 +867,12 @@ class _BaconTextInputState extends State<BaconTextInput>
       LengthLimitingTextInputFormatter.getDefaultMaxLengthEnforcement(
           Theme.of(context).platform);
 
-  Set<MaterialState> get _materialState {
-    return <MaterialState>{
-      if (!_isEnabled) MaterialState.disabled,
-      if (_isHovering) MaterialState.hovered,
-      if (_hasFocus) MaterialState.focused,
-      if (_hasError) MaterialState.error,
+  Set<WidgetState> get _materialState {
+    return <WidgetState>{
+      if (!_isEnabled) WidgetState.disabled,
+      if (_isHovering) WidgetState.hovered,
+      if (_hasFocus) WidgetState.focused,
+      if (_hasError) WidgetState.error,
     };
   }
 
@@ -994,24 +992,24 @@ class _BaconTextInputState extends State<BaconTextInput>
     return false;
   }
 
-  BaconTextInputSizeProperties _getBaconTextInputSize(
-      BuildContext context, BaconTextInputSize? baconTextInputSize) {
-    switch (baconTextInputSize) {
-      case BaconTextInputSize.sm:
-        return context.baconTheme?.textInputTheme.sizes.sm ??
-            BaconTextInputSizes(tokens: BaconTokens.light).sm;
-      case BaconTextInputSize.md:
-        return context.baconTheme?.textInputTheme.sizes.md ??
-            BaconTextInputSizes(tokens: BaconTokens.light).md;
-      case BaconTextInputSize.lg:
-        return context.baconTheme?.textInputTheme.sizes.lg ??
-            BaconTextInputSizes(tokens: BaconTokens.light).lg;
-      case BaconTextInputSize.xl:
-        return context.baconTheme?.textInputTheme.sizes.xl ??
-            BaconTextInputSizes(tokens: BaconTokens.light).xl;
+  components.HiveTextInputSizeProperties _getTextInputSize(
+      BuildContext context, TextInputSize? textInputSize) {
+    switch (textInputSize) {
+      case TextInputSize.sm:
+        return context.hiveTheme?.textInputTheme.sizes.sm ??
+            components.HiveTextInputSizes(tokens: HiveTokens.light).sm;
+      case TextInputSize.md:
+        return context.hiveTheme?.textInputTheme.sizes.md ??
+            components.HiveTextInputSizes(tokens: HiveTokens.light).md;
+      case TextInputSize.lg:
+        return context.hiveTheme?.textInputTheme.sizes.lg ??
+            components.HiveTextInputSizes(tokens: HiveTokens.light).lg;
+      case TextInputSize.xl:
+        return context.hiveTheme?.textInputTheme.sizes.xl ??
+            components.HiveTextInputSizes(tokens: HiveTokens.light).xl;
       default:
-        return context.baconTheme?.textInputTheme.sizes.md ??
-            BaconTextInputSizes(tokens: BaconTokens.light).md;
+        return context.hiveTheme?.textInputTheme.sizes.md ??
+            components.HiveTextInputSizes(tokens: HiveTokens.light).md;
     }
   }
 
@@ -1024,7 +1022,7 @@ class _BaconTextInputState extends State<BaconTextInput>
     super.initState();
 
     _selectionGestureDetectorBuilder =
-        _BaconTextInputSelectionGestureDetectorBuilder(state: this);
+        _HiveTextInputSelectionGestureDetectorBuilder(state: this);
 
     if (widget.controller == null) _createLocalController();
 
@@ -1039,7 +1037,7 @@ class _BaconTextInputState extends State<BaconTextInput>
   }
 
   @override
-  void didUpdateWidget(BaconTextInput oldWidget) {
+  void didUpdateWidget(HiveTextInput oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (widget.controller == null && oldWidget.controller != null) {
@@ -1099,124 +1097,123 @@ class _BaconTextInputState extends State<BaconTextInput>
     final TextEditingController controller = _effectiveController;
     final FocusNode focusNode = _effectiveFocusNode;
 
-    final BaconTextInputSizeProperties effectiveBaconTextInputSize =
-        _getBaconTextInputSize(context, widget.textInputSize);
+    final components.HiveTextInputSizeProperties effectiveTextInputSize =
+        _getTextInputSize(context, widget.textInputSize);
 
     final BorderRadiusGeometry effectiveBorderRadius =
-        widget.borderRadius ?? effectiveBaconTextInputSize.borderRadius;
+        widget.borderRadius ?? effectiveTextInputSize.borderRadius;
 
     final Color effectiveBackgroundColor = widget.backgroundColor ??
-        context.baconTheme?.textInputTheme.colors.background ??
-        BaconTokens.light.modes.background.primary;
+        context.hiveTheme?.textInputTheme.colors.background ??
+        HiveTokens.light.modes.background.primary;
 
     final Color effectiveActiveBorderColor = widget.activeBorderColor ??
-        context.baconTheme?.textInputTheme.colors.activeBorderColor ??
-        BaconTokens.light.modes.border.brand;
+        context.hiveTheme?.textInputTheme.colors.activeBorderColor ??
+        HiveTokens.light.modes.border.brand;
 
     final Color effectiveInactiveBorderColor = widget.inactiveBorderColor ??
-        context.baconTheme?.textInputTheme.colors.inactiveBorderColor ??
-        BaconTokens.light.modes.action.disabled;
+        context.hiveTheme?.textInputTheme.colors.inactiveBorderColor ??
+        HiveTokens.light.modes.action.disabled;
 
     final Color effectiveErrorColor = widget.errorColor ??
-        context.baconTheme?.textInputTheme.colors.errorColor ??
-        BaconTokens.light.modes.alert.danger;
+        context.hiveTheme?.textInputTheme.colors.errorColor ??
+        HiveTokens.light.modes.alert.danger;
 
     final Color effectiveCursorErrorColor = widget.cursorErrorColor ??
-        context.baconTheme?.textInputTheme.colors.errorColor ??
-        BaconTokens.light.modes.alert.danger;
+        context.hiveTheme?.textInputTheme.colors.errorColor ??
+        HiveTokens.light.modes.alert.danger;
 
     final Color effectiveHoverBorderColor = widget.hoverBorderColor ??
-        context.baconTheme?.textInputTheme.colors.hoverBorderColor ??
-        BaconTokens.light.modes.border.primary;
+        context.hiveTheme?.textInputTheme.colors.hoverBorderColor ??
+        HiveTokens.light.modes.border.primary;
 
     final Color effectiveTextColor = widget.textColor ??
-        context.baconTheme?.textInputTheme.colors.textColor ??
-        BaconTokens.light.modes.content.secondary;
+        context.hiveTheme?.textInputTheme.colors.textColor ??
+        HiveTokens.light.modes.content.secondary;
 
     final Color effectiveHintTextColor = widget.hintTextColor ??
-        context.baconTheme?.textInputTheme.colors.helperTextColor ??
-        BaconTokens.light.modes.content.tertiary;
+        context.hiveTheme?.textInputTheme.colors.helperTextColor ??
+        HiveTokens.light.modes.content.tertiary;
 
     final Color effectiveFocusRingColor = _hasError
-        ? context.actionsColors?.focusRingDanger ??
-            BaconTokens.light.modes.action.focusRingDanger
-        : context.baconTheme?.textInputTheme.colors.focusRing ??
-            BaconTokens.light.modes.action.focusRingBrand;
+        ? HiveTokens.light.modes.action.focusRingDanger
+        : context.hiveTheme?.textInputTheme.colors.focusRing ??
+            HiveTokens.light.modes.action.focusRingBrand;
 
-    final double effectiveGap = widget.gap ?? effectiveBaconTextInputSize.gap;
+    final double effectiveGap = widget.gap ?? effectiveTextInputSize.gap;
 
     final double effectiveHeight =
-        widget.height ?? effectiveBaconTextInputSize.height;
+        widget.height ?? effectiveTextInputSize.height;
 
     final double effectiveDisabledOpacityValue =
-        context.opacities?.disabled ?? BaconOpacities.opacities.disabled;
+        HiveOpacities.opacities.disabled;
 
     final Duration effectiveTransitionDuration = widget.transitionDuration ??
-        context.baconTheme?.textInputTheme.properties.transitionDuration ??
+        context.hiveTheme?.textInputTheme.properties.transitionDuration ??
         const Duration(milliseconds: 167);
 
     final Curve effectiveTransitionCurve = widget.transitionCurve ??
-        context.baconTheme?.textInputTheme.properties.transitionCurve ??
+        context.hiveTheme?.textInputTheme.properties.transitionCurve ??
         Curves.fastOutSlowIn;
 
     final EdgeInsetsGeometry effectivePadding =
-        widget.padding ?? effectiveBaconTextInputSize.padding;
+        widget.padding ?? effectiveTextInputSize.padding;
 
     final EdgeInsets resolvedContentPadding =
         effectivePadding.resolve(Directionality.of(context));
 
     final EdgeInsetsGeometry effectiveHelperPadding = widget.helperPadding ??
-        context.baconTheme?.textInputTheme.properties.helperPadding ??
+        context.hiveTheme?.textInputTheme.properties.helperPadding ??
         EdgeInsets.only(
-          left: BaconTokens.light.scale.padding.x3s,
-          top: BaconTokens.light.scale.padding.x3s, // 4xs
-          right: BaconTokens.light.scale.padding.x3s,
+          left: HiveTokens.light.scale.padding.x3s,
+          top: HiveTokens.light.scale.padding.x3s, // 4xs
+          right: HiveTokens.light.scale.padding.x3s,
         );
 
     final TextStyle effectiveTextStyle =
-        widget.style ?? effectiveBaconTextInputSize.labelStyle;
+        widget.style ?? effectiveTextInputSize.labelStyle;
 
     final TextStyle effectiveHelperTextStyle = widget.helperTextStyle ??
-        context.baconTheme?.textInputTheme.properties.helperTextStyle ??
-        BaconTokens.light.typography.paragraph.xs;
+        context.hiveTheme?.textInputTheme.properties.helperTextStyle ??
+        HiveTokens.light.typography.paragraph.xs;
 
-    final BaconSquircleBorder defaultBorder = BaconSquircleBorder(
+    final utils.HiveSquircleBorder defaultBorder = utils.HiveSquircleBorder(
       borderRadius: effectiveBorderRadius.squircleBorderRadius(context),
       side: BorderSide(
         color: effectiveInactiveBorderColor,
-        width: context.baconTheme?.tokens.shape.radii.defaultBorderWidth ??
-            BaconTokens.light.shape.radii.defaultBorderWidth,
+        width: context.hiveTheme?.tokens.shape.radii.defaultBorderWidth ??
+            HiveTokens.light.shape.radii.defaultBorderWidth,
       ),
     );
 
-    final BaconSquircleBorder hoverBorder = BaconSquircleBorder(
+    final utils.HiveSquircleBorder hoverBorder = utils.HiveSquircleBorder(
       borderRadius: effectiveBorderRadius.squircleBorderRadius(context),
       side: BorderSide(
         color: effectiveHoverBorderColor,
-        width: context.baconTheme?.tokens.shape.radii.activeBorderWidth ??
-            BaconTokens.light.shape.radii.defaultBorderWidth,
+        width: context.hiveTheme?.tokens.shape.radii.activeBorderWidth ??
+            HiveTokens.light.shape.radii.defaultBorderWidth,
       ),
     );
 
-    final BaconSquircleBorder focusBorder = BaconSquircleBorder(
+    final utils.HiveSquircleBorder focusBorder = utils.HiveSquircleBorder(
       borderRadius: effectiveBorderRadius.squircleBorderRadius(context),
       side: BorderSide(
         color: effectiveActiveBorderColor,
-        width: context.baconTheme?.tokens.shape.radii.activeBorderWidth ??
-            BaconTokens.light.shape.radii.defaultBorderWidth,
+        width: context.hiveTheme?.tokens.shape.radii.activeBorderWidth ??
+            HiveTokens.light.shape.radii.defaultBorderWidth,
       ),
     );
 
-    final BaconSquircleBorder errorBorder = BaconSquircleBorder(
+    final utils.HiveSquircleBorder errorBorder = utils.HiveSquircleBorder(
       borderRadius: effectiveBorderRadius.squircleBorderRadius(context),
       side: BorderSide(
         color: widget.errorBorderColor ?? effectiveErrorColor,
-        width: context.baconTheme?.tokens.shape.radii.activeBorderWidth ??
-            BaconTokens.light.shape.radii.defaultBorderWidth,
+        width: context.hiveTheme?.tokens.shape.radii.activeBorderWidth ??
+            HiveTokens.light.shape.radii.defaultBorderWidth,
       ),
     );
 
-    final BaconSquircleBorder resolvedBorder = _hasError
+    final utils.HiveSquircleBorder resolvedBorder = _hasError
         ? errorBorder
         : _hasFocus
             ? focusBorder
@@ -1237,8 +1234,8 @@ class _BaconTextInputState extends State<BaconTextInput>
         widget.selectionControls;
 
     final MouseCursor effectiveMouseCursor =
-        MaterialStateProperty.resolveAs<MouseCursor>(
-      widget.mouseCursor ?? MaterialStateMouseCursor.textable,
+        WidgetStateProperty.resolveAs<MouseCursor>(
+      widget.mouseCursor ?? WidgetStateMouseCursor.textable,
       _materialState,
     );
 
@@ -1307,7 +1304,7 @@ class _BaconTextInputState extends State<BaconTextInput>
         cursorOffset = Offset(
             iOSHorizontalOffset / MediaQuery.devicePixelRatioOf(context), 0);
         handleDidGainAccessibilityFocus = () {
-          // Automatically activates BaconTextInput on receiving accessibility focus.
+          // Automatically activates HiveTextInput on receiving accessibility focus.
           if (!_hasFocus && _effectiveFocusNode.canRequestFocus) {
             _effectiveFocusNode.requestFocus();
           }
@@ -1344,7 +1341,7 @@ class _BaconTextInputState extends State<BaconTextInput>
         selectionColor = selectionStyle.selectionColor ??
             theme.colorScheme.primary.withOpacity(0.40);
         handleDidGainAccessibilityFocus = () {
-          // Automatically activates BaconTextInput on receiving accessibility focus.
+          // Automatically activates HiveTextInput on receiving accessibility focus.
           if (!_hasFocus && _effectiveFocusNode.canRequestFocus) {
             _effectiveFocusNode.requestFocus();
           }
@@ -1385,7 +1382,7 @@ class _BaconTextInputState extends State<BaconTextInput>
           maxLines: widget.maxLines,
           minLines: widget.minLines,
           mouseCursor:
-              MouseCursor.defer, // BaconTextInput will handle the cursor.
+              MouseCursor.defer, // HiveTextInput will handle the cursor.
           obscureText: widget.obscureText,
           obscuringCharacter: widget.obscuringCharacter,
           onAppPrivateCommand: widget.onAppPrivateCommand,
@@ -1427,20 +1424,20 @@ class _BaconTextInputState extends State<BaconTextInput>
     child = AnimatedBuilder(
       animation: Listenable.merge(<Listenable>[focusNode, controller]),
       builder: (BuildContext context, Widget? child) {
-        return BaconFocusEffect(
+        return utils.HiveFocusEffect(
           show: _hasFocus && _isEnabled,
           childBorderRadius: effectiveBorderRadius,
           effectColor: effectiveFocusRingColor,
-          effectExtent: BaconEffectsTheme(tokens: BaconTokens.light)
+          effectExtent: HiveEffectsTheme(tokens: HiveTokens.light)
               .controlFocusEffect
               .effectExtent,
-          effectDuration: BaconEffectsTheme(tokens: BaconTokens.light)
+          effectDuration: HiveEffectsTheme(tokens: HiveTokens.light)
               .controlFocusEffect
               .effectDuration,
-          effectCurve: BaconEffectsTheme(tokens: BaconTokens.light)
+          effectCurve: HiveEffectsTheme(tokens: HiveTokens.light)
               .controlFocusEffect
               .effectCurve,
-          child: BorderContainer(
+          child: utils.BorderContainer(
             backgroundColor: effectiveBackgroundColor,
             border: resolvedBorder,
             decoration: widget.decoration,
@@ -1579,7 +1576,8 @@ class _BaconTextInputState extends State<BaconTextInput>
                       ? widget.errorBuilder?.call(context, widget.errorText) ??
                           Padding(
                             padding: effectiveHelperPadding,
-                            child: ErrorMessage(errorText: widget.errorText!),
+                            child: utils.ErrorMessage(
+                                errorText: widget.errorText!),
                           )
                       : Padding(
                           padding: effectiveHelperPadding,
@@ -1630,14 +1628,14 @@ class _BaconTextInputState extends State<BaconTextInput>
   }
 }
 
-class _BaconTextInputSelectionGestureDetectorBuilder
+class _HiveTextInputSelectionGestureDetectorBuilder
     extends TextSelectionGestureDetectorBuilder {
-  _BaconTextInputSelectionGestureDetectorBuilder({
-    required _BaconTextInputState state,
+  _HiveTextInputSelectionGestureDetectorBuilder({
+    required _HiveTextInputState state,
   })  : _state = state,
         super(delegate: state);
 
-  final _BaconTextInputState _state;
+  final _HiveTextInputState _state;
 
   @override
   void onForcePressStart(ForcePressDetails details) {

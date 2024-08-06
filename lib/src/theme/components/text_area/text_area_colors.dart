@@ -1,9 +1,10 @@
-import 'package:bacon/src/utils/colors_lerp.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../../utils/utils.dart' as utils;
+
 @immutable
-class BaconTextAreaColors extends ThemeExtension<BaconTextAreaColors>
+class HiveTextAreaColors extends ThemeExtension<HiveTextAreaColors>
     with DiagnosticableTreeMixin {
   final Color backgroundColor;
 
@@ -19,7 +20,7 @@ class BaconTextAreaColors extends ThemeExtension<BaconTextAreaColors>
 
   final Color helperTextColor;
 
-  const BaconTextAreaColors({
+  const HiveTextAreaColors({
     required this.backgroundColor,
     required this.activeBorderColor,
     required this.inactiveBorderColor,
@@ -30,7 +31,7 @@ class BaconTextAreaColors extends ThemeExtension<BaconTextAreaColors>
   });
 
   @override
-  BaconTextAreaColors copyWith({
+  HiveTextAreaColors copyWith({
     Color? backgroundColor,
     Color? activeBorderColor,
     Color? inactiveBorderColor,
@@ -39,7 +40,7 @@ class BaconTextAreaColors extends ThemeExtension<BaconTextAreaColors>
     Color? textColor,
     Color? helperTextColor,
   }) {
-    return BaconTextAreaColors(
+    return HiveTextAreaColors(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       activeBorderColor: activeBorderColor ?? this.activeBorderColor,
       inactiveBorderColor: inactiveBorderColor ?? this.inactiveBorderColor,
@@ -51,35 +52,35 @@ class BaconTextAreaColors extends ThemeExtension<BaconTextAreaColors>
   }
 
   @override
-  BaconTextAreaColors lerp(
-      ThemeExtension<BaconTextAreaColors>? other, double t) {
-    if (other is! BaconTextAreaColors) return this;
+  HiveTextAreaColors lerp(ThemeExtension<HiveTextAreaColors>? other, double t) {
+    if (other is! HiveTextAreaColors) return this;
 
-    return BaconTextAreaColors(
-      backgroundColor: colorsLerp(backgroundColor, other.backgroundColor, t)!,
+    return HiveTextAreaColors(
+      backgroundColor:
+          utils.colorsLerp(backgroundColor, other.backgroundColor, t)!,
       activeBorderColor:
-          colorsLerp(activeBorderColor, other.activeBorderColor, t)!,
+          utils.colorsLerp(activeBorderColor, other.activeBorderColor, t)!,
       inactiveBorderColor:
-          colorsLerp(inactiveBorderColor, other.inactiveBorderColor, t)!,
-      errorColor: colorsLerp(errorColor, other.errorColor, t)!,
+          utils.colorsLerp(inactiveBorderColor, other.inactiveBorderColor, t)!,
+      errorColor: utils.colorsLerp(errorColor, other.errorColor, t)!,
       hoverBorderColor:
-          colorsLerp(hoverBorderColor, other.hoverBorderColor, t)!,
-      textColor: colorsLerp(textColor, other.textColor, t)!,
-      helperTextColor: colorsLerp(helperTextColor, other.helperTextColor, t)!,
+          utils.colorsLerp(hoverBorderColor, other.hoverBorderColor, t)!,
+      textColor: utils.colorsLerp(textColor, other.textColor, t)!,
+      helperTextColor:
+          utils.colorsLerp(helperTextColor, other.helperTextColor, t)!,
     );
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty("type", "BaconTextAreaColors"))
-      ..add(ColorProperty("backgroundColor", backgroundColor))
-      ..add(ColorProperty("activeBorderColor", activeBorderColor))
-      ..add(ColorProperty("inactiveBorderColor", inactiveBorderColor))
-      ..add(ColorProperty("errorColor", errorColor))
-      ..add(ColorProperty("hoverBorderColor", hoverBorderColor))
-      ..add(ColorProperty("textColor", textColor))
-      ..add(ColorProperty("helperTextColor", helperTextColor));
+    properties.add(DiagnosticsProperty("type", "HiveTextAreaColors"));
+    properties.add(ColorProperty("backgroundColor", backgroundColor));
+    properties.add(ColorProperty("activeBorderColor", activeBorderColor));
+    properties.add(ColorProperty("inactiveBorderColor", inactiveBorderColor));
+    properties.add(ColorProperty("errorColor", errorColor));
+    properties.add(ColorProperty("hoverBorderColor", hoverBorderColor));
+    properties.add(ColorProperty("textColor", textColor));
+    properties.add(ColorProperty("helperTextColor", helperTextColor));
   }
 }
