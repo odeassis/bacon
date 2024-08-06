@@ -14,22 +14,25 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: router,
-      theme: ThemeData.light().copyWith(extensions: <ThemeExtension<dynamic>>[
-        HiveTheme(
+      theme: ThemeData.light().copyWith(
+        extensions: <ThemeExtension<dynamic>>[
+          HiveTheme(
             tokens: HiveTokens.light.copyWith(
-          modes: HiveMode.colors(
-            primitives: HiveColors.light().copyWith(
-              brand600: Colors.red,
+              shape: HiveShape.sharp(),
             ),
-          ),
-          shape: HiveShape.sharp(),
-        ))
-      ]),
+          )
+        ],
+      ),
       darkTheme: ThemeData.dark().copyWith(
-          extensions: <ThemeExtension<dynamic>>[
-            HiveTheme(tokens: HiveTokens.dark)
-          ]),
-      themeMode: ThemeMode.light,
+        extensions: <ThemeExtension<dynamic>>[
+          HiveTheme(
+            tokens: HiveTokens.dark.copyWith(
+              shape: HiveShape.rounded(),
+            ),
+          )
+        ],
+      ),
+      themeMode: ThemeMode.dark,
     );
   }
 }
