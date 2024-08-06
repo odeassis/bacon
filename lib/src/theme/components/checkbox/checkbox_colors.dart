@@ -1,9 +1,10 @@
-import 'package:bacon/src/utils/colors_lerp.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../../utils/colors_lerp.dart' as utils;
+
 @immutable
-class BaconCheckboxColors extends ThemeExtension<BaconCheckboxColors>
+class HiveCheckboxColors extends ThemeExtension<HiveCheckboxColors>
     with DiagnosticableTreeMixin {
   final Color activeColor;
   final Color borderColor;
@@ -11,7 +12,7 @@ class BaconCheckboxColors extends ThemeExtension<BaconCheckboxColors>
   final Color inactiveColor;
   final Color textColor;
 
-  const BaconCheckboxColors({
+  const HiveCheckboxColors({
     required this.activeColor,
     required this.borderColor,
     required this.checkColor,
@@ -20,14 +21,14 @@ class BaconCheckboxColors extends ThemeExtension<BaconCheckboxColors>
   });
 
   @override
-  BaconCheckboxColors copyWith({
+  HiveCheckboxColors copyWith({
     Color? activeColor,
     Color? borderColor,
     Color? checkColor,
     Color? inactiveColor,
     Color? textColor,
   }) {
-    return BaconCheckboxColors(
+    return HiveCheckboxColors(
       activeColor: activeColor ?? this.activeColor,
       borderColor: borderColor ?? this.borderColor,
       checkColor: checkColor ?? this.checkColor,
@@ -37,28 +38,26 @@ class BaconCheckboxColors extends ThemeExtension<BaconCheckboxColors>
   }
 
   @override
-  BaconCheckboxColors lerp(
-      ThemeExtension<BaconCheckboxColors>? other, double t) {
-    if (other is! BaconCheckboxColors) return this;
+  HiveCheckboxColors lerp(ThemeExtension<HiveCheckboxColors>? other, double t) {
+    if (other is! HiveCheckboxColors) return this;
 
-    return BaconCheckboxColors(
-      activeColor: colorsLerp(activeColor, other.activeColor, t)!,
-      borderColor: colorsLerp(borderColor, other.borderColor, t)!,
-      checkColor: colorsLerp(checkColor, other.checkColor, t)!,
-      inactiveColor: colorsLerp(inactiveColor, other.inactiveColor, t)!,
-      textColor: colorsLerp(textColor, other.textColor, t)!,
+    return HiveCheckboxColors(
+      activeColor: utils.colorsLerp(activeColor, other.activeColor, t)!,
+      borderColor: utils.colorsLerp(borderColor, other.borderColor, t)!,
+      checkColor: utils.colorsLerp(checkColor, other.checkColor, t)!,
+      inactiveColor: utils.colorsLerp(inactiveColor, other.inactiveColor, t)!,
+      textColor: utils.colorsLerp(textColor, other.textColor, t)!,
     );
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty("type", "BaconCheckboxColors"))
-      ..add(ColorProperty("activeColor", activeColor))
-      ..add(ColorProperty("borderColor", borderColor))
-      ..add(ColorProperty("checkColor", checkColor))
-      ..add(ColorProperty("inactiveColor", inactiveColor))
-      ..add(ColorProperty("textColor", textColor));
+    properties.add(DiagnosticsProperty("type", "HiveCheckboxColors"));
+    properties.add(ColorProperty("activeColor", activeColor));
+    properties.add(ColorProperty("borderColor", borderColor));
+    properties.add(ColorProperty("checkColor", checkColor));
+    properties.add(ColorProperty("inactiveColor", inactiveColor));
+    properties.add(ColorProperty("textColor", textColor));
   }
 }

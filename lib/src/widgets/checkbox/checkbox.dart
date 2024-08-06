@@ -1,14 +1,11 @@
-import 'package:bacon/bacon.dart';
-import 'package:bacon/src/theme/effects/effects_theme.dart';
-import 'package:bacon/src/theme/tokens/opacities.dart';
-import 'package:bacon/src/utils/checkbox_painter.dart';
-import 'package:bacon/src/utils/extensions.dart';
-import 'package:bacon/src/utils/shared/common/effects/focus_effect.dart';
-import 'package:bacon/src/utils/squircle/squircle_border.dart';
-import 'package:bacon/src/utils/touch_targert_padding.dart';
 import 'package:flutter/material.dart';
 
-class BaconCheckbox extends StatefulWidget {
+import '../../theme/effects/effects.dart';
+import '../../theme/theme.dart';
+import '../../theme/tokens/tokens.dart';
+import '../../utils/utils.dart' as utils;
+
+class HiveCheckbox extends StatefulWidget {
   /// {@macro flutter.widgets.Focus.autofocus}
   final bool autofocus;
 
@@ -61,7 +58,7 @@ class BaconCheckbox extends StatefulWidget {
   final ValueChanged<bool?>? onChanged;
 
   /// Creates a Bacon Design checkbox.
-  const BaconCheckbox({
+  const HiveCheckbox({
     super.key,
     this.autofocus = false,
     this.tristate = false,
@@ -78,7 +75,7 @@ class BaconCheckbox extends StatefulWidget {
 
   /// Creates a Bacon Design checkbox with label.
   @Deprecated(
-      "Use BaconMenuItem with BaconCheckbox as a trailing widget instead.")
+      "Use BaconMenuItem with HiveCheckbox as a trailing widget instead.")
   static Widget withLabel(
     BuildContext context, {
     Key? key,
@@ -98,24 +95,23 @@ class BaconCheckbox extends StatefulWidget {
     final bool isInteractive = onChanged != null;
 
     final Color effectiveTextColor =
-        context.baconTheme?.checkboxTheme.colors.textColor ??
-            BaconTokens.light.modes.content.primary;
+        context.hiveTheme?.checkboxTheme.colors.textColor ??
+            HiveTokens.light.modes.content.primary;
 
     final TextStyle effectiveTextStyle =
-        context.baconTheme?.checkboxTheme.sizes.sm.textStyle ??
-            BaconTokens.light.typography.label.sm;
+        context.hiveTheme?.checkboxTheme.sizes.sm.textStyle ??
+            HiveTokens.light.typography.label.sm;
 
     final TextStyle resolvedTextStyle =
         effectiveTextStyle.copyWith(color: effectiveTextColor).merge(textStyle);
 
     final double effectiveDisabledOpacityValue =
-        context.opacities?.disabled ?? BaconOpacities.opacities.disabled;
+        HiveTokens.light.opacities.disabled;
 
     final Duration effectiveFocusEffectDuration =
-        context.baconEffects?.controlFocusEffect.effectDuration ??
-            BaconEffectsTheme(tokens: BaconTokens.light)
-                .controlFocusEffect
-                .effectDuration;
+        HiveEffectsTheme(tokens: HiveTokens.light)
+            .controlFocusEffect
+            .effectDuration;
 
     return GestureDetector(
       onTap: () => onChanged?.call(!value!),
@@ -136,7 +132,7 @@ class BaconCheckbox extends StatefulWidget {
                 ),
               ),
               const SizedBox(width: 12),
-              BaconCheckbox(
+              HiveCheckbox(
                 key: key,
                 autofocus: autofocus,
                 tristate: tristate,
@@ -157,12 +153,12 @@ class BaconCheckbox extends StatefulWidget {
   }
 
   @override
-  State<BaconCheckbox> createState() => _BaconCheckboxState();
+  State<HiveCheckbox> createState() => _HiveCheckboxState();
 }
 
-class _BaconCheckboxState extends State<BaconCheckbox>
+class _HiveCheckboxState extends State<HiveCheckbox>
     with TickerProviderStateMixin, ToggleableStateMixin {
-  final BaconCheckboxPainter _painter = BaconCheckboxPainter();
+  final utils.HiveCheckboxPainter _painter = utils.HiveCheckboxPainter();
 
   bool? _previousValue;
 
@@ -176,11 +172,11 @@ class _BaconCheckboxState extends State<BaconCheckbox>
   bool? get value => widget.value;
 
   BorderSide? _resolveSide(BorderSide? side) {
-    if (side is MaterialStateBorderSide) {
-      return MaterialStateProperty.resolveAs<BorderSide?>(side, states);
+    if (side is WidgetStateBorderSide) {
+      return WidgetStateProperty.resolveAs<BorderSide?>(side, states);
     }
 
-    if (!states.contains(MaterialState.selected)) return side;
+    if (!states.contains(WidgetState.selected)) return side;
 
     return null;
   }
@@ -193,7 +189,7 @@ class _BaconCheckboxState extends State<BaconCheckbox>
   }
 
   @override
-  void didUpdateWidget(BaconCheckbox oldWidget) {
+  void didUpdateWidget(HiveCheckbox oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.value != widget.value) {
@@ -214,74 +210,69 @@ class _BaconCheckboxState extends State<BaconCheckbox>
     const Size size = Size(16, 16);
 
     final BorderRadiusGeometry effectiveBorderRadius =
-        context.baconTheme?.checkboxTheme.sizes.sm.borderRadius ??
-            BaconTokens.light.shape.radii.sm;
+        context.hiveTheme?.checkboxTheme.sizes.sm.borderRadius ??
+            HiveTokens.light.shape.radii.sm;
 
     final Color effectiveActiveColor = widget.activeColor ??
-        context.baconTheme?.checkboxTheme.colors.activeColor ??
-        BaconTokens.light.modes.action.active;
+        context.hiveTheme?.checkboxTheme.colors.activeColor ??
+        HiveTokens.light.modes.action.active;
 
     final Color effectiveInactiveColor = widget.inactiveColor ??
-        context.baconTheme?.checkboxTheme.colors.inactiveColor ??
-        BaconTokens.light.modes.action.disabled;
+        context.hiveTheme?.checkboxTheme.colors.inactiveColor ??
+        HiveTokens.light.modes.action.disabled;
 
     final Color effectiveCheckColor = widget.checkColor ??
-        context.baconTheme?.checkboxTheme.colors.checkColor ??
-        BaconTokens.light.modes.content.inverse;
+        context.hiveTheme?.checkboxTheme.colors.checkColor ??
+        HiveTokens.light.modes.content.inverse;
 
     final Color effectiveBorderColor = widget.borderColor ??
-        context.baconTheme?.checkboxTheme.colors.borderColor ??
-        BaconTokens.light.modes.border.primary;
+        context.hiveTheme?.checkboxTheme.colors.borderColor ??
+        HiveTokens.light.modes.border.primary;
 
     final Color effectiveFocusEffectColor =
-        context.baconEffects?.controlFocusEffect.effectColor ??
-            BaconEffectsTheme(tokens: BaconTokens.light)
-                .controlFocusEffect
-                .effectColor;
+        HiveEffectsTheme(tokens: HiveTokens.light)
+            .controlFocusEffect
+            .effectColor;
 
     final Duration effectiveFocusEffectDuration =
-        context.baconEffects?.controlFocusEffect.effectDuration ??
-            BaconEffectsTheme(tokens: BaconTokens.light)
-                .controlFocusEffect
-                .effectDuration;
+        HiveEffectsTheme(tokens: HiveTokens.light)
+            .controlFocusEffect
+            .effectDuration;
 
     final Curve effectiveFocusEffectCurve =
-        context.baconEffects?.controlFocusEffect.effectCurve ??
-            BaconEffectsTheme(tokens: BaconTokens.light)
-                .controlFocusEffect
-                .effectCurve;
+        HiveEffectsTheme(tokens: HiveTokens.light)
+            .controlFocusEffect
+            .effectCurve;
 
     final double effectiveFocusEffectExtent =
-        context.baconEffects?.controlFocusEffect.effectExtent ??
-            BaconEffectsTheme(tokens: BaconTokens.light)
-                .controlFocusEffect
-                .effectExtent;
+        HiveEffectsTheme(tokens: HiveTokens.light)
+            .controlFocusEffect
+            .effectExtent;
 
     final double effectiveDisabledOpacityValue =
-        context.opacities?.disabled ?? BaconOpacities.opacities.disabled;
+        HiveTokens.light.opacities.disabled;
 
-    final MaterialStateProperty<MouseCursor> effectiveMouseCursor =
-        MaterialStateProperty.resolveWith<MouseCursor>(
-            (Set<MaterialState> states) {
-      return MaterialStateMouseCursor.clickable.resolve(states);
+    final WidgetStateProperty<MouseCursor> effectiveMouseCursor =
+        WidgetStateProperty.resolveWith<MouseCursor>((Set<WidgetState> states) {
+      return WidgetStateMouseCursor.clickable.resolve(states);
     });
 
     return Semantics(
       label: widget.semanticLabel,
       checked: widget.value ?? false,
       mixed: widget.tristate ? widget.value == null : null,
-      child: TouchTargetPadding(
+      child: utils.TouchTargetPadding(
         minSize: Size(widget.tapAreaSizeValue, widget.tapAreaSizeValue),
         child: RepaintBoundary(
-          child: BaconFocusEffect(
-            show: states.contains(MaterialState.focused),
+          child: utils.HiveFocusEffect(
+            show: states.contains(WidgetState.focused),
             childBorderRadius: effectiveBorderRadius,
             effectColor: effectiveFocusEffectColor,
             effectCurve: effectiveFocusEffectCurve,
             effectDuration: effectiveFocusEffectDuration,
             effectExtent: effectiveFocusEffectExtent,
             child: AnimatedOpacity(
-              opacity: states.contains(MaterialState.disabled)
+              opacity: states.contains(WidgetState.disabled)
                   ? effectiveDisabledOpacityValue
                   : 1,
               duration: effectiveFocusEffectDuration,
@@ -297,7 +288,7 @@ class _BaconCheckboxState extends State<BaconCheckbox>
                   ..checkColor = effectiveCheckColor
                   ..value = value
                   ..previousValue = _previousValue
-                  ..shape = BaconSquircleBorder(
+                  ..shape = utils.HiveSquircleBorder(
                       borderRadius:
                           effectiveBorderRadius.squircleBorderRadius(context))
                   ..side =

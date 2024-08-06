@@ -26,3 +26,8 @@ export './button/button_theme.dart';
 export './carousel/carousel_colors.dart';
 export './carousel/carousel_properties.dart';
 export './carousel/carousel_theme.dart';
+// Checkbox
+export './checkbox/checkbox_colors.dart';
+export './checkbox/checkbox_size_properties.dart';
+export './checkbox/checkbox_sizes.dart';
+export './checkbox/checkbox_theme.dart';

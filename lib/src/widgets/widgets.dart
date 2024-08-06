@@ -10,3 +10,5 @@ export './bottom_sheet/bottom_sheet.dart';
 export './button/button.dart';
 // Carousel
 export './carousel/carousel.dart';
+// Checkbox
+export './checkbox/checkbox.dart';

@@ -1,37 +1,38 @@
-import 'package:bacon/src/theme/components/checkbox/checkbox_size_properties.dart';
-import 'package:bacon/src/theme/tokens/tokens.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-@immutable
-class BaconCheckboxSizes extends ThemeExtension<BaconCheckboxSizes>
-    with DiagnosticableTreeMixin {
-  final BaconTokens tokens;
-  final BaconCheckboxSizeProperties sm;
-  final BaconCheckboxSizeProperties xs;
+import '../../tokens/tokens.dart';
+import 'checkbox_size_properties.dart';
 
-  BaconCheckboxSizes({
+@immutable
+class HiveCheckboxSizes extends ThemeExtension<HiveCheckboxSizes>
+    with DiagnosticableTreeMixin {
+  final HiveTokens tokens;
+  final HiveCheckboxSizeProperties sm;
+  final HiveCheckboxSizeProperties xs;
+
+  HiveCheckboxSizes({
     required this.tokens,
-    BaconCheckboxSizeProperties? sm,
-    BaconCheckboxSizeProperties? xs,
+    HiveCheckboxSizeProperties? sm,
+    HiveCheckboxSizeProperties? xs,
   })  : sm = sm ??
-            BaconCheckboxSizeProperties(
+            HiveCheckboxSizeProperties(
               borderRadius: tokens.shape.radii.x2s,
               textStyle: tokens.typography.label.x2s,
             ),
         xs = xs ??
-            BaconCheckboxSizeProperties(
+            HiveCheckboxSizeProperties(
               borderRadius: tokens.shape.radii.x2s,
               textStyle: tokens.typography.label.x2s,
             );
 
   @override
-  BaconCheckboxSizes copyWith({
-    BaconTokens? tokens,
-    BaconCheckboxSizeProperties? sm,
-    BaconCheckboxSizeProperties? xs,
+  HiveCheckboxSizes copyWith({
+    HiveTokens? tokens,
+    HiveCheckboxSizeProperties? sm,
+    HiveCheckboxSizeProperties? xs,
   }) {
-    return BaconCheckboxSizes(
+    return HiveCheckboxSizes(
       tokens: tokens ?? this.tokens,
       sm: sm ?? this.sm,
       xs: xs ?? this.xs,
@@ -39,10 +40,10 @@ class BaconCheckboxSizes extends ThemeExtension<BaconCheckboxSizes>
   }
 
   @override
-  BaconCheckboxSizes lerp(ThemeExtension<BaconCheckboxSizes>? other, double t) {
-    if (other is! BaconCheckboxSizes) return this;
+  HiveCheckboxSizes lerp(ThemeExtension<HiveCheckboxSizes>? other, double t) {
+    if (other is! HiveCheckboxSizes) return this;
 
-    return BaconCheckboxSizes(
+    return HiveCheckboxSizes(
       tokens: tokens.lerp(other.tokens, t),
       sm: sm.lerp(other.sm, t),
       xs: xs.lerp(other.xs, t),
@@ -52,10 +53,9 @@ class BaconCheckboxSizes extends ThemeExtension<BaconCheckboxSizes>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty("type", "BaconCheckboxSizes"))
-      ..add(DiagnosticsProperty<BaconTokens>("tokens", tokens))
-      ..add(DiagnosticsProperty<BaconCheckboxSizeProperties>("sm", sm))
-      ..add(DiagnosticsProperty<BaconCheckboxSizeProperties>("xs", xs));
+    properties.add(DiagnosticsProperty("type", "HiveCheckboxSizes"));
+    properties.add(DiagnosticsProperty<HiveTokens>("tokens", tokens));
+    properties.add(DiagnosticsProperty<HiveCheckboxSizeProperties>("sm", sm));
+    properties.add(DiagnosticsProperty<HiveCheckboxSizeProperties>("xs", xs));
   }
 }

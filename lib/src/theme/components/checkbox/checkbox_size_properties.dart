@@ -2,34 +2,34 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class BaconCheckboxSizeProperties
-    extends ThemeExtension<BaconCheckboxSizeProperties>
+class HiveCheckboxSizeProperties
+    extends ThemeExtension<HiveCheckboxSizeProperties>
     with DiagnosticableTreeMixin {
   final BorderRadiusGeometry borderRadius;
   final TextStyle textStyle;
 
-  const BaconCheckboxSizeProperties({
+  const HiveCheckboxSizeProperties({
     required this.borderRadius,
     required this.textStyle,
   });
 
   @override
-  BaconCheckboxSizeProperties copyWith({
+  HiveCheckboxSizeProperties copyWith({
     BorderRadiusGeometry? borderRadius,
     TextStyle? textStyle,
   }) {
-    return BaconCheckboxSizeProperties(
+    return HiveCheckboxSizeProperties(
       borderRadius: borderRadius ?? this.borderRadius,
       textStyle: textStyle ?? this.textStyle,
     );
   }
 
   @override
-  BaconCheckboxSizeProperties lerp(
-      ThemeExtension<BaconCheckboxSizeProperties>? other, double t) {
-    if (other is! BaconCheckboxSizeProperties) return this;
+  HiveCheckboxSizeProperties lerp(
+      ThemeExtension<HiveCheckboxSizeProperties>? other, double t) {
+    if (other is! HiveCheckboxSizeProperties) return this;
 
-    return BaconCheckboxSizeProperties(
+    return HiveCheckboxSizeProperties(
       borderRadius:
           BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t)!,
       textStyle: TextStyle.lerp(textStyle, other.textStyle, t)!,
@@ -39,10 +39,9 @@ class BaconCheckboxSizeProperties
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty("type", "BaconCheckboxSizeProperties"))
-      ..add(DiagnosticsProperty<BorderRadiusGeometry>(
-          "borderRadius", borderRadius))
-      ..add(DiagnosticsProperty<TextStyle>("textStyle", textStyle));
+    properties.add(DiagnosticsProperty("type", "HiveCheckboxSizeProperties"));
+    properties.add(DiagnosticsProperty<BorderRadiusGeometry>(
+        "borderRadius", borderRadius));
+    properties.add(DiagnosticsProperty<TextStyle>("textStyle", textStyle));
   }
 }
