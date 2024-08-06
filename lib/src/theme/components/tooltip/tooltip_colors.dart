@@ -1,16 +1,17 @@
-import 'package:bacon/src/utils/colors_lerp.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../../utils/utils.dart' as utils;
+
 @immutable
-class BaconTooltipColors extends ThemeExtension<BaconTooltipColors>
+class HiveTooltipColors extends ThemeExtension<HiveTooltipColors>
     with DiagnosticableTreeMixin {
   final Color titleColor;
   final Color contentColor;
   final Color iconColor;
   final Color background;
 
-  const BaconTooltipColors({
+  const HiveTooltipColors({
     required this.titleColor,
     required this.contentColor,
     required this.iconColor,
@@ -18,13 +19,13 @@ class BaconTooltipColors extends ThemeExtension<BaconTooltipColors>
   });
 
   @override
-  BaconTooltipColors copyWith({
+  HiveTooltipColors copyWith({
     Color? titleColor,
     Color? contentColor,
     Color? iconColor,
     Color? background,
   }) {
-    return BaconTooltipColors(
+    return HiveTooltipColors(
       titleColor: titleColor ?? this.titleColor,
       contentColor: contentColor ?? this.contentColor,
       iconColor: iconColor ?? this.iconColor,
@@ -33,25 +34,24 @@ class BaconTooltipColors extends ThemeExtension<BaconTooltipColors>
   }
 
   @override
-  BaconTooltipColors lerp(ThemeExtension<BaconTooltipColors>? other, double t) {
-    if (other is! BaconTooltipColors) return this;
+  HiveTooltipColors lerp(ThemeExtension<HiveTooltipColors>? other, double t) {
+    if (other is! HiveTooltipColors) return this;
 
-    return BaconTooltipColors(
-      titleColor: colorsLerp(titleColor, other.titleColor, t)!,
-      contentColor: colorsLerp(contentColor, other.contentColor, t)!,
-      iconColor: colorsLerp(iconColor, other.iconColor, t)!,
-      background: colorsLerp(background, other.background, t)!,
+    return HiveTooltipColors(
+      titleColor: utils.colorsLerp(titleColor, other.titleColor, t)!,
+      contentColor: utils.colorsLerp(contentColor, other.contentColor, t)!,
+      iconColor: utils.colorsLerp(iconColor, other.iconColor, t)!,
+      background: utils.colorsLerp(background, other.background, t)!,
     );
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty("type", "BaconTooltipColors"))
-      ..add(ColorProperty("titleColor", titleColor))
-      ..add(ColorProperty("contentColor", contentColor))
-      ..add(ColorProperty("iconColor", iconColor))
-      ..add(ColorProperty("background", background));
+    properties.add(DiagnosticsProperty("type", "HiveTooltipColors"));
+    properties.add(ColorProperty("titleColor", titleColor));
+    properties.add(ColorProperty("contentColor", contentColor));
+    properties.add(ColorProperty("iconColor", iconColor));
+    properties.add(ColorProperty("background", background));
   }
 }

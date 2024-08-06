@@ -22,6 +22,7 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
   final HiveTagTheme tagTheme;
   final HiveTextAreaTheme textAreaTheme;
   final HiveTextInputTheme textInputTheme;
+  final HiveTooltipTheme tooltipTheme;
 
   HiveTheme({
     required this.tokens,
@@ -41,6 +42,7 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
     HiveTagTheme? tagTheme,
     HiveTextAreaTheme? textAreaTheme,
     HiveTextInputTheme? textInputTheme,
+    HiveTooltipTheme? tooltipTheme,
   })  : alertTheme = alertTheme ?? HiveAlertTheme(tokens: tokens),
         avatarTheme = avatarTheme ?? HiveAvatarTheme(tokens: tokens),
         badgeTheme = badgeTheme ?? HiveBadgeTheme(tokens: tokens),
@@ -58,7 +60,8 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
         radioTheme = radioTheme ?? HiveRadioTheme(tokens: tokens),
         tagTheme = tagTheme ?? HiveTagTheme(tokens: tokens),
         textAreaTheme = textAreaTheme ?? HiveTextAreaTheme(tokens: tokens),
-        textInputTheme = textInputTheme ?? HiveTextInputTheme(tokens: tokens);
+        textInputTheme = textInputTheme ?? HiveTextInputTheme(tokens: tokens),
+        tooltipTheme = tooltipTheme ?? HiveTooltipTheme(tokens: tokens);
 
   @override
   HiveTheme copyWith({
@@ -79,6 +82,7 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
     HiveTagTheme? tagTheme,
     HiveTextAreaTheme? textAreaTheme,
     HiveTextInputTheme? textInputTheme,
+    HiveTooltipTheme? tooltipTheme,
   }) {
     return HiveTheme(
       tokens: tokens ?? this.tokens,
@@ -98,6 +102,7 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
       tagTheme: tagTheme ?? this.tagTheme,
       textAreaTheme: textAreaTheme ?? this.textAreaTheme,
       textInputTheme: textInputTheme ?? this.textInputTheme,
+      tooltipTheme: tooltipTheme ?? this.tooltipTheme,
     );
   }
 
@@ -127,6 +132,7 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
       tagTheme: tagTheme.lerp(other.tagTheme, t),
       textAreaTheme: textAreaTheme.lerp(other.textAreaTheme, t),
       textInputTheme: textInputTheme.lerp(other.textInputTheme, t),
+      tooltipTheme: tooltipTheme.lerp(other.tooltipTheme, t),
     );
   }
 
@@ -166,6 +172,8 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
         DiagnosticsProperty<HiveTextAreaTheme>('textAreaTheme', textAreaTheme));
     properties.add(DiagnosticsProperty<HiveTextInputTheme>(
         'textInputTheme', textInputTheme));
+    properties.add(
+        DiagnosticsProperty<HiveTooltipTheme>('tooltipTheme', tooltipTheme));
   }
 }
 

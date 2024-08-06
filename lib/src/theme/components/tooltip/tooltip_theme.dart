@@ -1,32 +1,33 @@
-import 'package:bacon/src/theme/components/tooltip/tooltip_colors.dart';
-import 'package:bacon/src/theme/components/tooltip/tooltip_properties.dart';
-import 'package:bacon/src/theme/components/tooltip/tooltip_shadows.dart';
-import 'package:bacon/src/theme/tokens/tokens.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-@immutable
-class BaconTooltipTheme extends ThemeExtension<BaconTooltipTheme>
-    with DiagnosticableTreeMixin {
-  final BaconTokens tokens;
-  final BaconTooltipColors colors;
-  final BaconTooltipProperties properties;
-  final BaconTooltipShadows shadows;
+import '../../tokens/tokens.dart';
+import 'tooltip_colors.dart';
+import 'tooltip_properties.dart';
+import 'tooltip_shadows.dart';
 
-  BaconTooltipTheme({
+@immutable
+class HiveTooltipTheme extends ThemeExtension<HiveTooltipTheme>
+    with DiagnosticableTreeMixin {
+  final HiveTokens tokens;
+  final HiveTooltipColors colors;
+  final HiveTooltipProperties properties;
+  final HiveTooltipShadows shadows;
+
+  HiveTooltipTheme({
     required this.tokens,
-    BaconTooltipColors? colors,
-    BaconTooltipProperties? properties,
-    BaconTooltipShadows? shadows,
+    HiveTooltipColors? colors,
+    HiveTooltipProperties? properties,
+    HiveTooltipShadows? shadows,
   })  : colors = colors ??
-            BaconTooltipColors(
+            HiveTooltipColors(
               titleColor: tokens.modes.content.inverse,
               contentColor: tokens.modes.content.tertiary,
               iconColor: tokens.modes.content.inverse,
               background: tokens.modes.background.inverse,
             ),
         properties = properties ??
-            BaconTooltipProperties(
+            HiveTooltipProperties(
               borderRadius: tokens.shape.radii.x2s,
               arrowBaseWidth: tokens.scale.component.x2s,
               arrowLength: tokens.scale.component.x4s,
@@ -37,16 +38,16 @@ class BaconTooltipTheme extends ThemeExtension<BaconTooltipTheme>
               textStyle: tokens.typography.label.xs,
             ),
         shadows =
-            shadows ?? BaconTooltipShadows(tooltipShadows: tokens.shadows.sm);
+            shadows ?? HiveTooltipShadows(tooltipShadows: tokens.shadows.sm);
 
   @override
-  BaconTooltipTheme copyWith({
-    BaconTokens? tokens,
-    BaconTooltipColors? colors,
-    BaconTooltipProperties? properties,
-    BaconTooltipShadows? shadows,
+  HiveTooltipTheme copyWith({
+    HiveTokens? tokens,
+    HiveTooltipColors? colors,
+    HiveTooltipProperties? properties,
+    HiveTooltipShadows? shadows,
   }) {
-    return BaconTooltipTheme(
+    return HiveTooltipTheme(
       tokens: tokens ?? this.tokens,
       colors: colors ?? this.colors,
       properties: properties ?? this.properties,
@@ -55,10 +56,10 @@ class BaconTooltipTheme extends ThemeExtension<BaconTooltipTheme>
   }
 
   @override
-  BaconTooltipTheme lerp(ThemeExtension<BaconTooltipTheme>? other, double t) {
-    if (other is! BaconTooltipTheme) return this;
+  HiveTooltipTheme lerp(ThemeExtension<HiveTooltipTheme>? other, double t) {
+    if (other is! HiveTooltipTheme) return this;
 
-    return BaconTooltipTheme(
+    return HiveTooltipTheme(
       tokens: tokens.lerp(other.tokens, t),
       colors: colors.lerp(other.colors, t),
       properties: properties.lerp(other.properties, t),
@@ -69,12 +70,13 @@ class BaconTooltipTheme extends ThemeExtension<BaconTooltipTheme>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder diagnosticProperties) {
     super.debugFillProperties(diagnosticProperties);
+    diagnosticProperties.add(DiagnosticsProperty("type", "HiveTooltipTheme"));
+    diagnosticProperties.add(DiagnosticsProperty<HiveTokens>("tokens", tokens));
     diagnosticProperties
-      ..add(DiagnosticsProperty("type", "BaconTooltipTheme"))
-      ..add(DiagnosticsProperty<BaconTokens>("tokens", tokens))
-      ..add(DiagnosticsProperty<BaconTooltipColors>("colors", colors))
-      ..add(
-          DiagnosticsProperty<BaconTooltipProperties>("properties", properties))
-      ..add(DiagnosticsProperty<BaconTooltipShadows>("shadows", shadows));
+        .add(DiagnosticsProperty<HiveTooltipColors>("colors", colors));
+    diagnosticProperties.add(
+        DiagnosticsProperty<HiveTooltipProperties>("properties", properties));
+    diagnosticProperties
+        .add(DiagnosticsProperty<HiveTooltipShadows>("shadows", shadows));
   }
 }

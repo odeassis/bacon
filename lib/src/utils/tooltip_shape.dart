@@ -1,8 +1,9 @@
 import 'dart:math';
 
-import 'package:bacon/src/utils/squircle/squircle_radius.dart';
-import 'package:bacon/src/widgets/tooltip/tooltip.dart';
 import 'package:flutter/material.dart';
+
+import '../widgets/tooltip/tooltip.dart';
+import 'squircle/squircle_radius.dart';
 
 class TooltipShape extends ShapeBorder {
   final BorderRadius borderRadius;
@@ -13,7 +14,7 @@ class TooltipShape extends ShapeBorder {
   final double arrowLength;
   final double arrowTipDistance;
   final double childWidth;
-  final BaconTooltipPosition tooltipPosition;
+  final TooltipPosition tooltipPosition;
 
   const TooltipShape({
     required this.borderRadius,
@@ -52,12 +53,12 @@ class TooltipShape extends ShapeBorder {
         ..lineTo(rect.left, rect.top + topLeftRadius)
         ..arcToPoint(
           Offset(rect.left + topLeftRadius, rect.top),
-          radius: BaconSquircleRadius(cornerRadius: topLeftRadius),
+          radius: HiveSquircleRadius(cornerRadius: topLeftRadius),
         )
         ..lineTo(rect.right - topRightRadius, rect.top)
         ..arcToPoint(
           Offset(rect.right, rect.top + topRightRadius),
-          radius: BaconSquircleRadius(cornerRadius: topRightRadius),
+          radius: HiveSquircleRadius(cornerRadius: topRightRadius),
         );
     }
 
@@ -67,32 +68,32 @@ class TooltipShape extends ShapeBorder {
         ..lineTo(rect.right - bottomRightRadius, rect.bottom)
         ..arcToPoint(
           Offset(rect.right, rect.bottom - bottomRightRadius),
-          radius: BaconSquircleRadius(cornerRadius: bottomRightRadius),
+          radius: HiveSquircleRadius(cornerRadius: bottomRightRadius),
           clockwise: false,
         )
         ..lineTo(rect.right, rect.top + topRightRadius)
         ..arcToPoint(
           Offset(rect.right - topRightRadius, rect.top),
-          radius: BaconSquircleRadius(cornerRadius: topRightRadius),
+          radius: HiveSquircleRadius(cornerRadius: topRightRadius),
           clockwise: false,
         );
     }
 
-    if (tooltipPosition == BaconTooltipPosition.right) {
+    if (tooltipPosition == TooltipPosition.right) {
       tooltipCenter =
           rect.centerLeft.translate(-arrowLength - arrowTipDistance, 0);
-    } else if (tooltipPosition == BaconTooltipPosition.left) {
+    } else if (tooltipPosition == TooltipPosition.left) {
       tooltipCenter =
           rect.centerRight.translate(arrowLength + arrowTipDistance, 0);
     }
 
     switch (tooltipPosition) {
-      case BaconTooltipPosition.top:
+      case TooltipPosition.top:
         return getLeftTopPath(rect)
           ..lineTo(rect.right, rect.bottom - bottomRightRadius)
           ..arcToPoint(
             Offset(rect.right - bottomRightRadius, rect.bottom),
-            radius: BaconSquircleRadius(cornerRadius: bottomRightRadius),
+            radius: HiveSquircleRadius(cornerRadius: bottomRightRadius),
           )
           // To corner of arrow base.
           ..lineTo(
@@ -117,15 +118,15 @@ class TooltipShape extends ShapeBorder {
           ..lineTo(rect.left + bottomLeftRadius, rect.bottom)
           ..arcToPoint(
             Offset(rect.left, rect.bottom - bottomLeftRadius),
-            radius: BaconSquircleRadius(cornerRadius: bottomLeftRadius),
+            radius: HiveSquircleRadius(cornerRadius: bottomLeftRadius),
           )
           ..lineTo(rect.left, rect.top + topLeftRadius)
           ..arcToPoint(
             Offset(rect.left + topLeftRadius, rect.top),
-            radius: BaconSquircleRadius(cornerRadius: topLeftRadius),
+            radius: HiveSquircleRadius(cornerRadius: topLeftRadius),
           );
 
-      case BaconTooltipPosition.bottom:
+      case TooltipPosition.bottom:
         return getBottomRightPath(rect)
           // To corner of arrow base.
           ..lineTo(
@@ -150,17 +151,17 @@ class TooltipShape extends ShapeBorder {
           ..lineTo(rect.left + topLeftRadius, rect.top)
           ..arcToPoint(
             Offset(rect.left, rect.top + topLeftRadius),
-            radius: BaconSquircleRadius(cornerRadius: topLeftRadius),
+            radius: HiveSquircleRadius(cornerRadius: topLeftRadius),
             clockwise: false,
           )
           ..lineTo(rect.left, rect.bottom - bottomLeftRadius)
           ..arcToPoint(
             Offset(rect.left + bottomLeftRadius, rect.bottom),
-            radius: BaconSquircleRadius(cornerRadius: bottomLeftRadius),
+            radius: HiveSquircleRadius(cornerRadius: bottomLeftRadius),
             clockwise: false,
           );
 
-      case BaconTooltipPosition.left:
+      case TooltipPosition.left:
         return getLeftTopPath(rect)
           // To corner of arrow base.
           ..lineTo(
@@ -188,20 +189,20 @@ class TooltipShape extends ShapeBorder {
           ..lineTo(rect.right, rect.bottom - bottomRightRadius)
           ..arcToPoint(
             Offset(rect.right - bottomRightRadius, rect.bottom),
-            radius: BaconSquircleRadius(cornerRadius: bottomRightRadius),
+            radius: HiveSquircleRadius(cornerRadius: bottomRightRadius),
           )
           ..lineTo(rect.left + bottomLeftRadius, rect.bottom)
           ..arcToPoint(
             Offset(rect.left, rect.bottom - bottomLeftRadius),
-            radius: BaconSquircleRadius(cornerRadius: bottomLeftRadius),
+            radius: HiveSquircleRadius(cornerRadius: bottomLeftRadius),
           );
 
-      case BaconTooltipPosition.right:
+      case TooltipPosition.right:
         return getBottomRightPath(rect)
           ..lineTo(rect.left + topLeftRadius, rect.top)
           ..arcToPoint(
             Offset(rect.left, rect.top + topLeftRadius),
-            radius: BaconSquircleRadius(cornerRadius: topLeftRadius),
+            radius: HiveSquircleRadius(cornerRadius: topLeftRadius),
             clockwise: false,
           )
           // To corner of arrow base.
@@ -232,16 +233,16 @@ class TooltipShape extends ShapeBorder {
           ..lineTo(rect.left, rect.bottom - bottomLeftRadius)
           ..arcToPoint(
             Offset(rect.left + bottomLeftRadius, rect.bottom),
-            radius: BaconSquircleRadius(cornerRadius: bottomLeftRadius),
+            radius: HiveSquircleRadius(cornerRadius: bottomLeftRadius),
             clockwise: false,
           );
 
-      case BaconTooltipPosition.topLeft:
+      case TooltipPosition.topLeft:
         return getLeftTopPath(rect)
           ..lineTo(rect.right, rect.bottom - bottomRightRadius)
           ..arcToPoint(
             Offset(rect.right - bottomRightRadius, rect.bottom),
-            radius: BaconSquircleRadius(cornerRadius: bottomRightRadius),
+            radius: HiveSquircleRadius(cornerRadius: bottomRightRadius),
           )
           // To corner of arrow base.
           ..lineTo(
@@ -277,20 +278,20 @@ class TooltipShape extends ShapeBorder {
           ..lineTo(rect.left + bottomLeftRadius, rect.bottom)
           ..arcToPoint(
             Offset(rect.left, rect.bottom - bottomLeftRadius),
-            radius: BaconSquircleRadius(cornerRadius: bottomLeftRadius),
+            radius: HiveSquircleRadius(cornerRadius: bottomLeftRadius),
           )
           ..lineTo(rect.left, rect.top + topLeftRadius)
           ..arcToPoint(
             Offset(rect.left + topLeftRadius, rect.top),
-            radius: BaconSquircleRadius(cornerRadius: topLeftRadius),
+            radius: HiveSquircleRadius(cornerRadius: topLeftRadius),
           );
 
-      case BaconTooltipPosition.topRight:
+      case TooltipPosition.topRight:
         return getLeftTopPath(rect)
           ..lineTo(rect.right, rect.bottom - bottomRightRadius)
           ..arcToPoint(
             Offset(rect.right - bottomRightRadius, rect.bottom),
-            radius: BaconSquircleRadius(cornerRadius: bottomRightRadius),
+            radius: HiveSquircleRadius(cornerRadius: bottomRightRadius),
           )
           // To corner of arrow base.
           ..lineTo(
@@ -326,15 +327,15 @@ class TooltipShape extends ShapeBorder {
           ..lineTo(rect.left + bottomLeftRadius, rect.bottom)
           ..arcToPoint(
             Offset(rect.left, rect.bottom - bottomLeftRadius),
-            radius: BaconSquircleRadius(cornerRadius: bottomLeftRadius),
+            radius: HiveSquircleRadius(cornerRadius: bottomLeftRadius),
           )
           ..lineTo(rect.left, rect.top + topLeftRadius)
           ..arcToPoint(
             Offset(rect.left + topLeftRadius, rect.top),
-            radius: BaconSquircleRadius(cornerRadius: topLeftRadius),
+            radius: HiveSquircleRadius(cornerRadius: topLeftRadius),
           );
 
-      case BaconTooltipPosition.bottomLeft:
+      case TooltipPosition.bottomLeft:
         return getBottomRightPath(rect)
           // To corner of arrow base.
           ..lineTo(
@@ -370,17 +371,17 @@ class TooltipShape extends ShapeBorder {
           ..lineTo(rect.left + topLeftRadius, rect.top)
           ..arcToPoint(
             Offset(rect.left, rect.top + topLeftRadius),
-            radius: BaconSquircleRadius(cornerRadius: topLeftRadius),
+            radius: HiveSquircleRadius(cornerRadius: topLeftRadius),
             clockwise: false,
           )
           ..lineTo(rect.left, rect.bottom - bottomLeftRadius)
           ..arcToPoint(
             Offset(rect.left + bottomLeftRadius, rect.bottom),
-            radius: BaconSquircleRadius(cornerRadius: bottomLeftRadius),
+            radius: HiveSquircleRadius(cornerRadius: bottomLeftRadius),
             clockwise: false,
           );
 
-      case BaconTooltipPosition.bottomRight:
+      case TooltipPosition.bottomRight:
         return getBottomRightPath(rect)
           // To corner of arrow base.
           ..lineTo(
@@ -416,13 +417,13 @@ class TooltipShape extends ShapeBorder {
           ..lineTo(rect.left + topLeftRadius, rect.top)
           ..arcToPoint(
             Offset(rect.left, rect.top + topLeftRadius),
-            radius: BaconSquircleRadius(cornerRadius: topLeftRadius),
+            radius: HiveSquircleRadius(cornerRadius: topLeftRadius),
             clockwise: false,
           )
           ..lineTo(rect.left, rect.bottom - bottomLeftRadius)
           ..arcToPoint(
             Offset(rect.left + bottomLeftRadius, rect.bottom),
-            radius: BaconSquircleRadius(cornerRadius: bottomLeftRadius),
+            radius: HiveSquircleRadius(cornerRadius: bottomLeftRadius),
             clockwise: false,
           );
 

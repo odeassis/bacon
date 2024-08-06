@@ -74,3 +74,8 @@ export './text_input/input_properties.dart';
 export './text_input/input_size_properties.dart';
 export './text_input/input_sizes.dart';
 export './text_input/input_theme.dart';
+// Tooltip
+export './tooltip/tooltip_colors.dart';
+export './tooltip/tooltip_properties.dart';
+export './tooltip/tooltip_shadows.dart';
+export './tooltip/tooltip_theme.dart';

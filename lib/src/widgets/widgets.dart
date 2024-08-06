@@ -31,3 +31,5 @@ export './text_area/text_area.dart';
 // TextInput
 export './text_input/text_input.dart';
 export './text_input/text_input_form.dart';
+// Tooltip
+export './tooltip/tooltip.dart';

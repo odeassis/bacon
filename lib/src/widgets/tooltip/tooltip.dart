@@ -1,9 +1,10 @@
-import 'package:bacon/bacon.dart';
-import 'package:bacon/src/theme/tokens/transitions.dart';
-import 'package:bacon/src/widgets/tooltip/tooltip_shape.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/src/theme/theme.dart';
 
-enum BaconTooltipPosition {
+import '../../theme/tokens/tokens.dart';
+import '../../utils/utils.dart' as utils;
+
+enum TooltipPosition {
   top,
   topLeft,
   topRight,
@@ -16,7 +17,7 @@ enum BaconTooltipPosition {
   horizontal,
 }
 
-class BaconTooltip extends StatefulWidget {
+class HiveTooltip extends StatefulWidget {
   /// The widget to display inside the tooltip as its content.
   final Widget title;
 
@@ -27,7 +28,7 @@ class BaconTooltip extends StatefulWidget {
   final Widget? trailing;
 
   // This is required to show only one tooltip at a time.
-  static final List<_BaconTooltipState> _openedTooltips = [];
+  static final List<_HiveTooltipState> _openedTooltips = [];
 
   /// Whether the tooltip has an arrow (tail).
   final bool hasArrow;
@@ -100,8 +101,8 @@ class BaconTooltip extends StatefulWidget {
   /// The list of shadows applied to the tooltip.
   final List<BoxShadow>? tooltipShadows;
 
-  /// The tooltip position relative to the [child] (target). Defaults to [BaconTooltipPosition.vertical].
-  final BaconTooltipPosition tooltipPosition;
+  /// The tooltip position relative to the [child] (target). Defaults to [TooltipPosition.vertical].
+  final TooltipPosition tooltipPosition;
 
   /// The observer to track route changes and automatically hide the tooltip when the widget's route is not active.
   final RouteObserver<PageRoute<dynamic>>? routeObserver;
@@ -115,8 +116,8 @@ class BaconTooltip extends StatefulWidget {
   /// The widget to display as the child (target) of the tooltip.
   final Widget child;
 
-  /// Creates a Bacon Design tooltip.
-  const BaconTooltip({
+  /// Creates a Hive Design tooltip.
+  const HiveTooltip({
     super.key,
     this.hasArrow = true,
     this.hideOnTap = true,
@@ -139,7 +140,7 @@ class BaconTooltip extends StatefulWidget {
     this.transitionCurve,
     this.contentPadding,
     this.tooltipShadows,
-    this.tooltipPosition = BaconTooltipPosition.top,
+    this.tooltipPosition = TooltipPosition.top,
     this.routeObserver,
     this.semanticLabel,
     this.onTap,
@@ -151,12 +152,12 @@ class BaconTooltip extends StatefulWidget {
   });
 
   // Clear existing tooltips, excluding the supplied one.
-  static void _removeOtherTooltips(_BaconTooltipState current) {
+  static void _removeOtherTooltips(_HiveTooltipState current) {
     if (_openedTooltips.isNotEmpty) {
       // Avoid concurrent modification.
-      final List<_BaconTooltipState> openedTooltips = _openedTooltips.toList();
+      final List<_HiveTooltipState> openedTooltips = _openedTooltips.toList();
 
-      for (final _BaconTooltipState state in openedTooltips) {
+      for (final _HiveTooltipState state in openedTooltips) {
         if (state == current) continue;
 
         state._clearOverlayEntry();
@@ -165,10 +166,10 @@ class BaconTooltip extends StatefulWidget {
   }
 
   @override
-  _BaconTooltipState createState() => _BaconTooltipState();
+  _HiveTooltipState createState() => _HiveTooltipState();
 }
 
-class _BaconTooltipState extends State<BaconTooltip>
+class _HiveTooltipState extends State<HiveTooltip>
     with RouteAware, SingleTickerProviderStateMixin {
   final GlobalKey _tooltipKey = GlobalKey();
   final LayerLink _layerLink = LayerLink();
@@ -187,8 +188,8 @@ class _BaconTooltipState extends State<BaconTooltip>
         builder: (BuildContext context) => _createOverlayContent());
     Overlay.of(context).insert(_overlayEntry!);
 
-    BaconTooltip._openedTooltips.add(this);
-    BaconTooltip._removeOtherTooltips(this);
+    HiveTooltip._openedTooltips.add(this);
+    HiveTooltip._removeOtherTooltips(this);
 
     _animationController!.value = 0;
     _animationController!.forward();
@@ -209,7 +210,7 @@ class _BaconTooltipState extends State<BaconTooltip>
 
   void _clearOverlayEntry() {
     if (_overlayEntry != null) {
-      BaconTooltip._openedTooltips.remove(this);
+      HiveTooltip._openedTooltips.remove(this);
       _overlayEntry!.remove();
       _overlayEntry = null;
     }
@@ -234,7 +235,7 @@ class _BaconTooltipState extends State<BaconTooltip>
   }
 
   _TooltipPositionProperties _resolveTooltipPositionParameters({
-    required BaconTooltipPosition tooltipPosition,
+    required TooltipPosition tooltipPosition,
     required double arrowTipDistance,
     required double arrowLength,
     required double overlayWidth,
@@ -243,7 +244,7 @@ class _BaconTooltipState extends State<BaconTooltip>
     required double tooltipTargetGlobalRight,
   }) {
     switch (tooltipPosition) {
-      case BaconTooltipPosition.top:
+      case TooltipPosition.top:
         return _TooltipPositionProperties(
           offset: Offset(0, -(arrowTipDistance + arrowLength)),
           targetAnchor: Alignment.topCenter,
@@ -253,7 +254,7 @@ class _BaconTooltipState extends State<BaconTooltip>
               widget.tooltipMargin * 2,
         );
 
-      case BaconTooltipPosition.bottom:
+      case TooltipPosition.bottom:
         return _TooltipPositionProperties(
           offset: Offset(0, arrowTipDistance + arrowLength),
           targetAnchor: Alignment.bottomCenter,
@@ -263,7 +264,7 @@ class _BaconTooltipState extends State<BaconTooltip>
               widget.tooltipMargin * 2,
         );
 
-      case BaconTooltipPosition.left:
+      case TooltipPosition.left:
         return _TooltipPositionProperties(
           offset: Offset(-(arrowTipDistance + arrowLength), 0),
           targetAnchor: Alignment.centerLeft,
@@ -274,7 +275,7 @@ class _BaconTooltipState extends State<BaconTooltip>
               widget.tooltipMargin,
         );
 
-      case BaconTooltipPosition.right:
+      case TooltipPosition.right:
         return _TooltipPositionProperties(
           offset: Offset(arrowTipDistance + arrowLength, 0),
           targetAnchor: Alignment.centerRight,
@@ -286,7 +287,7 @@ class _BaconTooltipState extends State<BaconTooltip>
               widget.tooltipMargin,
         );
 
-      case BaconTooltipPosition.topLeft:
+      case TooltipPosition.topLeft:
         return _TooltipPositionProperties(
           offset: Offset(0, -(arrowTipDistance + arrowLength)),
           targetAnchor: Alignment.topRight,
@@ -294,7 +295,7 @@ class _BaconTooltipState extends State<BaconTooltip>
           tooltipMaxWidth: tooltipTargetGlobalRight - widget.tooltipMargin,
         );
 
-      case BaconTooltipPosition.topRight:
+      case TooltipPosition.topRight:
         return _TooltipPositionProperties(
           offset: Offset(0, -(arrowTipDistance + arrowLength)),
           targetAnchor: Alignment.topLeft,
@@ -303,7 +304,7 @@ class _BaconTooltipState extends State<BaconTooltip>
               overlayWidth - tooltipTargetGlobalLeft - widget.tooltipMargin,
         );
 
-      case BaconTooltipPosition.bottomLeft:
+      case TooltipPosition.bottomLeft:
         return _TooltipPositionProperties(
           offset: Offset(0, arrowTipDistance + arrowLength),
           targetAnchor: Alignment.bottomRight,
@@ -311,7 +312,7 @@ class _BaconTooltipState extends State<BaconTooltip>
           tooltipMaxWidth: tooltipTargetGlobalRight - widget.tooltipMargin,
         );
 
-      case BaconTooltipPosition.bottomRight:
+      case TooltipPosition.bottomRight:
         return _TooltipPositionProperties(
           offset: Offset(0, arrowTipDistance + arrowLength),
           targetAnchor: Alignment.bottomLeft,
@@ -375,7 +376,7 @@ class _BaconTooltipState extends State<BaconTooltip>
   }
 
   @override
-  void didUpdateWidget(BaconTooltip oldWidget) {
+  void didUpdateWidget(HiveTooltip oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.routeObserver != widget.routeObserver) {
@@ -421,62 +422,62 @@ class _BaconTooltipState extends State<BaconTooltip>
   }
 
   Widget _createOverlayContent() {
-    BaconTooltipPosition tooltipPosition = widget.tooltipPosition;
+    TooltipPosition tooltipPosition = widget.tooltipPosition;
 
     final BorderRadiusGeometry effectiveBorderRadius = widget.borderRadius ??
-        context.baconTheme?.tooltipTheme.properties.borderRadius ??
-        BaconTokens.light.shape.radii.x2s;
+        context.hiveTheme?.tooltipTheme.properties.borderRadius ??
+        HiveTokens.light.shape.radii.x2s;
 
     final resolvedBorderRadius =
         effectiveBorderRadius.resolve(Directionality.of(context));
 
     final Color effectiveBackgroundColor = widget.backgroundColor ??
-        context.baconTheme?.tooltipTheme.colors.background ??
-        BaconTokens.light.modes.background.primary;
+        context.hiveTheme?.tooltipTheme.colors.background ??
+        HiveTokens.light.modes.background.primary;
 
     final Color effectiveTitleColor =
-        context.baconTheme?.tooltipTheme.colors.titleColor ??
-            BaconTokens.light.modes.content.inverse;
+        context.hiveTheme?.tooltipTheme.colors.titleColor ??
+            HiveTokens.light.modes.content.inverse;
 
     final Color effectiveContentColor =
-        context.baconTheme?.tooltipTheme.colors.contentColor ??
-            BaconTokens.light.modes.content.tertiary;
+        context.hiveTheme?.tooltipTheme.colors.contentColor ??
+            HiveTokens.light.modes.content.tertiary;
 
     final Color effectiveIconColor =
-        context.baconTheme?.tooltipTheme.colors.iconColor ??
-            BaconTokens.light.modes.content.primary;
+        context.hiveTheme?.tooltipTheme.colors.iconColor ??
+            HiveTokens.light.modes.content.primary;
 
     final double effectiveArrowBaseWidth = widget.arrowBaseWidth ??
-        context.baconTheme?.tooltipTheme.properties.arrowBaseWidth ??
+        context.hiveTheme?.tooltipTheme.properties.arrowBaseWidth ??
         16;
 
     final double effectiveArrowLength = widget.hasArrow
         ? (widget.arrowLength ??
-            context.baconTheme?.tooltipTheme.properties.arrowLength ??
+            context.hiveTheme?.tooltipTheme.properties.arrowLength ??
             8)
         : 0;
 
     final double effectiveArrowTipDistance = widget.arrowTipDistance ??
-        context.baconTheme?.tooltipTheme.properties.arrowTipDistance ??
+        context.hiveTheme?.tooltipTheme.properties.arrowTipDistance ??
         8;
 
     final double effectiveIconSize =
-        widget.iconSize ?? BaconTokens.light.scale.component.x2s;
+        widget.iconSize ?? HiveTokens.light.scale.component.x2s;
 
     final EdgeInsetsGeometry effectiveContentPadding = widget.contentPadding ??
-        context.baconTheme?.tooltipTheme.properties.contentPadding ??
+        context.hiveTheme?.tooltipTheme.properties.contentPadding ??
         const EdgeInsets.all(12);
 
     final EdgeInsets resolvedContentPadding =
         effectiveContentPadding.resolve(Directionality.of(context));
 
     final List<BoxShadow> effectiveTooltipShadows = widget.tooltipShadows ??
-        context.baconTheme?.tooltipTheme.shadows.tooltipShadows ??
-        BaconTokens.light.shadows.sm;
+        context.hiveTheme?.tooltipTheme.shadows.tooltipShadows ??
+        HiveTokens.light.shadows.sm;
 
     final TextStyle effectiveTextStyle =
-        context.baconTheme?.tooltipTheme.properties.textStyle ??
-            BaconTokens.light.typography.label.xs;
+        context.hiveTheme?.tooltipTheme.properties.textStyle ??
+            HiveTokens.light.typography.label.xs;
 
     final overlayRenderBox =
         Overlay.of(context).context.findRenderObject()! as RenderBox;
@@ -496,31 +497,31 @@ class _BaconTooltipState extends State<BaconTooltip>
         ancestor: overlayRenderBox);
 
     if (Directionality.of(context) == TextDirection.rtl ||
-        tooltipPosition == BaconTooltipPosition.horizontal ||
-        tooltipPosition == BaconTooltipPosition.vertical) {
+        tooltipPosition == TooltipPosition.horizontal ||
+        tooltipPosition == TooltipPosition.vertical) {
       switch (tooltipPosition) {
-        case BaconTooltipPosition.left:
-          tooltipPosition = BaconTooltipPosition.right;
-        case BaconTooltipPosition.right:
-          tooltipPosition = BaconTooltipPosition.left;
-        case BaconTooltipPosition.topLeft:
-          tooltipPosition = BaconTooltipPosition.topRight;
-        case BaconTooltipPosition.topRight:
-          tooltipPosition = BaconTooltipPosition.topLeft;
-        case BaconTooltipPosition.bottomLeft:
-          tooltipPosition = BaconTooltipPosition.bottomRight;
-        case BaconTooltipPosition.bottomRight:
-          tooltipPosition = BaconTooltipPosition.bottomLeft;
-        case BaconTooltipPosition.vertical:
+        case TooltipPosition.left:
+          tooltipPosition = TooltipPosition.right;
+        case TooltipPosition.right:
+          tooltipPosition = TooltipPosition.left;
+        case TooltipPosition.topLeft:
+          tooltipPosition = TooltipPosition.topRight;
+        case TooltipPosition.topRight:
+          tooltipPosition = TooltipPosition.topLeft;
+        case TooltipPosition.bottomLeft:
+          tooltipPosition = TooltipPosition.bottomRight;
+        case TooltipPosition.bottomRight:
+          tooltipPosition = TooltipPosition.bottomLeft;
+        case TooltipPosition.vertical:
           tooltipPosition = tooltipTargetGlobalCenter.dy <
                   overlayRenderBox.size.center(Offset.zero).dy
-              ? BaconTooltipPosition.bottom
-              : BaconTooltipPosition.top;
-        case BaconTooltipPosition.horizontal:
+              ? TooltipPosition.bottom
+              : TooltipPosition.top;
+        case TooltipPosition.horizontal:
           tooltipPosition = tooltipTargetGlobalCenter.dx <
                   overlayRenderBox.size.center(Offset.zero).dx
-              ? BaconTooltipPosition.right
-              : BaconTooltipPosition.left;
+              ? TooltipPosition.right
+              : TooltipPosition.left;
         default:
           break;
       }
@@ -557,10 +558,10 @@ class _BaconTooltipState extends State<BaconTooltip>
                   constraints: BoxConstraints(
                       maxWidth: tooltipPositionParameters.tooltipMaxWidth),
                   padding: resolvedContentPadding,
-                  decoration: ShapeDecorationWithPremultipliedAlpha(
+                  decoration: utils.ShapeDecorationWithPremultipliedAlpha(
                     color: effectiveBackgroundColor,
                     shadows: effectiveTooltipShadows,
-                    shape: TooltipShape(
+                    shape: utils.TooltipShape(
                       arrowBaseWidth: effectiveArrowBaseWidth,
                       arrowLength: effectiveArrowLength,
                       arrowOffset: widget.arrowOffsetValue,
@@ -635,12 +636,12 @@ class _BaconTooltipState extends State<BaconTooltip>
   @override
   Widget build(BuildContext context) {
     final Duration effectiveTransitionDuration = widget.transitionDuration ??
-        context.baconTheme?.tooltipTheme.properties.transitionDuration ??
+        context.hiveTheme?.tooltipTheme.properties.transitionDuration ??
         const Duration(milliseconds: 150);
 
     final Curve effectiveTransitionCurve = widget.transitionCurve ??
-        context.baconTheme?.tooltipTheme.properties.transitionCurve ??
-        BaconTransitions.transitions.transitionCurve;
+        context.hiveTheme?.tooltipTheme.properties.transitionCurve ??
+        HiveTransitions.transitions.transitionCurve;
 
     _animationController ??= AnimationController(
       duration: effectiveTransitionDuration,

@@ -2,27 +2,26 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class BaconTooltipShadows extends ThemeExtension<BaconTooltipShadows>
+class HiveTooltipShadows extends ThemeExtension<HiveTooltipShadows>
     with DiagnosticableTreeMixin {
   final List<BoxShadow> tooltipShadows;
 
-  const BaconTooltipShadows({
+  const HiveTooltipShadows({
     required this.tooltipShadows,
   });
 
   @override
-  BaconTooltipShadows copyWith({List<BoxShadow>? tooltipShadows}) {
-    return BaconTooltipShadows(
+  HiveTooltipShadows copyWith({List<BoxShadow>? tooltipShadows}) {
+    return HiveTooltipShadows(
       tooltipShadows: tooltipShadows ?? this.tooltipShadows,
     );
   }
 
   @override
-  BaconTooltipShadows lerp(
-      ThemeExtension<BaconTooltipShadows>? other, double t) {
-    if (other is! BaconTooltipShadows) return this;
+  HiveTooltipShadows lerp(ThemeExtension<HiveTooltipShadows>? other, double t) {
+    if (other is! HiveTooltipShadows) return this;
 
-    return BaconTooltipShadows(
+    return HiveTooltipShadows(
       tooltipShadows:
           BoxShadow.lerpList(tooltipShadows, other.tooltipShadows, t)!,
     );
@@ -31,9 +30,8 @@ class BaconTooltipShadows extends ThemeExtension<BaconTooltipShadows>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty("type", "BaconTooltipShadows"))
-      ..add(DiagnosticsProperty<List<BoxShadow>>(
-          "tooltipShadows", tooltipShadows));
+    properties.add(DiagnosticsProperty("type", "HiveTooltipShadows"));
+    properties.add(
+        DiagnosticsProperty<List<BoxShadow>>("tooltipShadows", tooltipShadows));
   }
 }

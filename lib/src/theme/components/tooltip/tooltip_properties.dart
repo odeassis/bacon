@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class BaconTooltipProperties extends ThemeExtension<BaconTooltipProperties>
+class HiveTooltipProperties extends ThemeExtension<HiveTooltipProperties>
     with DiagnosticableTreeMixin {
   final BorderRadiusGeometry borderRadius;
   final double arrowBaseWidth;
@@ -15,7 +15,7 @@ class BaconTooltipProperties extends ThemeExtension<BaconTooltipProperties>
   final EdgeInsetsGeometry contentPadding;
   final TextStyle textStyle;
 
-  const BaconTooltipProperties({
+  const HiveTooltipProperties({
     required this.borderRadius,
     required this.arrowBaseWidth,
     required this.arrowLength,
@@ -27,7 +27,7 @@ class BaconTooltipProperties extends ThemeExtension<BaconTooltipProperties>
   });
 
   @override
-  BaconTooltipProperties copyWith({
+  HiveTooltipProperties copyWith({
     BorderRadiusGeometry? borderRadius,
     double? arrowBaseWidth,
     double? arrowLength,
@@ -37,7 +37,7 @@ class BaconTooltipProperties extends ThemeExtension<BaconTooltipProperties>
     EdgeInsetsGeometry? contentPadding,
     TextStyle? textStyle,
   }) {
-    return BaconTooltipProperties(
+    return HiveTooltipProperties(
       borderRadius: borderRadius ?? this.borderRadius,
       arrowBaseWidth: arrowBaseWidth ?? this.arrowBaseWidth,
       arrowLength: arrowLength ?? this.arrowLength,
@@ -50,11 +50,11 @@ class BaconTooltipProperties extends ThemeExtension<BaconTooltipProperties>
   }
 
   @override
-  BaconTooltipProperties lerp(
-      ThemeExtension<BaconTooltipProperties>? other, double t) {
-    if (other is! BaconTooltipProperties) return this;
+  HiveTooltipProperties lerp(
+      ThemeExtension<HiveTooltipProperties>? other, double t) {
+    if (other is! HiveTooltipProperties) return this;
 
-    return BaconTooltipProperties(
+    return HiveTooltipProperties(
       borderRadius:
           BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t)!,
       arrowBaseWidth: lerpDouble(arrowBaseWidth, other.arrowBaseWidth, t)!,
@@ -73,18 +73,18 @@ class BaconTooltipProperties extends ThemeExtension<BaconTooltipProperties>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty("type", "HiveTooltipProperties"));
+    properties.add(DiagnosticsProperty<BorderRadiusGeometry>(
+        "borderRadius", borderRadius));
+    properties.add(DoubleProperty("arrowBaseWidth", arrowBaseWidth));
+    properties.add(DoubleProperty("arrowLength", arrowLength));
+    properties.add(DoubleProperty("arrowTipDistance", arrowTipDistance));
+    properties.add(DiagnosticsProperty<Duration>(
+        "transitionDuration", transitionDuration));
     properties
-      ..add(DiagnosticsProperty("type", "BaconTooltipProperties"))
-      ..add(DiagnosticsProperty<BorderRadiusGeometry>(
-          "borderRadius", borderRadius))
-      ..add(DoubleProperty("arrowBaseWidth", arrowBaseWidth))
-      ..add(DoubleProperty("arrowLength", arrowLength))
-      ..add(DoubleProperty("arrowTipDistance", arrowTipDistance))
-      ..add(DiagnosticsProperty<Duration>(
-          "transitionDuration", transitionDuration))
-      ..add(DiagnosticsProperty<Curve>("transitionCurve", transitionCurve))
-      ..add(DiagnosticsProperty<EdgeInsetsGeometry>(
-          "contentPadding", contentPadding))
-      ..add(DiagnosticsProperty<TextStyle>("textStyle", textStyle));
+        .add(DiagnosticsProperty<Curve>("transitionCurve", transitionCurve));
+    properties.add(DiagnosticsProperty<EdgeInsetsGeometry>(
+        "contentPadding", contentPadding));
+    properties.add(DiagnosticsProperty<TextStyle>("textStyle", textStyle));
   }
 }

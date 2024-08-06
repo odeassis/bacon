@@ -12,4 +12,5 @@ export './shared/base_control.dart';
 export './shared/common/common.dart';
 export './squircle/squircle.dart';
 export './states_controller.dart';
+export './tooltip_shape.dart';
 export './touch_target_padding.dart';
