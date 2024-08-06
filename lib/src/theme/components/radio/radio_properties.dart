@@ -2,29 +2,29 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class BaconRadioProperties extends ThemeExtension<BaconRadioProperties>
+class HiveRadioProperties extends ThemeExtension<HiveRadioProperties>
     with DiagnosticableTreeMixin {
   final TextStyle textStyle;
 
-  const BaconRadioProperties({
+  const HiveRadioProperties({
     required this.textStyle,
   });
 
   @override
-  BaconRadioProperties copyWith({
+  HiveRadioProperties copyWith({
     TextStyle? textStyle,
   }) {
-    return BaconRadioProperties(
+    return HiveRadioProperties(
       textStyle: textStyle ?? this.textStyle,
     );
   }
 
   @override
-  BaconRadioProperties lerp(
-      ThemeExtension<BaconRadioProperties>? other, double t) {
-    if (other is! BaconRadioProperties) return this;
+  HiveRadioProperties lerp(
+      ThemeExtension<HiveRadioProperties>? other, double t) {
+    if (other is! HiveRadioProperties) return this;
 
-    return BaconRadioProperties(
+    return HiveRadioProperties(
       textStyle: TextStyle.lerp(textStyle, other.textStyle, t)!,
     );
   }
@@ -32,8 +32,7 @@ class BaconRadioProperties extends ThemeExtension<BaconRadioProperties>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty("type", "BaconRadioProperties"))
-      ..add(DiagnosticsProperty<TextStyle>("textStyle", textStyle));
+    properties.add(DiagnosticsProperty("type", "HiveRadioProperties"));
+    properties.add(DiagnosticsProperty<TextStyle>("textStyle", textStyle));
   }
 }

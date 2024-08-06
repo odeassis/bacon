@@ -55,3 +55,7 @@ export './progress/linear/linear_progress_colors.dart';
 export './progress/linear/linear_progress_size_properties.dart';
 export './progress/linear/linear_progress_sizes.dart';
 export './progress/linear/linear_progress_theme.dart';
+// Radio
+export './radio/radio_colors.dart';
+export './radio/radio_properties.dart';
+export './radio/radio_theme.dart';

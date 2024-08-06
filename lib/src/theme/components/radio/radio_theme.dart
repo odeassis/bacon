@@ -1,36 +1,37 @@
-import 'package:bacon/src/theme/components/radio/radio_colors.dart';
-import 'package:bacon/src/theme/components/radio/radio_properties.dart';
-import 'package:bacon/src/theme/tokens/tokens.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-@immutable
-class BaconRadioTheme extends ThemeExtension<BaconRadioTheme>
-    with DiagnosticableTreeMixin {
-  final BaconTokens tokens;
-  final BaconRadioColors colors;
-  final BaconRadioProperties properties;
+import '../../tokens/hive_tokens.dart';
+import 'radio_colors.dart';
+import 'radio_properties.dart';
 
-  BaconRadioTheme({
+@immutable
+class HiveRadioTheme extends ThemeExtension<HiveRadioTheme>
+    with DiagnosticableTreeMixin {
+  final HiveTokens tokens;
+  final HiveRadioColors colors;
+  final HiveRadioProperties properties;
+
+  HiveRadioTheme({
     required this.tokens,
-    BaconRadioColors? colors,
-    BaconRadioProperties? properties,
+    HiveRadioColors? colors,
+    HiveRadioProperties? properties,
   })  : colors = colors ??
-            BaconRadioColors(
+            HiveRadioColors(
               activeColor: tokens.modes.action.active,
               inactiveColor: tokens.modes.action.disabled,
               textColor: tokens.modes.content.primary,
             ),
         properties = properties ??
-            BaconRadioProperties(textStyle: tokens.typography.label.md);
+            HiveRadioProperties(textStyle: tokens.typography.label.md);
 
   @override
-  BaconRadioTheme copyWith({
-    BaconTokens? tokens,
-    BaconRadioColors? colors,
-    BaconRadioProperties? properties,
+  HiveRadioTheme copyWith({
+    HiveTokens? tokens,
+    HiveRadioColors? colors,
+    HiveRadioProperties? properties,
   }) {
-    return BaconRadioTheme(
+    return HiveRadioTheme(
       tokens: tokens ?? this.tokens,
       colors: colors ?? this.colors,
       properties: properties ?? this.properties,
@@ -38,10 +39,10 @@ class BaconRadioTheme extends ThemeExtension<BaconRadioTheme>
   }
 
   @override
-  BaconRadioTheme lerp(ThemeExtension<BaconRadioTheme>? other, double t) {
-    if (other is! BaconRadioTheme) return this;
+  HiveRadioTheme lerp(ThemeExtension<HiveRadioTheme>? other, double t) {
+    if (other is! HiveRadioTheme) return this;
 
-    return BaconRadioTheme(
+    return HiveRadioTheme(
       tokens: tokens.lerp(other.tokens, t),
       colors: colors.lerp(other.colors, t),
       properties: properties.lerp(other.properties, t),
@@ -51,11 +52,11 @@ class BaconRadioTheme extends ThemeExtension<BaconRadioTheme>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder diagnosticProperties) {
     super.debugFillProperties(diagnosticProperties);
+    diagnosticProperties.add(DiagnosticsProperty("type", "HiveRadioTheme"));
+    diagnosticProperties.add(DiagnosticsProperty<HiveTokens>("tokens", tokens));
     diagnosticProperties
-      ..add(DiagnosticsProperty("type", "BaconRadioTheme"))
-      ..add(DiagnosticsProperty<BaconTokens>("tokens", tokens))
-      ..add(DiagnosticsProperty<BaconRadioColors>("colors", colors))
-      ..add(
-          DiagnosticsProperty<BaconRadioProperties>("properties", properties));
+        .add(DiagnosticsProperty<HiveRadioColors>("colors", colors));
+    diagnosticProperties.add(
+        DiagnosticsProperty<HiveRadioProperties>("properties", properties));
   }
 }

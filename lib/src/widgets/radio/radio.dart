@@ -1,12 +1,11 @@
-import 'package:bacon/bacon.dart';
-import 'package:bacon/src/theme/effects/effects_theme.dart';
-import 'package:bacon/src/theme/tokens/opacities.dart';
-import 'package:bacon/src/utils/shared/common/effects/focus_effect.dart';
-import 'package:bacon/src/utils/touch_targert_padding.dart';
-import 'package:bacon/src/widgets/radio/radio_paint.dart';
 import 'package:flutter/material.dart';
 
-class BaconRadio<T> extends StatefulWidget {
+import '../../theme/effects/effects.dart';
+import '../../theme/theme.dart';
+import '../../theme/tokens/tokens.dart';
+import '../../utils/utils.dart' as utils;
+
+class HiveRadio<T> extends StatefulWidget {
   /// {@macro flutter.widgets.Focus.autofocus}
   final bool autofocus;
 
@@ -62,8 +61,8 @@ class BaconRadio<T> extends StatefulWidget {
   /// [StatefulWidget] using the [State.setState] method, so that the parent gets rebuilt.
   final ValueChanged<T?>? onChanged;
 
-  /// Creates a Bacon Design radio button.
-  const BaconRadio({
+  /// Creates a Hive Design radio button.
+  const HiveRadio({
     super.key,
     this.autofocus = false,
     this.toggleable = false,
@@ -77,8 +76,8 @@ class BaconRadio<T> extends StatefulWidget {
     required this.onChanged,
   });
 
-  /// Creates a Bacon Design radio button with label.
-  @Deprecated("Use BaconMenuItem with BaconRadio as a trailing widget instead.")
+  /// Creates a Hive Design radio button with label.
+  @Deprecated("Use HiveMenuItem with HiveRadio as a trailing widget instead.")
   static Widget withLabel<T>(
     BuildContext context, {
     Key? key,
@@ -97,24 +96,23 @@ class BaconRadio<T> extends StatefulWidget {
     final bool isInteractive = onChanged != null;
 
     final Color effectiveTextColor =
-        context.baconTheme?.radioTheme.colors.textColor ??
-            BaconTokens.light.modes.content.primary;
+        context.hiveTheme?.radioTheme.colors.textColor ??
+            HiveTokens.light.modes.content.primary;
 
     final TextStyle effectiveTextStyle =
-        context.baconTheme?.radioTheme.properties.textStyle ??
-            BaconTokens.light.typography.label.md;
+        context.hiveTheme?.radioTheme.properties.textStyle ??
+            HiveTokens.light.typography.label.md;
 
     final TextStyle resolvedTextStyle =
         effectiveTextStyle.copyWith(color: effectiveTextColor).merge(textStyle);
 
     final double effectiveDisabledOpacityValue =
-        context.opacities?.disabled ?? BaconOpacities.opacities.disabled;
+        HiveOpacities.opacities.disabled;
 
     final Duration effectiveFocusEffectDuration =
-        context.baconEffects?.controlFocusEffect.effectDuration ??
-            BaconEffectsTheme(tokens: BaconTokens.light)
-                .controlFocusEffect
-                .effectDuration;
+        HiveEffectsTheme(tokens: HiveTokens.light)
+            .controlFocusEffect
+            .effectDuration;
 
     return GestureDetector(
       onTap: () => onChanged?.call(value),
@@ -136,7 +134,7 @@ class BaconRadio<T> extends StatefulWidget {
                 ),
               ),
               const SizedBox(width: 12),
-              BaconRadio<T>(
+              HiveRadio<T>(
                 key: key,
                 value: value,
                 groupValue: groupValue,
@@ -158,12 +156,12 @@ class BaconRadio<T> extends StatefulWidget {
   bool get _selected => value == groupValue;
 
   @override
-  State<BaconRadio<T>> createState() => _RadioState<T>();
+  State<HiveRadio<T>> createState() => _RadioState<T>();
 }
 
-class _RadioState<T> extends State<BaconRadio<T>>
+class _RadioState<T> extends State<HiveRadio<T>>
     with TickerProviderStateMixin, ToggleableStateMixin {
-  final BaconRadioPainter _painter = BaconRadioPainter();
+  final utils.HiveRadioPainter _painter = utils.HiveRadioPainter();
 
   void _handleChanged(bool? selected) {
     if (selected == null) {
@@ -177,7 +175,7 @@ class _RadioState<T> extends State<BaconRadio<T>>
   }
 
   @override
-  void didUpdateWidget(BaconRadio<T> oldWidget) {
+  void didUpdateWidget(HiveRadio<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (widget._selected != oldWidget._selected) {
@@ -207,54 +205,49 @@ class _RadioState<T> extends State<BaconRadio<T>>
     const Size size = Size(16, 16);
 
     final Color effectiveActiveColor = widget.activeColor ??
-        context.baconTheme?.radioTheme.colors.activeColor ??
-        BaconTokens.light.modes.action.active;
+        context.hiveTheme?.radioTheme.colors.activeColor ??
+        HiveTokens.light.modes.action.active;
 
     final Color effectiveInactiveColor = widget.inactiveColor ??
-        context.baconTheme?.radioTheme.colors.inactiveColor ??
-        BaconTokens.light.modes.action.disabled;
+        context.hiveTheme?.radioTheme.colors.inactiveColor ??
+        HiveTokens.light.modes.action.disabled;
 
     final Color effectiveFocusEffectColor =
-        context.baconEffects?.controlFocusEffect.effectColor ??
-            BaconEffectsTheme(tokens: BaconTokens.light)
-                .controlFocusEffect
-                .effectColor;
+        HiveEffectsTheme(tokens: HiveTokens.light)
+            .controlFocusEffect
+            .effectColor;
 
     final double effectiveFocusEffectExtent =
-        context.baconEffects?.controlFocusEffect.effectExtent ??
-            BaconEffectsTheme(tokens: BaconTokens.light)
-                .controlFocusEffect
-                .effectExtent;
+        HiveEffectsTheme(tokens: HiveTokens.light)
+            .controlFocusEffect
+            .effectExtent;
 
     final Duration effectiveFocusEffectDuration =
-        context.baconEffects?.controlFocusEffect.effectDuration ??
-            BaconEffectsTheme(tokens: BaconTokens.light)
-                .controlFocusEffect
-                .effectDuration;
+        HiveEffectsTheme(tokens: HiveTokens.light)
+            .controlFocusEffect
+            .effectDuration;
 
     final Curve effectiveFocusEffectCurve =
-        context.baconEffects?.controlFocusEffect.effectCurve ??
-            BaconEffectsTheme(tokens: BaconTokens.light)
-                .controlFocusEffect
-                .effectCurve;
+        HiveEffectsTheme(tokens: HiveTokens.light)
+            .controlFocusEffect
+            .effectCurve;
 
     final double effectiveDisabledOpacityValue =
-        context.opacities?.disabled ?? BaconOpacities.opacities.disabled;
+        HiveOpacities.opacities.disabled;
 
-    final MaterialStateProperty<MouseCursor> effectiveMouseCursor =
-        MaterialStateProperty.resolveWith<MouseCursor>(
-            (Set<MaterialState> states) {
-      return MaterialStateMouseCursor.clickable.resolve(states);
+    final WidgetStateProperty<MouseCursor> effectiveMouseCursor =
+        WidgetStateProperty.resolveWith<MouseCursor>((Set<WidgetState> states) {
+      return WidgetStateMouseCursor.clickable.resolve(states);
     });
 
     return Semantics(
       label: widget.semanticLabel,
       inMutuallyExclusiveGroup: true,
       checked: widget._selected,
-      child: TouchTargetPadding(
+      child: utils.TouchTargetPadding(
         minSize: Size(widget.tapAreaSizeValue, widget.tapAreaSizeValue),
-        child: BaconFocusEffect(
-          show: states.contains(MaterialState.focused),
+        child: utils.HiveFocusEffect(
+          show: states.contains(WidgetState.focused),
           effectExtent: effectiveFocusEffectExtent,
           childBorderRadius: BorderRadius.circular(8),
           effectColor: effectiveFocusEffectColor,
@@ -262,7 +255,7 @@ class _RadioState<T> extends State<BaconRadio<T>>
           effectDuration: effectiveFocusEffectDuration,
           child: RepaintBoundary(
             child: AnimatedOpacity(
-              opacity: states.contains(MaterialState.disabled)
+              opacity: states.contains(WidgetState.disabled)
                   ? effectiveDisabledOpacityValue
                   : 1,
               duration: effectiveFocusEffectDuration,
