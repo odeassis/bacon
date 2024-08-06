@@ -1,11 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../utils/colors_lerp.dart';
+import '../../../../utils/colors_lerp.dart' as utils;
 
 @immutable
-class BaconLinearProgressColors
-    extends ThemeExtension<BaconLinearProgressColors>
+class HiveLinearProgressColors extends ThemeExtension<HiveLinearProgressColors>
     with DiagnosticableTreeMixin {
   final Color color;
 
@@ -13,19 +12,19 @@ class BaconLinearProgressColors
 
   final Color backgroundColor;
 
-  const BaconLinearProgressColors({
+  const HiveLinearProgressColors({
     required this.color,
     required this.textColor,
     required this.backgroundColor,
   });
 
   @override
-  BaconLinearProgressColors copyWith({
+  HiveLinearProgressColors copyWith({
     Color? color,
     Color? textColor,
     Color? backgroundColor,
   }) {
-    return BaconLinearProgressColors(
+    return HiveLinearProgressColors(
       color: color ?? this.color,
       textColor: textColor ?? this.textColor,
       backgroundColor: backgroundColor ?? this.backgroundColor,
@@ -33,24 +32,24 @@ class BaconLinearProgressColors
   }
 
   @override
-  BaconLinearProgressColors lerp(
-      ThemeExtension<BaconLinearProgressColors>? other, double t) {
-    if (other is! BaconLinearProgressColors) return this;
+  HiveLinearProgressColors lerp(
+      ThemeExtension<HiveLinearProgressColors>? other, double t) {
+    if (other is! HiveLinearProgressColors) return this;
 
-    return BaconLinearProgressColors(
-      color: colorsLerp(color, other.color, t)!,
-      textColor: colorsLerp(textColor, other.textColor, t)!,
-      backgroundColor: colorsLerp(backgroundColor, other.backgroundColor, t)!,
+    return HiveLinearProgressColors(
+      color: utils.colorsLerp(color, other.color, t)!,
+      textColor: utils.colorsLerp(textColor, other.textColor, t)!,
+      backgroundColor:
+          utils.colorsLerp(backgroundColor, other.backgroundColor, t)!,
     );
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty("type", "BaconLinearProgressColors"))
-      ..add(ColorProperty("color", color))
-      ..add(ColorProperty("textColor", textColor))
-      ..add(ColorProperty("backgroundColor", backgroundColor));
+    properties.add(DiagnosticsProperty("type", "HiveLinearProgressColors"));
+    properties.add(ColorProperty("color", color));
+    properties.add(ColorProperty("textColor", textColor));
+    properties.add(ColorProperty("backgroundColor", backgroundColor));
   }
 }

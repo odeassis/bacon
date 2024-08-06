@@ -20,3 +20,5 @@ export './drawer/drawer.dart';
 export './dropdown/dropdown.dart';
 // MenuItem
 export './menu_item/menu_item.dart';
+// Progress Linear
+export './progress/linear_progress.dart';

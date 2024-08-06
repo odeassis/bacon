@@ -17,6 +17,7 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
   final HiveDrawerTheme drawerTheme;
   final HiveDropdownTheme dropdownTheme;
   final HiveMenuItemTheme menuItemTheme;
+  final HiveLinearProgressTheme linearProgressTheme;
 
   HiveTheme({
     required this.tokens,
@@ -31,6 +32,7 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
     HiveDrawerTheme? drawerTheme,
     HiveDropdownTheme? dropdownTheme,
     HiveMenuItemTheme? menuItemTheme,
+    HiveLinearProgressTheme? linearProgressTheme,
   })  : alertTheme = alertTheme ?? HiveAlertTheme(tokens: tokens),
         avatarTheme = avatarTheme ?? HiveAvatarTheme(tokens: tokens),
         badgeTheme = badgeTheme ?? HiveBadgeTheme(tokens: tokens),
@@ -42,7 +44,9 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
         dividerTheme = dividerTheme ?? HiveDividerTheme(tokens: tokens),
         drawerTheme = drawerTheme ?? HiveDrawerTheme(tokens: tokens),
         dropdownTheme = dropdownTheme ?? HiveDropdownTheme(tokens: tokens),
-        menuItemTheme = menuItemTheme ?? HiveMenuItemTheme(tokens: tokens);
+        menuItemTheme = menuItemTheme ?? HiveMenuItemTheme(tokens: tokens),
+        linearProgressTheme =
+            linearProgressTheme ?? HiveLinearProgressTheme(tokens: tokens);
 
   @override
   HiveTheme copyWith({
@@ -58,6 +62,7 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
     HiveDrawerTheme? drawerTheme,
     HiveDropdownTheme? dropdownTheme,
     HiveMenuItemTheme? menuItemTheme,
+    HiveLinearProgressTheme? linearProgressTheme,
   }) {
     return HiveTheme(
       tokens: tokens ?? this.tokens,
@@ -72,6 +77,7 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
       drawerTheme: drawerTheme ?? this.drawerTheme,
       dropdownTheme: dropdownTheme ?? this.dropdownTheme,
       menuItemTheme: menuItemTheme ?? this.menuItemTheme,
+      linearProgressTheme: linearProgressTheme ?? this.linearProgressTheme,
     );
   }
 
@@ -95,6 +101,8 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
       drawerTheme: drawerTheme.lerp(other.drawerTheme, t),
       dropdownTheme: dropdownTheme.lerp(other.dropdownTheme, t),
       menuItemTheme: menuItemTheme.lerp(other.menuItemTheme, t),
+      linearProgressTheme:
+          linearProgressTheme.lerp(other.linearProgressTheme, t),
     );
   }
 
@@ -125,6 +133,8 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
         DiagnosticsProperty<HiveDropdownTheme>('dropdownTheme', dropdownTheme));
     properties.add(
         DiagnosticsProperty<HiveMenuItemTheme>('menuItemTheme', menuItemTheme));
+    properties.add(DiagnosticsProperty<HiveLinearProgressTheme>(
+        'linearProgressTheme', linearProgressTheme));
   }
 }
 

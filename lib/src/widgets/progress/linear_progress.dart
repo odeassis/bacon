@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../bacon.dart';
-import '../../theme/components/progress/linear/linear_progress_size_properties.dart';
-import '../../theme/components/progress/linear/linear_progress_sizes.dart';
-import '../../utils/shared/common/progress_indicators/linear_progress_indicator.dart';
+import '../../theme/components/components.dart' as components;
+import '../../theme/hive_theme.dart';
+import '../../theme/tokens/tokens.dart';
+import '../../utils/utils.dart' as utils;
 
-enum BaconLinearProgressSize {
+enum LinearProgressSize {
   x6s,
   x5s,
   x4s,
@@ -13,7 +13,7 @@ enum BaconLinearProgressSize {
   x2s,
 }
 
-class BaconLinearProgress extends StatelessWidget {
+class HiveLinearProgress extends StatelessWidget {
   /// Whether to show the thumb and the pin for the linear progress.
   final bool showPin;
 
@@ -52,7 +52,7 @@ class BaconLinearProgress extends StatelessWidget {
   final double value;
 
   /// The size of the linear progress.
-  final BaconLinearProgressSize? linearProgressSize;
+  final LinearProgressSize? linearProgressSize;
 
   /// The styling options for the linear progress pin.
   // final PinStyle? pinStyle;
@@ -67,7 +67,7 @@ class BaconLinearProgress extends StatelessWidget {
   final Widget? maxLabel;
 
   /// Creates a Bacon Design linear progress.
-  const BaconLinearProgress({
+  const HiveLinearProgress({
     super.key,
     this.showPin = false,
     this.showMinLabel = false,
@@ -87,35 +87,35 @@ class BaconLinearProgress extends StatelessWidget {
     this.maxLabel,
   });
 
-  BaconLinearProgressSizeProperties _getBaconProgressSize(
+  components.HiveLinearProgressSizeProperties _getBaconProgressSize(
     BuildContext context,
-    BaconLinearProgressSize? baconProgressSize,
+    LinearProgressSize? baconProgressSize,
   ) {
     switch (baconProgressSize) {
-      case BaconLinearProgressSize.x6s:
-        return context.baconTheme?.linearProgressTheme.sizes.x6s ??
-            BaconLinearProgressSizes(tokens: BaconTokens.light).x6s;
-      case BaconLinearProgressSize.x5s:
-        return context.baconTheme?.linearProgressTheme.sizes.x5s ??
-            BaconLinearProgressSizes(tokens: BaconTokens.light).x5s;
-      case BaconLinearProgressSize.x4s:
-        return context.baconTheme?.linearProgressTheme.sizes.x4s ??
-            BaconLinearProgressSizes(tokens: BaconTokens.light).x4s;
-      case BaconLinearProgressSize.x3s:
-        return context.baconTheme?.linearProgressTheme.sizes.x3s ??
-            BaconLinearProgressSizes(tokens: BaconTokens.light).x3s;
-      case BaconLinearProgressSize.x2s:
-        return context.baconTheme?.linearProgressTheme.sizes.x2s ??
-            BaconLinearProgressSizes(tokens: BaconTokens.light).x2s;
+      case LinearProgressSize.x6s:
+        return context.hiveTheme?.linearProgressTheme.sizes.x6s ??
+            components.HiveLinearProgressSizes(tokens: HiveTokens.light).x6s;
+      case LinearProgressSize.x5s:
+        return context.hiveTheme?.linearProgressTheme.sizes.x5s ??
+            components.HiveLinearProgressSizes(tokens: HiveTokens.light).x5s;
+      case LinearProgressSize.x4s:
+        return context.hiveTheme?.linearProgressTheme.sizes.x4s ??
+            components.HiveLinearProgressSizes(tokens: HiveTokens.light).x4s;
+      case LinearProgressSize.x3s:
+        return context.hiveTheme?.linearProgressTheme.sizes.x3s ??
+            components.HiveLinearProgressSizes(tokens: HiveTokens.light).x3s;
+      case LinearProgressSize.x2s:
+        return context.hiveTheme?.linearProgressTheme.sizes.x2s ??
+            components.HiveLinearProgressSizes(tokens: HiveTokens.light).x2s;
       default:
-        return context.baconTheme?.linearProgressTheme.sizes.x4s ??
-            BaconLinearProgressSizes(tokens: BaconTokens.light).x4s;
+        return context.hiveTheme?.linearProgressTheme.sizes.x4s ??
+            components.HiveLinearProgressSizes(tokens: HiveTokens.light).x4s;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final BaconLinearProgressSizeProperties effectiveProgressSize =
+    final components.HiveLinearProgressSizeProperties effectiveProgressSize =
         _getBaconProgressSize(context, linearProgressSize);
 
     final BorderRadiusGeometry effectiveBorderRadius =
@@ -136,16 +136,16 @@ class BaconLinearProgress extends StatelessWidget {
     };
 
     final Color effectiveColor = color ??
-        context.baconTheme?.linearProgressTheme.colors.color ??
-        BaconTokens.light.modes.accent.blue;
+        context.hiveTheme?.linearProgressTheme.colors.color ??
+        HiveTokens.light.modes.accent.blue;
 
     final Color effectiveBackgroundColor = backgroundColor ??
-        context.baconTheme?.linearProgressTheme.colors.backgroundColor ??
-        BaconTokens.light.modes.accent.green;
+        context.hiveTheme?.linearProgressTheme.colors.backgroundColor ??
+        HiveTokens.light.modes.accent.green;
 
     final Color effectiveTextColor = textColor ??
-        context.baconTheme?.linearProgressTheme.colors.textColor ??
-        BaconTokens.light.modes.accent.purple;
+        context.hiveTheme?.linearProgressTheme.colors.textColor ??
+        HiveTokens.light.modes.accent.purple;
 
     final double effectiveHeight =
         height ?? effectiveProgressSize.progressHeight;
@@ -159,15 +159,15 @@ class BaconLinearProgress extends StatelessWidget {
         effectiveProgressSize.thumbSizeValue;
 
     // final double effectivePinWidth = pinStyle?.pinWidth ??
-    //     context.baconTheme?.progressPinTheme.properties.pinWidth ??
+    //     context.hiveTheme?.progressPinTheme.properties.pinWidth ??
     //     36;
 
     // final double effectivePinDistance = pinStyle?.pinDistance ??
-    //     context.baconTheme?.progressPinTheme.properties.pinDistance ??
+    //     context.hiveTheme?.progressPinTheme.properties.pinDistance ??
     //     BaconSizes.sizes.x5s;
 
     // final double effectivePinArrowHeight = pinStyle?.arrowHeight ??
-    //     context.baconTheme?.progressPinTheme.properties.arrowHeight ??
+    //     context.hiveTheme?.progressPinTheme.properties.arrowHeight ??
     //     6;
 
     final TextStyle effectiveTextStyle = effectiveProgressSize.textStyle;
@@ -182,7 +182,7 @@ class BaconLinearProgress extends StatelessWidget {
     //     effectivePinDistance +
     //     effectiveThumbSizeValue;
 
-    Widget child = BaconLinearProgressIndicator(
+    Widget child = utils.HiveLinearProgressIndicator(
       value: value,
       color: effectiveColor,
       backgroundColor: effectiveBackgroundColor,

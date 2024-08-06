@@ -6,33 +6,33 @@ import 'linear_progress_colors.dart';
 import 'linear_progress_sizes.dart';
 
 @immutable
-class BaconLinearProgressTheme extends ThemeExtension<BaconLinearProgressTheme>
+class HiveLinearProgressTheme extends ThemeExtension<HiveLinearProgressTheme>
     with DiagnosticableTreeMixin {
-  final BaconTokens tokens;
+  final HiveTokens tokens;
 
-  final BaconLinearProgressColors colors;
+  final HiveLinearProgressColors colors;
 
-  final BaconLinearProgressSizes sizes;
+  final HiveLinearProgressSizes sizes;
 
-  BaconLinearProgressTheme({
+  HiveLinearProgressTheme({
     required this.tokens,
-    BaconLinearProgressColors? colors,
-    BaconLinearProgressSizes? sizes,
+    HiveLinearProgressColors? colors,
+    HiveLinearProgressSizes? sizes,
   })  : colors = colors ??
-            BaconLinearProgressColors(
+            HiveLinearProgressColors(
               color: tokens.modes.accent.blue,
               backgroundColor: tokens.modes.accent.green,
               textColor: tokens.modes.accent.purple,
             ),
-        sizes = sizes ?? BaconLinearProgressSizes(tokens: tokens);
+        sizes = sizes ?? HiveLinearProgressSizes(tokens: tokens);
 
   @override
-  BaconLinearProgressTheme copyWith({
-    BaconTokens? tokens,
-    BaconLinearProgressColors? colors,
-    BaconLinearProgressSizes? sizes,
+  HiveLinearProgressTheme copyWith({
+    HiveTokens? tokens,
+    HiveLinearProgressColors? colors,
+    HiveLinearProgressSizes? sizes,
   }) {
-    return BaconLinearProgressTheme(
+    return HiveLinearProgressTheme(
       tokens: tokens ?? this.tokens,
       colors: colors ?? this.colors,
       sizes: sizes ?? this.sizes,
@@ -40,11 +40,11 @@ class BaconLinearProgressTheme extends ThemeExtension<BaconLinearProgressTheme>
   }
 
   @override
-  BaconLinearProgressTheme lerp(
-      ThemeExtension<BaconLinearProgressTheme>? other, double t) {
-    if (other is! BaconLinearProgressTheme) return this;
+  HiveLinearProgressTheme lerp(
+      ThemeExtension<HiveLinearProgressTheme>? other, double t) {
+    if (other is! HiveLinearProgressTheme) return this;
 
-    return BaconLinearProgressTheme(
+    return HiveLinearProgressTheme(
       tokens: tokens.lerp(other.tokens, t),
       colors: colors.lerp(other.colors, t),
       sizes: sizes.lerp(other.sizes, t),
@@ -54,10 +54,11 @@ class BaconLinearProgressTheme extends ThemeExtension<BaconLinearProgressTheme>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty("type", "HiveLinearProgressTheme"));
+    properties.add(DiagnosticsProperty<HiveTokens>("tokens", tokens));
     properties
-      ..add(DiagnosticsProperty("type", "BaconLinearProgressTheme"))
-      ..add(DiagnosticsProperty<BaconTokens>("tokens", tokens))
-      ..add(DiagnosticsProperty<BaconLinearProgressColors>("colors", colors))
-      ..add(DiagnosticsProperty<BaconLinearProgressSizes>("sizes", sizes));
+        .add(DiagnosticsProperty<HiveLinearProgressColors>("colors", colors));
+    properties
+        .add(DiagnosticsProperty<HiveLinearProgressSizes>("sizes", sizes));
   }
 }

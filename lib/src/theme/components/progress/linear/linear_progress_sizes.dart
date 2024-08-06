@@ -5,29 +5,29 @@ import '../../../tokens/hive_tokens.dart';
 import 'linear_progress_size_properties.dart';
 
 @immutable
-class BaconLinearProgressSizes extends ThemeExtension<BaconLinearProgressSizes>
+class HiveLinearProgressSizes extends ThemeExtension<HiveLinearProgressSizes>
     with DiagnosticableTreeMixin {
-  final BaconTokens tokens;
+  final HiveTokens tokens;
 
-  final BaconLinearProgressSizeProperties x6s;
+  final HiveLinearProgressSizeProperties x6s;
 
-  final BaconLinearProgressSizeProperties x5s;
+  final HiveLinearProgressSizeProperties x5s;
 
-  final BaconLinearProgressSizeProperties x4s;
+  final HiveLinearProgressSizeProperties x4s;
 
-  final BaconLinearProgressSizeProperties x3s;
+  final HiveLinearProgressSizeProperties x3s;
 
-  final BaconLinearProgressSizeProperties x2s;
+  final HiveLinearProgressSizeProperties x2s;
 
-  BaconLinearProgressSizes({
+  HiveLinearProgressSizes({
     required this.tokens,
-    BaconLinearProgressSizeProperties? x6s,
-    BaconLinearProgressSizeProperties? x5s,
-    BaconLinearProgressSizeProperties? x4s,
-    BaconLinearProgressSizeProperties? x3s,
-    BaconLinearProgressSizeProperties? x2s,
+    HiveLinearProgressSizeProperties? x6s,
+    HiveLinearProgressSizeProperties? x5s,
+    HiveLinearProgressSizeProperties? x4s,
+    HiveLinearProgressSizeProperties? x3s,
+    HiveLinearProgressSizeProperties? x2s,
   })  : x6s = x6s ??
-            BaconLinearProgressSizeProperties(
+            HiveLinearProgressSizeProperties(
               borderRadius: tokens.shape.radii.surface,
               progressHeight: tokens.scale.component.x6s,
               thumbSizeValue: tokens.scale.component.x3s,
@@ -35,7 +35,7 @@ class BaconLinearProgressSizes extends ThemeExtension<BaconLinearProgressSizes>
               textStyle: tokens.typography.label.x2s,
             ),
         x5s = x5s ??
-            BaconLinearProgressSizeProperties(
+            HiveLinearProgressSizeProperties(
               borderRadius: tokens.shape.radii.surface,
               progressHeight: tokens.scale.component.x5s,
               thumbSizeValue: tokens.scale.component.x3s,
@@ -43,7 +43,7 @@ class BaconLinearProgressSizes extends ThemeExtension<BaconLinearProgressSizes>
               textStyle: tokens.typography.label.x2s,
             ),
         x4s = x4s ??
-            BaconLinearProgressSizeProperties(
+            HiveLinearProgressSizeProperties(
               borderRadius: tokens.shape.radii.surface,
               progressHeight: tokens.scale.component.x4s,
               thumbSizeValue: tokens.scale.component.x3s,
@@ -51,7 +51,7 @@ class BaconLinearProgressSizes extends ThemeExtension<BaconLinearProgressSizes>
               textStyle: tokens.typography.label.x2s,
             ),
         x3s = x3s ??
-            BaconLinearProgressSizeProperties(
+            HiveLinearProgressSizeProperties(
               borderRadius: tokens.shape.radii.surface,
               progressHeight: tokens.scale.component.x3s,
               thumbSizeValue: tokens.scale.component.x2s,
@@ -59,7 +59,7 @@ class BaconLinearProgressSizes extends ThemeExtension<BaconLinearProgressSizes>
               textStyle: tokens.typography.label.x2s,
             ),
         x2s = x2s ??
-            BaconLinearProgressSizeProperties(
+            HiveLinearProgressSizeProperties(
               borderRadius: tokens.shape.radii.surface,
               progressHeight: tokens.scale.component.x2s,
               thumbSizeValue: tokens.scale.component.x2s,
@@ -68,15 +68,15 @@ class BaconLinearProgressSizes extends ThemeExtension<BaconLinearProgressSizes>
             );
 
   @override
-  BaconLinearProgressSizes copyWith({
-    BaconTokens? tokens,
-    BaconLinearProgressSizeProperties? x6s,
-    BaconLinearProgressSizeProperties? x5s,
-    BaconLinearProgressSizeProperties? x4s,
-    BaconLinearProgressSizeProperties? x3s,
-    BaconLinearProgressSizeProperties? x2s,
+  HiveLinearProgressSizes copyWith({
+    HiveTokens? tokens,
+    HiveLinearProgressSizeProperties? x6s,
+    HiveLinearProgressSizeProperties? x5s,
+    HiveLinearProgressSizeProperties? x4s,
+    HiveLinearProgressSizeProperties? x3s,
+    HiveLinearProgressSizeProperties? x2s,
   }) {
-    return BaconLinearProgressSizes(
+    return HiveLinearProgressSizes(
       tokens: tokens ?? this.tokens,
       x6s: x6s ?? this.x6s,
       x5s: x5s ?? this.x5s,
@@ -87,11 +87,11 @@ class BaconLinearProgressSizes extends ThemeExtension<BaconLinearProgressSizes>
   }
 
   @override
-  BaconLinearProgressSizes lerp(
-      ThemeExtension<BaconLinearProgressSizes>? other, double t) {
-    if (other is! BaconLinearProgressSizes) return this;
+  HiveLinearProgressSizes lerp(
+      ThemeExtension<HiveLinearProgressSizes>? other, double t) {
+    if (other is! HiveLinearProgressSizes) return this;
 
-    return BaconLinearProgressSizes(
+    return HiveLinearProgressSizes(
       tokens: tokens.lerp(other.tokens, t),
       x6s: x6s.lerp(other.x6s, t),
       x5s: x5s.lerp(other.x5s, t),
@@ -104,13 +104,17 @@ class BaconLinearProgressSizes extends ThemeExtension<BaconLinearProgressSizes>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty("type", "HiveLinearProgressSizes"));
+    properties.add(DiagnosticsProperty<HiveTokens>("tokens", tokens));
     properties
-      ..add(DiagnosticsProperty("type", "BaconLinearProgressSizes"))
-      ..add(DiagnosticsProperty<BaconTokens>("tokens", tokens))
-      ..add(DiagnosticsProperty<BaconLinearProgressSizeProperties>("x6s", x6s))
-      ..add(DiagnosticsProperty<BaconLinearProgressSizeProperties>("x5s", x5s))
-      ..add(DiagnosticsProperty<BaconLinearProgressSizeProperties>("x4s", x4s))
-      ..add(DiagnosticsProperty<BaconLinearProgressSizeProperties>("x3s", x3s))
-      ..add(DiagnosticsProperty<BaconLinearProgressSizeProperties>("x2s", x2s));
+        .add(DiagnosticsProperty<HiveLinearProgressSizeProperties>("x6s", x6s));
+    properties
+        .add(DiagnosticsProperty<HiveLinearProgressSizeProperties>("x5s", x5s));
+    properties
+        .add(DiagnosticsProperty<HiveLinearProgressSizeProperties>("x4s", x4s));
+    properties
+        .add(DiagnosticsProperty<HiveLinearProgressSizeProperties>("x3s", x3s));
+    properties
+        .add(DiagnosticsProperty<HiveLinearProgressSizeProperties>("x2s", x2s));
   }
 }

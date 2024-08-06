@@ -50,3 +50,8 @@ export './dropdown/dropdown_theme.dart';
 export './menu_item/menu_item_colors.dart';
 export './menu_item/menu_item_properties.dart';
 export './menu_item/menu_item_theme.dart';
+// Progress Linear
+export './progress/linear/linear_progress_colors.dart';
+export './progress/linear/linear_progress_size_properties.dart';
+export './progress/linear/linear_progress_sizes.dart';
+export './progress/linear/linear_progress_theme.dart';
