@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../../utils/colors_lerp.dart';
+import '../../../utils/colors_lerp.dart' as utils;
 
 @immutable
-class BaconDrawerColors extends ThemeExtension<BaconDrawerColors>
+class HiveDrawerColors extends ThemeExtension<HiveDrawerColors>
     with DiagnosticableTreeMixin {
   final Color textColor;
 
@@ -14,7 +14,7 @@ class BaconDrawerColors extends ThemeExtension<BaconDrawerColors>
 
   final Color barrierColor;
 
-  const BaconDrawerColors({
+  const HiveDrawerColors({
     required this.textColor,
     required this.iconColor,
     required this.backgroundColor,
@@ -22,13 +22,13 @@ class BaconDrawerColors extends ThemeExtension<BaconDrawerColors>
   });
 
   @override
-  BaconDrawerColors copyWith({
+  HiveDrawerColors copyWith({
     Color? textColor,
     Color? iconColor,
     Color? backgroundColor,
     Color? barrierColor,
   }) {
-    return BaconDrawerColors(
+    return HiveDrawerColors(
       textColor: textColor ?? this.textColor,
       iconColor: iconColor ?? this.iconColor,
       backgroundColor: backgroundColor ?? this.backgroundColor,
@@ -37,25 +37,25 @@ class BaconDrawerColors extends ThemeExtension<BaconDrawerColors>
   }
 
   @override
-  BaconDrawerColors lerp(ThemeExtension<BaconDrawerColors>? other, double t) {
-    if (other is! BaconDrawerColors) return this;
+  HiveDrawerColors lerp(ThemeExtension<HiveDrawerColors>? other, double t) {
+    if (other is! HiveDrawerColors) return this;
 
-    return BaconDrawerColors(
-      textColor: colorsLerp(textColor, other.textColor, t)!,
-      iconColor: colorsLerp(iconColor, other.iconColor, t)!,
-      backgroundColor: colorsLerp(backgroundColor, other.backgroundColor, t)!,
-      barrierColor: colorsLerp(barrierColor, other.barrierColor, t)!,
+    return HiveDrawerColors(
+      textColor: utils.colorsLerp(textColor, other.textColor, t)!,
+      iconColor: utils.colorsLerp(iconColor, other.iconColor, t)!,
+      backgroundColor:
+          utils.colorsLerp(backgroundColor, other.backgroundColor, t)!,
+      barrierColor: utils.colorsLerp(barrierColor, other.barrierColor, t)!,
     );
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty("type", "BaconDrawerColors"))
-      ..add(ColorProperty("textColor", textColor))
-      ..add(ColorProperty("iconColor", iconColor))
-      ..add(ColorProperty("backgroundColor", backgroundColor))
-      ..add(ColorProperty("barrierColor", barrierColor));
+    properties.add(DiagnosticsProperty("type", "HiveDrawerColors"));
+    properties.add(ColorProperty("textColor", textColor));
+    properties.add(ColorProperty("iconColor", iconColor));
+    properties.add(ColorProperty("backgroundColor", backgroundColor));
+    properties.add(ColorProperty("barrierColor", barrierColor));
   }
 }

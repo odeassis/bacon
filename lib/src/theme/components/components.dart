@@ -36,3 +36,8 @@ export './divider/divider_colors.dart';
 export './divider/divider_properties.dart';
 export './divider/divider_sizes.dart';
 export './divider/divider_theme.dart';
+// Drawer
+export './drawer/drawer_colors.dart';
+export './drawer/drawer_properties.dart';
+export './drawer/drawer_shadows.dart';
+export './drawer/drawer_theme.dart';

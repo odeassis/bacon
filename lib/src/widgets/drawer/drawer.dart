@@ -1,7 +1,10 @@
-import 'package:bacon/bacon.dart';
 import 'package:flutter/material.dart';
 
-class BaconDrawer extends StatelessWidget {
+import '../../theme/theme.dart';
+import '../../theme/tokens/tokens.dart';
+import '../../utils/utils.dart' as utils;
+
+class HiveDrawer extends StatelessWidget {
   final BorderRadiusGeometry? borderRadius;
 
   final Color? backgroundColor;
@@ -18,8 +21,9 @@ class BaconDrawer extends StatelessWidget {
 
   final Widget child;
 
-  const BaconDrawer({
+  const HiveDrawer({
     super.key,
+    required this.child,
     this.borderRadius,
     this.backgroundColor,
     this.barrierColor,
@@ -27,29 +31,28 @@ class BaconDrawer extends StatelessWidget {
     this.width,
     this.drawerShadows,
     this.semanticLabel,
-    required this.child,
   });
 
   @override
   Widget build(BuildContext context) {
     final BorderRadiusGeometry effectiveBorderRadius = borderRadius ??
-        context.baconTheme?.drawerTheme.properties.borderRadius ??
+        context.hiveTheme?.drawerTheme.properties.borderRadius ??
         BorderRadius.zero;
 
     final Color effectiveBackgroundColor = backgroundColor ??
-        context.baconTheme?.drawerTheme.colors.backgroundColor ??
-        BaconTokens.light.modes.background.primary;
+        context.hiveTheme?.drawerTheme.colors.backgroundColor ??
+        HiveTokens.light.modes.background.primary;
 
     final Color effectiveTextColor =
-        context.baconTheme?.drawerTheme.colors.textColor ??
-            BaconTokens.light.modes.content.primary;
+        context.hiveTheme?.drawerTheme.colors.textColor ??
+            HiveTokens.light.modes.content.primary;
 
     final Color effectiveIconColor =
-        context.baconTheme?.drawerTheme.colors.iconColor ??
-            BaconTokens.light.modes.content.secondary;
+        context.hiveTheme?.drawerTheme.colors.iconColor ??
+            HiveTokens.light.modes.content.secondary;
 
     final double effectiveWidthFromTheme =
-        context.baconTheme?.drawerTheme.properties.width ?? 448;
+        context.hiveTheme?.drawerTheme.properties.width ?? 448;
 
     final double effectiveWidth = width ??
         (MediaQuery.of(context).size.width < effectiveWidthFromTheme
@@ -57,12 +60,12 @@ class BaconDrawer extends StatelessWidget {
             : effectiveWidthFromTheme);
 
     final List<BoxShadow> effectiveDrawerShadows = drawerShadows ??
-        context.baconTheme?.drawerTheme.shadows.drawerShadows ??
-        BaconShadows.light.lg;
+        context.hiveTheme?.drawerTheme.shadows.drawerShadows ??
+        HiveShadows.light.lg;
 
     final TextStyle effectiveTextStyle =
-        context.baconTheme?.drawerTheme.properties.textStyle ??
-            BaconTokens.light.typography.label.lg;
+        context.hiveTheme?.drawerTheme.properties.textStyle ??
+            HiveTokens.light.typography.label.lg;
 
     return Semantics(
       explicitChildNodes: true,
@@ -76,10 +79,10 @@ class BaconDrawer extends StatelessWidget {
           child: Container(
             width: effectiveWidth,
             decoration: decoration ??
-                ShapeDecorationWithPremultipliedAlpha(
+                utils.ShapeDecorationWithPremultipliedAlpha(
                   color: effectiveBackgroundColor,
                   shadows: effectiveDrawerShadows,
-                  shape: BaconSquircleBorder(
+                  shape: utils.HiveSquircleBorder(
                     borderRadius:
                         effectiveBorderRadius.squircleBorderRadius(context),
                   ),

@@ -2,26 +2,26 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class BaconDrawerShadows extends ThemeExtension<BaconDrawerShadows>
+class HiveDrawerShadows extends ThemeExtension<HiveDrawerShadows>
     with DiagnosticableTreeMixin {
   final List<BoxShadow> drawerShadows;
 
-  const BaconDrawerShadows({
+  const HiveDrawerShadows({
     required this.drawerShadows,
   });
 
   @override
-  BaconDrawerShadows copyWith({List<BoxShadow>? drawerShadows}) {
-    return BaconDrawerShadows(
+  HiveDrawerShadows copyWith({List<BoxShadow>? drawerShadows}) {
+    return HiveDrawerShadows(
       drawerShadows: drawerShadows ?? this.drawerShadows,
     );
   }
 
   @override
-  BaconDrawerShadows lerp(ThemeExtension<BaconDrawerShadows>? other, double t) {
-    if (other is! BaconDrawerShadows) return this;
+  HiveDrawerShadows lerp(ThemeExtension<HiveDrawerShadows>? other, double t) {
+    if (other is! HiveDrawerShadows) return this;
 
-    return BaconDrawerShadows(
+    return HiveDrawerShadows(
       drawerShadows: BoxShadow.lerpList(drawerShadows, other.drawerShadows, t)!,
     );
   }
@@ -29,9 +29,8 @@ class BaconDrawerShadows extends ThemeExtension<BaconDrawerShadows>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty("type", "BaconDrawerShadows"))
-      ..add(
-          DiagnosticsProperty<List<BoxShadow>>("drawerShadows", drawerShadows));
+    properties.add(DiagnosticsProperty("type", "HiveDrawerShadows"));
+    properties.add(
+        DiagnosticsProperty<List<BoxShadow>>("drawerShadows", drawerShadows));
   }
 }

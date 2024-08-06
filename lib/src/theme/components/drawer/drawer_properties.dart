@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class BaconDrawerProperties extends ThemeExtension<BaconDrawerProperties>
+class HiveDrawerProperties extends ThemeExtension<HiveDrawerProperties>
     with DiagnosticableTreeMixin {
   final BorderRadiusGeometry borderRadius;
 
@@ -12,19 +12,19 @@ class BaconDrawerProperties extends ThemeExtension<BaconDrawerProperties>
 
   final TextStyle textStyle;
 
-  const BaconDrawerProperties({
+  const HiveDrawerProperties({
     required this.borderRadius,
     required this.width,
     required this.textStyle,
   });
 
   @override
-  BaconDrawerProperties copyWith({
+  HiveDrawerProperties copyWith({
     BorderRadiusGeometry? borderRadius,
     double? width,
     TextStyle? textStyle,
   }) {
-    return BaconDrawerProperties(
+    return HiveDrawerProperties(
       borderRadius: borderRadius ?? this.borderRadius,
       width: width ?? this.width,
       textStyle: textStyle ?? this.textStyle,
@@ -32,11 +32,11 @@ class BaconDrawerProperties extends ThemeExtension<BaconDrawerProperties>
   }
 
   @override
-  BaconDrawerProperties lerp(
-      ThemeExtension<BaconDrawerProperties>? other, double t) {
-    if (other is! BaconDrawerProperties) return this;
+  HiveDrawerProperties lerp(
+      ThemeExtension<HiveDrawerProperties>? other, double t) {
+    if (other is! HiveDrawerProperties) return this;
 
-    return BaconDrawerProperties(
+    return HiveDrawerProperties(
       borderRadius:
           BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t)!,
       width: lerpDouble(width, other.width, t)!,
@@ -47,11 +47,10 @@ class BaconDrawerProperties extends ThemeExtension<BaconDrawerProperties>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty("type", "BaconDrawerProperties"))
-      ..add(DiagnosticsProperty<BorderRadiusGeometry>(
-          "borderRadius", borderRadius))
-      ..add(DoubleProperty("width", width))
-      ..add(DiagnosticsProperty<TextStyle>("textStyle", textStyle));
+    properties.add(DiagnosticsProperty("type", "HiveDrawerProperties"));
+    properties.add(DiagnosticsProperty<BorderRadiusGeometry>(
+        "borderRadius", borderRadius));
+    properties.add(DoubleProperty("width", width));
+    properties.add(DiagnosticsProperty<TextStyle>("textStyle", textStyle));
   }
 }

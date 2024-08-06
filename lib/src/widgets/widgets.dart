@@ -14,3 +14,5 @@ export './carousel/carousel.dart';
 export './checkbox/checkbox.dart';
 // Divider
 export './divider/divider.dart';
+// Drawer
+export './drawer/drawer.dart';

@@ -1,51 +1,51 @@
-import 'package:bacon/src/theme/components/drawer/drawer_colors.dart';
-import 'package:bacon/src/theme/components/drawer/drawer_properties.dart';
-import 'package:bacon/src/theme/components/drawer/drawer_shadows.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../tokens/hive_tokens.dart';
+import 'drawer_colors.dart';
+import 'drawer_properties.dart';
+import 'drawer_shadows.dart';
 
 @immutable
-class BaconDrawerTheme extends ThemeExtension<BaconDrawerTheme>
+class HiveDrawerTheme extends ThemeExtension<HiveDrawerTheme>
     with DiagnosticableTreeMixin {
-  final BaconTokens tokens;
+  final HiveTokens tokens;
 
-  final BaconDrawerColors colors;
+  final HiveDrawerColors colors;
 
-  final BaconDrawerProperties properties;
+  final HiveDrawerProperties properties;
 
-  final BaconDrawerShadows shadows;
+  final HiveDrawerShadows shadows;
 
-  BaconDrawerTheme({
+  HiveDrawerTheme({
     required this.tokens,
-    BaconDrawerColors? colors,
-    BaconDrawerProperties? properties,
-    BaconDrawerShadows? shadows,
+    HiveDrawerColors? colors,
+    HiveDrawerProperties? properties,
+    HiveDrawerShadows? shadows,
   })  : colors = colors ??
-            BaconDrawerColors(
+            HiveDrawerColors(
               textColor: tokens.modes.content.primary,
               iconColor: tokens.modes.content.secondary,
               backgroundColor: tokens.modes.background.primary,
               barrierColor: tokens.modes.background.secondary,
             ),
         properties = properties ??
-            BaconDrawerProperties(
+            HiveDrawerProperties(
               borderRadius: BorderRadius.zero,
               width: 448,
               textStyle: tokens.typography.label.lg,
             ),
         shadows =
-            shadows ?? BaconDrawerShadows(drawerShadows: tokens.shadows.lg);
+            shadows ?? HiveDrawerShadows(drawerShadows: tokens.shadows.lg);
 
   @override
-  BaconDrawerTheme copyWith({
-    BaconTokens? tokens,
-    BaconDrawerColors? colors,
-    BaconDrawerProperties? properties,
-    BaconDrawerShadows? shadows,
+  HiveDrawerTheme copyWith({
+    HiveTokens? tokens,
+    HiveDrawerColors? colors,
+    HiveDrawerProperties? properties,
+    HiveDrawerShadows? shadows,
   }) {
-    return BaconDrawerTheme(
+    return HiveDrawerTheme(
       tokens: tokens ?? this.tokens,
       colors: colors ?? this.colors,
       properties: properties ?? this.properties,
@@ -54,10 +54,10 @@ class BaconDrawerTheme extends ThemeExtension<BaconDrawerTheme>
   }
 
   @override
-  BaconDrawerTheme lerp(ThemeExtension<BaconDrawerTheme>? other, double t) {
-    if (other is! BaconDrawerTheme) return this;
+  HiveDrawerTheme lerp(ThemeExtension<HiveDrawerTheme>? other, double t) {
+    if (other is! HiveDrawerTheme) return this;
 
-    return BaconDrawerTheme(
+    return HiveDrawerTheme(
       tokens: tokens.lerp(other.tokens, t),
       colors: colors.lerp(other.colors, t),
       properties: properties.lerp(other.properties, t),
@@ -68,12 +68,14 @@ class BaconDrawerTheme extends ThemeExtension<BaconDrawerTheme>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder diagnosticProperties) {
     super.debugFillProperties(diagnosticProperties);
+    diagnosticProperties.add(DiagnosticsProperty("type", "HiveDrawerTheme"));
+    diagnosticProperties.add(DiagnosticsProperty<HiveTokens>("tokens", tokens));
     diagnosticProperties
-      ..add(DiagnosticsProperty("type", "BaconDrawerTheme"))
-      ..add(DiagnosticsProperty<BaconTokens>("tokens", tokens))
-      ..add(DiagnosticsProperty<BaconDrawerColors>("colors", colors))
-      ..add(
-          DiagnosticsProperty<BaconDrawerProperties>("properties", properties))
-      ..add(DiagnosticsProperty<BaconDrawerShadows>("shadows", shadows));
+        .add(DiagnosticsProperty<HiveDrawerColors>("colors", colors));
+
+    diagnosticProperties.add(
+        DiagnosticsProperty<HiveDrawerProperties>("properties", properties));
+    diagnosticProperties
+        .add(DiagnosticsProperty<HiveDrawerShadows>("shadows", shadows));
   }
 }
