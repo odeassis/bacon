@@ -11,6 +11,7 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
   final HiveBadgeTheme badgeTheme;
   final HiveBottomSheetTheme bottomSheetTheme;
   final HiveButtonTheme buttonTheme;
+  final HiveCarouselTheme carouselTheme;
 
   HiveTheme({
     required this.tokens,
@@ -19,12 +20,14 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
     HiveBadgeTheme? badgeTheme,
     HiveBottomSheetTheme? bottomSheetTheme,
     HiveButtonTheme? buttonTheme,
+    HiveCarouselTheme? carouselTheme,
   })  : alertTheme = alertTheme ?? HiveAlertTheme(tokens: tokens),
         avatarTheme = avatarTheme ?? HiveAvatarTheme(tokens: tokens),
         badgeTheme = badgeTheme ?? HiveBadgeTheme(tokens: tokens),
         bottomSheetTheme =
             bottomSheetTheme ?? HiveBottomSheetTheme(tokens: tokens),
-        buttonTheme = buttonTheme ?? HiveButtonTheme(tokens: tokens);
+        buttonTheme = buttonTheme ?? HiveButtonTheme(tokens: tokens),
+        carouselTheme = carouselTheme ?? HiveCarouselTheme(tokens: tokens);
 
   @override
   HiveTheme copyWith({
@@ -34,6 +37,7 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
     HiveBadgeTheme? badgeTheme,
     HiveBottomSheetTheme? bottomSheetTheme,
     HiveButtonTheme? buttonTheme,
+    HiveCarouselTheme? carouselTheme,
   }) {
     return HiveTheme(
       tokens: tokens ?? this.tokens,
@@ -42,6 +46,7 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
       badgeTheme: badgeTheme ?? this.badgeTheme,
       bottomSheetTheme: bottomSheetTheme ?? this.bottomSheetTheme,
       buttonTheme: buttonTheme ?? this.buttonTheme,
+      carouselTheme: carouselTheme ?? this.carouselTheme,
     );
   }
 
@@ -59,6 +64,7 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
       badgeTheme: badgeTheme.lerp(other.badgeTheme, t),
       bottomSheetTheme: bottomSheetTheme.lerp(other.bottomSheetTheme, t),
       buttonTheme: buttonTheme.lerp(other.buttonTheme, t),
+      carouselTheme: carouselTheme.lerp(other.carouselTheme, t),
     );
   }
 
@@ -77,6 +83,8 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
         'bottomSheetTheme', bottomSheetTheme));
     properties
         .add(DiagnosticsProperty<HiveButtonTheme>('buttonTheme', buttonTheme));
+    properties.add(
+        DiagnosticsProperty<HiveCarouselTheme>('carouselTheme', carouselTheme));
   }
 }
 

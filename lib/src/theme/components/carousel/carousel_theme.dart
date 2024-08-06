@@ -1,27 +1,28 @@
-import 'package:bacon/src/theme/components/carousel/carousel_colors.dart';
-import 'package:bacon/src/theme/components/carousel/carousel_properties.dart';
-import 'package:bacon/src/theme/tokens/tokens.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-@immutable
-class BaconCarouselTheme extends ThemeExtension<BaconCarouselTheme>
-    with DiagnosticableTreeMixin {
-  final BaconTokens tokens;
-  final BaconCarouselColors colors;
-  final BaconCarouselProperties properties;
+import '../../tokens/tokens.dart';
+import 'carousel_colors.dart';
+import 'carousel_properties.dart';
 
-  BaconCarouselTheme({
+@immutable
+class HiveCarouselTheme extends ThemeExtension<HiveCarouselTheme>
+    with DiagnosticableTreeMixin {
+  final HiveTokens tokens;
+  final HiveCarouselColors colors;
+  final HiveCarouselProperties properties;
+
+  HiveCarouselTheme({
     required this.tokens,
-    BaconCarouselColors? colors,
-    BaconCarouselProperties? properties,
+    HiveCarouselColors? colors,
+    HiveCarouselProperties? properties,
   })  : colors = colors ??
-            BaconCarouselColors(
+            HiveCarouselColors(
               textColor: tokens.modes.content.primary,
               iconColor: tokens.modes.content.primary,
             ),
         properties = properties ??
-            BaconCarouselProperties(
+            HiveCarouselProperties(
               gap: tokens.scale.gap.x2s,
               textStyle: tokens.typography.label.md,
               autoPlayDelay: const Duration(seconds: 3),
@@ -30,12 +31,12 @@ class BaconCarouselTheme extends ThemeExtension<BaconCarouselTheme>
             );
 
   @override
-  BaconCarouselTheme copyWith({
-    BaconTokens? tokens,
-    BaconCarouselColors? colors,
-    BaconCarouselProperties? properties,
+  HiveCarouselTheme copyWith({
+    HiveTokens? tokens,
+    HiveCarouselColors? colors,
+    HiveCarouselProperties? properties,
   }) {
-    return BaconCarouselTheme(
+    return HiveCarouselTheme(
       tokens: tokens ?? this.tokens,
       colors: colors ?? this.colors,
       properties: properties ?? this.properties,
@@ -43,10 +44,10 @@ class BaconCarouselTheme extends ThemeExtension<BaconCarouselTheme>
   }
 
   @override
-  BaconCarouselTheme lerp(ThemeExtension<BaconCarouselTheme>? other, double t) {
-    if (other is! BaconCarouselTheme) return this;
+  HiveCarouselTheme lerp(ThemeExtension<HiveCarouselTheme>? other, double t) {
+    if (other is! HiveCarouselTheme) return this;
 
-    return BaconCarouselTheme(
+    return HiveCarouselTheme(
       tokens: tokens,
       properties: properties.lerp(other.properties, t),
       colors: colors.lerp(other.colors, t),
@@ -56,11 +57,11 @@ class BaconCarouselTheme extends ThemeExtension<BaconCarouselTheme>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder diagnosticProperties) {
     super.debugFillProperties(diagnosticProperties);
+    diagnosticProperties.add(DiagnosticsProperty("type", "HiveCarouselTheme"));
+    diagnosticProperties.add(DiagnosticsProperty<HiveTokens>("tokens", tokens));
     diagnosticProperties
-      ..add(DiagnosticsProperty("type", "BaconCarouselTheme"))
-      ..add(DiagnosticsProperty<BaconTokens>("tokens", tokens))
-      ..add(DiagnosticsProperty<BaconCarouselColors>("colors", colors))
-      ..add(DiagnosticsProperty<BaconCarouselProperties>(
-          "properties", properties));
+        .add(DiagnosticsProperty<HiveCarouselColors>("colors", colors));
+    diagnosticProperties.add(
+        DiagnosticsProperty<HiveCarouselProperties>("properties", properties));
   }
 }

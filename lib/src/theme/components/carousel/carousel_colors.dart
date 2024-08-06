@@ -1,47 +1,46 @@
-import 'package:bacon/src/utils/colors_lerp.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../../utils/utils.dart' as utils;
+
 @immutable
-class BaconCarouselColors extends ThemeExtension<BaconCarouselColors>
+class HiveCarouselColors extends ThemeExtension<HiveCarouselColors>
     with DiagnosticableTreeMixin {
   final Color textColor;
 
   final Color iconColor;
 
-  const BaconCarouselColors({
+  const HiveCarouselColors({
     required this.textColor,
     required this.iconColor,
   });
 
   @override
-  BaconCarouselColors copyWith({
+  HiveCarouselColors copyWith({
     Color? textColor,
     Color? iconColor,
   }) {
-    return BaconCarouselColors(
+    return HiveCarouselColors(
       textColor: textColor ?? this.textColor,
       iconColor: iconColor ?? this.iconColor,
     );
   }
 
   @override
-  BaconCarouselColors lerp(
-      ThemeExtension<BaconCarouselColors>? other, double t) {
-    if (other is! BaconCarouselColors) return this;
+  HiveCarouselColors lerp(ThemeExtension<HiveCarouselColors>? other, double t) {
+    if (other is! HiveCarouselColors) return this;
 
-    return BaconCarouselColors(
-      textColor: colorsLerp(textColor, other.textColor, t)!,
-      iconColor: colorsLerp(iconColor, other.iconColor, t)!,
+    return HiveCarouselColors(
+      textColor: utils.colorsLerp(textColor, other.textColor, t)!,
+      iconColor: utils.colorsLerp(iconColor, other.iconColor, t)!,
     );
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty("type", "BaconCarouselColors"))
-      ..add(ColorProperty("textColor", textColor))
-      ..add(ColorProperty("iconColor", iconColor));
+    properties.add(DiagnosticsProperty("type", "HiveCarouselColors"));
+    properties.add(ColorProperty("textColor", textColor));
+    properties.add(ColorProperty("iconColor", iconColor));
   }
 }

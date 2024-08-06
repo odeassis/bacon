@@ -2,13 +2,15 @@ import 'dart:async';
 import 'dart:math' as math;
 import 'dart:ui';
 
-import 'package:bacon/bacon.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
 import 'package:flutter/rendering.dart';
 
-class BaconCarousel extends StatefulWidget {
+import '../../theme/theme.dart';
+import '../../theme/tokens/tokens.dart';
+
+class HiveCarousel extends StatefulWidget {
   /// The axis direction in which the carousel scrolls.
   final Axis axisDirection;
 
@@ -48,10 +50,10 @@ class BaconCarousel extends StatefulWidget {
   /// The delay between the items in the carousel's automatic scrolling sequence.
   final Duration? autoPlayDelay;
 
-  /// The duration of the BaconCarousel [autoplay] transition animation.
+  /// The duration of the HiveCarousel [autoplay] transition animation.
   final Duration? transitionDuration;
 
-  /// The curve of the BaconCarousel [autoplay] transition animation.
+  /// The curve of the HiveCarousel [autoplay] transition animation.
   final Curve? transitionCurve;
 
   /// The total number of items to build for the carousel.
@@ -62,7 +64,7 @@ class BaconCarousel extends StatefulWidget {
 
   /// The scroll physics of the carousel.
   ///
-  /// Defaults to [BaconCarouselScrollPhysics], which ensures that the carousel
+  /// Defaults to [HiveCarouselScrollPhysics], which ensures that the carousel
   /// always lands on a specific item after scrolling.
   final ScrollPhysics? physics;
 
@@ -87,7 +89,7 @@ class BaconCarousel extends StatefulWidget {
       itemBuilder;
 
   /// Creates a Bacon Design carousel.
-  const BaconCarousel({
+  const HiveCarousel({
     super.key,
     this.axisDirection = Axis.horizontal,
     this.autoPlay = false,
@@ -112,12 +114,12 @@ class BaconCarousel extends StatefulWidget {
         assert(velocityFactor > 0.0 && velocityFactor <= 1.0);
 
   @override
-  State<BaconCarousel> createState() => _BaconCarouselState();
+  State<HiveCarousel> createState() => _HiveCarouselState();
 }
 
-class _BaconCarouselState extends State<BaconCarousel> {
+class _HiveCarouselState extends State<HiveCarousel> {
   late int _lastReportedItemIndex;
-  late BaconCarouselScrollController _scrollController;
+  late HiveCarouselScrollController _scrollController;
 
   final Key _forwardListKey = const ValueKey<String>("bacon_carousel_key");
 
@@ -165,24 +167,24 @@ class _BaconCarouselState extends State<BaconCarousel> {
   void initState() {
     super.initState();
 
-    _scrollController = (widget.controller as BaconCarouselScrollController?) ??
-        BaconCarouselScrollController();
+    _scrollController = (widget.controller as HiveCarouselScrollController?) ??
+        HiveCarouselScrollController();
 
     _lastReportedItemIndex = _scrollController.initialItem;
 
     if (widget.autoPlay) {
       WidgetsBinding.instance.addPostFrameCallback((Duration _) {
         final Duration effectiveAutoPlayDelay = widget.autoPlayDelay ??
-            context.baconTheme?.carouselTheme.properties.autoPlayDelay ??
+            context.hiveTheme?.carouselTheme.properties.autoPlayDelay ??
             const Duration(seconds: 3);
 
         final Duration effectiveTransitionDuration = widget
                 .transitionDuration ??
-            context.baconTheme?.carouselTheme.properties.transitionDuration ??
+            context.hiveTheme?.carouselTheme.properties.transitionDuration ??
             const Duration(milliseconds: 800);
 
         final Curve effectiveTransitionCurve = widget.transitionCurve ??
-            context.baconTheme?.carouselTheme.properties.transitionCurve ??
+            context.hiveTheme?.carouselTheme.properties.transitionCurve ??
             Curves.fastOutSlowIn;
 
         _scrollController.startAutoPlay(
@@ -195,22 +197,22 @@ class _BaconCarouselState extends State<BaconCarousel> {
   }
 
   @override
-  void didUpdateWidget(BaconCarousel oldWidget) {
+  void didUpdateWidget(HiveCarousel oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (widget.autoPlay != oldWidget.autoPlay) {
       if (widget.autoPlay) {
         final Duration effectiveAutoPlayDelay = widget.autoPlayDelay ??
-            context.baconTheme?.carouselTheme.properties.autoPlayDelay ??
+            context.hiveTheme?.carouselTheme.properties.autoPlayDelay ??
             const Duration(seconds: 3);
 
         final Duration effectiveTransitionDuration = widget
                 .transitionDuration ??
-            context.baconTheme?.carouselTheme.properties.transitionDuration ??
+            context.hiveTheme?.carouselTheme.properties.transitionDuration ??
             const Duration(milliseconds: 800);
 
         final Curve effectiveTransitionCurve = widget.transitionCurve ??
-            context.baconTheme?.carouselTheme.properties.transitionCurve ??
+            context.hiveTheme?.carouselTheme.properties.transitionCurve ??
             Curves.fastOutSlowIn;
 
         _scrollController.startAutoPlay(
@@ -280,16 +282,16 @@ class _BaconCarouselState extends State<BaconCarousel> {
   @override
   Widget build(BuildContext context) {
     final Color effectiveTextColor =
-        context.baconTheme?.carouselTheme.colors.textColor ??
-            BaconTokens.light.modes.content.primary;
+        context.hiveTheme?.carouselTheme.colors.textColor ??
+            HiveTokens.light.modes.content.primary;
 
     final Color effectiveIconColor =
-        context.baconTheme?.carouselTheme.colors.iconColor ??
-            BaconTokens.light.modes.content.primary;
+        context.hiveTheme?.carouselTheme.colors.iconColor ??
+            HiveTokens.light.modes.content.primary;
 
     final TextStyle effectiveTextStyle =
-        context.baconTheme?.carouselTheme.properties.textStyle ??
-            BaconTokens.light.typography.label.md;
+        context.hiveTheme?.carouselTheme.properties.textStyle ??
+            HiveTokens.light.typography.label.md;
 
     final AxisDirection axisDirection = _getDirection(context);
 
@@ -304,13 +306,13 @@ class _BaconCarouselState extends State<BaconCarousel> {
         );
 
     _effectiveGap = widget.gap ??
-        context.baconTheme?.carouselTheme.properties.gap ??
-        BaconTokens.light.scale.gap.x2s;
+        context.hiveTheme?.carouselTheme.properties.gap ??
+        HiveTokens.light.scale.gap.x2s;
 
     return NotificationListener<ScrollUpdateNotification>(
       onNotification: (ScrollUpdateNotification notification) {
-        final BaconCarouselExtentMetrics metrics =
-            notification.metrics as BaconCarouselExtentMetrics;
+        final HiveCarouselExtentMetrics metrics =
+            notification.metrics as HiveCarouselExtentMetrics;
 
         final int currentItem = metrics.itemIndex;
 
@@ -339,7 +341,7 @@ class _BaconCarouselState extends State<BaconCarousel> {
             ),
             child: DefaultTextStyle(
               style: effectiveTextStyle.copyWith(color: effectiveTextColor),
-              child: _BaconCarouselScrollable(
+              child: _HiveCarouselScrollable(
                 anchor: centeredAnchor,
                 axisDirection: axisDirection,
                 controller: _scrollController,
@@ -348,7 +350,7 @@ class _BaconCarouselState extends State<BaconCarousel> {
                 itemCount: widget.itemCount,
                 itemExtent: widget.itemExtent + _effectiveGap,
                 loop: widget.loop,
-                physics: widget.physics ?? const BaconCarouselScrollPhysics(),
+                physics: widget.physics ?? const HiveCarouselScrollPhysics(),
                 scrollBehavior: effectiveScrollBehavior,
                 velocityFactor: widget.velocityFactor,
                 viewportBuilder:
@@ -373,7 +375,7 @@ class _BaconCarouselState extends State<BaconCarousel> {
 
 /// Extends Scrollable by including the viewport's itemExtent, itemCount, loop, and other values.
 /// This allows ScrollPosition and Physics to access these values directly from the scroll context.
-class _BaconCarouselScrollable extends Scrollable {
+class _HiveCarouselScrollable extends Scrollable {
   final bool clampMaxExtent;
   final bool loop;
   final double anchor;
@@ -382,7 +384,7 @@ class _BaconCarouselScrollable extends Scrollable {
   final double velocityFactor;
   final int itemCount;
 
-  const _BaconCarouselScrollable({
+  const _HiveCarouselScrollable({
     super.axisDirection = AxisDirection.right,
     super.controller,
     super.physics,
@@ -398,37 +400,35 @@ class _BaconCarouselScrollable extends Scrollable {
   });
 
   @override
-  _BaconCarouselScrollableState createState() =>
-      _BaconCarouselScrollableState();
+  _HiveCarouselScrollableState createState() => _HiveCarouselScrollableState();
 }
 
-class _BaconCarouselScrollableState extends ScrollableState {
-  bool get clampMaxExtent =>
-      (widget as _BaconCarouselScrollable).clampMaxExtent;
+class _HiveCarouselScrollableState extends ScrollableState {
+  bool get clampMaxExtent => (widget as _HiveCarouselScrollable).clampMaxExtent;
 
-  bool get loop => (widget as _BaconCarouselScrollable).loop;
+  bool get loop => (widget as _HiveCarouselScrollable).loop;
 
-  double get anchor => (widget as _BaconCarouselScrollable).anchor;
+  double get anchor => (widget as _HiveCarouselScrollable).anchor;
 
-  double get gap => (widget as _BaconCarouselScrollable).gap;
+  double get gap => (widget as _HiveCarouselScrollable).gap;
 
-  double get itemExtent => (widget as _BaconCarouselScrollable).itemExtent;
+  double get itemExtent => (widget as _HiveCarouselScrollable).itemExtent;
 
   double get velocityFactor =>
-      (widget as _BaconCarouselScrollable).velocityFactor;
+      (widget as _HiveCarouselScrollable).velocityFactor;
 
-  int get itemCount => (widget as _BaconCarouselScrollable).itemCount;
+  int get itemCount => (widget as _HiveCarouselScrollable).itemCount;
 }
 
-/// Scroll controller for [BaconCarousel].
-class BaconCarouselScrollController extends ScrollController {
-  /// The initial carousel item index for [BaconCarouselScrollController].
+/// Scroll controller for [HiveCarousel].
+class HiveCarouselScrollController extends ScrollController {
+  /// The initial carousel item index for [HiveCarouselScrollController].
   ///
   /// Defaults to '0'.
   final int initialItem;
 
-  /// Scroll controller for [BaconCarousel].
-  BaconCarouselScrollController({this.initialItem = 0});
+  /// Scroll controller for [HiveCarousel].
+  HiveCarouselScrollController({this.initialItem = 0});
 
   // Timer for autoplay.
   Timer? _autoplayTimer;
@@ -460,10 +460,10 @@ class BaconCarouselScrollController extends ScrollController {
     super.dispose();
   }
 
-  /// Returns the index of the currently selected item. If [BaconCarousel.loop] is true it provides the modded index value.
+  /// Returns the index of the currently selected item. If [HiveCarousel.loop] is true it provides the modded index value.
   int get selectedItem => _getTrueIndex(
-        (position as _BaconCarouselScrollPosition).itemIndex,
-        (position as _BaconCarouselScrollPosition).itemCount,
+        (position as _HiveCarouselScrollPosition).itemIndex,
+        (position as _HiveCarouselScrollPosition).itemCount,
       );
 
   /// Animate to the specified item index.
@@ -472,7 +472,7 @@ class BaconCarouselScrollController extends ScrollController {
     if (!hasClients) return;
 
     await Future.wait<void>([
-      for (final position in positions.cast<_BaconCarouselScrollPosition>())
+      for (final position in positions.cast<_HiveCarouselScrollPosition>())
         position.animateTo(
           itemIndex * position.itemExtent,
           duration: duration ?? const Duration(milliseconds: 800),
@@ -483,7 +483,7 @@ class BaconCarouselScrollController extends ScrollController {
 
   /// Jump to the specified item index.
   void jumpToItem(int itemIndex) {
-    for (final position in positions.cast<_BaconCarouselScrollPosition>()) {
+    for (final position in positions.cast<_HiveCarouselScrollPosition>()) {
       position.jumpTo(itemIndex * position.itemExtent);
     }
   }
@@ -493,7 +493,7 @@ class BaconCarouselScrollController extends ScrollController {
     if (!hasClients) return;
 
     await Future.wait<void>([
-      for (final position in positions.cast<_BaconCarouselScrollPosition>())
+      for (final position in positions.cast<_HiveCarouselScrollPosition>())
         position.animateTo(
           offset + position.itemExtent,
           duration: duration ?? const Duration(milliseconds: 800),
@@ -507,7 +507,7 @@ class BaconCarouselScrollController extends ScrollController {
     if (!hasClients) return;
 
     await Future.wait<void>([
-      for (final position in positions.cast<_BaconCarouselScrollPosition>())
+      for (final position in positions.cast<_HiveCarouselScrollPosition>())
         position.animateTo(
           offset - position.itemExtent,
           duration: duration ?? const Duration(milliseconds: 800),
@@ -519,7 +519,7 @@ class BaconCarouselScrollController extends ScrollController {
   @override
   ScrollPosition createScrollPosition(ScrollPhysics physics,
       ScrollContext context, ScrollPosition? oldPosition) {
-    return _BaconCarouselScrollPosition(
+    return _HiveCarouselScrollPosition(
       context: context,
       initialItem: initialItem,
       oldPosition: oldPosition,
@@ -528,15 +528,15 @@ class BaconCarouselScrollController extends ScrollController {
   }
 }
 
-/// The metrics for the [BaconCarouselScrollController].
-class BaconCarouselExtentMetrics extends FixedScrollMetrics {
+/// The metrics for the [HiveCarouselScrollController].
+class HiveCarouselExtentMetrics extends FixedScrollMetrics {
   /// The index of the currently selected item within the scroll view.
   final int itemIndex;
 
   /// Provides an immutable snapshot of the current scroll positions within the carousel.
   /// This snapshot can be directly accessed by [ScrollNotification] to retrieve the currently selected
   /// real item index at any given moment.
-  BaconCarouselExtentMetrics({
+  HiveCarouselExtentMetrics({
     required super.minScrollExtent,
     required super.maxScrollExtent,
     required super.pixels,
@@ -547,7 +547,7 @@ class BaconCarouselExtentMetrics extends FixedScrollMetrics {
   });
 
   @override
-  BaconCarouselExtentMetrics copyWith({
+  HiveCarouselExtentMetrics copyWith({
     AxisDirection? axisDirection,
     double? devicePixelRatio,
     double? minScrollExtent,
@@ -556,7 +556,7 @@ class BaconCarouselExtentMetrics extends FixedScrollMetrics {
     double? viewportDimension,
     int? itemIndex,
   }) {
-    return BaconCarouselExtentMetrics(
+    return HiveCarouselExtentMetrics(
       axisDirection: axisDirection ?? this.axisDirection,
       devicePixelRatio: devicePixelRatio ?? this.devicePixelRatio,
       minScrollExtent: minScrollExtent ??
@@ -593,14 +593,14 @@ int _getTrueIndex(int currentIndex, int totalCount) {
   return (totalCount + (currentIndex % totalCount)) % totalCount;
 }
 
-class _BaconCarouselScrollPosition extends ScrollPositionWithSingleContext
-    implements BaconCarouselExtentMetrics {
-  _BaconCarouselScrollPosition({
+class _HiveCarouselScrollPosition extends ScrollPositionWithSingleContext
+    implements HiveCarouselExtentMetrics {
+  _HiveCarouselScrollPosition({
     required super.physics,
     required super.context,
     required int initialItem,
     super.oldPosition,
-  })  : assert(context is _BaconCarouselScrollableState),
+  })  : assert(context is _HiveCarouselScrollableState),
         super(
             initialPixels:
                 _getItemExtentFromScrollContext(context) * initialItem);
@@ -608,37 +608,37 @@ class _BaconCarouselScrollPosition extends ScrollPositionWithSingleContext
   double get anchor => _getAnchorFromScrollContext(context);
 
   static double _getAnchorFromScrollContext(ScrollContext context) =>
-      (context as _BaconCarouselScrollableState).anchor;
+      (context as _HiveCarouselScrollableState).anchor;
 
   double get itemExtent => _getItemExtentFromScrollContext(context);
 
   static double _getItemExtentFromScrollContext(ScrollContext context) =>
-      (context as _BaconCarouselScrollableState).itemExtent;
+      (context as _HiveCarouselScrollableState).itemExtent;
 
   double get gap => _getGapFromScrollContext(context);
 
   static double _getGapFromScrollContext(ScrollContext context) =>
-      (context as _BaconCarouselScrollableState).gap;
+      (context as _HiveCarouselScrollableState).gap;
 
   int get itemCount => _getItemCountFromScrollContext(context);
 
   static int _getItemCountFromScrollContext(ScrollContext context) =>
-      (context as _BaconCarouselScrollableState).itemCount;
+      (context as _HiveCarouselScrollableState).itemCount;
 
   bool get clampMaxExtent => _getDeferMaxExtentFromScrollContext(context);
 
   static bool _getDeferMaxExtentFromScrollContext(ScrollContext context) =>
-      (context as _BaconCarouselScrollableState).clampMaxExtent;
+      (context as _HiveCarouselScrollableState).clampMaxExtent;
 
   bool get loop => _getLoopFromScrollContext(context);
 
   static bool _getLoopFromScrollContext(ScrollContext context) =>
-      (context as _BaconCarouselScrollableState).loop;
+      (context as _HiveCarouselScrollableState).loop;
 
   double get velocityFactor => _getVelocityFactorFromScrollContext(context);
 
   static double _getVelocityFactorFromScrollContext(ScrollContext context) =>
-      (context as _BaconCarouselScrollableState).velocityFactor;
+      (context as _HiveCarouselScrollableState).velocityFactor;
 
   @override
   int get itemIndex {
@@ -669,7 +669,7 @@ class _BaconCarouselScrollPosition extends ScrollPositionWithSingleContext
   }
 
   @override
-  BaconCarouselExtentMetrics copyWith({
+  HiveCarouselExtentMetrics copyWith({
     AxisDirection? axisDirection,
     double? devicePixelRatio,
     double? minScrollExtent,
@@ -678,7 +678,7 @@ class _BaconCarouselScrollPosition extends ScrollPositionWithSingleContext
     double? viewportDimension,
     int? itemIndex,
   }) {
-    return BaconCarouselExtentMetrics(
+    return HiveCarouselExtentMetrics(
       axisDirection: axisDirection ?? this.axisDirection,
       devicePixelRatio: devicePixelRatio ?? this.devicePixelRatio,
       minScrollExtent: minScrollExtent ??
@@ -691,16 +691,16 @@ class _BaconCarouselScrollPosition extends ScrollPositionWithSingleContext
   }
 }
 
-/// The physics for the [BaconCarousel].
-class BaconCarouselScrollPhysics extends ScrollPhysics {
+/// The physics for the [HiveCarousel].
+class HiveCarouselScrollPhysics extends ScrollPhysics {
   /// Extends Flutter's [FixedExtentScrollPhysics] to implement carousel-specific behavior.
-  /// When [BaconCarousel.loop] is false, friction is applied when the user tries to scroll beyond the viewport.
+  /// When [HiveCarousel.loop] is false, friction is applied when the user tries to scroll beyond the viewport.
   /// The friction factor is calculated the same way as in [BouncingScrollPhysics].
-  const BaconCarouselScrollPhysics({super.parent});
+  const HiveCarouselScrollPhysics({super.parent});
 
   @override
-  BaconCarouselScrollPhysics applyTo(ScrollPhysics? ancestor) {
-    return BaconCarouselScrollPhysics(parent: buildParent(ancestor));
+  HiveCarouselScrollPhysics applyTo(ScrollPhysics? ancestor) {
+    return HiveCarouselScrollPhysics(parent: buildParent(ancestor));
   }
 
   @override
@@ -757,8 +757,8 @@ class BaconCarouselScrollPhysics extends ScrollPhysics {
   @override
   Simulation? createBallisticSimulation(
       ScrollMetrics position, double velocity) {
-    final _BaconCarouselScrollPosition metrics =
-        position as _BaconCarouselScrollPosition;
+    final _HiveCarouselScrollPosition metrics =
+        position as _HiveCarouselScrollPosition;
 
     // Scenario 1:
     // If the carousel is out of range and not returning to range, we defer to the parent ballistics to bring

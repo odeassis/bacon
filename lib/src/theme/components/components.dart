@@ -22,3 +22,7 @@ export './button/button_colors.dart';
 export './button/button_size_properties.dart';
 export './button/button_sizes.dart';
 export './button/button_theme.dart';
+//Carousel
+export './carousel/carousel_colors.dart';
+export './carousel/carousel_properties.dart';
+export './carousel/carousel_theme.dart';

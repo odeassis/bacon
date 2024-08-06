@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class BaconCarouselProperties extends ThemeExtension<BaconCarouselProperties>
+class HiveCarouselProperties extends ThemeExtension<HiveCarouselProperties>
     with DiagnosticableTreeMixin {
   final double gap;
   final TextStyle textStyle;
@@ -12,7 +12,7 @@ class BaconCarouselProperties extends ThemeExtension<BaconCarouselProperties>
   final Duration transitionDuration;
   final Curve transitionCurve;
 
-  const BaconCarouselProperties({
+  const HiveCarouselProperties({
     required this.gap,
     required this.textStyle,
     required this.autoPlayDelay,
@@ -21,14 +21,14 @@ class BaconCarouselProperties extends ThemeExtension<BaconCarouselProperties>
   });
 
   @override
-  BaconCarouselProperties copyWith({
+  HiveCarouselProperties copyWith({
     double? gap,
     TextStyle? textStyle,
     Duration? autoPlayDelay,
     Duration? transitionDuration,
     Curve? transitionCurve,
   }) {
-    return BaconCarouselProperties(
+    return HiveCarouselProperties(
       gap: gap ?? this.gap,
       textStyle: textStyle ?? this.textStyle,
       autoPlayDelay: autoPlayDelay ?? this.autoPlayDelay,
@@ -38,11 +38,11 @@ class BaconCarouselProperties extends ThemeExtension<BaconCarouselProperties>
   }
 
   @override
-  BaconCarouselProperties lerp(
-      ThemeExtension<BaconCarouselProperties>? other, double t) {
-    if (other is! BaconCarouselProperties) return this;
+  HiveCarouselProperties lerp(
+      ThemeExtension<HiveCarouselProperties>? other, double t) {
+    if (other is! HiveCarouselProperties) return this;
 
-    return BaconCarouselProperties(
+    return HiveCarouselProperties(
       gap: lerpDouble(gap, other.gap, t)!,
       textStyle: TextStyle.lerp(textStyle, other.textStyle, t)!,
       autoPlayDelay: lerpDuration(autoPlayDelay, other.autoPlayDelay, t),
@@ -55,13 +55,14 @@ class BaconCarouselProperties extends ThemeExtension<BaconCarouselProperties>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty("type", "HiveCarouselProperties"));
+    properties.add(DoubleProperty("gap", gap));
+    properties.add(DiagnosticsProperty<TextStyle>("textStyle", textStyle));
     properties
-      ..add(DiagnosticsProperty("type", "BaconCarouselProperties"))
-      ..add(DoubleProperty("gap", gap))
-      ..add(DiagnosticsProperty<TextStyle>("textStyle", textStyle))
-      ..add(DiagnosticsProperty<Duration>("autoPlayDelay", autoPlayDelay))
-      ..add(DiagnosticsProperty<Duration>(
-          "transitionDuration", transitionDuration))
-      ..add(DiagnosticsProperty<Curve>("transitionCurve", transitionCurve));
+        .add(DiagnosticsProperty<Duration>("autoPlayDelay", autoPlayDelay));
+    properties.add(DiagnosticsProperty<Duration>(
+        "transitionDuration", transitionDuration));
+    properties
+        .add(DiagnosticsProperty<Curve>("transitionCurve", transitionCurve));
   }
 }
