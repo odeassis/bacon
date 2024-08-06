@@ -13,6 +13,7 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
   final HiveButtonTheme buttonTheme;
   final HiveCarouselTheme carouselTheme;
   final HiveCheckboxTheme checkboxTheme;
+  final HiveDividerTheme dividerTheme;
 
   HiveTheme({
     required this.tokens,
@@ -23,6 +24,7 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
     HiveButtonTheme? buttonTheme,
     HiveCarouselTheme? carouselTheme,
     HiveCheckboxTheme? checkboxTheme,
+    HiveDividerTheme? dividerTheme,
   })  : alertTheme = alertTheme ?? HiveAlertTheme(tokens: tokens),
         avatarTheme = avatarTheme ?? HiveAvatarTheme(tokens: tokens),
         badgeTheme = badgeTheme ?? HiveBadgeTheme(tokens: tokens),
@@ -30,7 +32,8 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
             bottomSheetTheme ?? HiveBottomSheetTheme(tokens: tokens),
         buttonTheme = buttonTheme ?? HiveButtonTheme(tokens: tokens),
         carouselTheme = carouselTheme ?? HiveCarouselTheme(tokens: tokens),
-        checkboxTheme = checkboxTheme ?? HiveCheckboxTheme(tokens: tokens);
+        checkboxTheme = checkboxTheme ?? HiveCheckboxTheme(tokens: tokens),
+        dividerTheme = dividerTheme ?? HiveDividerTheme(tokens: tokens);
 
   @override
   HiveTheme copyWith({
@@ -42,6 +45,7 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
     HiveButtonTheme? buttonTheme,
     HiveCarouselTheme? carouselTheme,
     HiveCheckboxTheme? checkboxTheme,
+    HiveDividerTheme? dividerTheme,
   }) {
     return HiveTheme(
       tokens: tokens ?? this.tokens,
@@ -52,6 +56,7 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
       buttonTheme: buttonTheme ?? this.buttonTheme,
       carouselTheme: carouselTheme ?? this.carouselTheme,
       checkboxTheme: checkboxTheme ?? this.checkboxTheme,
+      dividerTheme: dividerTheme ?? this.dividerTheme,
     );
   }
 
@@ -71,6 +76,7 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
       buttonTheme: buttonTheme.lerp(other.buttonTheme, t),
       carouselTheme: carouselTheme.lerp(other.carouselTheme, t),
       checkboxTheme: checkboxTheme.lerp(other.checkboxTheme, t),
+      dividerTheme: dividerTheme.lerp(other.dividerTheme, t),
     );
   }
 
@@ -93,6 +99,8 @@ class HiveTheme extends ThemeExtension<HiveTheme> with DiagnosticableTreeMixin {
         DiagnosticsProperty<HiveCarouselTheme>('carouselTheme', carouselTheme));
     properties.add(
         DiagnosticsProperty<HiveCheckboxTheme>('checkboxTheme', checkboxTheme));
+    properties.add(
+        DiagnosticsProperty<HiveDividerTheme>('dividerTheme', dividerTheme));
   }
 }
 

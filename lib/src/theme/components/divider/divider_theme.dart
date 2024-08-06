@@ -1,38 +1,39 @@
-import 'package:bacon/src/theme/components/divider/divider_colors.dart';
-import 'package:bacon/src/theme/components/divider/divider_sizes.dart';
-import 'package:bacon/src/theme/tokens/tokens.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-@immutable
-class BaconDividerTheme extends ThemeExtension<BaconDividerTheme>
-    with DiagnosticableTreeMixin {
-  final BaconTokens tokens;
-  final BaconDividerColors colors;
-  final BaconDividerSizes sizes;
+import '../../tokens/tokens.dart';
+import 'divider_colors.dart';
+import 'divider_sizes.dart';
 
-  BaconDividerTheme({
+@immutable
+class HiveDividerTheme extends ThemeExtension<HiveDividerTheme>
+    with DiagnosticableTreeMixin {
+  final HiveTokens tokens;
+  final HiveDividerColors colors;
+  final HiveDividerSizes sizes;
+
+  HiveDividerTheme({
     required this.tokens,
-    BaconDividerColors? colors,
-    BaconDividerSizes? sizes,
+    HiveDividerColors? colors,
+    HiveDividerSizes? sizes,
   })  : colors = colors ??
-            BaconDividerColors(
+            HiveDividerColors(
               dividerColor: tokens.modes.border.secondary,
               textColor: tokens.modes.content.tertiary,
               iconColor: tokens.modes.content.tertiary,
             ),
         sizes = sizes ??
-            BaconDividerSizes(
+            HiveDividerSizes(
               tokens: tokens,
             );
 
   @override
-  BaconDividerTheme copyWith({
-    BaconTokens? tokens,
-    BaconDividerColors? colors,
-    BaconDividerSizes? sizes,
+  HiveDividerTheme copyWith({
+    HiveTokens? tokens,
+    HiveDividerColors? colors,
+    HiveDividerSizes? sizes,
   }) {
-    return BaconDividerTheme(
+    return HiveDividerTheme(
       tokens: tokens ?? this.tokens,
       colors: colors ?? this.colors,
       sizes: sizes ?? this.sizes,
@@ -40,9 +41,9 @@ class BaconDividerTheme extends ThemeExtension<BaconDividerTheme>
   }
 
   @override
-  BaconDividerTheme lerp(ThemeExtension<BaconDividerTheme>? other, double t) {
-    if (other is! BaconDividerTheme) return this;
-    return BaconDividerTheme(
+  HiveDividerTheme lerp(ThemeExtension<HiveDividerTheme>? other, double t) {
+    if (other is! HiveDividerTheme) return this;
+    return HiveDividerTheme(
       tokens: tokens.lerp(other.tokens, t),
       colors: colors.lerp(other.colors, t),
       sizes: sizes.lerp(other.sizes, t),
@@ -52,10 +53,9 @@ class BaconDividerTheme extends ThemeExtension<BaconDividerTheme>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty("type", "BaconDividerTheme"))
-      ..add(DiagnosticsProperty<BaconTokens>("tokens", tokens))
-      ..add(DiagnosticsProperty<BaconDividerColors>("colors", colors))
-      ..add(DiagnosticsProperty<BaconDividerSizes>("sizes", sizes));
+    properties.add(DiagnosticsProperty("type", "HiveDividerTheme"));
+    properties.add(DiagnosticsProperty<HiveTokens>("tokens", tokens));
+    properties.add(DiagnosticsProperty<HiveDividerColors>("colors", colors));
+    properties.add(DiagnosticsProperty<HiveDividerSizes>("sizes", sizes));
   }
 }

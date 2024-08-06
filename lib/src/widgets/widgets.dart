@@ -12,3 +12,5 @@ export './button/button.dart';
 export './carousel/carousel.dart';
 // Checkbox
 export './checkbox/checkbox.dart';
+// Divider
+export './divider/divider.dart';

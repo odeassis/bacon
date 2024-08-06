@@ -1,18 +1,19 @@
-import 'package:bacon/src/theme/components/divider/divider_properties.dart';
-import 'package:bacon/src/theme/tokens/tokens.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class BaconDividerSizes extends ThemeExtension<BaconDividerSizes>
-    with DiagnosticableTreeMixin {
-  final BaconTokens tokens;
-  final BaconDividerProperties sm;
+import '../../tokens/tokens.dart';
+import 'divider_properties.dart';
 
-  BaconDividerSizes({
+class HiveDividerSizes extends ThemeExtension<HiveDividerSizes>
+    with DiagnosticableTreeMixin {
+  final HiveTokens tokens;
+  final HiveDividerProperties sm;
+
+  HiveDividerSizes({
     required this.tokens,
-    BaconDividerProperties? sm,
+    HiveDividerProperties? sm,
   }) : sm = sm ??
-            BaconDividerProperties(
+            HiveDividerProperties(
               gap: tokens.scale.gap.sm,
               height: 1,
               width: double.infinity,
@@ -21,20 +22,20 @@ class BaconDividerSizes extends ThemeExtension<BaconDividerSizes>
             );
 
   @override
-  BaconDividerSizes copyWith({
-    BaconTokens? tokens,
-    BaconDividerProperties? sm,
+  HiveDividerSizes copyWith({
+    HiveTokens? tokens,
+    HiveDividerProperties? sm,
   }) {
-    return BaconDividerSizes(
+    return HiveDividerSizes(
       tokens: tokens ?? this.tokens,
       sm: sm ?? this.sm,
     );
   }
 
   @override
-  BaconDividerSizes lerp(ThemeExtension<BaconDividerSizes>? other, double t) {
-    if (other is! BaconDividerSizes) return this;
-    return BaconDividerSizes(
+  HiveDividerSizes lerp(ThemeExtension<HiveDividerSizes>? other, double t) {
+    if (other is! HiveDividerSizes) return this;
+    return HiveDividerSizes(
       tokens: tokens.lerp(other.tokens, t),
       sm: sm.lerp(other.sm, t),
     );
@@ -43,8 +44,8 @@ class BaconDividerSizes extends ThemeExtension<BaconDividerSizes>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty("type", "BaconDividerSizes"));
-    properties.add(DiagnosticsProperty<BaconTokens>("tokens", tokens));
+    properties.add(DiagnosticsProperty("type", "HiveDividerSizes"));
+    properties.add(DiagnosticsProperty<HiveTokens>("tokens", tokens));
     properties.add(DiagnosticsProperty("sm", sm));
   }
 }

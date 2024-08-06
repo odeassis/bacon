@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class BaconDividerProperties extends ThemeExtension<BaconDividerProperties>
+class HiveDividerProperties extends ThemeExtension<HiveDividerProperties>
     with DiagnosticableTreeMixin {
   final TextStyle textStyle;
   final double gap;
@@ -12,7 +12,7 @@ class BaconDividerProperties extends ThemeExtension<BaconDividerProperties>
   final double width;
   final double iconSize;
 
-  const BaconDividerProperties({
+  const HiveDividerProperties({
     required this.gap,
     required this.height,
     required this.width,
@@ -21,14 +21,14 @@ class BaconDividerProperties extends ThemeExtension<BaconDividerProperties>
   });
 
   @override
-  BaconDividerProperties copyWith({
+  HiveDividerProperties copyWith({
     double? gap,
     double? height,
     double? width,
     TextStyle? textStyle,
     double? iconSize,
   }) {
-    return BaconDividerProperties(
+    return HiveDividerProperties(
       gap: gap ?? this.gap,
       height: height ?? this.height,
       width: width ?? this.width,
@@ -38,10 +38,10 @@ class BaconDividerProperties extends ThemeExtension<BaconDividerProperties>
   }
 
   @override
-  BaconDividerProperties lerp(
-      ThemeExtension<BaconDividerProperties>? other, double t) {
-    if (other is! BaconDividerProperties) return this;
-    return BaconDividerProperties(
+  HiveDividerProperties lerp(
+      ThemeExtension<HiveDividerProperties>? other, double t) {
+    if (other is! HiveDividerProperties) return this;
+    return HiveDividerProperties(
       gap: lerpDouble(gap, other.gap, t)!,
       height: lerpDouble(height, other.height, t)!,
       width: lerpDouble(width, other.width, t)!,
@@ -53,7 +53,7 @@ class BaconDividerProperties extends ThemeExtension<BaconDividerProperties>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty("type", "BaconDividerProperties"));
+    properties.add(DiagnosticsProperty("type", "HiveDividerProperties"));
     properties.add(DoubleProperty("gap", gap));
     properties.add(DoubleProperty("height", height));
     properties.add(DoubleProperty("width", width));

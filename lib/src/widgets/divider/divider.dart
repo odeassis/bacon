@@ -1,10 +1,12 @@
-import 'package:bacon/bacon.dart';
-import 'package:bacon/src/theme/components/divider/divider_sizes.dart';
-import 'package:bacon/src/utils/dotted_line_painter.dart';
 import 'package:flutter/material.dart';
 
-/// Widget to display a BaconDivider, which can be a solid line or a dotted line
-class BaconDivider extends StatelessWidget {
+import '../../theme/components/components.dart';
+import '../../theme/theme.dart';
+import '../../theme/tokens/tokens.dart';
+import '../../utils/utils.dart' as utils;
+
+/// Widget to display a HiveDivider, which can be a solid line or a dotted line
+class HiveDivider extends StatelessWidget {
   /// Indicates if the divider should be dotted or solid
   final bool dotted;
 
@@ -30,7 +32,7 @@ class BaconDivider extends StatelessWidget {
 
   final Color? iconColor;
 
-  const BaconDivider({
+  const HiveDivider({
     super.key,
     this.dotted = false,
     this.text,
@@ -46,21 +48,21 @@ class BaconDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final BaconDividerSizes effectiveDividerSizes =
-        context.baconTheme?.dividerTheme.sizes ??
-            BaconDividerSizes(tokens: BaconTokens.light);
+    final HiveDividerSizes effectiveDividerSizes =
+        context.hiveTheme?.dividerTheme.sizes ??
+            HiveDividerSizes(tokens: HiveTokens.light);
 
     final Color effectiveColor = color ??
-        context.baconTheme?.dividerTheme.colors.dividerColor ??
-        BaconTokens.light.modes.border.secondary;
+        context.hiveTheme?.dividerTheme.colors.dividerColor ??
+        HiveTokens.light.modes.border.secondary;
 
     final Color effectiveTextColor = textColor ??
-        context.baconTheme?.dividerTheme.colors.textColor ??
-        BaconTokens.light.modes.content.secondary;
+        context.hiveTheme?.dividerTheme.colors.textColor ??
+        HiveTokens.light.modes.content.secondary;
 
     final Color effectiveIconColor = iconColor ??
-        context.baconTheme?.dividerTheme.colors.iconColor ??
-        BaconTokens.light.modes.content.secondary;
+        context.hiveTheme?.dividerTheme.colors.iconColor ??
+        HiveTokens.light.modes.content.secondary;
 
     final double effectiveGap = effectiveDividerSizes.sm.gap;
 
@@ -86,7 +88,7 @@ class BaconDivider extends StatelessWidget {
       return dotted
           ? CustomPaint(
               size: Size.fromHeight(thickness ?? 1.0),
-              painter: DottedLinePainter(color: effectiveColor),
+              painter: utils.DottedLinePainter(color: effectiveColor),
             )
           : Divider(
               thickness: thickness,
@@ -104,7 +106,7 @@ class BaconDivider extends StatelessWidget {
             child: dotted
                 ? CustomPaint(
                     size: Size.fromHeight(thickness ?? 1.0),
-                    painter: DottedLinePainter(color: effectiveColor),
+                    painter: utils.DottedLinePainter(color: effectiveColor),
                   )
                 : Divider(
                     color: effectiveColor,
@@ -121,7 +123,7 @@ class BaconDivider extends StatelessWidget {
             child: dotted
                 ? CustomPaint(
                     size: Size.fromHeight(thickness ?? 1.0),
-                    painter: DottedLinePainter(color: effectiveColor),
+                    painter: utils.DottedLinePainter(color: effectiveColor),
                   )
                 : Divider(
                     thickness: thickness,

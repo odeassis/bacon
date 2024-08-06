@@ -31,3 +31,8 @@ export './checkbox/checkbox_colors.dart';
 export './checkbox/checkbox_size_properties.dart';
 export './checkbox/checkbox_sizes.dart';
 export './checkbox/checkbox_theme.dart';
+// Divider
+export './divider/divider_colors.dart';
+export './divider/divider_properties.dart';
+export './divider/divider_sizes.dart';
+export './divider/divider_theme.dart';
