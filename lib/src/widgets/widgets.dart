@@ -6,3 +6,5 @@ export './avatar/avatar.dart';
 export './badge/badge.dart';
 // BottomSheet
 export './bottom_sheet/bottom_sheet.dart';
+// Button
+export './button/button.dart';

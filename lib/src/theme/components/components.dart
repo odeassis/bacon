@@ -17,3 +17,8 @@ export './badge/badge_theme.dart';
 export './bottom_sheet/bottom_sheet_colors.dart';
 export './bottom_sheet/bottom_sheet_properties.dart';
 export './bottom_sheet/bottom_sheet_theme.dart';
+// Button
+export './button/button_colors.dart';
+export './button/button_size_properties.dart';
+export './button/button_sizes.dart';
+export './button/button_theme.dart';

@@ -1,27 +1,28 @@
-import 'package:bacon/bacon.dart';
-import 'package:bacon/src/theme/components/button/button_colors.dart';
-import 'package:bacon/src/theme/components/button/button_sizes.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../tokens/tokens.dart';
+import 'button_colors.dart';
+import 'button_sizes.dart';
+
 @immutable
-class BaconButtonTheme extends ThemeExtension<BaconButtonTheme>
+class HiveButtonTheme extends ThemeExtension<HiveButtonTheme>
     with DiagnosticableTreeMixin {
-  /// The tokens of the Bacon Design System.
-  final BaconTokens tokens;
+  /// The tokens of the Hive Design System.
+  final HiveTokens tokens;
 
-  /// The colors of the BaconButton.
-  final BaconButtonColors colors;
+  /// The colors of the HiveButton.
+  final HiveButtonColors colors;
 
-  /// The sizes of the BaconButton.
-  final BaconButtonSizes sizes;
+  /// The sizes of the HiveButton.
+  final HiveButtonSizes sizes;
 
-  BaconButtonTheme({
+  HiveButtonTheme({
     required this.tokens,
-    BaconButtonColors? colors,
-    BaconButtonSizes? sizes,
+    HiveButtonColors? colors,
+    HiveButtonSizes? sizes,
   })  : colors = colors ??
-            BaconButtonColors(
+            HiveButtonColors(
               borderColor: tokens.modes.border.primary,
               background: tokens.modes.background.brand,
               textColor: tokens.modes.content.alwaysDark,
@@ -29,156 +30,156 @@ class BaconButtonTheme extends ThemeExtension<BaconButtonTheme>
               hoverBackground: tokens.modes.action.hoverOnColor,
               focusRing: tokens.modes.action.focusRingBrand,
             ),
-        sizes = sizes ?? BaconButtonSizes(tokens: tokens);
+        sizes = sizes ?? HiveButtonSizes(tokens: tokens);
 
-  factory BaconButtonTheme.fromStyle({
-    required BuildContext context,
-    required BaconButtonType type,
-    required BaconButtonStyle style,
-  }) {
-    final BaconTokens tokens = context.baconTheme?.tokens ?? BaconTokens.light;
+  // factory HiveButtonTheme.fromStyle({
+  //   required BuildContext context,
+  //   required HiveButtonType type,
+  //   required HiveButtonStyle style,
+  // }) {
+  //   final HiveTokens tokens = context.HiveTheme?.tokens ?? HiveTokens.light;
 
-    switch (type) {
-      case BaconButtonType.primary:
-        switch (style) {
-          case BaconButtonStyle.filled:
-            return BaconButtonTheme(
-              tokens: tokens,
-              colors: BaconButtonColors(
-                borderColor: tokens.modes.border.brand,
-                background: tokens.modes.background.brand,
-                textColor: tokens.modes.content.alwaysDark,
-                iconColor: tokens.modes.content.alwaysDark,
-                hoverBackground: tokens.modes.action.hoverOnColor,
-                focusRing: tokens.modes.action.focusRingBrand,
-              ),
-            );
-          case BaconButtonStyle.light:
-            return BaconButtonTheme(
-              tokens: tokens,
-              colors: BaconButtonColors(
-                borderColor: tokens.modes.border.secondary,
-                background: tokens.modes.background.brandLight,
-                textColor: tokens.modes.content.brand,
-                iconColor: tokens.modes.content.brand,
-                hoverBackground: tokens.modes.action.hoverOnColor,
-                focusRing: tokens.modes.action.focusRingBrand,
-              ),
-            );
-          case BaconButtonStyle.outlined:
-            return BaconButtonTheme(
-              tokens: tokens,
-              colors: BaconButtonColors(
-                borderColor: tokens.modes.border.brand,
-                background: tokens.modes.background.primary,
-                textColor: tokens.modes.content.brand,
-                iconColor: tokens.modes.content.brand,
-                hoverBackground: tokens.modes.action.hoverOnColor,
-                focusRing: tokens.modes.action.focusRingBrand,
-              ),
-            );
-        }
-      case BaconButtonType.neutral:
-        switch (style) {
-          case BaconButtonStyle.filled:
-            return BaconButtonTheme(
-              tokens: tokens,
-              colors: BaconButtonColors(
-                borderColor: tokens.modes.border.inverse,
-                background: tokens.modes.background.inverse,
-                textColor: tokens.modes.content.inverse,
-                iconColor: tokens.modes.content.inverse,
-                hoverBackground: tokens.modes.action.hoverOnDark,
-                focusRing: tokens.modes.action.focusRingNeutral,
-              ),
-            );
-          case BaconButtonStyle.light:
-            return BaconButtonTheme(
-              tokens: tokens,
-              colors: BaconButtonColors(
-                borderColor: tokens.modes.border.secondary,
-                background: tokens.modes.background.tertiary,
-                textColor: tokens.modes.content.primary,
-                iconColor: tokens.modes.content.primary,
-                hoverBackground: tokens.modes.action.hoverOnColor,
-                focusRing: tokens.modes.action.focusRingNeutral,
-              ),
-            );
-          case BaconButtonStyle.outlined:
-            return BaconButtonTheme(
-              tokens: tokens,
-              colors: BaconButtonColors(
-                borderColor: tokens.modes.border.inverse,
-                background: tokens.modes.background.primary,
-                textColor: tokens.modes.content.primary,
-                iconColor: tokens.modes.content.primary,
-                hoverBackground: tokens.modes.action.hoverOnColor,
-                focusRing: tokens.modes.action.focusRingNeutral,
-              ),
-            );
-        }
-      case BaconButtonType.error:
-        switch (style) {
-          case BaconButtonStyle.filled:
-            return BaconButtonTheme(
-              tokens: tokens,
-              colors: BaconButtonColors(
-                borderColor: tokens.modes.alert.danger,
-                background: tokens.modes.alert.danger,
-                textColor: tokens.modes.content.inverse,
-                iconColor: tokens.modes.content.inverse,
-                hoverBackground: tokens.modes.action.hoverOnColor,
-                focusRing: tokens.modes.action.focusRingDanger,
-              ),
-            );
-          case BaconButtonStyle.light:
-            return BaconButtonTheme(
-              tokens: tokens,
-              colors: BaconButtonColors(
-                borderColor: tokens.modes.border.secondary,
-                background: tokens.modes.alert.dangerLight,
-                textColor: tokens.modes.alert.danger,
-                iconColor: tokens.modes.alert.danger,
-                hoverBackground: tokens.modes.action.hoverOnColor,
-                focusRing: tokens.modes.action.focusRingDanger,
-              ),
-            );
-          case BaconButtonStyle.outlined:
-            return BaconButtonTheme(
-              tokens: tokens,
-              colors: BaconButtonColors(
-                borderColor: tokens.modes.alert.danger,
-                background: tokens.modes.background.primary,
-                textColor: tokens.modes.alert.danger,
-                iconColor: tokens.modes.alert.danger,
-                hoverBackground: tokens.modes.action.hoverOnColor,
-                focusRing: tokens.modes.action.focusRingDanger,
-              ),
-            );
+  //   switch (type) {
+  //     case HiveButtonType.primary:
+  //       switch (style) {
+  //         case HiveButtonStyle.filled:
+  //           return HiveButtonTheme(
+  //             tokens: tokens,
+  //             colors: HiveButtonColors(
+  //               borderColor: tokens.modes.border.brand,
+  //               background: tokens.modes.background.brand,
+  //               textColor: tokens.modes.content.alwaysDark,
+  //               iconColor: tokens.modes.content.alwaysDark,
+  //               hoverBackground: tokens.modes.action.hoverOnColor,
+  //               focusRing: tokens.modes.action.focusRingBrand,
+  //             ),
+  //           );
+  //         case HiveButtonStyle.light:
+  //           return HiveButtonTheme(
+  //             tokens: tokens,
+  //             colors: HiveButtonColors(
+  //               borderColor: tokens.modes.border.secondary,
+  //               background: tokens.modes.background.brandLight,
+  //               textColor: tokens.modes.content.brand,
+  //               iconColor: tokens.modes.content.brand,
+  //               hoverBackground: tokens.modes.action.hoverOnColor,
+  //               focusRing: tokens.modes.action.focusRingBrand,
+  //             ),
+  //           );
+  //         case HiveButtonStyle.outlined:
+  //           return HiveButtonTheme(
+  //             tokens: tokens,
+  //             colors: HiveButtonColors(
+  //               borderColor: tokens.modes.border.brand,
+  //               background: tokens.modes.background.primary,
+  //               textColor: tokens.modes.content.brand,
+  //               iconColor: tokens.modes.content.brand,
+  //               hoverBackground: tokens.modes.action.hoverOnColor,
+  //               focusRing: tokens.modes.action.focusRingBrand,
+  //             ),
+  //           );
+  //       }
+  //     case HiveButtonType.neutral:
+  //       switch (style) {
+  //         case HiveButtonStyle.filled:
+  //           return HiveButtonTheme(
+  //             tokens: tokens,
+  //             colors: HiveButtonColors(
+  //               borderColor: tokens.modes.border.inverse,
+  //               background: tokens.modes.background.inverse,
+  //               textColor: tokens.modes.content.inverse,
+  //               iconColor: tokens.modes.content.inverse,
+  //               hoverBackground: tokens.modes.action.hoverOnDark,
+  //               focusRing: tokens.modes.action.focusRingNeutral,
+  //             ),
+  //           );
+  //         case HiveButtonStyle.light:
+  //           return HiveButtonTheme(
+  //             tokens: tokens,
+  //             colors: HiveButtonColors(
+  //               borderColor: tokens.modes.border.secondary,
+  //               background: tokens.modes.background.tertiary,
+  //               textColor: tokens.modes.content.primary,
+  //               iconColor: tokens.modes.content.primary,
+  //               hoverBackground: tokens.modes.action.hoverOnColor,
+  //               focusRing: tokens.modes.action.focusRingNeutral,
+  //             ),
+  //           );
+  //         case HiveButtonStyle.outlined:
+  //           return HiveButtonTheme(
+  //             tokens: tokens,
+  //             colors: HiveButtonColors(
+  //               borderColor: tokens.modes.border.inverse,
+  //               background: tokens.modes.background.primary,
+  //               textColor: tokens.modes.content.primary,
+  //               iconColor: tokens.modes.content.primary,
+  //               hoverBackground: tokens.modes.action.hoverOnColor,
+  //               focusRing: tokens.modes.action.focusRingNeutral,
+  //             ),
+  //           );
+  //       }
+  //     case HiveButtonType.error:
+  //       switch (style) {
+  //         case HiveButtonStyle.filled:
+  //           return HiveButtonTheme(
+  //             tokens: tokens,
+  //             colors: HiveButtonColors(
+  //               borderColor: tokens.modes.alert.danger,
+  //               background: tokens.modes.alert.danger,
+  //               textColor: tokens.modes.content.inverse,
+  //               iconColor: tokens.modes.content.inverse,
+  //               hoverBackground: tokens.modes.action.hoverOnColor,
+  //               focusRing: tokens.modes.action.focusRingDanger,
+  //             ),
+  //           );
+  //         case HiveButtonStyle.light:
+  //           return HiveButtonTheme(
+  //             tokens: tokens,
+  //             colors: HiveButtonColors(
+  //               borderColor: tokens.modes.border.secondary,
+  //               background: tokens.modes.alert.dangerLight,
+  //               textColor: tokens.modes.alert.danger,
+  //               iconColor: tokens.modes.alert.danger,
+  //               hoverBackground: tokens.modes.action.hoverOnColor,
+  //               focusRing: tokens.modes.action.focusRingDanger,
+  //             ),
+  //           );
+  //         case HiveButtonStyle.outlined:
+  //           return HiveButtonTheme(
+  //             tokens: tokens,
+  //             colors: HiveButtonColors(
+  //               borderColor: tokens.modes.alert.danger,
+  //               background: tokens.modes.background.primary,
+  //               textColor: tokens.modes.alert.danger,
+  //               iconColor: tokens.modes.alert.danger,
+  //               hoverBackground: tokens.modes.action.hoverOnColor,
+  //               focusRing: tokens.modes.action.focusRingDanger,
+  //             ),
+  //           );
 
-          default:
-            return BaconButtonTheme(
-              tokens: tokens,
-              colors: BaconButtonColors(
-                borderColor: tokens.modes.border.primary,
-                background: tokens.modes.background.brand,
-                textColor: tokens.modes.content.inverse,
-                iconColor: tokens.modes.content.inverse,
-                hoverBackground: tokens.modes.action.hoverOnColor,
-                focusRing: tokens.modes.action.focusRingBrand,
-              ),
-            );
-        }
-    }
-  }
+  //         default:
+  //           return HiveButtonTheme(
+  //             tokens: tokens,
+  //             colors: HiveButtonColors(
+  //               borderColor: tokens.modes.border.primary,
+  //               background: tokens.modes.background.brand,
+  //               textColor: tokens.modes.content.inverse,
+  //               iconColor: tokens.modes.content.inverse,
+  //               hoverBackground: tokens.modes.action.hoverOnColor,
+  //               focusRing: tokens.modes.action.focusRingBrand,
+  //             ),
+  //           );
+  //       }
+  //   }
+  // }
 
   @override
-  BaconButtonTheme copyWith({
-    BaconTokens? tokens,
-    BaconButtonColors? colors,
-    BaconButtonSizes? sizes,
+  HiveButtonTheme copyWith({
+    HiveTokens? tokens,
+    HiveButtonColors? colors,
+    HiveButtonSizes? sizes,
   }) {
-    return BaconButtonTheme(
+    return HiveButtonTheme(
       tokens: tokens ?? this.tokens,
       colors: colors ?? this.colors,
       sizes: sizes ?? this.sizes,
@@ -186,10 +187,10 @@ class BaconButtonTheme extends ThemeExtension<BaconButtonTheme>
   }
 
   @override
-  BaconButtonTheme lerp(ThemeExtension<BaconButtonTheme>? other, double t) {
-    if (other is! BaconButtonTheme) return this;
+  HiveButtonTheme lerp(ThemeExtension<HiveButtonTheme>? other, double t) {
+    if (other is! HiveButtonTheme) return this;
 
-    return BaconButtonTheme(
+    return HiveButtonTheme(
       tokens: tokens.lerp(other.tokens, t),
       colors: colors.lerp(other.colors, t),
       sizes: sizes.lerp(other.sizes, t),
@@ -199,10 +200,9 @@ class BaconButtonTheme extends ThemeExtension<BaconButtonTheme>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty("type", "BaconButtonTheme"))
-      ..add(DiagnosticsProperty<BaconTokens>("tokens", tokens))
-      ..add(DiagnosticsProperty<BaconButtonColors>("colors", colors))
-      ..add(DiagnosticsProperty<BaconButtonSizes>("sizes", sizes));
+    properties.add(DiagnosticsProperty("type", "HiveButtonTheme"));
+    properties.add(DiagnosticsProperty<HiveTokens>("tokens", tokens));
+    properties.add(DiagnosticsProperty<HiveButtonColors>("colors", colors));
+    properties.add(DiagnosticsProperty<HiveButtonSizes>("sizes", sizes));
   }
 }

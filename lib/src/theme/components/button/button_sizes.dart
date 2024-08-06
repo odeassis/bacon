@@ -1,26 +1,27 @@
-import 'package:bacon/bacon.dart';
-import 'package:bacon/src/theme/components/button/button_size_properties.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../tokens/tokens.dart';
+import 'button_size_properties.dart';
+
 @immutable
-class BaconButtonSizes extends ThemeExtension<BaconButtonSizes>
+class HiveButtonSizes extends ThemeExtension<HiveButtonSizes>
     with DiagnosticableTreeMixin {
-  /// The tokens of the Bacon Design System.
-  final BaconTokens tokens;
+  /// The tokens of the Hive Design System.
+  final HiveTokens tokens;
 
-  /// The properties of the small BaconButton.
-  final BaconButtonSizeProperties sm;
+  /// The properties of the small HiveButton.
+  final HiveButtonSizeProperties sm;
 
-  /// The properties of the medium BaconButton.
-  final BaconButtonSizeProperties md;
+  /// The properties of the medium HiveButton.
+  final HiveButtonSizeProperties md;
 
-  BaconButtonSizes({
+  HiveButtonSizes({
     required this.tokens,
-    BaconButtonSizeProperties? sm,
-    BaconButtonSizeProperties? md,
+    HiveButtonSizeProperties? sm,
+    HiveButtonSizeProperties? md,
   })  : sm = sm ??
-            BaconButtonSizeProperties(
+            HiveButtonSizeProperties(
               borderRadius: tokens.shape.radii.xs,
               gap: tokens.scale.gap.xs,
               height: tokens.scale.component.md,
@@ -32,7 +33,7 @@ class BaconButtonSizes extends ThemeExtension<BaconButtonSizes>
               textStyle: tokens.typography.label.xs,
             ),
         md = md ??
-            BaconButtonSizeProperties(
+            HiveButtonSizeProperties(
               borderRadius: tokens.shape.radii.xs,
               gap: tokens.scale.gap.xs,
               height: tokens.scale.component.xl,
@@ -45,12 +46,12 @@ class BaconButtonSizes extends ThemeExtension<BaconButtonSizes>
             );
 
   @override
-  BaconButtonSizes copyWith({
-    BaconTokens? tokens,
-    BaconButtonSizeProperties? sm,
-    BaconButtonSizeProperties? md,
+  HiveButtonSizes copyWith({
+    HiveTokens? tokens,
+    HiveButtonSizeProperties? sm,
+    HiveButtonSizeProperties? md,
   }) {
-    return BaconButtonSizes(
+    return HiveButtonSizes(
       tokens: tokens ?? this.tokens,
       sm: sm ?? this.sm,
       md: md ?? this.md,
@@ -58,10 +59,10 @@ class BaconButtonSizes extends ThemeExtension<BaconButtonSizes>
   }
 
   @override
-  BaconButtonSizes lerp(ThemeExtension<BaconButtonSizes>? other, double t) {
-    if (other is! BaconButtonSizes) return this;
+  HiveButtonSizes lerp(ThemeExtension<HiveButtonSizes>? other, double t) {
+    if (other is! HiveButtonSizes) return this;
 
-    return BaconButtonSizes(
+    return HiveButtonSizes(
       tokens: tokens.lerp(other.tokens, t),
       sm: sm.lerp(other.sm, t),
       md: md.lerp(other.md, t),
@@ -71,10 +72,9 @@ class BaconButtonSizes extends ThemeExtension<BaconButtonSizes>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty("type", "BaconButtonSizes"))
-      ..add(DiagnosticsProperty<BaconTokens>("tokens", tokens))
-      ..add(DiagnosticsProperty<BaconButtonSizeProperties>("sm", sm))
-      ..add(DiagnosticsProperty<BaconButtonSizeProperties>("md", md));
+    properties.add(DiagnosticsProperty("type", "HiveButtonSizes"));
+    properties.add(DiagnosticsProperty<HiveTokens>("tokens", tokens));
+    properties.add(DiagnosticsProperty<HiveButtonSizeProperties>("sm", sm));
+    properties.add(DiagnosticsProperty<HiveButtonSizeProperties>("md", md));
   }
 }

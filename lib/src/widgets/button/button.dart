@@ -1,30 +1,29 @@
-import 'package:bacon/bacon.dart';
-import 'package:bacon/src/theme/components/button/button_size_properties.dart';
-import 'package:bacon/src/theme/components/button/button_sizes.dart';
-import 'package:bacon/src/theme/components/button/button_theme.dart';
-import 'package:bacon/src/theme/effects/effects_theme.dart';
-import 'package:bacon/src/utils/color_tween.dart';
-import 'package:bacon/src/utils/shared/base_control.dart';
 import 'package:flutter/material.dart';
 
-enum BaconButtonSize {
+import '../../theme/components/components.dart';
+import '../../theme/effects/effects.dart';
+import '../../theme/theme.dart';
+import '../../theme/tokens/tokens.dart';
+import '../../utils/utils.dart' as utils;
+
+enum HiveButtonSize {
   sm,
   md,
 }
 
-enum BaconButtonStyle {
+enum HiveButtonStyle {
   filled,
   outlined,
   light,
 }
 
-enum BaconButtonType {
+enum HiveButtonType {
   primary,
   neutral,
   error,
 }
 
-class BaconButton extends StatefulWidget {
+class HiveButton extends StatefulWidget {
   /// {@macro flutter.widgets.Focus.autofocus}
   final bool autofocus;
 
@@ -137,7 +136,7 @@ class BaconButton extends StatefulWidget {
   final FocusNode? focusNode;
 
   /// The size of the button.
-  final BaconButtonSize? buttonSize;
+  final HiveButtonSize? buttonSize;
 
   /// The semantic label for the button.
   final String? semanticLabel;
@@ -157,11 +156,11 @@ class BaconButton extends StatefulWidget {
   /// The widget to display after the [label] widget of the button.
   final Widget? trailing;
 
-  final BaconButtonStyle? style;
+  final HiveButtonStyle? style;
 
-  final BaconButtonType? type;
+  final HiveButtonType? type;
 
-  const BaconButton({
+  const HiveButton({
     super.key,
     this.autofocus = false,
     this.isFocusable = true,
@@ -207,10 +206,10 @@ class BaconButton extends StatefulWidget {
     this.leading,
     this.label,
     this.trailing,
-    this.type = BaconButtonType.primary,
-  }) : style = BaconButtonStyle.filled;
+    this.type = HiveButtonType.primary,
+  }) : style = HiveButtonStyle.filled;
 
-  const BaconButton.icon({
+  const HiveButton.icon({
     super.key,
     this.autofocus = false,
     this.isFocusable = true,
@@ -254,14 +253,14 @@ class BaconButton extends StatefulWidget {
     this.onLongPress,
     Color? iconColor,
     Widget? icon,
-    this.type = BaconButtonType.primary,
+    this.type = HiveButtonType.primary,
   })  : textColor = iconColor,
         leading = icon,
         label = null,
-        style = BaconButtonStyle.filled,
+        style = HiveButtonStyle.filled,
         trailing = null;
 
-  const BaconButton.light({
+  const HiveButton.light({
     super.key,
     this.autofocus = false,
     this.isFocusable = true,
@@ -307,10 +306,10 @@ class BaconButton extends StatefulWidget {
     this.leading,
     this.label,
     this.trailing,
-    this.type = BaconButtonType.primary,
-  }) : style = BaconButtonStyle.light;
+    this.type = HiveButtonType.primary,
+  }) : style = HiveButtonStyle.light;
 
-  const BaconButton.outlined({
+  const HiveButton.outlined({
     super.key,
     this.autofocus = false,
     this.isFocusable = true,
@@ -356,19 +355,19 @@ class BaconButton extends StatefulWidget {
     this.leading,
     this.label,
     this.trailing,
-    this.type = BaconButtonType.primary,
-  }) : style = BaconButtonStyle.outlined;
+    this.type = HiveButtonType.primary,
+  }) : style = HiveButtonStyle.outlined;
 
   @override
-  State<BaconButton> createState() => _BaconButtonState();
+  State<HiveButton> createState() => _HiveButtonState();
 }
 
-class _BaconButtonState extends State<BaconButton>
+class _HiveButtonState extends State<HiveButton>
     with SingleTickerProviderStateMixin {
-  final ColorTweenWithPremultipliedAlpha _backgroundColorTween =
-      ColorTweenWithPremultipliedAlpha();
-  final ColorTweenWithPremultipliedAlpha _textColorTween =
-      ColorTweenWithPremultipliedAlpha();
+  final utils.ColorTweenWithPremultipliedAlpha _backgroundColorTween =
+      utils.ColorTweenWithPremultipliedAlpha();
+  final utils.ColorTweenWithPremultipliedAlpha _textColorTween =
+      utils.ColorTweenWithPremultipliedAlpha();
 
   Animation<Color?>? _backgroundColor;
   Animation<Color?>? _textColor;
@@ -383,18 +382,18 @@ class _BaconButtonState extends State<BaconButton>
         : _animationController?.reverse();
   }
 
-  BaconButtonSizeProperties _getBaconButtonSize(
-      BuildContext context, BaconButtonSize? baconButtonSize) {
-    switch (baconButtonSize) {
-      case BaconButtonSize.sm:
-        return context.baconTheme?.buttonTheme.sizes.sm ??
-            BaconButtonSizes(tokens: BaconTokens.light).sm;
-      case BaconButtonSize.md:
-        return context.baconTheme?.buttonTheme.sizes.md ??
-            BaconButtonSizes(tokens: BaconTokens.light).md;
+  HiveButtonSizeProperties _getHiveButtonSize(
+      BuildContext context, HiveButtonSize? hiveButtonSize) {
+    switch (hiveButtonSize) {
+      case HiveButtonSize.sm:
+        return context.hiveTheme?.buttonTheme.sizes.sm ??
+            HiveButtonSizes(tokens: HiveTokens.light).sm;
+      case HiveButtonSize.md:
+        return context.hiveTheme?.buttonTheme.sizes.md ??
+            HiveButtonSizes(tokens: HiveTokens.light).md;
       default:
-        return context.baconTheme?.buttonTheme.sizes.md ??
-            BaconButtonSizes(tokens: BaconTokens.light).md;
+        return context.hiveTheme?.buttonTheme.sizes.md ??
+            HiveButtonSizes(tokens: HiveTokens.light).md;
     }
   }
 
@@ -407,63 +406,43 @@ class _BaconButtonState extends State<BaconButton>
 
   @override
   Widget build(BuildContext context) {
-    final BaconButtonSizeProperties effectiveBaconButtonSize =
-        _getBaconButtonSize(context, widget.buttonSize);
+    final HiveButtonSizeProperties effectiveHiveButtonSize =
+        _getHiveButtonSize(context, widget.buttonSize);
 
     final BorderRadiusGeometry effectiveBorderRadius =
-        widget.borderRadius ?? effectiveBaconButtonSize.borderRadius;
+        widget.borderRadius ?? effectiveHiveButtonSize.borderRadius;
 
-    final Color effectiveBackgroundColor = widget.backgroundColor ??
-        BaconButtonTheme.fromStyle(
-          context: context,
-          type: widget.type!,
-          style: widget.style!,
-        ).colors.background;
+    final Color effectiveBackgroundColor =
+        widget.backgroundColor ?? HiveTokens.light.modes.background.primary;
 
-    final Color effectiveBorderColor = widget.borderColor ??
-        BaconButtonTheme.fromStyle(
-          context: context,
-          type: widget.type!,
-          style: widget.style!,
-        ).colors.borderColor;
+    final Color effectiveBorderColor =
+        widget.borderColor ?? HiveTokens.light.modes.border.primary;
 
     final double effectiveBorderWidth = widget.borderWidth ??
-        context.baconTheme?.tokens.shape.radii.defaultBorderWidth ??
-        BaconTokens.light.shape.radii.defaultBorderWidth;
+        context.hiveTheme?.tokens.shape.radii.defaultBorderWidth ??
+        HiveTokens.light.shape.radii.defaultBorderWidth;
 
-    final Color effectiveTextColor = widget.textColor ??
-        BaconButtonTheme.fromStyle(
-          context: context,
-          type: widget.type!,
-          style: widget.style!,
-        ).colors.textColor;
+    final Color effectiveTextColor =
+        widget.textColor ?? HiveTokens.light.modes.content.primary;
 
-    final Color effectiveHoverEffectColor = widget.hoverEffectColor ??
-        BaconButtonTheme.fromStyle(
-          context: context,
-          type: widget.type!,
-          style: widget.style!,
-        ).colors.hoverBackground;
+    final Color effectiveHoverEffectColor =
+        widget.hoverEffectColor ?? HiveTokens.light.modes.action.hoverOnColor;
 
     Color hoverColor = Color.alphaBlend(
       effectiveHoverEffectColor,
       effectiveBackgroundColor,
     );
 
-    final Color focusEffectColor = widget.focusEffectColor ??
-        BaconButtonTheme.fromStyle(
-          context: context,
-          type: widget.type!,
-          style: widget.style!,
-        ).colors.focusRing;
+    final Color focusEffectColor =
+        widget.focusEffectColor ?? HiveTokens.light.modes.action.focusRingBrand;
 
     final double effectiveHeight =
-        widget.height ?? effectiveBaconButtonSize.height;
+        widget.height ?? effectiveHiveButtonSize.height;
 
-    final double effectiveGap = widget.gap ?? effectiveBaconButtonSize.gap;
+    final double effectiveGap = widget.gap ?? effectiveHiveButtonSize.gap;
 
     final EdgeInsetsGeometry effectivePadding =
-        widget.padding ?? effectiveBaconButtonSize.padding;
+        widget.padding ?? effectiveHiveButtonSize.padding;
 
     final EdgeInsets resolvedDirectionalPadding =
         effectivePadding.resolve(Directionality.of(context));
@@ -482,14 +461,12 @@ class _BaconButtonState extends State<BaconButton>
         : resolvedDirectionalPadding;
 
     final Duration effectiveHoverEffectDuration = widget.hoverEffectDuration ??
-        context.baconEffects?.controlHoverEffect.hoverDuration ??
-        BaconEffectsTheme(tokens: BaconTokens.light)
+        HiveEffectsTheme(tokens: HiveTokens.light)
             .controlHoverEffect
             .hoverDuration;
 
     final Curve effectiveHoverEffectCurve = widget.hoverEffectCurve ??
-        context.baconEffects?.controlHoverEffect.hoverCurve ??
-        BaconEffectsTheme(tokens: BaconTokens.light)
+        HiveEffectsTheme(tokens: HiveTokens.light)
             .controlHoverEffect
             .hoverCurve;
 
@@ -510,7 +487,7 @@ class _BaconButtonState extends State<BaconButton>
       ..begin = effectiveTextColor
       ..end = widget.hoverTextColor ?? effectiveTextColor;
 
-    return BaconBaseControl(
+    return utils.HiveBaseControl(
       autofocus: widget.autofocus,
       isFocusable: widget.isFocusable,
       ensureMinimalTouchTargetSize: widget.ensureMinimalTouchTargetSize,
@@ -551,10 +528,10 @@ class _BaconButtonState extends State<BaconButton>
             return IconTheme(
               data: IconThemeData(
                 color: _textColor!.value,
-                size: effectiveBaconButtonSize.iconSize,
+                size: effectiveHiveButtonSize.iconSize,
               ),
               child: DefaultTextStyle(
-                style: effectiveBaconButtonSize.textStyle
+                style: effectiveHiveButtonSize.textStyle
                     .copyWith(color: _textColor!.value),
                 child: Container(
                   width: widget.width,
@@ -563,7 +540,7 @@ class _BaconButtonState extends State<BaconButton>
                   decoration: widget.decoration ??
                       ShapeDecoration(
                         color: _backgroundColor!.value,
-                        shape: BaconSquircleBorder(
+                        shape: utils.HiveSquircleBorder(
                           borderRadius: effectiveBorderRadius
                               .squircleBorderRadius(context),
                           side: BorderSide(

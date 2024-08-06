@@ -1,9 +1,10 @@
-import 'package:bacon/src/utils/colors_lerp.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../../utils/utils.dart' as utils;
+
 @immutable
-class BaconButtonColors extends ThemeExtension<BaconButtonColors>
+class HiveButtonColors extends ThemeExtension<HiveButtonColors>
     with DiagnosticableTreeMixin {
   /// The background color of the BaconButton filled variant.
   final Color background;
@@ -20,7 +21,7 @@ class BaconButtonColors extends ThemeExtension<BaconButtonColors>
 
   final Color focusRing;
 
-  const BaconButtonColors({
+  const HiveButtonColors({
     required this.borderColor,
     required this.textColor,
     required this.background,
@@ -30,7 +31,7 @@ class BaconButtonColors extends ThemeExtension<BaconButtonColors>
   });
 
   @override
-  BaconButtonColors copyWith({
+  HiveButtonColors copyWith({
     Color? borderColor,
     Color? textColor,
     Color? background,
@@ -38,7 +39,7 @@ class BaconButtonColors extends ThemeExtension<BaconButtonColors>
     Color? hoverBackground,
     Color? focusRing,
   }) {
-    return BaconButtonColors(
+    return HiveButtonColors(
       borderColor: borderColor ?? this.borderColor,
       textColor: textColor ?? this.textColor,
       background: background ?? this.background,
@@ -49,29 +50,29 @@ class BaconButtonColors extends ThemeExtension<BaconButtonColors>
   }
 
   @override
-  BaconButtonColors lerp(ThemeExtension<BaconButtonColors>? other, double t) {
-    if (other is! BaconButtonColors) return this;
+  HiveButtonColors lerp(ThemeExtension<HiveButtonColors>? other, double t) {
+    if (other is! HiveButtonColors) return this;
 
-    return BaconButtonColors(
-      borderColor: colorsLerp(borderColor, other.borderColor, t)!,
-      textColor: colorsLerp(textColor, other.textColor, t)!,
-      background: colorsLerp(background, other.background, t)!,
-      iconColor: colorsLerp(iconColor, other.iconColor, t)!,
-      hoverBackground: colorsLerp(hoverBackground, other.hoverBackground, t)!,
-      focusRing: colorsLerp(focusRing, other.focusRing, t)!,
+    return HiveButtonColors(
+      borderColor: utils.colorsLerp(borderColor, other.borderColor, t)!,
+      textColor: utils.colorsLerp(textColor, other.textColor, t)!,
+      background: utils.colorsLerp(background, other.background, t)!,
+      iconColor: utils.colorsLerp(iconColor, other.iconColor, t)!,
+      hoverBackground:
+          utils.colorsLerp(hoverBackground, other.hoverBackground, t)!,
+      focusRing: utils.colorsLerp(focusRing, other.focusRing, t)!,
     );
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty("type", "BaconButtonColors"))
-      ..add(ColorProperty("borderColor", borderColor))
-      ..add(ColorProperty("textColor", textColor))
-      ..add(ColorProperty("background", background))
-      ..add(ColorProperty("iconColor", iconColor))
-      ..add(ColorProperty("hoverBackground", hoverBackground))
-      ..add(ColorProperty("focusRing", focusRing));
+    properties.add(DiagnosticsProperty("type", "HiveButtonColors"));
+    properties.add(ColorProperty("borderColor", borderColor));
+    properties.add(ColorProperty("textColor", textColor));
+    properties.add(ColorProperty("background", background));
+    properties.add(ColorProperty("iconColor", iconColor));
+    properties.add(ColorProperty("hoverBackground", hoverBackground));
+    properties.add(ColorProperty("focusRing", focusRing));
   }
 }

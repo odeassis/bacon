@@ -4,8 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class BaconButtonSizeProperties
-    extends ThemeExtension<BaconButtonSizeProperties>
+class HiveButtonSizeProperties extends ThemeExtension<HiveButtonSizeProperties>
     with DiagnosticableTreeMixin {
   /// The border radius of the BaconButton.
   final BorderRadiusGeometry borderRadius;
@@ -25,7 +24,7 @@ class BaconButtonSizeProperties
   /// The text style of the BaconButton.
   final TextStyle textStyle;
 
-  const BaconButtonSizeProperties({
+  const HiveButtonSizeProperties({
     required this.borderRadius,
     required this.gap,
     required this.height,
@@ -35,7 +34,7 @@ class BaconButtonSizeProperties
   });
 
   @override
-  BaconButtonSizeProperties copyWith({
+  HiveButtonSizeProperties copyWith({
     BorderRadiusGeometry? borderRadius,
     double? gap,
     double? height,
@@ -43,7 +42,7 @@ class BaconButtonSizeProperties
     EdgeInsetsGeometry? padding,
     TextStyle? textStyle,
   }) {
-    return BaconButtonSizeProperties(
+    return HiveButtonSizeProperties(
       borderRadius: borderRadius ?? this.borderRadius,
       gap: gap ?? this.gap,
       height: height ?? this.height,
@@ -54,11 +53,11 @@ class BaconButtonSizeProperties
   }
 
   @override
-  BaconButtonSizeProperties lerp(
-      ThemeExtension<BaconButtonSizeProperties>? other, double t) {
-    if (other is! BaconButtonSizeProperties) return this;
+  HiveButtonSizeProperties lerp(
+      ThemeExtension<HiveButtonSizeProperties>? other, double t) {
+    if (other is! HiveButtonSizeProperties) return this;
 
-    return BaconButtonSizeProperties(
+    return HiveButtonSizeProperties(
       borderRadius:
           BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t)!,
       gap: lerpDouble(gap, other.gap, t)!,
@@ -72,14 +71,13 @@ class BaconButtonSizeProperties
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty("type", "BaconButtonSizeProperties"))
-      ..add(DiagnosticsProperty<BorderRadiusGeometry>(
-          "borderRadius", borderRadius))
-      ..add(DoubleProperty("height", height))
-      ..add(DoubleProperty("gap", gap))
-      ..add(DoubleProperty("iconSize", iconSize))
-      ..add(DiagnosticsProperty<EdgeInsetsGeometry>("padding", padding))
-      ..add(DiagnosticsProperty<TextStyle>("textStyle", textStyle));
+    properties.add(DiagnosticsProperty("type", "HiveButtonSizeProperties"));
+    properties.add(DiagnosticsProperty<BorderRadiusGeometry>(
+        "borderRadius", borderRadius));
+    properties.add(DoubleProperty("height", height));
+    properties.add(DoubleProperty("gap", gap));
+    properties.add(DoubleProperty("iconSize", iconSize));
+    properties.add(DiagnosticsProperty<EdgeInsetsGeometry>("padding", padding));
+    properties.add(DiagnosticsProperty<TextStyle>("textStyle", textStyle));
   }
 }
