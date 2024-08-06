@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hive/src/theme/theme.dart';
 
 import '../../theme/effects/effects.dart';
-import '../../theme/tokens/hive_tokens.dart';
 import '../../utils/utils.dart' as utils;
 
 class HiveMenuItem extends StatefulWidget {

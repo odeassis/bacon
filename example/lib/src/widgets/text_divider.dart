@@ -1,5 +1,5 @@
-import 'package:bacon/bacon.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/bacon.dart';
 
 class TextDivider extends StatelessWidget {
   final String text;
@@ -26,8 +26,8 @@ class TextDivider extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Text(
               text,
-              style: context.typography?.label.md.copyWith(
-                color: context.contentColors?.primary,
+              style: context.hiveTheme?.tokens.typography.label.md.copyWith(
+                color: context.hiveTheme?.tokens.modes.content.primary,
               ),
             ),
           ),

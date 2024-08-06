@@ -11,7 +11,7 @@ dependencies:
     sdk: flutter
   flutter_solidart:
   go_router:
-  bacon:
+  hive:
     path: ../
 
 dev_dependencies:
