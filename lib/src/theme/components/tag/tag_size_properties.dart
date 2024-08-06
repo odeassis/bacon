@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class BaconTagSizeProperties extends ThemeExtension<BaconTagSizeProperties>
+class HiveTagSizeProperties extends ThemeExtension<HiveTagSizeProperties>
     with DiagnosticableTreeMixin {
   final BorderRadiusGeometry borderRadius;
   final double gap;
@@ -14,7 +14,7 @@ class BaconTagSizeProperties extends ThemeExtension<BaconTagSizeProperties>
   final TextStyle textStyle;
   final TextStyle upperCaseTextStyle;
 
-  const BaconTagSizeProperties({
+  const HiveTagSizeProperties({
     required this.borderRadius,
     required this.gap,
     required this.height,
@@ -25,7 +25,7 @@ class BaconTagSizeProperties extends ThemeExtension<BaconTagSizeProperties>
   });
 
   @override
-  BaconTagSizeProperties copyWith({
+  HiveTagSizeProperties copyWith({
     BorderRadiusGeometry? borderRadius,
     double? gap,
     double? height,
@@ -34,7 +34,7 @@ class BaconTagSizeProperties extends ThemeExtension<BaconTagSizeProperties>
     TextStyle? textStyle,
     TextStyle? upperCaseTextStyle,
   }) {
-    return BaconTagSizeProperties(
+    return HiveTagSizeProperties(
       borderRadius: borderRadius ?? this.borderRadius,
       gap: gap ?? this.gap,
       height: height ?? this.height,
@@ -46,11 +46,11 @@ class BaconTagSizeProperties extends ThemeExtension<BaconTagSizeProperties>
   }
 
   @override
-  BaconTagSizeProperties lerp(
-      ThemeExtension<BaconTagSizeProperties>? other, double t) {
-    if (other is! BaconTagSizeProperties) return this;
+  HiveTagSizeProperties lerp(
+      ThemeExtension<HiveTagSizeProperties>? other, double t) {
+    if (other is! HiveTagSizeProperties) return this;
 
-    return BaconTagSizeProperties(
+    return HiveTagSizeProperties(
       borderRadius:
           BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t)!,
       gap: lerpDouble(gap, other.gap, t)!,
@@ -66,16 +66,15 @@ class BaconTagSizeProperties extends ThemeExtension<BaconTagSizeProperties>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty("type", "BaconTagSizeProperties"))
-      ..add(DiagnosticsProperty<BorderRadiusGeometry>(
-          "borderRadius", borderRadius))
-      ..add(DoubleProperty("gap", gap))
-      ..add(DoubleProperty("height", height))
-      ..add(DoubleProperty("iconSize", iconSize))
-      ..add(DiagnosticsProperty<EdgeInsetsGeometry>("padding", padding))
-      ..add(DiagnosticsProperty<TextStyle>("textStyle", textStyle))
-      ..add(DiagnosticsProperty<TextStyle>(
-          "upperCaseTextStyle", upperCaseTextStyle));
+    properties.add(DiagnosticsProperty("type", "HiveTagSizeProperties"));
+    properties.add(DiagnosticsProperty<BorderRadiusGeometry>(
+        "borderRadius", borderRadius));
+    properties.add(DoubleProperty("gap", gap));
+    properties.add(DoubleProperty("height", height));
+    properties.add(DoubleProperty("iconSize", iconSize));
+    properties.add(DiagnosticsProperty<EdgeInsetsGeometry>("padding", padding));
+    properties.add(DiagnosticsProperty<TextStyle>("textStyle", textStyle));
+    properties.add(DiagnosticsProperty<TextStyle>(
+        "upperCaseTextStyle", upperCaseTextStyle));
   }
 }

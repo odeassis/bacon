@@ -1,27 +1,28 @@
-import 'package:bacon/src/utils/colors_lerp.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../../utils/utils.dart' as utils;
+
 @immutable
-class BaconTagColors extends ThemeExtension<BaconTagColors>
+class HiveTagColors extends ThemeExtension<HiveTagColors>
     with DiagnosticableTreeMixin {
   final Color background;
   final Color textColor;
   final Color iconColor;
 
-  const BaconTagColors({
+  const HiveTagColors({
     required this.textColor,
     required this.iconColor,
     required this.background,
   });
 
   @override
-  BaconTagColors copyWith({
+  HiveTagColors copyWith({
     Color? textColor,
     Color? iconColor,
     Color? background,
   }) {
-    return BaconTagColors(
+    return HiveTagColors(
       textColor: textColor ?? this.textColor,
       iconColor: iconColor ?? this.iconColor,
       background: background ?? this.background,
@@ -29,23 +30,22 @@ class BaconTagColors extends ThemeExtension<BaconTagColors>
   }
 
   @override
-  BaconTagColors lerp(ThemeExtension<BaconTagColors>? other, double t) {
-    if (other is! BaconTagColors) return this;
+  HiveTagColors lerp(ThemeExtension<HiveTagColors>? other, double t) {
+    if (other is! HiveTagColors) return this;
 
-    return BaconTagColors(
-      textColor: colorsLerp(textColor, other.textColor, t)!,
-      iconColor: colorsLerp(iconColor, other.iconColor, t)!,
-      background: colorsLerp(background, other.background, t)!,
+    return HiveTagColors(
+      textColor: utils.colorsLerp(textColor, other.textColor, t)!,
+      iconColor: utils.colorsLerp(iconColor, other.iconColor, t)!,
+      background: utils.colorsLerp(background, other.background, t)!,
     );
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty("type", "BaconTagColors"))
-      ..add(ColorProperty("textColor", textColor))
-      ..add(ColorProperty("iconColor", iconColor))
-      ..add(ColorProperty("background", background));
+    properties.add(DiagnosticsProperty("type", "HiveTagColors"));
+    properties.add(ColorProperty("textColor", textColor));
+    properties.add(ColorProperty("iconColor", iconColor));
+    properties.add(ColorProperty("background", background));
   }
 }

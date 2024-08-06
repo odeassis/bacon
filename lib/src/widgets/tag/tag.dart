@@ -1,18 +1,17 @@
-import 'package:bacon/bacon.dart';
-import 'package:bacon/src/theme/components/tag/tag_size_properties.dart';
-import 'package:bacon/src/theme/components/tag/tag_sizes.dart';
-import 'package:bacon/src/utils/extensions.dart';
-import 'package:bacon/src/utils/shape_decoration.dart';
-import 'package:bacon/src/utils/squircle/squircle_border.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/src/theme/theme.dart';
 
-enum BaconTagSize {
+import '../../theme/components/components.dart' as components;
+import '../../theme/tokens/hive_tokens.dart';
+import '../../utils/utils.dart' as utils;
+
+enum TagSize {
   x2s,
   xs,
   sm,
 }
 
-class BaconTag extends StatelessWidget {
+class HiveTag extends StatelessWidget {
   /// Whether to use the upper case text style for the tag.
   final bool isUpperCase;
 
@@ -35,7 +34,7 @@ class BaconTag extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
 
   /// The size of the tag.
-  final BaconTagSize? tagSize;
+  final TagSize? tagSize;
 
   /// The custom decoration of the tag.
   final Decoration? decoration;
@@ -58,8 +57,8 @@ class BaconTag extends StatelessWidget {
   /// The widget to display after the [label] widget of the tag.
   final Widget? trailing;
 
-  /// Creates a Bacon Design tag.
-  const BaconTag({
+  /// Creates a Hive Design tag.
+  const HiveTag({
     super.key,
     this.isUpperCase = true,
     this.borderRadius,
@@ -78,46 +77,46 @@ class BaconTag extends StatelessWidget {
     this.trailing,
   });
 
-  BaconTagSizeProperties _getBaconTagSize(
-      BuildContext context, BaconTagSize? baconTagSize) {
-    return switch (baconTagSize) {
-      BaconTagSize.x2s => context.baconTheme?.tagTheme.sizes.x2s ??
-          BaconTagSizes(tokens: BaconTokens.light).x2s,
-      BaconTagSize.xs => context.baconTheme?.tagTheme.sizes.xs ??
-          BaconTagSizes(tokens: BaconTokens.light).xs,
-      BaconTagSize.sm => context.baconTheme?.tagTheme.sizes.sm ??
-          BaconTagSizes(tokens: BaconTokens.light).sm,
-      _ => context.baconTheme?.tagTheme.sizes.xs ??
-          BaconTagSizes(tokens: BaconTokens.light).xs,
+  components.HiveTagSizeProperties _getTagSize(
+      BuildContext context, TagSize? tagSize) {
+    return switch (tagSize) {
+      TagSize.x2s => context.hiveTheme?.tagTheme.sizes.x2s ??
+          components.HiveTagSizes(tokens: HiveTokens.light).x2s,
+      TagSize.xs => context.hiveTheme?.tagTheme.sizes.xs ??
+          components.HiveTagSizes(tokens: HiveTokens.light).xs,
+      TagSize.sm => context.hiveTheme?.tagTheme.sizes.sm ??
+          components.HiveTagSizes(tokens: HiveTokens.light).sm,
+      _ => context.hiveTheme?.tagTheme.sizes.xs ??
+          components.HiveTagSizes(tokens: HiveTokens.light).xs,
     };
   }
 
   @override
   Widget build(BuildContext context) {
-    final BaconTagSizeProperties effectiveBaconTagSize =
-        _getBaconTagSize(context, tagSize);
+    final components.HiveTagSizeProperties effectiveTagSize =
+        _getTagSize(context, tagSize);
 
     final BorderRadiusGeometry effectiveBorderRadius =
-        borderRadius ?? effectiveBaconTagSize.borderRadius;
+        borderRadius ?? effectiveTagSize.borderRadius;
 
     final Color effectiveBackgroundColor = background ??
-        context.baconTheme?.tagTheme.colors.background ??
-        BaconTokens.light.modes.background.primary;
+        context.hiveTheme?.tagTheme.colors.background ??
+        HiveTokens.light.modes.background.primary;
 
     final Color effectiveTextColor =
-        context.baconTheme?.tagTheme.colors.textColor ??
-            BaconTokens.light.modes.content.primary;
+        context.hiveTheme?.tagTheme.colors.textColor ??
+            HiveTokens.light.modes.content.primary;
 
     final Color effectiveIconColor =
-        context.baconTheme?.tagTheme.colors.iconColor ??
-            BaconTokens.light.modes.content.primary;
+        context.hiveTheme?.tagTheme.colors.iconColor ??
+            HiveTokens.light.modes.content.primary;
 
-    final double effectiveHeight = height ?? effectiveBaconTagSize.height;
+    final double effectiveHeight = height ?? effectiveTagSize.height;
 
-    final double effectiveGap = gap ?? effectiveBaconTagSize.gap;
+    final double effectiveGap = gap ?? effectiveTagSize.gap;
 
     final EdgeInsetsGeometry effectivePadding =
-        padding ?? effectiveBaconTagSize.padding;
+        padding ?? effectiveTagSize.padding;
 
     final EdgeInsets resolvedDirectionalPadding =
         effectivePadding.resolve(Directionality.of(context));
@@ -152,9 +151,9 @@ class BaconTag extends StatelessWidget {
             padding: correctedPadding,
             constraints: BoxConstraints(minWidth: effectiveHeight),
             decoration: decoration ??
-                ShapeDecorationWithPremultipliedAlpha(
+                utils.ShapeDecorationWithPremultipliedAlpha(
                   color: effectiveBackgroundColor,
-                  shape: BaconSquircleBorder(
+                  shape: utils.HiveSquircleBorder(
                     borderRadius:
                         effectiveBorderRadius.squircleBorderRadius(context),
                   ),
@@ -162,13 +161,13 @@ class BaconTag extends StatelessWidget {
             child: IconTheme(
               data: IconThemeData(
                 color: effectiveIconColor,
-                size: effectiveBaconTagSize.iconSize,
+                size: effectiveTagSize.iconSize,
               ),
               child: DefaultTextStyle(
                 style: isUpperCase
-                    ? effectiveBaconTagSize.upperCaseTextStyle
+                    ? effectiveTagSize.upperCaseTextStyle
                         .copyWith(color: effectiveTextColor)
-                    : effectiveBaconTagSize.textStyle
+                    : effectiveTagSize.textStyle
                         .copyWith(color: effectiveTextColor),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
