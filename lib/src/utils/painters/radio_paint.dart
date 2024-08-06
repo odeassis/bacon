@@ -1,7 +1,8 @@
-import 'package:bacon/src/utils/colors_lerp.dart';
 import 'package:flutter/material.dart';
 
-class BaconRadioPainter extends ToggleablePainter {
+import '../colors_lerp.dart';
+
+class HiveRadioPainter extends ToggleablePainter {
   static const double _kOuterRadius = 8.0;
   static const double _kInnerRadius = 4.0;
 

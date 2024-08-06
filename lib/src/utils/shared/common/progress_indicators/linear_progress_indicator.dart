@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../painters/painters.dart';
+import '../../../painters/painters.dart';
 import 'base_progress.dart';
 
 class HiveLinearProgressIndicator extends HiveBaseProgressIndicator {

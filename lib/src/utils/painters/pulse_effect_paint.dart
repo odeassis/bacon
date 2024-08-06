@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/animation.dart';
 import 'package:flutter/rendering.dart';
 
-import '../../../utils.dart';
+import '../utils.dart';
 
 class PulseEffectPainter extends CustomPainter {
   static const double _animationRangeStartValue = 0.286;

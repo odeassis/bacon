@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../painters/painters.dart';
+import '../../../painters/painters.dart';
 
 class HivePulseEffect extends StatefulWidget {
   final bool show;
