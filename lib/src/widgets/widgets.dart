@@ -16,3 +16,5 @@ export './checkbox/checkbox.dart';
 export './divider/divider.dart';
 // Drawer
 export './drawer/drawer.dart';
+// Dropdown
+export './dropdown/dropdown.dart';

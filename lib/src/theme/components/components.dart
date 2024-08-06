@@ -41,3 +41,8 @@ export './drawer/drawer_colors.dart';
 export './drawer/drawer_properties.dart';
 export './drawer/drawer_shadows.dart';
 export './drawer/drawer_theme.dart';
+//Dropdown
+export './dropdown/dropdown_colors.dart';
+export './dropdown/dropdown_properties.dart';
+export './dropdown/dropdown_shadows.dart';
+export './dropdown/dropdown_theme.dart';

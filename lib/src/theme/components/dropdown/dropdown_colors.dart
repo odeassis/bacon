@@ -1,9 +1,10 @@
-import 'package:bacon/src/utils/colors_lerp.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../../utils/utils.dart' as utils;
+
 @immutable
-class BaconDropdownColors extends ThemeExtension<BaconDropdownColors>
+class HiveDropdownColors extends ThemeExtension<HiveDropdownColors>
     with DiagnosticableTreeMixin {
   final Color textColor;
 
@@ -11,19 +12,19 @@ class BaconDropdownColors extends ThemeExtension<BaconDropdownColors>
 
   final Color background;
 
-  const BaconDropdownColors({
+  const HiveDropdownColors({
     required this.textColor,
     required this.iconColor,
     required this.background,
   });
 
   @override
-  BaconDropdownColors copyWith({
+  HiveDropdownColors copyWith({
     Color? textColor,
     Color? iconColor,
     Color? background,
   }) {
-    return BaconDropdownColors(
+    return HiveDropdownColors(
       textColor: textColor ?? this.textColor,
       iconColor: iconColor ?? this.iconColor,
       background: background ?? this.background,
@@ -31,14 +32,13 @@ class BaconDropdownColors extends ThemeExtension<BaconDropdownColors>
   }
 
   @override
-  BaconDropdownColors lerp(
-      ThemeExtension<BaconDropdownColors>? other, double t) {
-    if (other is! BaconDropdownColors) return this;
+  HiveDropdownColors lerp(ThemeExtension<HiveDropdownColors>? other, double t) {
+    if (other is! HiveDropdownColors) return this;
 
-    return BaconDropdownColors(
-      textColor: colorsLerp(textColor, other.textColor, t)!,
-      iconColor: colorsLerp(iconColor, other.iconColor, t)!,
-      background: colorsLerp(background, other.background, t)!,
+    return HiveDropdownColors(
+      textColor: utils.colorsLerp(textColor, other.textColor, t)!,
+      iconColor: utils.colorsLerp(iconColor, other.iconColor, t)!,
+      background: utils.colorsLerp(background, other.background, t)!,
     );
   }
 
@@ -46,7 +46,7 @@ class BaconDropdownColors extends ThemeExtension<BaconDropdownColors>
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty("type", "BaconDropdownColors"))
+      ..add(DiagnosticsProperty("type", "HiveDropdownColors"))
       ..add(ColorProperty("textColor", textColor))
       ..add(ColorProperty("iconColor", iconColor))
       ..add(ColorProperty("background", background));

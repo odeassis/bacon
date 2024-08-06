@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class BaconDropdownProperties extends ThemeExtension<BaconDropdownProperties>
+class HiveDropdownProperties extends ThemeExtension<HiveDropdownProperties>
     with DiagnosticableTreeMixin {
   final BorderRadiusGeometry borderRadius;
   final double distanceToTarget;
@@ -14,7 +14,7 @@ class BaconDropdownProperties extends ThemeExtension<BaconDropdownProperties>
   final EdgeInsetsGeometry dropdownMargin;
   final TextStyle textStyle;
 
-  const BaconDropdownProperties({
+  const HiveDropdownProperties({
     required this.borderRadius,
     required this.distanceToTarget,
     required this.transitionDuration,
@@ -25,7 +25,7 @@ class BaconDropdownProperties extends ThemeExtension<BaconDropdownProperties>
   });
 
   @override
-  BaconDropdownProperties copyWith({
+  HiveDropdownProperties copyWith({
     BorderRadiusGeometry? borderRadius,
     double? distanceToTarget,
     Duration? transitionDuration,
@@ -34,7 +34,7 @@ class BaconDropdownProperties extends ThemeExtension<BaconDropdownProperties>
     EdgeInsetsGeometry? dropdownMargin,
     TextStyle? textStyle,
   }) {
-    return BaconDropdownProperties(
+    return HiveDropdownProperties(
       borderRadius: borderRadius ?? this.borderRadius,
       distanceToTarget: distanceToTarget ?? this.distanceToTarget,
       transitionDuration: transitionDuration ?? this.transitionDuration,
@@ -46,11 +46,11 @@ class BaconDropdownProperties extends ThemeExtension<BaconDropdownProperties>
   }
 
   @override
-  BaconDropdownProperties lerp(
-      ThemeExtension<BaconDropdownProperties>? other, double t) {
-    if (other is! BaconDropdownProperties) return this;
+  HiveDropdownProperties lerp(
+      ThemeExtension<HiveDropdownProperties>? other, double t) {
+    if (other is! HiveDropdownProperties) return this;
 
-    return BaconDropdownProperties(
+    return HiveDropdownProperties(
       borderRadius:
           BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t)!,
       distanceToTarget:
@@ -69,18 +69,18 @@ class BaconDropdownProperties extends ThemeExtension<BaconDropdownProperties>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty("type", "HiveDropdownProperties"));
+    properties.add(DiagnosticsProperty<BorderRadiusGeometry>(
+        "borderRadius", borderRadius));
+    properties.add(DoubleProperty("distanceToTarget", distanceToTarget));
+    properties.add(DiagnosticsProperty<Duration>(
+        "transitionDuration", transitionDuration));
     properties
-      ..add(DiagnosticsProperty("type", "BaconDropdownProperties"))
-      ..add(DiagnosticsProperty<BorderRadiusGeometry>(
-          "borderRadius", borderRadius))
-      ..add(DoubleProperty("distanceToTarget", distanceToTarget))
-      ..add(DiagnosticsProperty<Duration>(
-          "transitionDuration", transitionDuration))
-      ..add(DiagnosticsProperty<Curve>("transitionCurve", transitionCurve))
-      ..add(DiagnosticsProperty<EdgeInsetsGeometry>(
-          "contentPadding", contentPadding))
-      ..add(DiagnosticsProperty<EdgeInsetsGeometry>(
-          "dropdownMargin", dropdownMargin))
-      ..add(DiagnosticsProperty<TextStyle>("textStyle", textStyle));
+        .add(DiagnosticsProperty<Curve>("transitionCurve", transitionCurve));
+    properties.add(DiagnosticsProperty<EdgeInsetsGeometry>(
+        "contentPadding", contentPadding));
+    properties.add(DiagnosticsProperty<EdgeInsetsGeometry>(
+        "dropdownMargin", dropdownMargin));
+    properties.add(DiagnosticsProperty<TextStyle>("textStyle", textStyle));
   }
 }

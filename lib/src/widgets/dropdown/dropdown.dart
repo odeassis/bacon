@@ -1,8 +1,10 @@
-import 'package:bacon/bacon.dart';
-import 'package:bacon/src/theme/tokens/transitions.dart';
 import 'package:flutter/material.dart';
 
-enum BaconDropdownAnchorPosition {
+import '../../theme/theme.dart';
+import '../../theme/tokens/tokens.dart';
+import '../../utils/utils.dart' as utils;
+
+enum DropdownAnchorPosition {
   top,
   topLeft,
   topRight,
@@ -15,15 +17,15 @@ enum BaconDropdownAnchorPosition {
   horizontal,
 }
 
-class BaconDropdown extends StatefulWidget {
+class HiveDropdown extends StatefulWidget {
   /// Sets the dropdown anchor position on dropdown [content] (follower).
   ///
-  /// Overrides the [BaconDropdownAnchorPosition] property.
+  /// Overrides the [DropdownAnchorPosition] property.
   final Alignment? followerAnchor;
 
   /// Sets the dropdown anchor position on the [child] (target).
   ///
-  /// Overrides the [BaconDropdownAnchorPosition] property.
+  /// Overrides the [DropdownAnchorPosition] property.
   final Alignment? targetAnchor;
 
   /// Whether to constrain the dropdown to the width of its [child] (target).
@@ -91,7 +93,7 @@ class BaconDropdown extends StatefulWidget {
   ///
   /// This is a convenience shorthand for setting the anchor position.
   /// This will be overridden by the [followerAnchor], [targetAnchor], [offset], or [maxWidth] properties if set.
-  final BaconDropdownAnchorPosition dropdownAnchorPosition;
+  final DropdownAnchorPosition dropdownAnchorPosition;
 
   /// The offset of the dropdown.
   ///
@@ -118,8 +120,8 @@ class BaconDropdown extends StatefulWidget {
   /// The widget to display inside the dropdown as its content.
   final Widget content;
 
-  /// Creates a Bacon Design dropdown.
-  const BaconDropdown({
+  /// Creates a Hive Design dropdown.
+  const HiveDropdown({
     super.key,
     required this.show,
     this.followerAnchor,
@@ -140,7 +142,7 @@ class BaconDropdown extends StatefulWidget {
     this.contentPadding,
     this.dropdownMargin,
     this.dropdownShadows,
-    this.dropdownAnchorPosition = BaconDropdownAnchorPosition.bottom,
+    this.dropdownAnchorPosition = DropdownAnchorPosition.bottom,
     this.offset,
     this.routeObserver,
     this.groupId,
@@ -151,10 +153,10 @@ class BaconDropdown extends StatefulWidget {
   });
 
   @override
-  _BaconDropdownState createState() => _BaconDropdownState();
+  _HiveDropdownState createState() => _HiveDropdownState();
 }
 
-class _BaconDropdownState extends State<BaconDropdown>
+class _HiveDropdownState extends State<HiveDropdown>
     with RouteAware, SingleTickerProviderStateMixin {
   late final Key _regionKey =
       widget.groupId != null ? ValueKey(widget.groupId) : ObjectKey(widget);
@@ -203,7 +205,7 @@ class _BaconDropdownState extends State<BaconDropdown>
   }
 
   _DropdownPositionProperties _resolveDropdownPositionParameters({
-    required BaconDropdownAnchorPosition dropdownAnchorPosition,
+    required DropdownAnchorPosition dropdownAnchorPosition,
     required double distanceToTarget,
     required double overlayWidth,
     required double dropdownTargetGlobalLeft,
@@ -212,7 +214,7 @@ class _BaconDropdownState extends State<BaconDropdown>
     required EdgeInsets dropdownMargin,
   }) {
     switch (dropdownAnchorPosition) {
-      case BaconDropdownAnchorPosition.top:
+      case DropdownAnchorPosition.top:
         return _DropdownPositionProperties(
           offset: Offset(0, -distanceToTarget),
           targetAnchor: Alignment.topCenter,
@@ -222,7 +224,7 @@ class _BaconDropdownState extends State<BaconDropdown>
               dropdownMargin.horizontal,
         );
 
-      case BaconDropdownAnchorPosition.bottom:
+      case DropdownAnchorPosition.bottom:
         return _DropdownPositionProperties(
           offset: Offset(0, distanceToTarget),
           targetAnchor: Alignment.bottomCenter,
@@ -232,7 +234,7 @@ class _BaconDropdownState extends State<BaconDropdown>
               dropdownMargin.horizontal,
         );
 
-      case BaconDropdownAnchorPosition.left:
+      case DropdownAnchorPosition.left:
         return _DropdownPositionProperties(
           offset: Offset(-distanceToTarget, 0),
           targetAnchor: Alignment.centerLeft,
@@ -241,7 +243,7 @@ class _BaconDropdownState extends State<BaconDropdown>
               dropdownTargetGlobalLeft - distanceToTarget - dropdownMargin.left,
         );
 
-      case BaconDropdownAnchorPosition.right:
+      case DropdownAnchorPosition.right:
         return _DropdownPositionProperties(
           offset: Offset(distanceToTarget, 0),
           targetAnchor: Alignment.centerRight,
@@ -252,7 +254,7 @@ class _BaconDropdownState extends State<BaconDropdown>
               dropdownMargin.right,
         );
 
-      case BaconDropdownAnchorPosition.topLeft:
+      case DropdownAnchorPosition.topLeft:
         return _DropdownPositionProperties(
           offset: Offset(0, -distanceToTarget),
           targetAnchor: Alignment.topLeft,
@@ -261,7 +263,7 @@ class _BaconDropdownState extends State<BaconDropdown>
               overlayWidth - dropdownTargetGlobalLeft - dropdownMargin.left,
         );
 
-      case BaconDropdownAnchorPosition.topRight:
+      case DropdownAnchorPosition.topRight:
         return _DropdownPositionProperties(
           offset: Offset(0, -distanceToTarget),
           targetAnchor: Alignment.topRight,
@@ -269,7 +271,7 @@ class _BaconDropdownState extends State<BaconDropdown>
           dropdownMaxWidth: dropdownTargetGlobalRight - dropdownMargin.right,
         );
 
-      case BaconDropdownAnchorPosition.bottomLeft:
+      case DropdownAnchorPosition.bottomLeft:
         return _DropdownPositionProperties(
           offset: Offset(0, distanceToTarget),
           targetAnchor: Alignment.bottomLeft,
@@ -278,7 +280,7 @@ class _BaconDropdownState extends State<BaconDropdown>
               overlayWidth - dropdownTargetGlobalLeft - dropdownMargin.left,
         );
 
-      case BaconDropdownAnchorPosition.bottomRight:
+      case DropdownAnchorPosition.bottomRight:
         return _DropdownPositionProperties(
           offset: Offset(0, distanceToTarget),
           targetAnchor: Alignment.bottomRight,
@@ -338,7 +340,7 @@ class _BaconDropdownState extends State<BaconDropdown>
   }
 
   @override
-  void didUpdateWidget(BaconDropdown oldWidget) {
+  void didUpdateWidget(HiveDropdown oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.routeObserver != widget.routeObserver) {
@@ -381,48 +383,48 @@ class _BaconDropdownState extends State<BaconDropdown>
 
   Widget _createOverlayContent() {
     final BorderRadiusGeometry effectiveBorderRadius = widget.borderRadius ??
-        context.baconTheme?.dropdownTheme.properties.borderRadius ??
+        context.hiveTheme?.dropdownTheme.properties.borderRadius ??
         BorderRadius.circular(12);
 
     final Color effectiveBackgroundColor = widget.backgroundColor ??
-        context.baconTheme?.dropdownTheme.colors.background ??
-        BaconTokens.light.modes.background.primary;
+        context.hiveTheme?.dropdownTheme.colors.background ??
+        HiveTokens.light.modes.background.primary;
 
     final Color effectiveTextColor =
-        context.baconTheme?.dropdownTheme.colors.textColor ??
-            BaconTokens.light.modes.content.tertiary;
+        context.hiveTheme?.dropdownTheme.colors.textColor ??
+            HiveTokens.light.modes.content.tertiary;
 
     final Color effectiveIconColor =
-        context.baconTheme?.dropdownTheme.colors.iconColor ??
-            BaconTokens.light.modes.content.secondary;
+        context.hiveTheme?.dropdownTheme.colors.iconColor ??
+            HiveTokens.light.modes.content.secondary;
 
     final TextStyle effectiveTextStyle =
-        context.baconTheme?.dropdownTheme.properties.textStyle ??
-            BaconTokens.light.typography.label.sm;
+        context.hiveTheme?.dropdownTheme.properties.textStyle ??
+            HiveTokens.light.typography.label.sm;
 
     final double effectiveDistanceToTarget = widget.distanceToTarget ??
-        context.baconTheme?.dropdownTheme.properties.distanceToTarget ??
-        BaconTokens.light.scale.component.x4s;
+        context.hiveTheme?.dropdownTheme.properties.distanceToTarget ??
+        HiveTokens.light.scale.component.x4s;
 
     final EdgeInsetsGeometry effectiveContentPadding = widget.contentPadding ??
-        context.baconTheme?.dropdownTheme.properties.contentPadding ??
+        context.hiveTheme?.dropdownTheme.properties.contentPadding ??
         const EdgeInsets.all(4);
 
     final EdgeInsets resolvedContentPadding =
         effectiveContentPadding.resolve(Directionality.of(context));
 
     final EdgeInsetsGeometry effectiveDropdownMargin = widget.dropdownMargin ??
-        context.baconTheme?.dropdownTheme.properties.dropdownMargin ??
+        context.hiveTheme?.dropdownTheme.properties.dropdownMargin ??
         const EdgeInsets.all(8);
 
     final EdgeInsets resolvedDropdownMargin =
         effectiveDropdownMargin.resolve(Directionality.of(context));
 
     final List<BoxShadow> effectiveDropdownShadows = widget.dropdownShadows ??
-        context.baconTheme?.dropdownTheme.shadows.dropdownShadows ??
-        BaconShadows.light.sm;
+        context.hiveTheme?.dropdownTheme.shadows.dropdownShadows ??
+        HiveShadows.light.sm;
 
-    BaconDropdownAnchorPosition dropdownAnchorPosition =
+    DropdownAnchorPosition dropdownAnchorPosition =
         widget.dropdownAnchorPosition;
 
     final RenderBox overlayRenderBox =
@@ -443,31 +445,31 @@ class _BaconDropdownState extends State<BaconDropdown>
         ancestor: overlayRenderBox);
 
     if (Directionality.of(context) == TextDirection.rtl ||
-        dropdownAnchorPosition == BaconDropdownAnchorPosition.horizontal ||
-        dropdownAnchorPosition == BaconDropdownAnchorPosition.vertical) {
+        dropdownAnchorPosition == DropdownAnchorPosition.horizontal ||
+        dropdownAnchorPosition == DropdownAnchorPosition.vertical) {
       switch (dropdownAnchorPosition) {
-        case BaconDropdownAnchorPosition.left:
-          dropdownAnchorPosition = BaconDropdownAnchorPosition.right;
-        case BaconDropdownAnchorPosition.right:
-          dropdownAnchorPosition = BaconDropdownAnchorPosition.left;
-        case BaconDropdownAnchorPosition.topLeft:
-          dropdownAnchorPosition = BaconDropdownAnchorPosition.topRight;
-        case BaconDropdownAnchorPosition.topRight:
-          dropdownAnchorPosition = BaconDropdownAnchorPosition.topLeft;
-        case BaconDropdownAnchorPosition.bottomLeft:
-          dropdownAnchorPosition = BaconDropdownAnchorPosition.bottomRight;
-        case BaconDropdownAnchorPosition.bottomRight:
-          dropdownAnchorPosition = BaconDropdownAnchorPosition.bottomLeft;
-        case BaconDropdownAnchorPosition.vertical:
+        case DropdownAnchorPosition.left:
+          dropdownAnchorPosition = DropdownAnchorPosition.right;
+        case DropdownAnchorPosition.right:
+          dropdownAnchorPosition = DropdownAnchorPosition.left;
+        case DropdownAnchorPosition.topLeft:
+          dropdownAnchorPosition = DropdownAnchorPosition.topRight;
+        case DropdownAnchorPosition.topRight:
+          dropdownAnchorPosition = DropdownAnchorPosition.topLeft;
+        case DropdownAnchorPosition.bottomLeft:
+          dropdownAnchorPosition = DropdownAnchorPosition.bottomRight;
+        case DropdownAnchorPosition.bottomRight:
+          dropdownAnchorPosition = DropdownAnchorPosition.bottomLeft;
+        case DropdownAnchorPosition.vertical:
           dropdownAnchorPosition = dropdownTargetGlobalCenter.dy <
                   overlayRenderBox.size.center(Offset.zero).dy
-              ? BaconDropdownAnchorPosition.bottom
-              : BaconDropdownAnchorPosition.top;
-        case BaconDropdownAnchorPosition.horizontal:
+              ? DropdownAnchorPosition.bottom
+              : DropdownAnchorPosition.top;
+        case DropdownAnchorPosition.horizontal:
           dropdownAnchorPosition = dropdownTargetGlobalCenter.dx <
                   overlayRenderBox.size.center(Offset.zero).dx
-              ? BaconDropdownAnchorPosition.right
-              : BaconDropdownAnchorPosition.left;
+              ? DropdownAnchorPosition.right
+              : DropdownAnchorPosition.left;
         default:
           break;
       }
@@ -524,10 +526,10 @@ class _BaconDropdownState extends State<BaconDropdown>
                       ),
                       padding: resolvedContentPadding,
                       decoration: widget.decoration ??
-                          ShapeDecorationWithPremultipliedAlpha(
+                          utils.ShapeDecorationWithPremultipliedAlpha(
                             color: effectiveBackgroundColor,
                             shadows: effectiveDropdownShadows,
-                            shape: BaconSquircleBorder(
+                            shape: utils.HiveSquircleBorder(
                               borderRadius: effectiveBorderRadius
                                   .squircleBorderRadius(context),
                               side: BorderSide(color: widget.borderColor),
@@ -551,12 +553,12 @@ class _BaconDropdownState extends State<BaconDropdown>
   @override
   Widget build(BuildContext context) {
     final Duration effectiveTransitionDuration = widget.transitionDuration ??
-        context.baconTheme?.dropdownTheme.properties.transitionDuration ??
-        BaconTransitions.transitions.transitionDuration;
+        context.hiveTheme?.dropdownTheme.properties.transitionDuration ??
+        HiveTransitions.transitions.transitionDuration;
 
     final Curve effectiveTransitionCurve = widget.transitionCurve ??
-        context.baconTheme?.dropdownTheme.properties.transitionCurve ??
-        BaconTransitions.transitions.transitionCurve;
+        context.hiveTheme?.dropdownTheme.properties.transitionCurve ??
+        HiveTransitions.transitions.transitionCurve;
 
     _animationController ??= AnimationController(
       duration: effectiveTransitionDuration,

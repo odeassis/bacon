@@ -1,31 +1,32 @@
-import 'package:bacon/src/theme/components/dropdown/dropdown_colors.dart';
-import 'package:bacon/src/theme/components/dropdown/dropdown_properties.dart';
-import 'package:bacon/src/theme/components/dropdown/dropdown_shadowns.dart';
-import 'package:bacon/src/theme/tokens/tokens.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-@immutable
-class BaconDropdownTheme extends ThemeExtension<BaconDropdownTheme>
-    with DiagnosticableTreeMixin {
-  final BaconTokens tokens;
-  final BaconDropdownColors colors;
-  final BaconDropdownProperties properties;
-  final BaconDropdownShadows shadows;
+import '../../tokens/tokens.dart';
+import 'dropdown_colors.dart';
+import 'dropdown_properties.dart';
+import 'dropdown_shadows.dart';
 
-  BaconDropdownTheme({
+@immutable
+class HiveDropdownTheme extends ThemeExtension<HiveDropdownTheme>
+    with DiagnosticableTreeMixin {
+  final HiveTokens tokens;
+  final HiveDropdownColors colors;
+  final HiveDropdownProperties properties;
+  final HiveDropdownShadows shadows;
+
+  HiveDropdownTheme({
     required this.tokens,
-    BaconDropdownColors? colors,
-    BaconDropdownProperties? properties,
-    BaconDropdownShadows? shadows,
+    HiveDropdownColors? colors,
+    HiveDropdownProperties? properties,
+    HiveDropdownShadows? shadows,
   })  : colors = colors ??
-            BaconDropdownColors(
+            HiveDropdownColors(
               textColor: tokens.modes.content.tertiary,
               iconColor: tokens.modes.content.secondary,
               background: tokens.modes.background.primary,
             ),
         properties = properties ??
-            BaconDropdownProperties(
+            HiveDropdownProperties(
               borderRadius: tokens.shape.radii.xs,
               distanceToTarget: tokens.scale.component.x4s,
               transitionDuration: Duration.zero,
@@ -35,16 +36,16 @@ class BaconDropdownTheme extends ThemeExtension<BaconDropdownTheme>
               textStyle: tokens.typography.label.sm,
             ),
         shadows =
-            shadows ?? BaconDropdownShadows(dropdownShadows: tokens.shadows.sm);
+            shadows ?? HiveDropdownShadows(dropdownShadows: tokens.shadows.sm);
 
   @override
-  BaconDropdownTheme copyWith({
-    BaconTokens? tokens,
-    BaconDropdownColors? colors,
-    BaconDropdownProperties? properties,
-    BaconDropdownShadows? shadows,
+  HiveDropdownTheme copyWith({
+    HiveTokens? tokens,
+    HiveDropdownColors? colors,
+    HiveDropdownProperties? properties,
+    HiveDropdownShadows? shadows,
   }) {
-    return BaconDropdownTheme(
+    return HiveDropdownTheme(
       tokens: tokens ?? this.tokens,
       colors: colors ?? this.colors,
       properties: properties ?? this.properties,
@@ -53,10 +54,10 @@ class BaconDropdownTheme extends ThemeExtension<BaconDropdownTheme>
   }
 
   @override
-  BaconDropdownTheme lerp(ThemeExtension<BaconDropdownTheme>? other, double t) {
-    if (other is! BaconDropdownTheme) return this;
+  HiveDropdownTheme lerp(ThemeExtension<HiveDropdownTheme>? other, double t) {
+    if (other is! HiveDropdownTheme) return this;
 
-    return BaconDropdownTheme(
+    return HiveDropdownTheme(
       tokens: tokens.lerp(other.tokens, t),
       colors: colors.lerp(other.colors, t),
       properties: properties.lerp(other.properties, t),
@@ -67,12 +68,13 @@ class BaconDropdownTheme extends ThemeExtension<BaconDropdownTheme>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder diagnosticProperties) {
     super.debugFillProperties(diagnosticProperties);
+    diagnosticProperties.add(DiagnosticsProperty("type", "HiveDropdownTheme"));
+    diagnosticProperties.add(DiagnosticsProperty<HiveTokens>("tokens", tokens));
     diagnosticProperties
-      ..add(DiagnosticsProperty("type", "BaconDropdownTheme"))
-      ..add(DiagnosticsProperty<BaconTokens>("tokens", tokens))
-      ..add(DiagnosticsProperty<BaconDropdownColors>("colors", colors))
-      ..add(DiagnosticsProperty<BaconDropdownProperties>(
-          "properties", properties))
-      ..add(DiagnosticsProperty<BaconDropdownShadows>("shadows", shadows));
+        .add(DiagnosticsProperty<HiveDropdownColors>("colors", colors));
+    diagnosticProperties.add(
+        DiagnosticsProperty<HiveDropdownProperties>("properties", properties));
+    diagnosticProperties
+        .add(DiagnosticsProperty<HiveDropdownShadows>("shadows", shadows));
   }
 }
