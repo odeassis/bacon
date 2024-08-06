@@ -10,7 +10,6 @@ import 'package:flutter/services.dart';
 import '../../theme/components/components.dart' as components;
 import '../../theme/effects/effects.dart';
 import '../../theme/theme.dart';
-import '../../theme/tokens/tokens.dart';
 import '../../utils/utils.dart' as utils;
 
 export 'package:flutter/services.dart'
@@ -1136,7 +1135,7 @@ class _HiveTextInputState extends State<HiveTextInput>
         HiveTokens.light.modes.content.tertiary;
 
     final Color effectiveFocusRingColor = _hasError
-        ? HiveTokens.light.modes.action.focusRingDanger
+        ? HiveTokens.light.modes.action.focusRingError
         : context.hiveTheme?.textInputTheme.colors.focusRing ??
             HiveTokens.light.modes.action.focusRingBrand;
 

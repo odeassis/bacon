@@ -8,14 +8,25 @@ import 'layers/content.dart';
 import 'modes_tokens.dart';
 
 class HiveMode extends HiveModeTokens {
-  HiveMode.colors({
+  HiveMode({
     required HivePrimitiveColorsTokens primitives,
   }) : super(
-          action: HiveActionColors.colors(primitives: primitives),
-          alert: HiveAlertColors.colors(primitives: primitives),
-          background: HiveBackground.colors(primitives: primitives),
-          content: HiveContentColors.colors(primitives: primitives),
-          border: HiveBorderColors.colors(primitives: primitives),
-          accent: HiveAccentColors.colors(primitives: primitives),
+          accent: HiveAccentColors(primitives: primitives),
+          alert: HiveAlertColors(primitives: primitives),
+          action: HiveActionColors(primitives: primitives),
+          background: HiveBackground(primitives: primitives),
+          border: HiveBorderColors(primitives: primitives),
+          content: HiveContentColors(primitives: primitives),
+        );
+
+  HiveMode.dark({
+    required HivePrimitiveColorsTokens primitives,
+  }) : super(
+          accent: HiveAccentColors.dark(primitives: primitives),
+          alert: HiveAlertColors.dark(primitives: primitives),
+          action: HiveActionColors.dark(primitives: primitives),
+          background: HiveBackground.dark(primitives: primitives),
+          border: HiveBorderColors.dark(primitives: primitives),
+          content: HiveContentColors.dark(primitives: primitives),
         );
 }

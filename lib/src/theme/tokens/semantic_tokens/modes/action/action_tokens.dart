@@ -12,7 +12,7 @@ class HiveActionColorsTokens extends ThemeExtension<HiveActionColorsTokens>
   final Color hoverOnDark;
   final Color focusRingBrand;
   final Color focusRingNeutral;
-  final Color focusRingDanger;
+  final Color focusRingError;
 
   const HiveActionColorsTokens({
     required this.active,
@@ -21,7 +21,7 @@ class HiveActionColorsTokens extends ThemeExtension<HiveActionColorsTokens>
     required this.hoverOnDark,
     required this.focusRingBrand,
     required this.focusRingNeutral,
-    required this.focusRingDanger,
+    required this.focusRingError,
   });
 
   @override
@@ -39,8 +39,8 @@ class HiveActionColorsTokens extends ThemeExtension<HiveActionColorsTokens>
           utils.colorsLerp(focusRingBrand, other.focusRingBrand, t)!,
       focusRingNeutral:
           utils.colorsLerp(focusRingNeutral, other.focusRingNeutral, t)!,
-      focusRingDanger:
-          utils.colorsLerp(focusRingDanger, other.focusRingDanger, t)!,
+      focusRingError:
+          utils.colorsLerp(focusRingError, other.focusRingError, t)!,
     );
   }
 
@@ -52,7 +52,7 @@ class HiveActionColorsTokens extends ThemeExtension<HiveActionColorsTokens>
     Color? hoverOnDark,
     Color? focusRingBrand,
     Color? focusRingNeutral,
-    Color? focusRingDanger,
+    Color? focusRingError,
   }) {
     return HiveActionColorsTokens(
       active: active ?? this.active,
@@ -61,7 +61,7 @@ class HiveActionColorsTokens extends ThemeExtension<HiveActionColorsTokens>
       hoverOnDark: hoverOnDark ?? this.hoverOnDark,
       focusRingBrand: focusRingBrand ?? this.focusRingBrand,
       focusRingNeutral: focusRingNeutral ?? this.focusRingNeutral,
-      focusRingDanger: focusRingDanger ?? this.focusRingDanger,
+      focusRingError: focusRingError ?? this.focusRingError,
     );
   }
 
@@ -78,6 +78,6 @@ class HiveActionColorsTokens extends ThemeExtension<HiveActionColorsTokens>
     properties
         .add(DiagnosticsProperty<Color>('focusRingNeutral', focusRingNeutral));
     properties
-        .add(DiagnosticsProperty<Color>('focusRingDanger', focusRingDanger));
+        .add(DiagnosticsProperty<Color>('focusRingError', focusRingError));
   }
 }

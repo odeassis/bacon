@@ -101,7 +101,7 @@ class HiveColors extends HivePrimitiveColorsTokens {
     required super.alphaRed,
   });
 
-  HiveColors.light()
+  HiveColors()
       : super(
           neutral0: const Color(0xFFFFFFFF),
           neutral100: const Color(0xFFF9FAFB),

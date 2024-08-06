@@ -6,12 +6,12 @@ import 'tokens.dart';
 class HiveTokens extends ThemeExtension<HiveTokens>
     with DiagnosticableTreeMixin {
   static final HiveTokens light = HiveTokens._create(
-    HiveColors.light(),
+    HiveMode(primitives: HiveColors()),
     HiveShadows.light,
   );
 
   static final HiveTokens dark = HiveTokens._create(
-    HiveColors.dark(),
+    HiveMode.dark(primitives: HiveColors.dark()),
     HiveShadows.dark,
   );
 
@@ -34,11 +34,11 @@ class HiveTokens extends ThemeExtension<HiveTokens>
   });
 
   factory HiveTokens._create(
-    HiveColors primitiveColors,
+    HiveMode mode,
     HiveShadows shadows,
   ) {
     return HiveTokens._(
-      modes: HiveMode.colors(primitives: primitiveColors),
+      modes: mode,
       scale: HiveScale(),
       shape: HiveShape(),
       typography: HiveTypographyTokens(

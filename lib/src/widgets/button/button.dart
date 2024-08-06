@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../theme/components/components.dart';
 import '../../theme/effects/effects.dart';
 import '../../theme/theme.dart';
-import '../../theme/tokens/tokens.dart';
 import '../../utils/utils.dart' as utils;
 
 enum HiveButtonSize {
@@ -413,7 +412,7 @@ class _HiveButtonState extends State<HiveButton>
         widget.borderRadius ?? effectiveHiveButtonSize.borderRadius;
 
     final Color effectiveBackgroundColor =
-        widget.backgroundColor ?? HiveTokens.light.modes.background.primary;
+        widget.backgroundColor ?? HiveTokens.light.modes.background.brand;
 
     final Color effectiveBorderColor =
         widget.borderColor ?? HiveTokens.light.modes.border.primary;
