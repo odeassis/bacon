@@ -1,10 +1,11 @@
-import 'package:bacon/bacon.dart';
-import 'package:bacon/src/theme/effects/effects_theme.dart';
-import 'package:bacon/src/utils/color_tween.dart';
-import 'package:bacon/src/utils/shared/base_control.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/src/theme/theme.dart';
 
-class BaconMenuItem extends StatefulWidget {
+import '../../theme/effects/effects.dart';
+import '../../theme/tokens/hive_tokens.dart';
+import '../../utils/utils.dart' as utils;
+
+class HiveMenuItem extends StatefulWidget {
   /// Defines how the widgets of the menu item are aligned along the cross axis.
   ///
   /// Defaults to the [CrossAxisAlignment.center].
@@ -76,8 +77,8 @@ class BaconMenuItem extends StatefulWidget {
   /// The widget to display after the [label] widget of the menu item.
   final Widget? trailing;
 
-  /// Creates a Bacon Design menu item.
-  const BaconMenuItem({
+  /// Creates a Hive Design menu item.
+  const HiveMenuItem({
     super.key,
     this.menuItemCrossAxisAlignment,
     this.labelAndContentCrossAxisAlignment,
@@ -118,8 +119,8 @@ class BaconMenuItem extends StatefulWidget {
     if (menuItems.isEmpty || menuItems.length == 1) return menuItems;
 
     final Color effectiveColor = color ??
-        context.baconTheme?.menuItemTheme.colors.dividerColor ??
-        BaconTokens.light.modes.border.secondary;
+        context.hiveTheme?.menuItemTheme.colors.dividerColor ??
+        HiveTokens.light.modes.border.secondary;
 
     Widget wrapMenuItem(Widget menuItems) {
       return DecoratedBox(
@@ -144,13 +145,13 @@ class BaconMenuItem extends StatefulWidget {
   }
 
   @override
-  State<BaconMenuItem> createState() => _BaconMenuItemState();
+  State<HiveMenuItem> createState() => _HiveMenuItemState();
 }
 
-class _BaconMenuItemState extends State<BaconMenuItem>
+class _HiveMenuItemState extends State<HiveMenuItem>
     with TickerProviderStateMixin {
-  final ColorTweenWithPremultipliedAlpha _backgroundColorTween =
-      ColorTweenWithPremultipliedAlpha();
+  final utils.ColorTweenWithPremultipliedAlpha _backgroundColorTween =
+      utils.ColorTweenWithPremultipliedAlpha();
 
   AnimationController? _animationController;
   Animation<Color?>? _backgroundColor;
@@ -173,51 +174,50 @@ class _BaconMenuItemState extends State<BaconMenuItem>
   @override
   Widget build(BuildContext context) {
     final BorderRadiusGeometry effectiveBorderRadius = widget.borderRadius ??
-        context.baconTheme?.menuItemTheme.properties.borderRadius ??
-        BaconTokens.light.shape.radii.sm;
+        context.hiveTheme?.menuItemTheme.properties.borderRadius ??
+        HiveTokens.light.shape.radii.sm;
 
     final double effectiveMinimumHeaderHeight = widget.height ??
-        context.baconTheme?.menuItemTheme.properties.minimumHeight ??
-        BaconTokens.light.scale.component.md;
+        context.hiveTheme?.menuItemTheme.properties.minimumHeight ??
+        HiveTokens.light.scale.component.md;
 
     final double effectiveVerticalGap = widget.verticalGap ??
-        context.baconTheme?.menuItemTheme.properties.verticalGap ??
-        BaconTokens.light.scale.gap.xs;
+        context.hiveTheme?.menuItemTheme.properties.verticalGap ??
+        HiveTokens.light.scale.gap.xs;
 
     final EdgeInsetsGeometry effectiveHeaderPadding = widget.menuItemPadding ??
-        context.baconTheme?.menuItemTheme.properties.padding ??
-        EdgeInsets.all(BaconTokens.light.scale.component.x3s);
+        context.hiveTheme?.menuItemTheme.properties.padding ??
+        EdgeInsets.all(HiveTokens.light.scale.component.x3s);
 
     final EdgeInsets resolvedDirectionalHeaderPadding =
         effectiveHeaderPadding.resolve(Directionality.of(context));
 
     final Color effectiveBackgroundColor = widget.background ??
-        context.baconTheme?.menuItemTheme.colors.background ??
+        context.hiveTheme?.menuItemTheme.colors.background ??
         Colors.transparent;
 
     final Color effectiveIconColor =
-        context.baconTheme?.menuItemTheme.colors.iconColor ??
-            BaconTokens.light.modes.content.primary;
+        context.hiveTheme?.menuItemTheme.colors.iconColor ??
+            HiveTokens.light.modes.content.primary;
 
     final Color effectiveLabelTextColor =
-        context.baconTheme?.menuItemTheme.colors.labelTextColor ??
-            BaconTokens.light.modes.content.primary;
+        context.hiveTheme?.menuItemTheme.colors.labelTextColor ??
+            HiveTokens.light.modes.content.primary;
 
     final Color effectiveContentTextColor =
-        context.baconTheme?.menuItemTheme.colors.contentTextColor ??
-            BaconTokens.light.modes.content.secondary;
+        context.hiveTheme?.menuItemTheme.colors.contentTextColor ??
+            HiveTokens.light.modes.content.secondary;
 
     final TextStyle effectiveLabelTextStyle =
-        context.baconTheme?.menuItemTheme.properties.labelTextStyle ??
-            BaconTokens.light.typography.label.md;
+        context.hiveTheme?.menuItemTheme.properties.labelTextStyle ??
+            HiveTokens.light.typography.label.md;
 
     final TextStyle effectiveContentTextStyle =
-        context.baconTheme?.menuItemTheme.properties.contentTextStyle ??
-            BaconTokens.light.typography.label.sm;
+        context.hiveTheme?.menuItemTheme.properties.contentTextStyle ??
+            HiveTokens.light.typography.label.sm;
 
     final Color effectiveHoverEffectColor = widget.hoverEffectColor ??
-        context.baconEffects?.controlHoverEffect.primaryHoverColor ??
-        BaconEffectsTheme(tokens: BaconTokens.light)
+        HiveEffectsTheme(tokens: HiveTokens.light)
             .controlHoverEffect
             .primaryHoverColor;
 
@@ -225,14 +225,12 @@ class _BaconMenuItemState extends State<BaconMenuItem>
         effectiveHoverEffectColor, widget.background ?? Colors.transparent);
 
     final Duration effectiveHoverEffectDuration = widget.hoverEffectDuration ??
-        context.baconEffects?.controlHoverEffect.hoverDuration ??
-        BaconEffectsTheme(tokens: BaconTokens.light)
+        HiveEffectsTheme(tokens: HiveTokens.light)
             .controlHoverEffect
             .hoverDuration;
 
     final Curve effectiveHoverEffectCurve = widget.hoverEffectCurve ??
-        context.baconEffects?.controlHoverEffect.hoverCurve ??
-        BaconEffectsTheme(tokens: BaconTokens.light)
+        HiveEffectsTheme(tokens: HiveTokens.light)
             .controlHoverEffect
             .hoverCurve;
 
@@ -249,7 +247,7 @@ class _BaconMenuItemState extends State<BaconMenuItem>
     return Semantics(
       label: widget.semanticLabel,
       enabled: widget.onTap != null,
-      child: BaconBaseControl(
+      child: utils.HiveBaseControl(
         onTap: widget.onTap,
         propagateGesturesToChild: !widget.absorbGestures,
         autofocus: widget.autofocus,
@@ -279,7 +277,7 @@ class _BaconMenuItemState extends State<BaconMenuItem>
                 decoration: widget.decoration ??
                     ShapeDecoration(
                       color: _backgroundColor!.value,
-                      shape: BaconSquircleBorder(
+                      shape: utils.HiveSquircleBorder(
                         borderRadius:
                             effectiveBorderRadius.squircleBorderRadius(context),
                       ),

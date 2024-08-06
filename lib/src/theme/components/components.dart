@@ -46,3 +46,7 @@ export './dropdown/dropdown_colors.dart';
 export './dropdown/dropdown_properties.dart';
 export './dropdown/dropdown_shadows.dart';
 export './dropdown/dropdown_theme.dart';
+// MenuItem
+export './menu_item/menu_item_colors.dart';
+export './menu_item/menu_item_properties.dart';
+export './menu_item/menu_item_theme.dart';

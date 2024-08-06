@@ -18,3 +18,5 @@ export './divider/divider.dart';
 export './drawer/drawer.dart';
 // Dropdown
 export './dropdown/dropdown.dart';
+// MenuItem
+export './menu_item/menu_item.dart';

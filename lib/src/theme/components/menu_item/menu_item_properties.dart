@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class BaconMenuItemProperties extends ThemeExtension<BaconMenuItemProperties>
+class HiveMenuItemProperties extends ThemeExtension<HiveMenuItemProperties>
     with DiagnosticableTreeMixin {
   final BorderRadiusGeometry borderRadius;
 
@@ -18,7 +18,7 @@ class BaconMenuItemProperties extends ThemeExtension<BaconMenuItemProperties>
 
   final TextStyle contentTextStyle;
 
-  const BaconMenuItemProperties({
+  const HiveMenuItemProperties({
     required this.borderRadius,
     required this.verticalGap,
     required this.minimumHeight,
@@ -28,7 +28,7 @@ class BaconMenuItemProperties extends ThemeExtension<BaconMenuItemProperties>
   });
 
   @override
-  BaconMenuItemProperties copyWith({
+  HiveMenuItemProperties copyWith({
     BorderRadiusGeometry? borderRadius,
     double? verticalGap,
     double? minimumHeight,
@@ -36,7 +36,7 @@ class BaconMenuItemProperties extends ThemeExtension<BaconMenuItemProperties>
     TextStyle? labelTextStyle,
     TextStyle? contentTextStyle,
   }) {
-    return BaconMenuItemProperties(
+    return HiveMenuItemProperties(
       borderRadius: borderRadius ?? this.borderRadius,
       verticalGap: verticalGap ?? this.verticalGap,
       minimumHeight: minimumHeight ?? this.minimumHeight,
@@ -47,11 +47,11 @@ class BaconMenuItemProperties extends ThemeExtension<BaconMenuItemProperties>
   }
 
   @override
-  BaconMenuItemProperties lerp(
-      ThemeExtension<BaconMenuItemProperties>? other, double t) {
-    if (other is! BaconMenuItemProperties) return this;
+  HiveMenuItemProperties lerp(
+      ThemeExtension<HiveMenuItemProperties>? other, double t) {
+    if (other is! HiveMenuItemProperties) return this;
 
-    return BaconMenuItemProperties(
+    return HiveMenuItemProperties(
       borderRadius:
           BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t)!,
       verticalGap: lerpDouble(verticalGap, other.verticalGap, t)!,
@@ -66,15 +66,15 @@ class BaconMenuItemProperties extends ThemeExtension<BaconMenuItemProperties>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty("type", "HiveMenuItemProperties"));
+    properties.add(DiagnosticsProperty<BorderRadiusGeometry>(
+        "borderRadius", borderRadius));
+    properties.add(DoubleProperty("verticalGap", verticalGap));
+    properties.add(DoubleProperty("minimumHeight", minimumHeight));
+    properties.add(DiagnosticsProperty<EdgeInsetsGeometry>("padding", padding));
     properties
-      ..add(DiagnosticsProperty("type", "BaconMenuItemProperties"))
-      ..add(DiagnosticsProperty<BorderRadiusGeometry>(
-          "borderRadius", borderRadius))
-      ..add(DoubleProperty("verticalGap", verticalGap))
-      ..add(DoubleProperty("minimumHeight", minimumHeight))
-      ..add(DiagnosticsProperty<EdgeInsetsGeometry>("padding", padding))
-      ..add(DiagnosticsProperty<TextStyle>("labelTextStyle", labelTextStyle))
-      ..add(
-          DiagnosticsProperty<TextStyle>("contentTextStyle", contentTextStyle));
+        .add(DiagnosticsProperty<TextStyle>("labelTextStyle", labelTextStyle));
+    properties.add(
+        DiagnosticsProperty<TextStyle>("contentTextStyle", contentTextStyle));
   }
 }

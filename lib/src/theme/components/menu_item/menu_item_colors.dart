@@ -1,9 +1,10 @@
-import 'package:bacon/src/utils/colors_lerp.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../../utils/utils.dart' as utils;
+
 @immutable
-class BaconMenuItemColors extends ThemeExtension<BaconMenuItemColors>
+class HiveMenuItemColors extends ThemeExtension<HiveMenuItemColors>
     with DiagnosticableTreeMixin {
   final Color background;
   final Color contentTextColor;
@@ -14,7 +15,7 @@ class BaconMenuItemColors extends ThemeExtension<BaconMenuItemColors>
 
   final Color dividerColor;
 
-  const BaconMenuItemColors({
+  const HiveMenuItemColors({
     required this.background,
     required this.iconColor,
     required this.contentTextColor,
@@ -23,14 +24,14 @@ class BaconMenuItemColors extends ThemeExtension<BaconMenuItemColors>
   });
 
   @override
-  BaconMenuItemColors copyWith({
+  HiveMenuItemColors copyWith({
     Color? background,
     Color? iconColor,
     Color? dividerColor,
     Color? labelTextColor,
     Color? contentTextColor,
   }) {
-    return BaconMenuItemColors(
+    return HiveMenuItemColors(
       background: background ?? this.background,
       dividerColor: dividerColor ?? this.dividerColor,
       iconColor: iconColor ?? this.iconColor,
@@ -40,29 +41,28 @@ class BaconMenuItemColors extends ThemeExtension<BaconMenuItemColors>
   }
 
   @override
-  BaconMenuItemColors lerp(
-      ThemeExtension<BaconMenuItemColors>? other, double t) {
-    if (other is! BaconMenuItemColors) return this;
+  HiveMenuItemColors lerp(ThemeExtension<HiveMenuItemColors>? other, double t) {
+    if (other is! HiveMenuItemColors) return this;
 
-    return BaconMenuItemColors(
-      background: colorsLerp(background, other.background, t)!,
-      dividerColor: colorsLerp(dividerColor, other.dividerColor, t)!,
-      iconColor: colorsLerp(iconColor, other.iconColor, t)!,
-      labelTextColor: colorsLerp(labelTextColor, other.labelTextColor, t)!,
+    return HiveMenuItemColors(
+      background: utils.colorsLerp(background, other.background, t)!,
+      dividerColor: utils.colorsLerp(dividerColor, other.dividerColor, t)!,
+      iconColor: utils.colorsLerp(iconColor, other.iconColor, t)!,
+      labelTextColor:
+          utils.colorsLerp(labelTextColor, other.labelTextColor, t)!,
       contentTextColor:
-          colorsLerp(contentTextColor, other.contentTextColor, t)!,
+          utils.colorsLerp(contentTextColor, other.contentTextColor, t)!,
     );
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty("type", "BaconMenuItemColors"))
-      ..add(ColorProperty("background", background))
-      ..add(ColorProperty("dividerColor", dividerColor))
-      ..add(ColorProperty("iconColor", iconColor))
-      ..add(ColorProperty("labelTextColor", labelTextColor))
-      ..add(ColorProperty("contentTextColor", contentTextColor));
+    properties.add(DiagnosticsProperty("type", "HiveMenuItemColors"));
+    properties.add(ColorProperty("background", background));
+    properties.add(ColorProperty("dividerColor", dividerColor));
+    properties.add(ColorProperty("iconColor", iconColor));
+    properties.add(ColorProperty("labelTextColor", labelTextColor));
+    properties.add(ColorProperty("contentTextColor", contentTextColor));
   }
 }

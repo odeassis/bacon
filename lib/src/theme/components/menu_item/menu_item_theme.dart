@@ -1,24 +1,25 @@
-import 'package:bacon/src/theme/components/menu_item/menu_item_colors.dart';
-import 'package:bacon/src/theme/components/menu_item/menu_item_properties.dart';
-import 'package:bacon/src/theme/tokens/tokens.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../tokens/hive_tokens.dart';
+import 'menu_item_colors.dart';
+import 'menu_item_properties.dart';
+
 @immutable
-class BaconMenuItemTheme extends ThemeExtension<BaconMenuItemTheme>
+class HiveMenuItemTheme extends ThemeExtension<HiveMenuItemTheme>
     with DiagnosticableTreeMixin {
-  final BaconTokens tokens;
+  final HiveTokens tokens;
 
-  final BaconMenuItemColors colors;
+  final HiveMenuItemColors colors;
 
-  final BaconMenuItemProperties properties;
+  final HiveMenuItemProperties properties;
 
-  BaconMenuItemTheme({
+  HiveMenuItemTheme({
     required this.tokens,
-    BaconMenuItemColors? colors,
-    BaconMenuItemProperties? properties,
+    HiveMenuItemColors? colors,
+    HiveMenuItemProperties? properties,
   })  : colors = colors ??
-            BaconMenuItemColors(
+            HiveMenuItemColors(
               background: Colors.transparent,
               dividerColor: tokens.modes.border.secondary,
               iconColor: tokens.modes.content.primary,
@@ -26,7 +27,7 @@ class BaconMenuItemTheme extends ThemeExtension<BaconMenuItemTheme>
               contentTextColor: tokens.modes.content.secondary,
             ),
         properties = properties ??
-            BaconMenuItemProperties(
+            HiveMenuItemProperties(
               borderRadius: tokens.shape.radii.surface,
               verticalGap: tokens.scale.gap.xs,
               minimumHeight: tokens.scale.component.md,
@@ -36,12 +37,12 @@ class BaconMenuItemTheme extends ThemeExtension<BaconMenuItemTheme>
             );
 
   @override
-  BaconMenuItemTheme copyWith({
-    BaconTokens? tokens,
-    BaconMenuItemColors? colors,
-    BaconMenuItemProperties? properties,
+  HiveMenuItemTheme copyWith({
+    HiveTokens? tokens,
+    HiveMenuItemColors? colors,
+    HiveMenuItemProperties? properties,
   }) {
-    return BaconMenuItemTheme(
+    return HiveMenuItemTheme(
       tokens: tokens ?? this.tokens,
       colors: colors ?? this.colors,
       properties: properties ?? this.properties,
@@ -49,10 +50,10 @@ class BaconMenuItemTheme extends ThemeExtension<BaconMenuItemTheme>
   }
 
   @override
-  BaconMenuItemTheme lerp(ThemeExtension<BaconMenuItemTheme>? other, double t) {
-    if (other is! BaconMenuItemTheme) return this;
+  HiveMenuItemTheme lerp(ThemeExtension<HiveMenuItemTheme>? other, double t) {
+    if (other is! HiveMenuItemTheme) return this;
 
-    return BaconMenuItemTheme(
+    return HiveMenuItemTheme(
       tokens: tokens.lerp(other.tokens, t),
       colors: colors.lerp(other.colors, t),
       properties: properties.lerp(other.properties, t),
@@ -62,11 +63,11 @@ class BaconMenuItemTheme extends ThemeExtension<BaconMenuItemTheme>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder diagnosticProperties) {
     super.debugFillProperties(diagnosticProperties);
+    diagnosticProperties.add(DiagnosticsProperty("type", "HiveMenuItemTheme"));
+    diagnosticProperties.add(DiagnosticsProperty<HiveTokens>("tokens", tokens));
     diagnosticProperties
-      ..add(DiagnosticsProperty("type", "BaconMenuItemTheme"))
-      ..add(DiagnosticsProperty<BaconTokens>("tokens", tokens))
-      ..add(DiagnosticsProperty<BaconMenuItemColors>("colors", colors))
-      ..add(DiagnosticsProperty<BaconMenuItemProperties>(
-          "properties", properties));
+        .add(DiagnosticsProperty<HiveMenuItemColors>("colors", colors));
+    diagnosticProperties.add(
+        DiagnosticsProperty<HiveMenuItemProperties>("properties", properties));
   }
 }
