@@ -421,8 +421,9 @@ class _HiveButtonState extends State<HiveButton>
         context.hiveTheme?.tokens.shape.radii.defaultBorderWidth ??
         HiveTokens.light.shape.radii.defaultBorderWidth;
 
-    final Color effectiveTextColor =
-        widget.textColor ?? HiveTokens.light.modes.content.primary;
+    final Color effectiveTextColor = widget.textColor ??
+        context.hiveTheme?.tokens.modes.content.inverse ??
+        HiveTokens.light.modes.content.inverse;
 
     final Color effectiveHoverEffectColor =
         widget.hoverEffectColor ?? HiveTokens.light.modes.action.hoverOnColor;
