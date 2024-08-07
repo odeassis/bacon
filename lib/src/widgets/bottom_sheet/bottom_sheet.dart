@@ -2,9 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/src/theme/theme.dart';
 
-import '../../theme/tokens/tokens.dart';
+import '../../theme/theme.dart';
 import '../../utils/utils.dart' as utils;
 import 'utils/bottom_sheet_custom_scroll_physics.dart';
 import 'utils/bottom_sheet_suspended_curve.dart';
