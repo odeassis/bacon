@@ -6,6 +6,7 @@ export './avatar/avatar.dart';
 export './badge/badge.dart';
 // BottomSheet
 export './bottom_sheet/bottom_sheet.dart';
+export './bottom_sheet/modal_bottom_sheet.dart';
 // Button
 export './button/button.dart';
 // Carousel
