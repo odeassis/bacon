@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hive/src/theme/theme.dart';
 
 import '../../theme/components/components.dart' as components;
-import '../../theme/tokens/hive_tokens.dart';
 import '../../utils/utils.dart' as utils;
 
 enum TagSize {
@@ -147,6 +146,7 @@ class HiveTag extends StatelessWidget {
               ? SystemMouseCursors.click
               : SystemMouseCursors.basic,
           child: Container(
+            width: width,
             height: effectiveHeight,
             padding: correctedPadding,
             constraints: BoxConstraints(minWidth: effectiveHeight),
