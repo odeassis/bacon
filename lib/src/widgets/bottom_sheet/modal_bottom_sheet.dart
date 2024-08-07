@@ -3,10 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../../theme/theme.dart';
-import '../../theme/tokens/tokens.dart';
 import 'bottom_sheet.dart';
 
-Future<T?> showBaconModalBottomSheet<T>({
+Future<T?> showHiveModalBottomSheet<T>({
   required BuildContext context,
   bool enableDrag = true,
   bool isExpanded = false,
@@ -55,7 +54,7 @@ Future<T?> showBaconModalBottomSheet<T>({
 
   final T? result =
       await Navigator.of(context, rootNavigator: useRootNavigator).push(
-    BaconModalBottomSheetRoute<T>(
+    HiveModalBottomSheetRoute<T>(
       enableDrag: enableDrag,
       isExpanded: isExpanded,
       isDismissible: isDismissible,
@@ -79,7 +78,7 @@ Future<T?> showBaconModalBottomSheet<T>({
   return result;
 }
 
-class BaconModalBottomSheetRoute<T> extends PageRoute<T> {
+class HiveModalBottomSheetRoute<T> extends PageRoute<T> {
   final bool enableDrag;
   final bool isExpanded;
   final bool isDismissible;
@@ -97,7 +96,7 @@ class BaconModalBottomSheetRoute<T> extends PageRoute<T> {
   final ScrollController? scrollController;
   final WidgetBuilder builder;
 
-  BaconModalBottomSheetRoute({
+  HiveModalBottomSheetRoute({
     super.settings,
     this.enableDrag = true,
     this.isExpanded = false,
@@ -156,11 +155,11 @@ class BaconModalBottomSheetRoute<T> extends PageRoute<T> {
 
   @override
   bool canTransitionTo(TransitionRoute<dynamic> nextRoute) =>
-      nextRoute is BaconModalBottomSheetRoute;
+      nextRoute is HiveModalBottomSheetRoute;
 
   @override
   bool canTransitionFrom(TransitionRoute<dynamic> previousRoute) =>
-      previousRoute is BaconModalBottomSheetRoute || previousRoute is PageRoute;
+      previousRoute is HiveModalBottomSheetRoute || previousRoute is PageRoute;
 
   @override
   Widget buildPage(BuildContext context, Animation<double> animation,
@@ -201,7 +200,7 @@ class _ModalBottomSheet<T> extends StatefulWidget {
   final Curve? transitionCurve;
   final String? semanticLabel;
   final AnimationController? animationController;
-  final BaconModalBottomSheetRoute<T> route;
+  final HiveModalBottomSheetRoute<T> route;
 
   const _ModalBottomSheet({
     super.key,
